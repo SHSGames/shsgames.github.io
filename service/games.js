@@ -377,11 +377,11 @@ module.exports = {
 			engine: "flash",
 			params: { options: {} }
 		},
-		{
-			name: "Vex 3",
-			engine: "flash",
-			params: { options: { wmode: "direct", allowScriptAccess: "always", movie: "http://farm.maxgames.com/vex3MjIwOQ==.swf" } }
-		},
+		//{
+		//	name: "Vex 3",
+		//	engine: "flash",
+		//	params: { options: { wmode: "direct", allowScriptAccess: "always", movie: "http://farm.maxgames.com/vex3MjIwOQ==.swf" } }
+		//},
 		{
 			name: "Worlds Hardest Game",
 			engine: "flash",
