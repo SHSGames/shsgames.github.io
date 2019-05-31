@@ -1,0 +1,84 @@
+.switch.accent {
+	background: transparent!important;
+	.photon-switch(@accentColor);
+}
+
+.switch {
+	margin:4px 0;
+
+	input[type="checkbox"].switch {
+		&:extend(.transition);
+		-webkit-appearance: none;
+		margin-top: -2px;
+		width: 36px;
+		height: 14px;
+		border-radius: 10px;
+		outline: 0;
+		background: fade(@dividerColor,50%);
+
+		&:checked {
+			background: fade(@primaryColor,50%);
+
+			&::before {
+				margin: -2px 18px;
+				background: @primaryColor;
+			}
+		}
+
+		&:disabled {
+			background: #aaaa;
+
+			&::before {
+				background: #454545;
+			}
+		}
+
+		&::before {
+			&:extend(.transition);
+			&:extend(.raised-1);
+			position: absolute;
+			content: "";
+			width: 18px;
+			height: 18px;
+			background: #fff;
+			border-radius: 50%;
+			transform: scale(1.2);
+			margin: -2px 0;
+		}
+	}
+	position: relative;
+
+	.ripple {
+		position: absolute;
+		width: 48px;
+		height: 48px;
+		margin: -39px -10px;
+		z-index:-1;
+		margin-left:-15px!important;
+		.transition();
+		transition-property:margin-left;
+
+		&::after {
+			opacity: 0;
+			pointer-events: none;
+			content: "-";
+		}
+	}
+
+	input:checked ~ .ripple {
+		margin-left:3px!important;
+		.waves-ripple {
+			background: fade(@primaryColor,40%);
+		}
+	}
+
+	input:disabled ~ .ripple {
+		display: none;
+	}
+}
+
+body when (@photonDarkTheme = true) {
+	input[type="checkbox"].switch:not(:checked)::before {
+		background: #bdbdbd;
+	}
+}

@@ -1,0 +1,123 @@
+.collection {
+	.card();
+
+	.item {
+		background-color: #fff;
+		line-height: 1.5rem;
+		padding: 10px 20px;
+		margin: 0;
+		list-style: none;
+		border-bottom: 1px solid @dividerColor;
+		border-color: @dividerColor!important;
+
+		span.badge {
+			margin-top: calc(0.75rem - 11px);
+		}
+
+		&:last-child {
+			border-bottom: none;
+		}
+
+		&.avatar {
+			min-height: 84px;
+			padding-left: 72px;
+			position: relative;
+
+			&:not(.circle-clipper) {
+				> .circle {
+					position: absolute;
+					position: absolute;
+					width: 42px;
+					width: 42px;
+					height: 42px;
+					height: 42px;
+					overflow: hidden;
+					overflow: hidden;
+					left: 15px;
+					left: 15px;
+					display: inline-block;
+					display: inline-block;
+					vertical-align: middle;
+					vertical-align: middle;
+				}
+			}
+
+			i.circle {
+				font-size: 18px;
+				line-height: 42px;
+				color: #fff;
+				background-color: #999;
+				text-align: center;
+			}
+
+			.title {
+				font-size: 16px;
+			}
+
+			p {
+				margin: 0;
+			}
+
+			.secondary-content {
+				position: absolute;
+				top: 16px;
+				right: 16px;
+			}
+		}
+
+		&.active {
+			background-color: @primaryColor;
+			color: #efefef;
+
+			.secondary-content {
+				color: #fff;
+			}
+		}
+
+		&a {
+			display: block;
+			-webkit-transition: 0.25s;
+			transition: 0.25s;
+			color: @primaryColor;
+
+			&:not(.active) {
+				&:hover {
+					background-color: #ddd;
+				}
+			}
+		}
+	}
+
+	&.with-header {
+		.collection-header {
+			background-color: #fff;
+			border-bottom: 1px solid @dividerColor;
+			padding: 10px 20px;
+		}
+
+		.collection-item {
+			padding-left: 30px;
+		}
+
+		.collection-item.avatar {
+			padding-left: 72px;
+		}
+	}
+}
+
+.collapsible {
+	.collection {
+		margin: 0;
+		border: none;
+	}
+}
+
+body when (@photonDarkTheme = true) {
+	.collection {
+		background: #303030!important;
+		.item {
+			background: #303030;
+			border-color: inherit;
+		}
+	}
+}

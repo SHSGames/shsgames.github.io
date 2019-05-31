@@ -1,0 +1,51 @@
+.note {
+	.card();
+	border-left: 5px solid #aaa;
+
+	.header {
+		padding: 16px;
+		background: fade(#aaa,10%);
+		border-bottom: 1px solid fade(#aaa,20%);
+		font-family:@secondaryFont;
+
+		&::before {
+			font-family: "material icons";
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 6px 12px;
+			font-size: 20px;
+		}
+
+		&::after {
+			position: absolute;
+			top: 0;
+			left: 32px;
+			padding: 8px;
+			font-size: 14px;
+			font-weight: 500;
+		}
+	}
+
+	.content {
+		font-size: 14px;
+		padding: 1em;
+	}
+
+	hr {
+		margin: -2px 0;
+	}
+
+	.photon-note(@blue,"editor","Note");
+	&.summary {.photon-note(@light-blue,"format_align_left","Summary")}
+	&.info {.photon-note(@cyan,"info","Info")}
+	&.tip {.photon-note(@teal,"whatshot","Tip")}
+	&.success {.photon-note(@green-accent4,"check","Success")}
+	&.warning {.photon-note(@orange,"warning","Warning")}
+	&.failure {.photon-note(@deep-orange,"error_outline","Failure")}
+	&.danger {.photon-note(@red,"error","Danger")}
+	&.bug {.photon-note(@red,"bug_report","Bug")}
+	&.example {.photon-note(@indigo,"slideshow","Example")}
+	&.quote {.photon-note(@grey,"format_quote","Quote")}
+	&.question {.photon-note(@grey,"help","Question")}
+}

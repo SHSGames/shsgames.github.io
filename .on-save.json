@@ -1,0 +1,6 @@
+[{
+    "files": "**/*.less",
+    "command": "lessc -x ./www/src/less/style.less ./www/src/css/main.css",
+	"showError":false,
+	"implementBusySignal":true
+}]
