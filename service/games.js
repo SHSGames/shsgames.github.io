@@ -452,6 +452,14 @@ module.exports = {
 				options: {}
 			}
 		}, {
+			name: "Kirby's Adventure",
+			engine: "nes",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
 			name: "Legend of Zelda",
 			engine: "nes",
 			params: {
