@@ -401,6 +401,18 @@ module.exports = {
 
 		name: "Gameboy Advance",
 		games: [{
+			name: "Advance Wars",
+			engine: "gba",
+			params: { options: {} }
+		}, {
+			name: "Fire Emblem",
+			engine: "gba",
+			params: { options: {} }
+		}, {
+			name: "Golden Sun",
+			engine: "gba",
+			params: { options: {} }
+		}, {
 			name: "Mario Kart",
 			engine: "gba",
 			params: { options: {} }
@@ -442,6 +454,14 @@ module.exports = {
 			params: { options: {} }
 		}, {
 			name: "Pokemon Red",
+			engine: "gba",
+			params: { options: {} }
+		}, {
+			name: "Sonic Advance",
+			engine: "gba",
+			params: { options: {} }
+		}, {
+			name: "Wario Ware",
 			engine: "gba",
 			params: { options: {} }
 		}]
