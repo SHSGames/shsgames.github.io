@@ -15,7 +15,7 @@ class GBAPlayer extends React.Component {
 	render() {
 		return (
 			<div id="gba-player" style={{ width: "100%", height: "100%", margin: "auto" }}>
-				<iframe src="/src/IodineGBA/launcher.html" frameBorder="0" height="480px"></iframe>
+				<iframe src="/src/IodineGBA/launcher.html" frameBorder="0" height="600px"></iframe>
 			</div>
 		);
 	}

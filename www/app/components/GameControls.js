@@ -18,9 +18,21 @@ class GameControls extends React.Component {
 		} else if(this.props.engine === "gba") {
 
 			return (
-				<div className="game-controls">
-					<FrameCounter/>
-					<a className="btn flat primary waves-effect" onClick={ () => $("#gba-player")[0].requestFullscreen() }>fullscreen</a>
+				<div>
+					<div className="game-controls">
+						<FrameCounter/>
+						<a className="btn flat primary waves-effect" onClick={ () => $("#gba-player")[0].requestFullscreen() }>fullscreen</a>
+					</div>
+					<div className="note controls">
+						<div className="header"></div>
+						<div className="content"><code className="keycode">↑</code> = <code className="keycode mono">UP</code></div><hr/>
+						<div className="content"><code className="keycode">↓</code> = <code className="keycode mono">DOWN</code></div><hr/>
+						<div className="content"><code className="keycode">←</code> = <code className="keycode mono">LEFT</code></div><hr/>
+						<div className="content"><code className="keycode">→</code> = <code className="keycode mono">RIGHT</code></div><hr/>
+						<div className="content"><code className="keycode mono">X</code> = <code className="keycode mono">A</code></div><hr/>
+						<div className="content"><code className="keycode mono">Z</code> = <code className="keycode mono">B</code></div><hr/>
+						<div className="content"><code className="keycode mono">TAB</code> = <code className="keycode mono">SELECT</code></div><hr/>
+					</div>
 				</div>
 			);
 
