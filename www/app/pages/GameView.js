@@ -13,7 +13,9 @@ class GameView extends React.Component {
 		let _cache = null;
 		let _pathname = location.pathname;
 		this._mounted = false;
-		this.state = { game: false, error: true };
+		this.state = { game: false, error: false };
+
+		let found = false;
 		(function listen(){
 			requestAnimationFrame(listen);
 			if((app.games !== _cache && _this._mounted) || (_pathname !== location.pathname)) {
@@ -26,11 +28,14 @@ class GameView extends React.Component {
 				games.map(game => {
 					if(app.slug(game.name) == location.pathname.split("game/")[1]) {
 						_this.setState({ game });
-						_this.setState({ error: false });
+						found = true;
 						document.title = `${game.name} - ${app["NAME"]}`
 					}
-
 				})
+
+				if(found === false) {
+					_this.setState({ error: true });
+				}
 			}
 		}());
 	}
