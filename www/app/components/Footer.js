@@ -22,6 +22,7 @@ export default class Footer extends React.Component {
 							<div className="col s12 l8">
 								<h3 className="grey-text text-lighten-3">{app["NAME"]}</h3>
 								<p className="grey-text">Unblocked games • {this.state.phrase}.</p>
+								<p className="grey-text">Come and Join our <a href="https://discord.gg/tVZjdMe" className="primary-text"> Discord Server</a></p>
 							</div>
 						</div>
 					</div>
@@ -29,8 +30,7 @@ export default class Footer extends React.Component {
 						<div className="container">
 							Copyright © { new Date().getFullYear() }
 							<a href="https://joshmerlino.github.io" className="primary-text"> Josh Merlino</a> &
-							<a href="https://th3skeleton.github.io/pshel/" className="primary-text"> Parker Sheldon</a> | Come and Join our
-							<a href="https://discord.gg/tVZjdMe" className="primary-text"> Discord Server</a>
+							<a href="https://th3skeleton.github.io/pshel/" className="primary-text"> Parker Sheldon</a>
 						</div>
 					</div>
 				</footer>
