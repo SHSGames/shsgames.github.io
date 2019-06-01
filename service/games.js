@@ -8,14 +8,19 @@ module.exports = {
 			params: { aspectRatio: 480/572, width: 512, options: {} }
 		},
 		{
+			name: "4th and Goal 2018",
+			engine: "flash",
+			params: { aspectRatio: 12/9, options: {} }
+		},
+		{
 			name: "4x4 Soccer",
 			engine: "flash",
-			params: { width: 640, options: {} }
+			params: { width: 640, options: { "allowscriptaccess": "always" } }
 		},
 		{
 			name: "Angry Birds",
 			engine: "flash",
-			params: { options: { allowScriptAccess: "always" } }
+			params: { options: { "allowscriptaccess": "always" } }
 		},
 		{
 			name: "B-Cubed",
@@ -25,7 +30,7 @@ module.exports = {
 		{
 			name: "Basketball Legends",
 			engine: "flash",
-			params: { options: {} }
+			params: { aspectRatio: 5/3, options: {} }
 		},
 		{
 			name: "Bloons Tower Defense 5",
@@ -168,6 +173,11 @@ module.exports = {
 			params: { options: {} }
 		},
 		{
+			name: "Hockey Legends",
+			engine: "flash",
+			params: { aspectRatio: 5/3, options: { "wmode": "direct", "menu": "false" } }
+		},
+		{
 			name: "Impossible Quiz",
 			engine: "flash",
 			params: { options: {} }
@@ -285,7 +295,7 @@ module.exports = {
 		{
 			name: "Run 3",
 			engine: "flash",
-			params: { options: { framerate: "60", wmode:"direct", "data-target":"game.game" } }
+			params: { options: { "framerate": "60", "wmode": "direct", "data-target": "game.game" } }
 		},
 		{
 			name: "Run n Gun",
@@ -377,11 +387,6 @@ module.exports = {
 			engine: "flash",
 			params: { options: {} }
 		},
-		//{
-		//	name: "Vex 3",
-		//	engine: "flash",
-		//	params: { options: { wmode: "direct", allowScriptAccess: "always", movie: "http://farm.maxgames.com/vex3MjIwOQ==.swf" } }
-		//},
 		{
 			name: "Worlds Hardest Game",
 			engine: "flash",
@@ -390,7 +395,7 @@ module.exports = {
 		{
 			name: "Zombocalypse 2",
 			engine: "flash",
-			params: { options: { framerate: "60", wmode:"direct", "data-target":"game.game" } }
+			params: { options: { "framerate": "60", "wmode": "direct", "data-target":"game.game" } }
 		}]
 	}, {
 

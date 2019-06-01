@@ -65,11 +65,11 @@
 	
 	var _router2 = _interopRequireDefault(_router);
 	
-	var _mprogressMin = __webpack_require__(/*! ../src/js/mprogress.min.js */ 75);
+	var _mprogressMin = __webpack_require__(/*! ../src/js/mprogress.min.js */ 76);
 	
 	var _mprogressMin2 = _interopRequireDefault(_mprogressMin);
 	
-	var _Sidenav = __webpack_require__(/*! ./components/Sidenav */ 76);
+	var _Sidenav = __webpack_require__(/*! ./components/Sidenav */ 77);
 	
 	var _Sidenav2 = _interopRequireDefault(_Sidenav);
 	
@@ -35439,10 +35439,19 @@
 		function Footer() {
 			_classCallCheck(this, Footer);
 	
-			return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this));
+	
+			_this._phrases = ["part of an inside job", "for the brave", "im a professional", "im smart I sware", "I play rock climbing", "put some sleeves on", "I have the power of God and anime", "send toes"];
+			_this.state = { phrase: "" };
+			return _this;
 		}
 	
 		_createClass(Footer, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				this.setState({ phrase: this._phrases[Math.floor(Math.random() * this._phrases.length)] });
+			}
+		}, {
 			key: "render",
 			value: function render() {
 				return _react2.default.createElement(
@@ -35468,7 +35477,9 @@
 									_react2.default.createElement(
 										"p",
 										{ className: "grey-text" },
-										"Unblocked games \u2022 part of an inside job."
+										"Unblocked games \u2022 ",
+										this.state.phrase,
+										"."
 									)
 								)
 							)
@@ -35479,12 +35490,18 @@
 							_react2.default.createElement(
 								"div",
 								{ className: "container" },
-								"\xA9 ",
+								"Copyright \xA9 ",
 								new Date().getFullYear(),
 								_react2.default.createElement(
 									"a",
-									{ href: "https://joshmerlino.herokuapp.com", className: "primary-text" },
+									{ href: "https://joshmerlino.github.io", className: "primary-text" },
 									" Josh Merlino"
+								),
+								" &",
+								_react2.default.createElement(
+									"a",
+									{ href: "https://th3skeleton.github.io/pshel/", className: "primary-text" },
+									" Parker Sheldon"
 								)
 							)
 						)
@@ -36742,7 +36759,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _GamePlayer = __webpack_require__(/*! ../components/GamePlayer */ 65);
+	var _ErrorDocument = __webpack_require__(/*! ./ErrorDocument */ 65);
+	
+	var _ErrorDocument2 = _interopRequireDefault(_ErrorDocument);
+	
+	var _GamePlayer = __webpack_require__(/*! ../components/GamePlayer */ 66);
 	
 	var _GamePlayer2 = _interopRequireDefault(_GamePlayer);
 	
@@ -36774,7 +36795,7 @@
 			var _cache = null;
 			var _pathname = location.pathname;
 			_this2._mounted = false;
-			_this2.state = { game: false };
+			_this2.state = { game: false, error: true };
 			(function listen() {
 				requestAnimationFrame(listen);
 				if (app.games !== _cache && _this._mounted || _pathname !== location.pathname) {
@@ -36787,9 +36808,11 @@
 							return games.push(game);
 						});
 					});
+	
 					games.map(function (game) {
 						if (app.slug(game.name) == location.pathname.split("game/")[1]) {
 							_this.setState({ game: game });
+							_this.setState({ error: false });
 							document.title = game.name + " - " + app["NAME"];
 						}
 					});
@@ -36811,6 +36834,7 @@
 		}, {
 			key: "render",
 			value: function render() {
+				if (this.state.error) return _react2.default.createElement(_ErrorDocument2.default, null);
 				return _react2.default.createElement(
 					"div",
 					null,
@@ -36828,6 +36852,88 @@
 
 /***/ }),
 /* 65 */
+/*!****************************************!*\
+  !*** ./www/app/pages/ErrorDocument.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ErrorDocument = function (_React$Component) {
+		_inherits(ErrorDocument, _React$Component);
+	
+		function ErrorDocument() {
+			_classCallCheck(this, ErrorDocument);
+	
+			return _possibleConstructorReturn(this, (ErrorDocument.__proto__ || Object.getPrototypeOf(ErrorDocument)).apply(this, arguments));
+		}
+	
+		_createClass(ErrorDocument, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "og-vh-center" },
+					_react2.default.createElement(
+						"center",
+						null,
+						_react2.default.createElement("img", { src: "/img/icon/web_hi_res_512.png", alt: "", width: "168" }),
+						_react2.default.createElement("br", null),
+						_react2.default.createElement(
+							"h1",
+							null,
+							"404 - Not found"
+						),
+						_react2.default.createElement(
+							"h2",
+							null,
+							"Was it a broken link or deleted???"
+						),
+						_react2.default.createElement(
+							"div",
+							null,
+							_react2.default.createElement(
+								_reactRouterDom.Link,
+								{ to: "/" },
+								_react2.default.createElement(
+									"div",
+									{ className: "btn raised waves-effect primary" },
+									"home"
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+	
+		return ErrorDocument;
+	}(_react2.default.Component);
+	
+	exports.default = ErrorDocument;
+
+/***/ }),
+/* 66 */
 /*!******************************************!*\
   !*** ./www/app/components/GamePlayer.js ***!
   \******************************************/
@@ -36845,23 +36951,23 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Flash = __webpack_require__(/*! ./Players/Flash */ 66);
+	var _Flash = __webpack_require__(/*! ./Players/Flash */ 67);
 	
 	var _Flash2 = _interopRequireDefault(_Flash);
 	
-	var _NES = __webpack_require__(/*! ./Players/NES */ 67);
+	var _NES = __webpack_require__(/*! ./Players/NES */ 68);
 	
 	var _NES2 = _interopRequireDefault(_NES);
 	
-	var _Unity = __webpack_require__(/*! ./Players/Unity */ 68);
+	var _Unity = __webpack_require__(/*! ./Players/Unity */ 69);
 	
 	var _Unity2 = _interopRequireDefault(_Unity);
 	
-	var _GameControls = __webpack_require__(/*! ./GameControls */ 69);
+	var _GameControls = __webpack_require__(/*! ./GameControls */ 70);
 	
 	var _GameControls2 = _interopRequireDefault(_GameControls);
 	
-	__webpack_require__(/*! ./GamePlayer.less */ 73);
+	__webpack_require__(/*! ./GamePlayer.less */ 74);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36922,7 +37028,7 @@
 	exports.default = GamePlayer;
 
 /***/ }),
-/* 66 */
+/* 67 */
 /*!*********************************************!*\
   !*** ./www/app/components/Players/Flash.js ***!
   \*********************************************/
@@ -36977,7 +37083,7 @@
 	exports.default = FlashPlayer;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /*!*******************************************!*\
   !*** ./www/app/components/Players/NES.js ***!
   \*******************************************/
@@ -37046,7 +37152,7 @@
 	exports.default = NESPlayer;
 
 /***/ }),
-/* 68 */
+/* 69 */
 /*!*********************************************!*\
   !*** ./www/app/components/Players/Unity.js ***!
   \*********************************************/
@@ -37120,7 +37226,7 @@
 	exports.default = UnityPlayer;
 
 /***/ }),
-/* 69 */
+/* 70 */
 /*!********************************************!*\
   !*** ./www/app/components/GameControls.js ***!
   \********************************************/
@@ -37138,9 +37244,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	__webpack_require__(/*! ./GameControls.less */ 70);
+	__webpack_require__(/*! ./GameControls.less */ 71);
 	
-	var _FrameCounter = __webpack_require__(/*! ./FrameCounter */ 72);
+	var _FrameCounter = __webpack_require__(/*! ./FrameCounter */ 73);
 	
 	var _FrameCounter2 = _interopRequireDefault(_FrameCounter);
 	
@@ -37359,14 +37465,14 @@
 	exports.default = GameControls;
 
 /***/ }),
-/* 70 */
+/* 71 */
 /*!**********************************************!*\
   !*** ./www/app/components/GameControls.less ***!
   \**********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameControls.less */ 71);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameControls.less */ 72);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -37412,7 +37518,7 @@
 	}
 
 /***/ }),
-/* 71 */
+/* 72 */
 /*!*****************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameControls.less ***!
   \*****************************************************************************************************/
@@ -37425,7 +37531,7 @@
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /*!********************************************!*\
   !*** ./www/app/components/FrameCounter.js ***!
   \********************************************/
@@ -37505,14 +37611,14 @@
 	exports.default = FrameCounter;
 
 /***/ }),
-/* 73 */
+/* 74 */
 /*!********************************************!*\
   !*** ./www/app/components/GamePlayer.less ***!
   \********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GamePlayer.less */ 74);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GamePlayer.less */ 75);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -37558,7 +37664,7 @@
 	}
 
 /***/ }),
-/* 74 */
+/* 75 */
 /*!***************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GamePlayer.less ***!
   \***************************************************************************************************/
@@ -37571,7 +37677,7 @@
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /*!*************************************!*\
   !*** ./www/src/js/mprogress.min.js ***!
   \*************************************/
@@ -37757,7 +37863,7 @@
 	}).call(undefined);
 
 /***/ }),
-/* 76 */
+/* 77 */
 /*!***************************************!*\
   !*** ./www/app/components/Sidenav.js ***!
   \***************************************/
