@@ -401,6 +401,10 @@ module.exports = {
 
 		name: "Gameboy Advance",
 		games: [{
+			name: "Mario Kart",
+			engine: "gba",
+			params: { options: {} }
+		}, {
 			name: "Pacman World",
 			engine: "gba",
 			params: { options: {} }
