@@ -481,6 +481,14 @@ module.exports = {
 				options: {}
 			}
 		}, {
+			name: "Dr. Mario",
+			engine: "nes",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
 			name: "Hoops",
 			engine: "nes",
 			params: {
