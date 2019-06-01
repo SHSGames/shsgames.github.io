@@ -399,6 +399,90 @@ module.exports = {
 		}]
 	}, {
 
+		name: "Gameboy Advance",
+		games: [{
+			name: "Pacman World",
+			engine: "gba",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
+			name: "Pokemon Dark Violet",
+			engine: "gba",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
+			name: "Pokemon Emerald",
+			engine: "gba",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
+			name: "Pokemon Flora Sky",
+			engine: "gba",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
+			name: "Pokemon Glazed",
+			engine: "gba",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
+			name: "Pokemon Green",
+			engine: "gba",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
+			name: "Pokemon Light Platinum",
+			engine: "gba",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
+			name: "Pokemon Ruby",
+			engine: "gba",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
+			name: "Pokemon Sapphire",
+			engine: "gba",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
+			name: "Pokemon Red",
+			engine: "gba",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}]
+	}, {
+
 		name: "NES",
 		games: [{
 			name: "Blades of Steel",
