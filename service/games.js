@@ -403,83 +403,43 @@ module.exports = {
 		games: [{
 			name: "Pacman World",
 			engine: "gba",
-			params: {
-				aspectRatio: 16/15,
-				width: 640,
-				options: {}
-			}
+			params: { options: {} }
 		}, {
 			name: "Pokemon Dark Violet",
 			engine: "gba",
-			params: {
-				aspectRatio: 16/15,
-				width: 640,
-				options: {}
-			}
+			params: { options: {} }
 		}, {
 			name: "Pokemon Emerald",
 			engine: "gba",
-			params: {
-				aspectRatio: 16/15,
-				width: 640,
-				options: {}
-			}
+			params: { options: {} }
 		}, {
 			name: "Pokemon Flora Sky",
 			engine: "gba",
-			params: {
-				aspectRatio: 16/15,
-				width: 640,
-				options: {}
-			}
+			params: { options: {} }
 		}, {
 			name: "Pokemon Glazed",
 			engine: "gba",
-			params: {
-				aspectRatio: 16/15,
-				width: 640,
-				options: {}
-			}
+			params: { options: {} }
 		}, {
 			name: "Pokemon Green",
 			engine: "gba",
-			params: {
-				aspectRatio: 16/15,
-				width: 640,
-				options: {}
-			}
+			params: { options: {} }
 		}, {
 			name: "Pokemon Light Platinum",
 			engine: "gba",
-			params: {
-				aspectRatio: 16/15,
-				width: 640,
-				options: {}
-			}
+			params: { options: {} }
 		}, {
 			name: "Pokemon Ruby",
 			engine: "gba",
-			params: {
-				aspectRatio: 16/15,
-				width: 640,
-				options: {}
-			}
+			params: { options: {} }
 		}, {
 			name: "Pokemon Sapphire",
 			engine: "gba",
-			params: {
-				aspectRatio: 16/15,
-				width: 640,
-				options: {}
-			}
+			params: { options: {} }
 		}, {
 			name: "Pokemon Red",
 			engine: "gba",
-			params: {
-				aspectRatio: 16/15,
-				width: 640,
-				options: {}
-			}
+			params: { options: {} }
 		}]
 	}, {
 
