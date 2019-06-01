@@ -1,10 +1,11 @@
 import React from "react";
 
 import FlashPlayer from "./Players/Flash";
+import GBAPlayer from "./Players/GBA";
 import NESPlayer from "./Players/NES";
 import UnityPlayer from "./Players/Unity";
-import GameControls from "./GameControls";
 
+import GameControls from "./GameControls";
 import "./GamePlayer.less";
 
 class GamePlayer extends React.Component {
@@ -24,6 +25,7 @@ class GamePlayer extends React.Component {
 					{ this.props.game.engine === "flash" && <FlashPlayer game={this.props.game}/> }
 					{ this.props.game.engine === "unity" && <UnityPlayer game={this.props.game}/> }
 					{ this.props.game.engine === "nes" && <NESPlayer game={this.props.game}/> }
+					{ this.props.game.engine === "gba" && <GBAPlayer game={this.props.game}/> }
 				</div>
 				<GameControls engine={this.props.game.engine}/>
 			</div>

@@ -15,6 +15,15 @@ class GameControls extends React.Component {
 				</div>
 			);
 
+		} else if(this.props.engine === "gba") {
+
+			return (
+				<div className="game-controls">
+					<FrameCounter/>
+					<a className="btn flat primary waves-effect" onClick={ () => $("#gba-player")[0].requestFullscreen() }>fullscreen</a>
+				</div>
+			);
+
 		} else if(this.props.engine === "nes") {
 
 			return (
