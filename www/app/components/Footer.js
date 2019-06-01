@@ -30,7 +30,7 @@ export default class Footer extends React.Component {
 							Copyright © { new Date().getFullYear() }
 							<a href="https://joshmerlino.github.io" className="primary-text"> Josh Merlino</a> &
 							<a href="https://th3skeleton.github.io/pshel/" className="primary-text"> Parker Sheldon</a> | Come and Join our
-							<a href="https://discord.gg/tVZjdMe" className="discord-text"> Discord Server</a>
+							<a href="https://discord.gg/tVZjdMe" className="primary-text"> Discord Server</a>
 						</div>
 					</div>
 				</footer>
