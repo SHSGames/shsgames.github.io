@@ -10,6 +10,15 @@ class GBAPlayer extends React.Component {
 		app.game = this.props.game;
 		setTimeout(this.componentProbablyRendered)
 		Photon.disableArrowKeyScrolling = true;
+
+		window.gbaloader = new Photon.dialog({
+			type: "progress",
+			circular: true,
+			message: "Loading game..."
+		});
+
+		window.gbaloader.open();
+
 	}
 
 	render() {

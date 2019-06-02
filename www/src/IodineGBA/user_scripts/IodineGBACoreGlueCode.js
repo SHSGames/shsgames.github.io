@@ -54,6 +54,8 @@ function registerROM() {
         Iodine.disableAudio();
     }
     Iodine.play();
+	window.parent.gbaloader.resolved = true;
+	window.parent.gbaloader.destroy();
 }
 function registerBlitterHandler() {
     Blitter = new GlueCodeGfx();

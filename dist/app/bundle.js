@@ -65,11 +65,11 @@
 	
 	var _router2 = _interopRequireDefault(_router);
 	
-	var _mprogressMin = __webpack_require__(/*! ../src/js/mprogress.min.js */ 76);
+	var _mprogressMin = __webpack_require__(/*! ../src/js/mprogress.min.js */ 77);
 	
 	var _mprogressMin2 = _interopRequireDefault(_mprogressMin);
 	
-	var _Sidenav = __webpack_require__(/*! ./components/Sidenav */ 77);
+	var _Sidenav = __webpack_require__(/*! ./components/Sidenav */ 78);
 	
 	var _Sidenav2 = _interopRequireDefault(_Sidenav);
 	
@@ -35480,6 +35480,16 @@
 										"Unblocked games \u2022 ",
 										this.state.phrase,
 										"."
+									),
+									_react2.default.createElement(
+										"p",
+										{ className: "grey-text" },
+										"Come and Join our ",
+										_react2.default.createElement(
+											"a",
+											{ href: "https://discord.gg/tVZjdMe", className: "primary-text" },
+											" Discord Server"
+										)
 									)
 								)
 							)
@@ -36795,7 +36805,9 @@
 			var _cache = null;
 			var _pathname = location.pathname;
 			_this2._mounted = false;
-			_this2.state = { game: false, error: true };
+			_this2.state = { game: false, error: false };
+	
+			var found = false;
 			(function listen() {
 				requestAnimationFrame(listen);
 				if (app.games !== _cache && _this._mounted || _pathname !== location.pathname) {
@@ -36812,10 +36824,14 @@
 					games.map(function (game) {
 						if (app.slug(game.name) == location.pathname.split("game/")[1]) {
 							_this.setState({ game: game });
-							_this.setState({ error: false });
+							found = true;
 							document.title = game.name + " - " + app["NAME"];
 						}
 					});
+	
+					if (found === false) {
+						_this.setState({ error: true });
+					}
 				}
 			})();
 			return _this2;
@@ -36955,19 +36971,23 @@
 	
 	var _Flash2 = _interopRequireDefault(_Flash);
 	
-	var _NES = __webpack_require__(/*! ./Players/NES */ 68);
+	var _GBA = __webpack_require__(/*! ./Players/GBA */ 68);
+	
+	var _GBA2 = _interopRequireDefault(_GBA);
+	
+	var _NES = __webpack_require__(/*! ./Players/NES */ 69);
 	
 	var _NES2 = _interopRequireDefault(_NES);
 	
-	var _Unity = __webpack_require__(/*! ./Players/Unity */ 69);
+	var _Unity = __webpack_require__(/*! ./Players/Unity */ 70);
 	
 	var _Unity2 = _interopRequireDefault(_Unity);
 	
-	var _GameControls = __webpack_require__(/*! ./GameControls */ 70);
+	var _GameControls = __webpack_require__(/*! ./GameControls */ 71);
 	
 	var _GameControls2 = _interopRequireDefault(_GameControls);
 	
-	__webpack_require__(/*! ./GamePlayer.less */ 74);
+	__webpack_require__(/*! ./GamePlayer.less */ 75);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37015,7 +37035,8 @@
 						{ className: "game" },
 						this.props.game.engine === "flash" && _react2.default.createElement(_Flash2.default, { game: this.props.game }),
 						this.props.game.engine === "unity" && _react2.default.createElement(_Unity2.default, { game: this.props.game }),
-						this.props.game.engine === "nes" && _react2.default.createElement(_NES2.default, { game: this.props.game })
+						this.props.game.engine === "nes" && _react2.default.createElement(_NES2.default, { game: this.props.game }),
+						this.props.game.engine === "gba" && _react2.default.createElement(_GBA2.default, { game: this.props.game })
 					),
 					_react2.default.createElement(_GameControls2.default, { engine: this.props.game.engine })
 				);
@@ -37085,6 +37106,68 @@
 /***/ }),
 /* 68 */
 /*!*******************************************!*\
+  !*** ./www/app/components/Players/GBA.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GBAPlayer = function (_React$Component) {
+		_inherits(GBAPlayer, _React$Component);
+	
+		function GBAPlayer(props) {
+			_classCallCheck(this, GBAPlayer);
+	
+			var _this = _possibleConstructorReturn(this, (GBAPlayer.__proto__ || Object.getPrototypeOf(GBAPlayer)).call(this, props));
+	
+			_this._arguments = props.game.params.options;
+			return _this;
+		}
+	
+		_createClass(GBAPlayer, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				app.game = this.props.game;
+				setTimeout(this.componentProbablyRendered);
+				Photon.disableArrowKeyScrolling = true;
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ id: "gba-player", style: { width: "100%", height: "100%", margin: "auto" } },
+					_react2.default.createElement("iframe", { src: "/src/IodineGBA/launcher.html", frameBorder: "0", height: "600px" })
+				);
+			}
+		}]);
+	
+		return GBAPlayer;
+	}(_react2.default.Component);
+	
+	exports.default = GBAPlayer;
+
+/***/ }),
+/* 69 */
+/*!*******************************************!*\
   !*** ./www/app/components/Players/NES.js ***!
   \*******************************************/
 /***/ (function(module, exports, __webpack_require__) {
@@ -37152,7 +37235,7 @@
 	exports.default = NESPlayer;
 
 /***/ }),
-/* 69 */
+/* 70 */
 /*!*********************************************!*\
   !*** ./www/app/components/Players/Unity.js ***!
   \*********************************************/
@@ -37226,7 +37309,7 @@
 	exports.default = UnityPlayer;
 
 /***/ }),
-/* 70 */
+/* 71 */
 /*!********************************************!*\
   !*** ./www/app/components/GameControls.js ***!
   \********************************************/
@@ -37244,9 +37327,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	__webpack_require__(/*! ./GameControls.less */ 71);
+	__webpack_require__(/*! ./GameControls.less */ 72);
 	
-	var _FrameCounter = __webpack_require__(/*! ./FrameCounter */ 73);
+	var _FrameCounter = __webpack_require__(/*! ./FrameCounter */ 74);
 	
 	var _FrameCounter2 = _interopRequireDefault(_FrameCounter);
 	
@@ -37282,6 +37365,141 @@
 									return $("#flash-player")[0].requestFullscreen();
 								} },
 							"fullscreen"
+						)
+					);
+				} else if (this.props.engine === "gba") {
+	
+					return _react2.default.createElement(
+						"div",
+						null,
+						_react2.default.createElement(
+							"div",
+							{ className: "game-controls" },
+							_react2.default.createElement(_FrameCounter2.default, null),
+							_react2.default.createElement(
+								"a",
+								{ className: "btn flat primary waves-effect", onClick: function onClick() {
+										return $("#gba-player")[0].requestFullscreen();
+									} },
+								"fullscreen"
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "note controls" },
+							_react2.default.createElement("div", { className: "header" }),
+							_react2.default.createElement(
+								"div",
+								{ className: "content" },
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode" },
+									"\u2191"
+								),
+								" = ",
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode mono" },
+									"UP"
+								)
+							),
+							_react2.default.createElement("hr", null),
+							_react2.default.createElement(
+								"div",
+								{ className: "content" },
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode" },
+									"\u2193"
+								),
+								" = ",
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode mono" },
+									"DOWN"
+								)
+							),
+							_react2.default.createElement("hr", null),
+							_react2.default.createElement(
+								"div",
+								{ className: "content" },
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode" },
+									"\u2190"
+								),
+								" = ",
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode mono" },
+									"LEFT"
+								)
+							),
+							_react2.default.createElement("hr", null),
+							_react2.default.createElement(
+								"div",
+								{ className: "content" },
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode" },
+									"\u2192"
+								),
+								" = ",
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode mono" },
+									"RIGHT"
+								)
+							),
+							_react2.default.createElement("hr", null),
+							_react2.default.createElement(
+								"div",
+								{ className: "content" },
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode mono" },
+									"X"
+								),
+								" = ",
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode mono" },
+									"A"
+								)
+							),
+							_react2.default.createElement("hr", null),
+							_react2.default.createElement(
+								"div",
+								{ className: "content" },
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode mono" },
+									"Z"
+								),
+								" = ",
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode mono" },
+									"B"
+								)
+							),
+							_react2.default.createElement("hr", null),
+							_react2.default.createElement(
+								"div",
+								{ className: "content" },
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode mono" },
+									"TAB"
+								),
+								" = ",
+								_react2.default.createElement(
+									"code",
+									{ className: "keycode mono" },
+									"SELECT"
+								)
+							),
+							_react2.default.createElement("hr", null)
 						)
 					);
 				} else if (this.props.engine === "nes") {
@@ -37465,14 +37683,14 @@
 	exports.default = GameControls;
 
 /***/ }),
-/* 71 */
+/* 72 */
 /*!**********************************************!*\
   !*** ./www/app/components/GameControls.less ***!
   \**********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameControls.less */ 72);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameControls.less */ 73);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -37518,7 +37736,7 @@
 	}
 
 /***/ }),
-/* 72 */
+/* 73 */
 /*!*****************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameControls.less ***!
   \*****************************************************************************************************/
@@ -37531,7 +37749,7 @@
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /*!********************************************!*\
   !*** ./www/app/components/FrameCounter.js ***!
   \********************************************/
@@ -37611,14 +37829,14 @@
 	exports.default = FrameCounter;
 
 /***/ }),
-/* 74 */
+/* 75 */
 /*!********************************************!*\
   !*** ./www/app/components/GamePlayer.less ***!
   \********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GamePlayer.less */ 75);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GamePlayer.less */ 76);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -37664,7 +37882,7 @@
 	}
 
 /***/ }),
-/* 75 */
+/* 76 */
 /*!***************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GamePlayer.less ***!
   \***************************************************************************************************/
@@ -37677,7 +37895,7 @@
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /*!*************************************!*\
   !*** ./www/src/js/mprogress.min.js ***!
   \*************************************/
@@ -37863,7 +38081,7 @@
 	}).call(undefined);
 
 /***/ }),
-/* 77 */
+/* 78 */
 /*!***************************************!*\
   !*** ./www/app/components/Sidenav.js ***!
   \***************************************/
