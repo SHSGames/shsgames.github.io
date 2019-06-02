@@ -373,6 +373,11 @@ module.exports = {
 			params: { options: {} }
 		},
 		{
+			name: "Theme Hotel",
+			engine: "flash",
+			params: { options: {} }
+		},
+		{
 			name: "Truck Loader 4",
 			engine: "flash",
 			params: { options: {} }
