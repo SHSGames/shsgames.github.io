@@ -29707,6 +29707,7 @@
 		slug: function slug(string) {
 			string = string.replace(/\s/g, "-");
 			string = string.replace(/\'/g, "");
+			string = string.replace(/\./g, "");
 			string = string.toLowerCase();
 			return string;
 		},
@@ -36712,12 +36713,18 @@
 		function Request() {
 			_classCallCheck(this, Request);
 	
-			return _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).call(this));
+	
+			_this._hrefs = ["https://docs.google.com/forms/d/e/1FAIpQLScD0hNLHtaxyiwUtUKHBxxJAKkuAgytpjHvdd6eHESOXCNH4w/viewform?embedded=true", "https://docs.google.com/forms/d/e/1FAIpQLSe3iNjW7GjNa9gYzHQBbQrIYKrTrU4cojsLamjePURqkKHdtw/viewform?embedded=true"];
+			_this.state = { i: 0 };
+			return _this;
 		}
 	
 		_createClass(Request, [{
 			key: "render",
 			value: function render() {
+				var _this2 = this;
+	
 				return _react2.default.createElement(
 					"div",
 					null,
@@ -36734,11 +36741,20 @@
 								"Request"
 							)
 						),
-						_react2.default.createElement(
-							"iframe",
-							{ src: "https://docs.google.com/forms/d/e/1FAIpQLScD0hNLHtaxyiwUtUKHBxxJAKkuAgytpjHvdd6eHESOXCNH4w/viewform?embedded=true", width: "500", height: "620", frameBorder: "0", marginHeight: "0", marginWidth: "0" },
-							"Loading..."
-						)
+						this.state.i + 1 !== this._hrefs.length && _react2.default.createElement(
+							"p",
+							null,
+							"Dont have access? Click ",
+							_react2.default.createElement(
+								"a",
+								{ onClick: function onClick() {
+										return _this2.setState({ i: _this2.state.i + 1 });
+									}, className: "primary-text", style: { cursor: "pointer" } },
+								"here"
+							),
+							"."
+						),
+						_react2.default.createElement("iframe", { id: "request-frame", src: this._hrefs[this.state.i], width: "500", height: "700", frameBorder: "0", marginHeight: "0", marginWidth: "0", scrolling: "no" })
 					),
 					_react2.default.createElement(_Footer2.default, null)
 				);
@@ -37148,6 +37164,14 @@
 				app.game = this.props.game;
 				setTimeout(this.componentProbablyRendered);
 				Photon.disableArrowKeyScrolling = true;
+	
+				window.gbaloader = new Photon.dialog({
+					type: "progress",
+					circular: true,
+					message: "Loading game..."
+				});
+	
+				window.gbaloader.open();
 			}
 		}, {
 			key: "render",

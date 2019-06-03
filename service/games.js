@@ -208,6 +208,11 @@ module.exports = {
 			params: { options: {} }
 		},
 		{
+			name: "Pacman",
+			engine: "flash",
+			params: { options: {} }
+		},
+		{
 			name: "Papas Burgeria",
 			engine: "flash",
 			params: { options: {} }
