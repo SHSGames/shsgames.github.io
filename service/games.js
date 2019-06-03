@@ -474,6 +474,14 @@ module.exports = {
 
 		name: "NES",
 		games: [{
+			name: "Bubble Bobble",
+			engine: "nes",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
 			name: "Blades of Steel",
 			engine: "nes",
 			params: {
@@ -523,6 +531,14 @@ module.exports = {
 			}
 		}, {
 			name: "Ice Hockey",
+			engine: "nes",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		},  {
+			name: "Ice Hockey: Bones 19",
 			engine: "nes",
 			params: {
 				aspectRatio: 16/15,
