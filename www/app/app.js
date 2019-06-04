@@ -27,6 +27,8 @@ global.service = service => data => done => {
 		return { din };
 	}
 
+	let finished = false;
+
 	$.ajax({
 		type: "POST",
 		url: `${app.service}/${service}`,
@@ -35,10 +37,16 @@ global.service = service => data => done => {
 			...{ cookie: document.cookie }
 		}),
 		success(args) {
-			mprogress.end()
+			finished = true;
+			mprogress.end();
 			done(args);
 		}
 	});
+
+	setTimeout(() => {
+		finished === false && app.offlineMode();
+		mprogress.end();
+	}, 3000)
 }
 
 let spin = function(){
@@ -60,7 +68,15 @@ global.app = {
 	game: null,
 	games: null,
 	state: {
+		offline: false,
 		nesready: false
+	},
+
+	offlineMode() {
+		Photon.toast(`<i class="material-icons deep-orange-text">warning</i><span>You'r offline. Entering offline mode.</span>`,3000);
+		const games = JSON.parse(localStorage.getItem("offline-games") || "[]");
+		app.games = { groups: [{ name: "Saved", games }]}
+		app.state.offline = true;
 	},
 
 	slug(string) {

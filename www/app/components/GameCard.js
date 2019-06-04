@@ -10,7 +10,7 @@ class GameCard extends React.Component {
 	}
 
 	componentDidMount() {
-		setTimeout(() => new LazyLoad({ elements_selector: ".thumbnail" }))
+		app.state.offline === false && setTimeout(() => new LazyLoad({ elements_selector: ".thumbnail" }))
 	}
 
 	componentDidUpdate() {
@@ -19,6 +19,20 @@ class GameCard extends React.Component {
 
 	render() {
 		if(this.state.redirect) return <Redirect to={this.state.redirect} push/>;
+		if(app.state.offline) {
+			return (
+				<div className="col s12 m6 l4 xl3">
+					<div className="gamecard card">
+						<div className="card-content">
+							<div className="card-title">{this.props.game.name}</div>
+						</div>
+						<div className="card-action offline">
+							<a className="btn flat waves-effect primary" onClick={ () => app.launch(this.props.game, this) }>play</a>
+						</div>
+					</div>
+				</div>
+			);
+		}
 		return (
 			<div className="col s12 m6 l4 xl3">
 				<div className="gamecard card">
