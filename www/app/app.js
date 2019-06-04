@@ -44,9 +44,9 @@ global.service = service => data => done => {
 	});
 
 	setTimeout(() => {
-		finished === false && app.offlineMode();
+		service === "games" && finished === false && app.offlineMode();
 		mprogress.end();
-	}, 3000)
+	}, 5000)
 }
 
 let spin = function(){
@@ -125,6 +125,19 @@ global.app = {
 		} else {
 			redirector.setState({ redirect: `/game/${path}` });
 		}
-	}
+	},
+
+	setCookie(cname, cvalue, seconds = 7 * 24 * 60 * 60) {
+        let d = new Date();
+        d.setTime(d.getTime() + (seconds * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    },
+
+    getCookie(name) {
+        let value = "; " + document.cookie;
+        let parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
 
 }
