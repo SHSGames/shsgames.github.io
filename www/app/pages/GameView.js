@@ -17,8 +17,8 @@ class GameView extends React.Component {
 
 		let found = false;
 		this._incache = false;
-		(function listen(){
-			requestAnimationFrame(listen);
+		this._listener = function listen(){
+			_this._mounted && requestAnimationFrame(listen);
 			if((app.games !== _cache && _this._mounted) || (_pathname !== location.pathname)) {
 				_pathname = location.pathname;
 				_cache = app.games;
@@ -52,11 +52,12 @@ class GameView extends React.Component {
 					_this.setState({ error: true });
 				}
 			}
-		}());
+		};
 	}
 
 	componentDidMount() {
 		this._mounted = true;
+		this._listener();
 	}
 
 	componentWillUnmount() {
