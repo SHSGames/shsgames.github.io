@@ -133,6 +133,11 @@ module.exports = {
 			params: { options: {} }
 		},
 		{
+			name: "Feudalism 2",
+			engine: "flash",
+			params: { options: { "allowscriptaccess": "always" } }
+		},
+		{
 			name: "Gun Mayhem 2",
 			engine: "flash",
 			params: { options: {} }
