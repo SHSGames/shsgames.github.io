@@ -36903,32 +36903,6 @@
 						if (app.slug(game.name) == location.pathname.split("game/")[1]) {
 							_this.setState({ game: game });
 	
-							var savedgames = JSON.parse(localStorage.getItem("offline-games") || "[]");
-							var _iteratorNormalCompletion = true;
-							var _didIteratorError = false;
-							var _iteratorError = undefined;
-	
-							try {
-								for (var _iterator = savedgames[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-									var g = _step.value;
-	
-									if (g.name === game.name) incache = true;
-								}
-							} catch (err) {
-								_didIteratorError = true;
-								_iteratorError = err;
-							} finally {
-								try {
-									if (!_iteratorNormalCompletion && _iterator.return) {
-										_iterator.return();
-									}
-								} finally {
-									if (_didIteratorError) {
-										throw _iteratorError;
-									}
-								}
-							}
-	
 							if (!app.state.offline) {
 								_this._incache === false && game.engine === "flash" && savedgames.push(game);
 								_this._incache = true;
