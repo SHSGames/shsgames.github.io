@@ -36885,9 +36885,8 @@
 			_this2.state = { game: false, error: false };
 	
 			var found = false;
-			_this2._incache = false;
-			_this2._listener = function listen() {
-				_this._mounted && requestAnimationFrame(listen);
+			(function listen() {
+				requestAnimationFrame(listen);
 				if (app.games !== _cache && _this._mounted || _pathname !== location.pathname) {
 					_pathname = location.pathname;
 					_cache = app.games;
@@ -36902,17 +36901,6 @@
 					games.map(function (game) {
 						if (app.slug(game.name) == location.pathname.split("game/")[1]) {
 							_this.setState({ game: game });
-	
-							if (!app.state.offline) {
-								_this._incache === false && game.engine === "flash" && savedgames.push(game);
-								_this._incache = true;
-							}
-	
-							savedgames = savedgames.sort(function (a, b) {
-								return a.name.localeCompare(b.name);
-							});
-							localStorage.setItem("offline-games", JSON.stringify(savedgames));
-	
 							found = true;
 							document.title = game.name + " - " + app["NAME"];
 						}
@@ -36922,7 +36910,7 @@
 						_this.setState({ error: true });
 					}
 				}
-			};
+			})();
 			return _this2;
 		}
 	
@@ -36930,7 +36918,6 @@
 			key: "componentDidMount",
 			value: function componentDidMount() {
 				this._mounted = true;
-				this._listener();
 			}
 		}, {
 			key: "componentWillUnmount",
@@ -36941,11 +36928,6 @@
 			key: "render",
 			value: function render() {
 				if (this.state.error) return _react2.default.createElement(_ErrorDocument2.default, null);
-				if (app.state.offline && this.incache === false) return _react2.default.createElement(
-					"div",
-					null,
-					"offline"
-				);
 				return _react2.default.createElement(
 					"div",
 					null,
