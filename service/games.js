@@ -360,7 +360,7 @@ module.exports = {
 		{
 			name: "Super Mario 63",
 			engine: "flash",
-			params: { aspectRatio: 740/500, width: 800, options: {} }
+			params: { aspectRatio: (533 + 1/3)/800, options: {} }
 		},
 		{
 			name: "Super Mario Crossover",
