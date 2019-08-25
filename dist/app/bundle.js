@@ -61,19 +61,19 @@
 	
 	__webpack_require__(/*! ./app */ 44);
 	
-	var _router = __webpack_require__(/*! ./router */ 46);
+	var _router = __webpack_require__(/*! ./router */ 47);
 	
 	var _router2 = _interopRequireDefault(_router);
 	
-	var _mprogressMin = __webpack_require__(/*! ../src/js/mprogress.min.js */ 77);
+	var _mprogressMin = __webpack_require__(/*! ../src/js/mprogress.min.js */ 80);
 	
 	var _mprogressMin2 = _interopRequireDefault(_mprogressMin);
 	
-	var _Sidenav = __webpack_require__(/*! ./components/Sidenav */ 78);
+	var _Sidenav = __webpack_require__(/*! ./components/Sidenav */ 81);
 	
 	var _Sidenav2 = _interopRequireDefault(_Sidenav);
 	
-	var _uuid = __webpack_require__(/*! uuid */ 79);
+	var _uuid = __webpack_require__(/*! uuid */ 82);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29616,6 +29616,10 @@
 	
 	var _jsencrypt2 = _interopRequireDefault(_jsencrypt);
 	
+	var _LAST_BUILD = __webpack_require__(/*! ../src/LAST_BUILD.txt */ 46);
+	
+	var _LAST_BUILD2 = _interopRequireDefault(_LAST_BUILD);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	global.PORT = {
@@ -29704,11 +29708,31 @@
 		}, 250);
 	};
 	
+	$(function () {
+		if (localStorage.getItem("noautomaticupdate") !== "true") {
+			$.ajax({
+				url: "/src/LAST_BUILD.txt?" + Date.now(),
+				success: function success(data) {
+					if (data !== _LAST_BUILD2.default) {
+						Photon.toast("<i class=\"material-icons primary-text\">system_update_alt</i><span>Updating</span>", 2500);
+						caches.delete("application-cache").then(function () {
+							setTimeout(function () {
+								return location.reload();
+							}, 1500);
+						}).catch(function (e) {
+							return console.error(e);
+						});
+					}
+				}
+			});
+		}
+	});
+	
 	global.app = {
 		NAME: "SHS Games",
 		service: "//" + location.hostname + PORT.backend + "/service",
 		pubkey: "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3Lblv+neygQC4vvG6qPARg39S\nVQHmGdoOcz6GIWoFdRt6yW5T5VSAPRpaVF9c1Qt19a7JsqhVRwLG5nnOmrmOAzy5\nk4DD9qAxrjnhpcJW4LyUWxGoaBxcvU2UBOgSrATQ2V/nrdySpMyi7RkBgubyOGdp\n+/eiknG6PnofX1vW+wIDAQAB\n-----END PUBLIC KEY-----",
-	
+		version: 1,
 		game: null,
 		games: null,
 		state: {
@@ -35163,6 +35187,15 @@
 
 /***/ }),
 /* 46 */
+/*!********************************!*\
+  !*** ./www/src/LAST_BUILD.txt ***!
+  \********************************/
+/***/ (function(module, exports) {
+
+	module.exports = "1566772276\n"
+
+/***/ }),
+/* 47 */
 /*!***************************!*\
   !*** ./www/app/router.js ***!
   \***************************/
@@ -35174,15 +35207,15 @@
 		value: true
 	});
 	
-	var _Home = __webpack_require__(/*! ./pages/Home */ 47);
+	var _Home = __webpack_require__(/*! ./pages/Home */ 48);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _Request = __webpack_require__(/*! ./pages/Request */ 63);
+	var _Request = __webpack_require__(/*! ./pages/Request */ 66);
 	
 	var _Request2 = _interopRequireDefault(_Request);
 	
-	var _GameView = __webpack_require__(/*! ./pages/GameView */ 64);
+	var _GameView = __webpack_require__(/*! ./pages/GameView */ 67);
 	
 	var _GameView2 = _interopRequireDefault(_GameView);
 	
@@ -35203,7 +35236,7 @@
 	exports.default = ROUTES;
 
 /***/ }),
-/* 47 */
+/* 48 */
 /*!*******************************!*\
   !*** ./www/app/pages/Home.js ***!
   \*******************************/
@@ -35221,23 +35254,23 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Adview = __webpack_require__(/*! ../components/Adview */ 48);
+	var _Adview = __webpack_require__(/*! ../components/Adview */ 49);
 	
 	var _Adview2 = _interopRequireDefault(_Adview);
 	
-	var _Footer = __webpack_require__(/*! ../components/Footer */ 49);
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 50);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 55);
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 56);
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _GameGroup = __webpack_require__(/*! ../components/GameGroup */ 56);
+	var _GameGroup = __webpack_require__(/*! ../components/GameGroup */ 59);
 	
 	var _GameGroup2 = _interopRequireDefault(_GameGroup);
 	
-	var _WebInstaller = __webpack_require__(/*! ../components/WebInstaller */ 62);
+	var _WebInstaller = __webpack_require__(/*! ../components/WebInstaller */ 65);
 	
 	var _WebInstaller2 = _interopRequireDefault(_WebInstaller);
 	
@@ -35385,7 +35418,7 @@
 	exports.default = Home;
 
 /***/ }),
-/* 48 */
+/* 49 */
 /*!**************************************!*\
   !*** ./www/app/components/Adview.js ***!
   \**************************************/
@@ -35437,7 +35470,7 @@
 	exports.default = Adview;
 
 /***/ }),
-/* 49 */
+/* 50 */
 /*!**************************************!*\
   !*** ./www/app/components/Footer.js ***!
   \**************************************/
@@ -35455,7 +35488,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	__webpack_require__(/*! ./Footer.less */ 50);
+	__webpack_require__(/*! ./Footer.less */ 51);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35558,14 +35591,14 @@
 	exports.default = Footer;
 
 /***/ }),
-/* 50 */
+/* 51 */
 /*!****************************************!*\
   !*** ./www/app/components/Footer.less ***!
   \****************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./Footer.less */ 51);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./Footer.less */ 52);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -35579,7 +35612,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 53)(content, options);
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 54)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -35611,20 +35644,20 @@
 	}
 
 /***/ }),
-/* 51 */
+/* 52 */
 /*!***********************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/Footer.less ***!
   \***********************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 52)(false);
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 53)(false);
 	// Module
 	exports.push([module.id, "footer {\n  background: #191919;\n  border-color: transparent;\n}\nfooter .footer-copyright {\n  background: #141414;\n  color: rgba(255, 255, 255, 0.7);\n}\nfooter h3 {\n  font-family: Roboto Mono;\n  display: inline-block;\n  padding: 12px 0;\n  margin: 0;\n  margin-bottom: -4px;\n  border-bottom: 2px solid #d1d1d1;\n  text-transform: uppercase;\n  letter-spacing: 8px;\n}\n", ""]);
 	
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /*!******************************************!*\
   !*** ./~/css-loader/dist/runtime/api.js ***!
   \******************************************/
@@ -35717,7 +35750,7 @@
 	}
 
 /***/ }),
-/* 53 */
+/* 54 */
 /*!*****************************************!*\
   !*** ./~/style-loader/lib/addStyles.js ***!
   \*****************************************/
@@ -35789,7 +35822,7 @@
 	var	singletonCounter = 0;
 	var	stylesInsertedAtTop = [];
 	
-	var	fixUrls = __webpack_require__(/*! ./urls */ 54);
+	var	fixUrls = __webpack_require__(/*! ./urls */ 55);
 	
 	module.exports = function(list, options) {
 		if (true) {
@@ -36126,7 +36159,7 @@
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /*!************************************!*\
   !*** ./~/style-loader/lib/urls.js ***!
   \************************************/
@@ -36224,7 +36257,7 @@
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /*!**************************************!*\
   !*** ./www/app/components/Navbar.js ***!
   \**************************************/
@@ -36241,6 +36274,10 @@
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _SettingsView = __webpack_require__(/*! ./SettingsView */ 57);
+	
+	var _SettingsView2 = _interopRequireDefault(_SettingsView);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36271,20 +36308,25 @@
 			value: function render() {
 				return _react2.default.createElement(
 					"div",
-					{ className: "toolbar paper" + (this.props.tabs && " tall" || "") },
-					_react2.default.createElement(
-						"i",
-						{ className: "material-icons waves-effect waves-ink", onClick: function onClick() {
-								return $("#sn-webview").sidenav("open");
-							} },
-						"menu"
-					),
+					null,
 					_react2.default.createElement(
 						"div",
-						{ className: "title" },
-						this.props.children ? this.props.children : app["NAME"]
+						{ className: "toolbar paper" + (this.props.tabs && " tall" || "") },
+						_react2.default.createElement(
+							"i",
+							{ className: "material-icons waves-effect waves-ink", onClick: function onClick() {
+									return $("#sn-webview").sidenav("open");
+								} },
+							"menu"
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "title" },
+							this.props.children ? this.props.children : app["NAME"]
+						),
+						this.props.tabs && this.props.tabs()
 					),
-					this.props.tabs && this.props.tabs()
+					_react2.default.createElement(_SettingsView2.default, null)
 				);
 			}
 		}]);
@@ -36295,7 +36337,335 @@
 	exports.default = Navbar;
 
 /***/ }),
-/* 56 */
+/* 57 */
+/*!********************************************!*\
+  !*** ./www/app/components/SettingsView.js ***!
+  \********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _SettingsItem = __webpack_require__(/*! ./SettingsItem */ 58);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SettingsView = function (_React$Component) {
+		_inherits(SettingsView, _React$Component);
+	
+		function SettingsView() {
+			_classCallCheck(this, SettingsView);
+	
+			var _this2 = _possibleConstructorReturn(this, (SettingsView.__proto__ || Object.getPrototypeOf(SettingsView)).call(this));
+	
+			_this2._mounted = false;
+	
+			_this2._guid = Photon.guid();
+			_this2.state = { flat: true };
+	
+			var _this = _this2;
+			(function observe() {
+				requestAnimationFrame(observe);
+				if (_this._mounted) {
+					_this.setState({ flat: $("#" + _this._guid)[0].scrollTop === 0 });
+				}
+			})();
+			return _this2;
+		}
+	
+		_createClass(SettingsView, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				this._mounted = true;
+				Photon.reload();
+			}
+		}, {
+			key: "componentWillUnmount",
+			value: function componentWillUnmount() {
+				this._mounted = false;
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-view-wrapper", id: "settings-view" },
+					_react2.default.createElement(
+						"div",
+						{ className: "settings-view" },
+						_react2.default.createElement(
+							"div",
+							{ className: "toolbar " + (this.state.flat ? "flat" : "raised") + " white grey-text text-darken-3" },
+							_react2.default.createElement(
+								"i",
+								{ className: "material-icons waves-effect waves-ink waves-classic", onClick: function onClick() {
+										return $("#settings-view").removeClass("active");
+									} },
+								"close"
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "title", style: { userSelect: "none" } },
+								"Settings"
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "content", id: this._guid },
+							_react2.default.createElement(
+								_SettingsItem.SettingsSection,
+								null,
+								_react2.default.createElement(
+									_SettingsItem.SettingsHeader,
+									null,
+									"Application"
+								),
+								_react2.default.createElement(
+									_SettingsItem.SettingsOption,
+									null,
+									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "error_outline" }),
+									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Warn about volume" }),
+									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("hidewarn") !== "true", onChange: function onChange(value) {
+											return localStorage.setItem("hidewarn", (!value).toString());
+										} })
+								),
+								_react2.default.createElement(
+									_SettingsItem.SettingsOption,
+									null,
+									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "system_update_alt" }),
+									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Update automatically" }),
+									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("noautomaticupdate") !== "true", onChange: function onChange(value) {
+											return localStorage.setItem("noautomaticupdate", (!value).toString());
+										} })
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+	
+		return SettingsView;
+	}(_react2.default.Component);
+	
+	exports.default = SettingsView;
+
+/***/ }),
+/* 58 */
+/*!********************************************!*\
+  !*** ./www/app/components/SettingsItem.js ***!
+  \********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.SettingsSection = exports.SettingsOption = exports.SettingsName = exports.SettingsIcon = exports.SettingsHeader = exports.SettingsCheckbox = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SettingsHeader = function (_React$Component) {
+		_inherits(SettingsHeader, _React$Component);
+	
+		function SettingsHeader() {
+			_classCallCheck(this, SettingsHeader);
+	
+			return _possibleConstructorReturn(this, (SettingsHeader.__proto__ || Object.getPrototypeOf(SettingsHeader)).apply(this, arguments));
+		}
+	
+		_createClass(SettingsHeader, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-header" },
+					this.props.children
+				);
+			}
+		}]);
+	
+		return SettingsHeader;
+	}(_react2.default.Component);
+	
+	var SettingsSection = function (_React$Component2) {
+		_inherits(SettingsSection, _React$Component2);
+	
+		function SettingsSection() {
+			_classCallCheck(this, SettingsSection);
+	
+			return _possibleConstructorReturn(this, (SettingsSection.__proto__ || Object.getPrototypeOf(SettingsSection)).apply(this, arguments));
+		}
+	
+		_createClass(SettingsSection, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-section" },
+					this.props.children
+				);
+			}
+		}]);
+	
+		return SettingsSection;
+	}(_react2.default.Component);
+	
+	var SettingsOption = function (_React$Component3) {
+		_inherits(SettingsOption, _React$Component3);
+	
+		function SettingsOption() {
+			_classCallCheck(this, SettingsOption);
+	
+			var _this4 = _possibleConstructorReturn(this, (SettingsOption.__proto__ || Object.getPrototypeOf(SettingsOption)).call(this));
+	
+			_this4._guid = Photon.guid();
+			return _this4;
+		}
+	
+		_createClass(SettingsOption, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				$("#" + this._guid).click(function () {
+					var checkbox = $(this).children(".settings-checkbox").children(".checkbox").children("input");
+					checkbox.prop("checked", !checkbox.prop("checked")).change();
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-option waves-effect", id: this._guid },
+					this.props.children
+				);
+			}
+		}]);
+	
+		return SettingsOption;
+	}(_react2.default.Component);
+	
+	var SettingsIcon = function (_React$Component4) {
+		_inherits(SettingsIcon, _React$Component4);
+	
+		function SettingsIcon() {
+			_classCallCheck(this, SettingsIcon);
+	
+			return _possibleConstructorReturn(this, (SettingsIcon.__proto__ || Object.getPrototypeOf(SettingsIcon)).apply(this, arguments));
+		}
+	
+		_createClass(SettingsIcon, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"i",
+					{ className: "settings-icon material-icons" },
+					this.props.icon
+				);
+			}
+		}]);
+	
+		return SettingsIcon;
+	}(_react2.default.Component);
+	
+	var SettingsName = function (_React$Component5) {
+		_inherits(SettingsName, _React$Component5);
+	
+		function SettingsName() {
+			_classCallCheck(this, SettingsName);
+	
+			return _possibleConstructorReturn(this, (SettingsName.__proto__ || Object.getPrototypeOf(SettingsName)).apply(this, arguments));
+		}
+	
+		_createClass(SettingsName, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-name" },
+					this.props.name
+				);
+			}
+		}]);
+	
+		return SettingsName;
+	}(_react2.default.Component);
+	
+	var SettingsCheckbox = function (_React$Component6) {
+		_inherits(SettingsCheckbox, _React$Component6);
+	
+		function SettingsCheckbox() {
+			_classCallCheck(this, SettingsCheckbox);
+	
+			var _this7 = _possibleConstructorReturn(this, (SettingsCheckbox.__proto__ || Object.getPrototypeOf(SettingsCheckbox)).call(this));
+	
+			_this7._guid = Photon.guid();
+			return _this7;
+		}
+	
+		_createClass(SettingsCheckbox, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				var _this = this;
+				$("#" + this._guid).change(function () {
+					_this.props.onChange($(this).prop("checked"));
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-checkbox" },
+					_react2.default.createElement(
+						"div",
+						{ className: "checkbox" },
+						_react2.default.createElement("input", { type: "checkbox", defaultChecked: this.props.value, id: this._guid })
+					)
+				);
+			}
+		}]);
+	
+		return SettingsCheckbox;
+	}(_react2.default.Component);
+	
+	exports.SettingsCheckbox = SettingsCheckbox;
+	exports.SettingsHeader = SettingsHeader;
+	exports.SettingsIcon = SettingsIcon;
+	exports.SettingsName = SettingsName;
+	exports.SettingsOption = SettingsOption;
+	exports.SettingsSection = SettingsSection;
+
+/***/ }),
+/* 59 */
 /*!*****************************************!*\
   !*** ./www/app/components/GameGroup.js ***!
   \*****************************************/
@@ -36313,9 +36683,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	__webpack_require__(/*! ./GameGroup.less */ 57);
+	__webpack_require__(/*! ./GameGroup.less */ 60);
 	
-	var _GameCard = __webpack_require__(/*! ./GameCard */ 59);
+	var _GameCard = __webpack_require__(/*! ./GameCard */ 62);
 	
 	var _GameCard2 = _interopRequireDefault(_GameCard);
 	
@@ -36368,14 +36738,14 @@
 	exports.default = GameGroup;
 
 /***/ }),
-/* 57 */
+/* 60 */
 /*!*******************************************!*\
   !*** ./www/app/components/GameGroup.less ***!
   \*******************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameGroup.less */ 58);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameGroup.less */ 61);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -36389,7 +36759,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 53)(content, options);
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 54)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -36421,20 +36791,20 @@
 	}
 
 /***/ }),
-/* 58 */
+/* 61 */
 /*!**************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameGroup.less ***!
   \**************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 52)(false);
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 53)(false);
 	// Module
 	exports.push([module.id, ".gamegroup .row {\n  margin: 0 -4px;\n}\n", ""]);
 	
 
 
 /***/ }),
-/* 59 */
+/* 62 */
 /*!****************************************!*\
   !*** ./www/app/components/GameCard.js ***!
   \****************************************/
@@ -36454,7 +36824,7 @@
 	
 	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
 	
-	__webpack_require__(/*! ./GameCard.less */ 60);
+	__webpack_require__(/*! ./GameCard.less */ 63);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36566,14 +36936,14 @@
 	exports.default = GameCard;
 
 /***/ }),
-/* 60 */
+/* 63 */
 /*!******************************************!*\
   !*** ./www/app/components/GameCard.less ***!
   \******************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameCard.less */ 61);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameCard.less */ 64);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -36587,7 +36957,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 53)(content, options);
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 54)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -36619,20 +36989,20 @@
 	}
 
 /***/ }),
-/* 61 */
+/* 64 */
 /*!*************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameCard.less ***!
   \*************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 52)(false);
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 53)(false);
 	// Module
 	exports.push([module.id, ".gamecard .card-content .card-title {\n  margin: -8px 0;\n  font-size: 22px;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n}\n.gamecard .card-content .thumbnail-wrapper {\n  margin: -24px;\n  margin-top: 24px;\n  padding-top: 56.25%;\n  position: relative;\n}\n.gamecard .card-content .thumbnail-wrapper .thumbnail {\n  pointer-events: none;\n  position: absolute;\n  width: 100%;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.gamecard .card-content .thumbnail-wrapper .thumbnail.pixelated {\n  image-rendering: pixelated;\n}\n.gamecard .card-action:not(.offline) {\n  border: none;\n}\n", ""]);
 	
 
 
 /***/ }),
-/* 62 */
+/* 65 */
 /*!********************************************!*\
   !*** ./www/app/components/WebInstaller.js ***!
   \********************************************/
@@ -36734,7 +37104,7 @@
 	exports.default = WebInstaller;
 
 /***/ }),
-/* 63 */
+/* 66 */
 /*!**********************************!*\
   !*** ./www/app/pages/Request.js ***!
   \**********************************/
@@ -36752,11 +37122,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 55);
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 56);
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _Footer = __webpack_require__(/*! ../components/Footer */ 49);
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 50);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
@@ -36828,7 +37198,7 @@
 	exports.default = Request;
 
 /***/ }),
-/* 64 */
+/* 67 */
 /*!***********************************!*\
   !*** ./www/app/pages/GameView.js ***!
   \***********************************/
@@ -36846,19 +37216,19 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ErrorDocument = __webpack_require__(/*! ./ErrorDocument */ 65);
+	var _ErrorDocument = __webpack_require__(/*! ./ErrorDocument */ 68);
 	
 	var _ErrorDocument2 = _interopRequireDefault(_ErrorDocument);
 	
-	var _GamePlayer = __webpack_require__(/*! ../components/GamePlayer */ 66);
+	var _GamePlayer = __webpack_require__(/*! ../components/GamePlayer */ 69);
 	
 	var _GamePlayer2 = _interopRequireDefault(_GamePlayer);
 	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 55);
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 56);
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _Footer = __webpack_require__(/*! ../components/Footer */ 49);
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 50);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
@@ -36944,7 +37314,7 @@
 	exports.default = GameView;
 
 /***/ }),
-/* 65 */
+/* 68 */
 /*!****************************************!*\
   !*** ./www/app/pages/ErrorDocument.js ***!
   \****************************************/
@@ -37026,7 +37396,7 @@
 	exports.default = ErrorDocument;
 
 /***/ }),
-/* 66 */
+/* 69 */
 /*!******************************************!*\
   !*** ./www/app/components/GamePlayer.js ***!
   \******************************************/
@@ -37044,27 +37414,27 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Flash = __webpack_require__(/*! ./Players/Flash */ 67);
+	var _Flash = __webpack_require__(/*! ./Players/Flash */ 70);
 	
 	var _Flash2 = _interopRequireDefault(_Flash);
 	
-	var _GBA = __webpack_require__(/*! ./Players/GBA */ 68);
+	var _GBA = __webpack_require__(/*! ./Players/GBA */ 71);
 	
 	var _GBA2 = _interopRequireDefault(_GBA);
 	
-	var _NES = __webpack_require__(/*! ./Players/NES */ 69);
+	var _NES = __webpack_require__(/*! ./Players/NES */ 72);
 	
 	var _NES2 = _interopRequireDefault(_NES);
 	
-	var _Unity = __webpack_require__(/*! ./Players/Unity */ 70);
+	var _Unity = __webpack_require__(/*! ./Players/Unity */ 73);
 	
 	var _Unity2 = _interopRequireDefault(_Unity);
 	
-	var _GameControls = __webpack_require__(/*! ./GameControls */ 71);
+	var _GameControls = __webpack_require__(/*! ./GameControls */ 74);
 	
 	var _GameControls2 = _interopRequireDefault(_GameControls);
 	
-	__webpack_require__(/*! ./GamePlayer.less */ 75);
+	__webpack_require__(/*! ./GamePlayer.less */ 78);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37126,7 +37496,7 @@
 	exports.default = GamePlayer;
 
 /***/ }),
-/* 67 */
+/* 70 */
 /*!*********************************************!*\
   !*** ./www/app/components/Players/Flash.js ***!
   \*********************************************/
@@ -37181,7 +37551,7 @@
 	exports.default = FlashPlayer;
 
 /***/ }),
-/* 68 */
+/* 71 */
 /*!*******************************************!*\
   !*** ./www/app/components/Players/GBA.js ***!
   \*******************************************/
@@ -37251,7 +37621,7 @@
 	exports.default = GBAPlayer;
 
 /***/ }),
-/* 69 */
+/* 72 */
 /*!*******************************************!*\
   !*** ./www/app/components/Players/NES.js ***!
   \*******************************************/
@@ -37320,7 +37690,7 @@
 	exports.default = NESPlayer;
 
 /***/ }),
-/* 70 */
+/* 73 */
 /*!*********************************************!*\
   !*** ./www/app/components/Players/Unity.js ***!
   \*********************************************/
@@ -37394,7 +37764,7 @@
 	exports.default = UnityPlayer;
 
 /***/ }),
-/* 71 */
+/* 74 */
 /*!********************************************!*\
   !*** ./www/app/components/GameControls.js ***!
   \********************************************/
@@ -37412,9 +37782,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	__webpack_require__(/*! ./GameControls.less */ 72);
+	__webpack_require__(/*! ./GameControls.less */ 75);
 	
-	var _FrameCounter = __webpack_require__(/*! ./FrameCounter */ 74);
+	var _FrameCounter = __webpack_require__(/*! ./FrameCounter */ 77);
 	
 	var _FrameCounter2 = _interopRequireDefault(_FrameCounter);
 	
@@ -37768,14 +38138,14 @@
 	exports.default = GameControls;
 
 /***/ }),
-/* 72 */
+/* 75 */
 /*!**********************************************!*\
   !*** ./www/app/components/GameControls.less ***!
   \**********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameControls.less */ 73);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameControls.less */ 76);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -37789,7 +38159,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 53)(content, options);
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 54)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -37821,20 +38191,20 @@
 	}
 
 /***/ }),
-/* 73 */
+/* 76 */
 /*!*****************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameControls.less ***!
   \*****************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 52)(false);
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 53)(false);
 	// Module
 	exports.push([module.id, ".game-controls {\n  direction: rtl;\n  height: 52px;\n  background: #f5f5f5;\n  position: relative;\n}\n", ""]);
 	
 
 
 /***/ }),
-/* 74 */
+/* 77 */
 /*!********************************************!*\
   !*** ./www/app/components/FrameCounter.js ***!
   \********************************************/
@@ -37914,14 +38284,14 @@
 	exports.default = FrameCounter;
 
 /***/ }),
-/* 75 */
+/* 78 */
 /*!********************************************!*\
   !*** ./www/app/components/GamePlayer.less ***!
   \********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GamePlayer.less */ 76);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GamePlayer.less */ 79);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -37935,7 +38305,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 53)(content, options);
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 54)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -37967,20 +38337,20 @@
 	}
 
 /***/ }),
-/* 76 */
+/* 79 */
 /*!***************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GamePlayer.less ***!
   \***************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 52)(false);
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 53)(false);
 	// Module
 	exports.push([module.id, ".game-view {\n  margin: 0 auto;\n  width: 800px;\n}\n", ""]);
 	
 
 
 /***/ }),
-/* 77 */
+/* 80 */
 /*!*************************************!*\
   !*** ./www/src/js/mprogress.min.js ***!
   \*************************************/
@@ -38166,7 +38536,7 @@
 	}).call(undefined);
 
 /***/ }),
-/* 78 */
+/* 81 */
 /*!***************************************!*\
   !*** ./www/app/components/Sidenav.js ***!
   \***************************************/
@@ -38319,6 +38689,22 @@
 							"Game Request"
 						)
 					),
+					_react2.default.createElement(
+						"li",
+						null,
+						_react2.default.createElement(
+							"a",
+							{ onClick: function onClick() {
+									return $("#settings-view").addClass("active");
+								}, className: "waves-effect" },
+							_react2.default.createElement(
+								"i",
+								{ className: "material-icons" },
+								"settings"
+							),
+							"Settings"
+						)
+					),
 					_react2.default.createElement("li", { className: "divider" }),
 					_react2.default.createElement(
 						"li",
@@ -38347,14 +38733,14 @@
 	exports.default = Sidenav;
 
 /***/ }),
-/* 79 */
+/* 82 */
 /*!*************************!*\
   !*** ./~/uuid/index.js ***!
   \*************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var v1 = __webpack_require__(/*! ./v1 */ 80);
-	var v4 = __webpack_require__(/*! ./v4 */ 83);
+	var v1 = __webpack_require__(/*! ./v1 */ 83);
+	var v4 = __webpack_require__(/*! ./v4 */ 86);
 	
 	var uuid = v4;
 	uuid.v1 = v1;
@@ -38364,14 +38750,14 @@
 
 
 /***/ }),
-/* 80 */
+/* 83 */
 /*!**********************!*\
   !*** ./~/uuid/v1.js ***!
   \**********************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var rng = __webpack_require__(/*! ./lib/rng */ 81);
-	var bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ 82);
+	var rng = __webpack_require__(/*! ./lib/rng */ 84);
+	var bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ 85);
 	
 	// **`v1()` - Generate time-based UUID**
 	//
@@ -38482,7 +38868,7 @@
 
 
 /***/ }),
-/* 81 */
+/* 84 */
 /*!***********************************!*\
   !*** ./~/uuid/lib/rng-browser.js ***!
   \***********************************/
@@ -38525,7 +38911,7 @@
 
 
 /***/ }),
-/* 82 */
+/* 85 */
 /*!***********************************!*\
   !*** ./~/uuid/lib/bytesToUuid.js ***!
   \***********************************/
@@ -38558,14 +38944,14 @@
 
 
 /***/ }),
-/* 83 */
+/* 86 */
 /*!**********************!*\
   !*** ./~/uuid/v4.js ***!
   \**********************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var rng = __webpack_require__(/*! ./lib/rng */ 81);
-	var bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ 82);
+	var rng = __webpack_require__(/*! ./lib/rng */ 84);
+	var bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ 85);
 	
 	function v4(options, buf, offset) {
 	  var i = buf && offset || 0;

@@ -53,3 +53,99 @@ footer h3 {
 	left: 50%;
 	transform: translate(-50%,-50%);
 }
+
+.settings-view-wrapper {
+
+	.vh-center-wrapper();
+	.transition();
+
+	z-index: 25000000;
+	background: #00000021;
+	pointer-events: none;
+	opacity: 0;
+
+	.settings-view {
+
+		.raised-8();
+		.vh-center();
+		.transition();
+
+		max-width: 720px;
+		width: 100%;
+		max-height: 540px;
+		height: 100%;
+		background: #fff;
+		border-radius: 10px;
+		position: relative;
+		overflow: hidden;
+
+		@media @desktop {
+			transform: scale(.8);
+		}
+
+		@media @mobile,@tablet {
+			margin-bottom: 0;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			transform: translateY(8rem);
+		}
+
+		.toolbar {
+			position: absolute;
+		}
+
+		.content {
+			position: absolute;
+			top: 64px;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			overflow-x: hidden;
+			overflow-y: auto;
+
+			.settings-header {
+				padding: 12px 24px;
+				font-weight: 500;
+				opacity: 0.54;
+			}
+			.settings-section {
+				border-top: 1px solid @dividerColor;
+				.settings-option {
+					.transition();
+					position: relative;
+					&:hover {
+						background: #00000005;
+					}
+					.settings-icon {
+						color: @primaryColor;
+						width: 32px;
+						height: 32px;
+						padding: 12px 24px;
+						line-height: 32px;
+					}
+					.settings-name {
+						display: inline-block;
+						line-height: 32px;
+						font-weight: 500;
+						transform: translateY(-6px);
+						user-select: none;
+					}
+					.settings-checkbox {
+						position: absolute;
+						top: 12px;
+						right: 24px;
+						pointer-events: none;
+					}
+				}
+			}
+		}
+	}
+
+	&.active {
+		opacity: 1;
+		pointer-events: all;
+		.settings-view {
+			transform: scale(1) translateY(0);
+		}
+	}
+}

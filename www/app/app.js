@@ -1,4 +1,5 @@
 import JSEncrypt from "jsencrypt";
+import LAST_BUILD from "../src/LAST_BUILD.txt";
 
 global.PORT = {
     frontend: parseInt(location.port || 80),
@@ -60,11 +61,16 @@ let nospin = function(){
 	setTimeout(() => $("#dialog-spinner").remove(),250);
 }
 
+$(() => $.ajax({
+	url: "/src/LAST_BUILD.txt?" + Date.now(),
+	success: data => data !== LAST_BUILD && app.update()
+}));
+
 global.app = {
 	NAME: "SHS Games",
 	service: `//${location.hostname}${PORT.backend}/service`,
 	pubkey: "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3Lblv+neygQC4vvG6qPARg39S\nVQHmGdoOcz6GIWoFdRt6yW5T5VSAPRpaVF9c1Qt19a7JsqhVRwLG5nnOmrmOAzy5\nk4DD9qAxrjnhpcJW4LyUWxGoaBxcvU2UBOgSrATQ2V/nrdySpMyi7RkBgubyOGdp\n+/eiknG6PnofX1vW+wIDAQAB\n-----END PUBLIC KEY-----",
-
+	version: 1,
 	game: null,
 	games: null,
 	state: {
@@ -85,6 +91,13 @@ global.app = {
 		string = string.replace(/\./g,"");
 		string = string.toLowerCase();
 		return string;
+	},
+
+	update() {
+		Photon.toast(`<i class="material-icons primary-text">system_update_alt</i><span>Updating</span>`, 2500);
+		caches.delete("application-cache").then(() => {
+			setTimeout(() => location.reload(), 1500);
+		}).catch(e => console.error(e));
 	},
 
 	launch(game,redirector) {

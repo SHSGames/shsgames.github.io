@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 const slug = string => {
 	string = string.replace(/\s/g,"-");
 	string = string.replace(/\'/g,"");
@@ -11,6 +9,7 @@ module.exports = app => {
 	app.all("/service/gcp/:container/:image",(req,res) => {
 		service("web/gcp")(req,res);
 	});
+
 	app.all("/sitemap",(req,res) => {
 		let { groups } = service("games");
 		let games = [];
@@ -34,4 +33,5 @@ module.exports = app => {
 
 		res.end(resp.join("\n"));
 	});
+
 }

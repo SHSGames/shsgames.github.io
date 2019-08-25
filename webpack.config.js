@@ -10,19 +10,7 @@ const config = {
         filename: "bundle.js",
         publicPath: "/app/"
     },
-    module: {
-        loaders: [{
-            test: /\.js?/,
-            include: SRC_DIR,
-            loader: "babel-loader",
-            query: {
-                presets: ["react", "es2015", "stage-2"]
-            }
-        }, {
-			test: /\.less$/,
-	  		loader: "style-loader!css-loader!less-loader"
-		}]
-	}
+	module: { loaders: require("./loaders.js")(SRC_DIR) }
 };
 
 module.exports = config;

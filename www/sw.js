@@ -1,4 +1,4 @@
-const CACHE = "cache-v1";
+const CACHE = "application-cache";
 
 self.addEventListener("fetch", event => {
 	if(location.port !== "") return;
