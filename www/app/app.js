@@ -50,16 +50,9 @@ global.service = service => data => done => {
 	}, 15000)
 }
 
-let spin = function(){
-	setTimeout(() => {
-		$(".photon-dialog.active").children(".dialog").append(`<div id="dialog-spinner"><div class="spinner-wrapper"><svg class="spinner rainbow"><circle cx="50" cy="50" r="20"></circle></svg></div></div>`);
-		requestAnimationFrame(() => $("#dialog-spinner").addClass("active"));
-	},250);
-}
-let nospin = function(){
-	$("#dialog-spinner").removeClass("active");
-	setTimeout(() => $("#dialog-spinner").remove(),250);
-}
+$("*").on("keypress keydown keyup", e => {
+	e.which === 9 && e.preventDefault() && e.stopPropagation();
+})
 
 $(() => $.ajax({
 	url: "/src/LAST_BUILD.txt?" + Date.now(),
