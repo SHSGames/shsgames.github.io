@@ -1,6 +1,5 @@
 import React from "react";
 
-import Adview from "../components/Adview";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import GameGroup from "../components/GameGroup";
@@ -56,9 +55,6 @@ export default class Home extends React.Component {
 								</div>
 							</div>
 						</WebInstaller>
-					</div>
-					<div className="col s12 l4">
-						<div className="card adview"><Adview/></div>
 					</div>
 					<div className="col s12">
 						{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <GameGroup key={key} group={group}/>) }
