@@ -151,3 +151,35 @@ footer h3 {
 		}
 	}
 }
+
+.hidden {
+	display: none;
+}
+
+.search-wrapper {
+	height: 56px;
+	display: block;
+	border-radius: 4px;
+	background: #fff;
+	.raised-1();
+	overflow: hidden;
+	i.material-icons {
+		height: 56px;
+		width: 56px;
+		border-right: 1px solid #e1e1e1;
+		display: inline-block;
+		color: #000000bd;
+	    text-align: center;
+	    line-height: 56px;
+		background: #fbfbfb
+	}
+	input {
+		background: #0000;
+	    font-size: 18px;
+	    padding: 1rem;
+	    border: none;
+	    transform: translateY(-8px);
+	    width: calc(100% - 56px - 2rem - 1px);
+		font-family: Roboto;
+	}
+}

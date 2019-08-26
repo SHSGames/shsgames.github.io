@@ -1,9 +1,10 @@
 import React from "react";
 
+import Adview from "../components/Adview";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import GameGroup from "../components/GameGroup";
-import WebInstaller from "../components/WebInstaller";
+import Searchbar from "../components/Searchbar";
 
 export default class Home extends React.Component {
 	constructor() {
@@ -43,20 +44,8 @@ export default class Home extends React.Component {
 							{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <li key={key}><a data-scrollto={"#" + app.slug(group.name)}>{group.name}</a></li>) }
 						</ul>
 					</div>
-					<div className="col s12 l4">
-						<WebInstaller>
-							<div className="card">
-								<div className="card-content">
-									<div className="card-title">Get our app</div>
-									<p>Install our app for quick access to all your favorite games.</p>
-								</div>
-								<div className="card-action">
-									<WebInstaller install><a className="btn flat waves-effect primary">install</a></WebInstaller>
-								</div>
-							</div>
-						</WebInstaller>
-					</div>
 					<div className="col s12">
+						<Searchbar/>
 						{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <GameGroup key={key} group={group}/>) }
 					</div>
 				</div>

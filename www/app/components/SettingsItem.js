@@ -27,7 +27,7 @@ class SettingsOption extends React.Component {
 		$(`#${this._guid}`).click(function() {
 			let checkbox = $(this).children(".settings-checkbox").children(".checkbox").children("input");
 			checkbox.prop("checked", !checkbox.prop("checked")).change();
-			_this.props.onClick();
+			_this.props.hasOwnProperty("onClick") && _this.props.onClick();
 		})
 	}
 

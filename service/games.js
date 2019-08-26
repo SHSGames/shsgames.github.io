@@ -655,6 +655,19 @@ module.exports = {
 
 	}, {
 
+		name: "SNES",
+		games: [{
+			name: "Super Mario World",
+			engine: "snes",
+			params: {
+				aspectRatio: 8/7,
+				width: 512,
+				options: {}
+			}
+		}]
+
+	}, {
+
 		name: "Unity",
 		games: [{
 			name: "Slope",
