@@ -39,6 +39,14 @@ class SettingsView extends React.Component {
 					<div className="content" id={this._guid}>
 
 						<SettingsSection>
+							<SettingsHeader>Appearance</SettingsHeader>
+							<SettingsOption>
+								<SettingsIcon icon="error_outline"/>
+								<SettingsName name="Night mode"/>
+								<SettingsCheckbox value={ localStorage.getItem("darkmode") === "true" } onChange={ value => { localStorage.setItem("darkmode",value.toString()); app.setDarkMode(value) } }/>
+							</SettingsOption>
+						</SettingsSection>
+						<SettingsSection>
 							<SettingsHeader>Application</SettingsHeader>
 							<SettingsOption>
 								<SettingsIcon icon="error_outline"/>

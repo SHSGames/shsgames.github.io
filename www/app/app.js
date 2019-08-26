@@ -78,6 +78,14 @@ global.app = {
 		nesready: false
 	},
 
+	setDarkMode(mode) {
+		if(mode === true) {
+			$("body").addClass("theme-dark");
+		} else {
+			$("body").removeClass("theme-dark");
+		}
+	},
+
 	offlineMode() {
 		Photon.toast(`<i class="material-icons deep-orange-text">warning</i><span>You'r offline. Entering offline mode.</span>`,3000);
 		const games = JSON.parse(localStorage.getItem("offline-games") || "[]");
@@ -154,3 +162,5 @@ global.app = {
     }
 
 }
+
+app.setDarkMode(localStorage.getItem("darkmode") === "true")
