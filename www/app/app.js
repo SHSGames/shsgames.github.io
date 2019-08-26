@@ -45,9 +45,9 @@ global.service = service => data => done => {
 	});
 
 	setTimeout(() => {
-		service === "games" && finished === false && app.offlineMode();
+		service === "games" && finished === false && Photon.toast(`<i class="material-icons red-text">error_outline</i><span>Could not refresh. Are you online?</span>`, 7500);
 		mprogress.end();
-	}, 5000)
+	}, 15000)
 }
 
 let spin = function(){
@@ -74,7 +74,6 @@ global.app = {
 	game: null,
 	games: null,
 	state: {
-		offline: false,
 		nesready: false
 	},
 
@@ -84,13 +83,6 @@ global.app = {
 		} else {
 			$("body").removeClass("theme-dark");
 		}
-	},
-
-	offlineMode() {
-		Photon.toast(`<i class="material-icons deep-orange-text">warning</i><span>You'r offline. Entering offline mode.</span>`,3000);
-		const games = JSON.parse(localStorage.getItem("offline-games") || "[]");
-		app.games = { groups: [{ name: "Saved", games }]}
-		app.state.offline = true;
 	},
 
 	slug(string) {
