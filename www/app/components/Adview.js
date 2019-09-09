@@ -2,10 +2,11 @@ import React from "react";
 
 class Adview extends React.Component {
 	componentDidMount() {
-		(adsbygoogle = window.adsbygoogle || []).push({});
+		//(adsbygoogle = window.adsbygoogle || []).push({});
 	}
 
 	render() {
+		return null;
 		return (
 			<ins className="adsbygoogle"
 		      style={{ display: "block" }}
