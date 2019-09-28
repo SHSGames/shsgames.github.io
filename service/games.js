@@ -138,6 +138,11 @@ module.exports = {
 			params: { options: { "allowscriptaccess": "always" } }
 		},
 		{
+			name: "Flight",
+			engine: "flash",
+			params: { aspectRatio: 35/24, options: { } }
+		},
+		{
 			name: "Gun Mayhem 2",
 			engine: "flash",
 			params: { options: {} }
