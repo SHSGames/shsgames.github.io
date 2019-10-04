@@ -35319,7 +35319,7 @@
 						{ className: "container row" },
 						_react2.default.createElement(
 							"div",
-							{ className: "col s12 l4" },
+							{ className: "col s12 l7" },
 							_react2.default.createElement(
 								"ul",
 								{ className: "scrollnav", "data-offset": "0" },
@@ -35339,6 +35339,57 @@
 										)
 									);
 								})
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "col s12 l5" },
+							_react2.default.createElement(
+								"div",
+								{ className: "note info" },
+								_react2.default.createElement("div", { className: "header" }),
+								_react2.default.createElement(
+									"div",
+									{ className: "content" },
+									_react2.default.createElement(
+										"b",
+										null,
+										"Check out our partners:"
+									)
+								),
+								_react2.default.createElement("hr", null),
+								_react2.default.createElement(
+									"div",
+									{ className: "content" },
+									"ALT+G - ",
+									_react2.default.createElement(
+										"i",
+										{ className: "grey-text text-darken-2" },
+										"Our Minecraft server with no rules!"
+									),
+									" ",
+									_react2.default.createElement(
+										"code",
+										{ className: "cyan-text", style: { padding: "2px 4px", borderRadius: 5 } },
+										"altg.biz.tm"
+									)
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "content" },
+									"DropChat - ",
+									_react2.default.createElement(
+										"i",
+										{ className: "grey-text text-darken-2" },
+										"Share special moments with friends!"
+									),
+									" ",
+									_react2.default.createElement(
+										"a",
+										{ href: "https://dropchat.net", target: "_blank" },
+										"https://dropchat.net"
+									)
+								)
 							)
 						),
 						_react2.default.createElement(
