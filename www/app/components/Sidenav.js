@@ -47,8 +47,8 @@ class Sidenav extends React.Component {
 
 	render() {
 		return (
-			<div id="sn-webview" className="sidenav">
-				<li><img src="/img/icon/web_hi_res_512.png" style={{ padding: "1rem 25%" }} width="50%"/></li>
+			<ul id="sn-webview" className="sidenav" style={{ margin: 0, padding: 0 }}>
+				<li><img src="/img/icon/web_hi_res_512.png" alt="" style={{ padding: "1rem 25%" }} width="50%"/></li>
 				<li className="divider"></li>
 				<li><Link onClick={ () => $("#sn-webview").sidenav("close") } className="waves-effect" to="/"><i className="material-icons">home</i>Home</Link></li>
 				<li><Link onClick={ () => $("#sn-webview").sidenav("close") } className="waves-effect" to="/request"><i className="material-icons">help_outline</i>Game Request</Link></li>
@@ -56,7 +56,7 @@ class Sidenav extends React.Component {
 				<li className="divider"></li>
 				<li><a className="subheader">Games <span className="badge accent">{this.state.games.length}</span></a></li>
 				{ this.state.games.map((game,key) => <ExitLink key={key} game={game}/>) }
-			</div>
+			</ul>
 		);
 	}
 }

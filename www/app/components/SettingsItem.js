@@ -71,7 +71,7 @@ class SettingsCheckbox extends React.Component {
 		return (
 			<div className="settings-checkbox">
 				<div className="checkbox">
-					<input type="checkbox" defaultChecked={this.props.value} id={this._guid}/>
+					<input type="checkbox" label="0" defaultChecked={this.props.value} id={this._guid}/>
 				</div>
 			</div>
 		);

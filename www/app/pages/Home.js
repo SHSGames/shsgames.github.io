@@ -40,7 +40,7 @@ export default class Home extends React.Component {
 				<div className="container row">
 					<div className="col s12 l7">
 						<ul className="scrollnav" data-offset="0">
-							<h1>Categories</h1>
+							<li><h1>Categories</h1></li>
 							{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <li key={key}><a data-scrollto={"#" + app.slug(group.name)}>{group.name}</a></li>) }
 						</ul>
 					</div>
@@ -50,7 +50,6 @@ export default class Home extends React.Component {
 							<div className="content"><b>Check out our partners:</b></div><hr/>
 							<div className="content">ALT+G: <i className="grey-text">Our Minecraft server with no rules!</i> <code style={{ padding: "2px 4px", borderRadius: 5}}>altg.biz.tm</code></div>
 							<div className="content">DropChat: <i className="grey-text">Share special moments with friends!</i> <a href="https://dropchat.net" target="_blank">https://dropchat.net</a></div>
-
 						</div>
 					</div>
 					<div className="col s12">

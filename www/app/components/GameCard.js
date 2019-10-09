@@ -25,7 +25,7 @@ class GameCard extends React.Component {
 					<div className="card-content">
 						<div className="card-title">{this.props.game.name}</div>
 						<div className="thumbnail-wrapper">
-							<img data-src={`${app.service}/gcp/thumbs/${app.slug(this.props.game.name)}.jpg`} className="thumbnail"/>
+							<img data-src={`${app.service}/gcp/thumbs/${app.slug(this.props.game.name)}.jpg`} alt="" className="thumbnail"/>
 						</div>
 					</div>
 					<div className="card-action">
