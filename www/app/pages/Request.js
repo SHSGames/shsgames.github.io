@@ -15,6 +15,19 @@ class Request extends React.Component {
 		return (
 			<div>
 				<Navbar/>
+				<div className="container" style={{ maxWidth: 400 }}>
+					<br/><br/><br/>
+					<center>
+						<h1 className="theme-text">Sorry!</h1>
+						<p>Requests have been disabled, If theres a bug, mention a dev in the<a href="https://discord.gg/XBr5nzu" className="primary-text"> Discord</a>.</p>
+					</center>
+				</div>
+				<Footer/>
+			</div>
+		);
+		return (
+			<div>
+				<Navbar/>
 				<div className="container" style={{ maxWidth: 512 }}>
 					<div className="title"><h2>Request</h2></div>
 					{this.state.i + 1 !== this._hrefs.length && <p>Dont have access? Click <a onClick={() => this.setState({ i: this.state.i +1 })} className="primary-text" style={{ cursor: "pointer" }}>here</a>.</p>}

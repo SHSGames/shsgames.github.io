@@ -35564,7 +35564,7 @@
 										"Come and Join our ",
 										_react2.default.createElement(
 											"a",
-											{ href: "https://discord.gg/tVZjdMe", className: "primary-text" },
+											{ href: "https://discord.gg/XBr5nzu", className: "primary-text" },
 											" Discord Server"
 										)
 									)
@@ -37147,6 +37147,39 @@
 			value: function render() {
 				var _this2 = this;
 	
+				return _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(_Navbar2.default, null),
+					_react2.default.createElement(
+						"div",
+						{ className: "container", style: { maxWidth: 400 } },
+						_react2.default.createElement("br", null),
+						_react2.default.createElement("br", null),
+						_react2.default.createElement("br", null),
+						_react2.default.createElement(
+							"center",
+							null,
+							_react2.default.createElement(
+								"h1",
+								null,
+								"Sorry!"
+							),
+							_react2.default.createElement(
+								"p",
+								null,
+								"Requests have been disabled, If theres a bug, mention a dev in the",
+								_react2.default.createElement(
+									"a",
+									{ href: "https://discord.gg/XBr5nzu", className: "primary-text" },
+									" Discord"
+								),
+								"."
+							)
+						)
+					),
+					_react2.default.createElement(_Footer2.default, null)
+				);
 				return _react2.default.createElement(
 					"div",
 					null,
