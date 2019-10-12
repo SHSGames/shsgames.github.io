@@ -35564,7 +35564,7 @@
 										"Come and Join our ",
 										_react2.default.createElement(
 											"a",
-											{ href: "https://discord.gg/tVZjdMe", className: "primary-text" },
+											{ href: "https://discord.gg/XBr5nzu", className: "primary-text" },
 											" Discord Server"
 										)
 									)
