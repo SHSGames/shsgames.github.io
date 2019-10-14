@@ -35182,7 +35182,7 @@
   \********************************/
 /***/ (function(module, exports) {
 
-	module.exports = "1570581083\n"
+	module.exports = "1570581083\r\n"
 
 /***/ }),
 /* 47 */
@@ -37162,7 +37162,7 @@
 							null,
 							_react2.default.createElement(
 								"h1",
-								null,
+								{ className: "theme-text" },
 								"Sorry!"
 							),
 							_react2.default.createElement(

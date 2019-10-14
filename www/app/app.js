@@ -73,6 +73,7 @@ global.app = {
 	setDarkMode(mode) {
 		if(mode === true) {
 			$("body").addClass("theme-dark");
+			$("meta[name=\"theme-color\"]").attr("content", "#212121");
 		} else {
 			$("body").removeClass("theme-dark");
 		}
