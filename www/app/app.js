@@ -76,6 +76,7 @@ global.app = {
 			$("meta[name=\"theme-color\"]").attr("content", "#212121");
 		} else {
 			$("body").removeClass("theme-dark");
+			$("meta[name=\"theme-color\"]").attr("content", "#ffffff");
 		}
 	},
 
