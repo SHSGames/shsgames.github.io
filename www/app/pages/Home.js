@@ -45,6 +45,13 @@ export default class Home extends React.Component {
 						</ul>
 					</div>
 					<div className="col s12 l5">
+						<div className="note important">
+							<div className="header"></div>
+							<div className="content"><b>Dont forget:</b></div><hr/>
+							<div className="content">If your school blocks this, use <a href="https://shs-games.herokuapp.com/">https://shs-games.herokuapp.com/</a></div>
+						</div>
+					</div>
+					<div className="col s12 l5">
 						<div className="note partners">
 							<div className="header"></div>
 							<div className="content"><b>Check out our partners:</b></div><hr/>
