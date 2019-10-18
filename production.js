@@ -18,7 +18,7 @@ global.NAMESPACE = config.namespace;
 
 global.ns = text => require("uuid/v3")(text,MYSQLIKEY);
 
-//app.use(redirectToHTTPS([/localhost/,/10.0.0.*/],[/\/http/], 301));
+app.use(redirectToHTTPS([/localhost/,/10.0.0.*/],[/\/http/], 301));
 app.use(express.static("dist",{
     extensions: ["html"],
 }));
