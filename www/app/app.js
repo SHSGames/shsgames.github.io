@@ -66,9 +66,7 @@ global.app = {
 	version: 1,
 	game: null,
 	games: null,
-	state: {
-		nesready: false
-	},
+	state: { nesready: false },
 
 	setDarkMode(mode) {
 		if(mode === true) {
@@ -150,4 +148,5 @@ global.app = {
 
 }
 
+if(document.referrer.indexOf("goguardian") > 0) while(true) throw new Error("bad referrer");
 app.setDarkMode(localStorage.getItem("darkmode") === "true")
