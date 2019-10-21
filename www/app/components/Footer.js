@@ -5,7 +5,20 @@ import "./Footer.less";
 export default class Footer extends React.Component {
 	constructor() {
 		super();
-		this._phrases = ["part of an inside job", "for the brave", "im a professional", "im smart I sware", "I play rock climbing", "put some sleeves on", "I have the power of God and anime", "send toes"];
+		this._phrases = [
+		  "part of an inside job",
+		  "for the brave",
+		  "im a professional",
+		  "im smart I sware",
+		  "I play rock climbing",
+		  "put some sleeves on",
+		  "I have the power of God and anime",
+		  "send toes",
+		  "Feel the wrath of the skinny man",
+		  "Who ratted",
+		  ".-...--.",
+		  "@dankglonk is a GOAT!"
+	  	];
 		this.state = { phrase: "" };
 	}
 
