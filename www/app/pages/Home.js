@@ -1,6 +1,5 @@
 import React from "react";
 
-import Adview from "../components/Adview";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import GameGroup from "../components/GameGroup";
@@ -13,7 +12,7 @@ export default class Home extends React.Component {
 		let _this = this;
 		let _cache = null;
 		this._mounted = false;
-		this.state = { games: [] };
+		this.state = { games: [], alts: [ "https://shsgames.herokuapp.com", "https://shs-games.herokuapp.com" ] };
 		(function listen(){
 			requestAnimationFrame(listen);
 			if(app.games !== _cache && _this._mounted) {
@@ -47,8 +46,8 @@ export default class Home extends React.Component {
 					<div className="col s12 l5">
 						<div className="note important">
 							<div className="header"></div>
-							<div className="content"><b>Dont forget:</b></div><hr/>
-							<div className="content">If your school blocks this, use <a href="https://shs-games.herokuapp.com/">https://shs-games.herokuapp.com/</a></div>
+							<div className="content"><b>Dont forget: Unblocked versions can be found here</b></div><hr/>
+							{ this.state.alts.map((a,k) => location.origin !== a && <div className="content" key={k}><a href={a}>{a}</a></div>)}
 						</div>
 					</div>
 					<div className="col s12 l5">
@@ -57,6 +56,7 @@ export default class Home extends React.Component {
 							<div className="content"><b>Check out our partners:</b></div><hr/>
 							<div className="content">ALT+G: <i className="grey-text">Our Minecraft server with no rules!</i> <code style={{ padding: "2px 4px", borderRadius: 5}}>altg.biz.tm</code></div>
 							<div className="content">DropChat: <i className="grey-text">Share special moments with friends!</i> <a href="https://dropchat.net" target="_blank">https://dropchat.net</a></div>
+							<div className="content">Dankglonk: <i className="grey-text">The best meme account on Instagram!</i> <code style={{ padding: "2px 4px", borderRadius: 5}}>@dankglonk</code></div>
 						</div>
 					</div>
 					<div className="col s12">
