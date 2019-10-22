@@ -43,7 +43,8 @@ export default class Footer extends React.Component {
 						<div className="container">
 							Copyright © { new Date().getFullYear() }
 							<a href="https://joshmerlino.github.io" className="primary-text"> Josh Merlino</a> &
-							<a href="https://th3skeleton.github.io/pshel/" className="primary-text"> Parker Sheldon</a>
+							<a href="https://th3skeleton.github.io/pshel/" className="primary-text"> Parker Sheldon</a> &
+							<a className="primary-text"> George Lock</a>
 						</div>
 					</div>
 				</footer>
