@@ -35567,6 +35567,12 @@
 									"a",
 									{ href: "https://th3skeleton.github.io/pshel/", className: "primary-text" },
 									" Parker Sheldon"
+								),
+								" &",
+								_react2.default.createElement(
+									"a",
+									{ className: "primary-text" },
+									" George Lock"
 								)
 							)
 						)
