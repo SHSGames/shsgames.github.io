@@ -16,7 +16,7 @@ class FrameCounter extends React.Component {
 			_this._framecounter = performance.now();
 		}());
 
-		const SAMPLE = 3;
+		const SAMPLE = 10;
 		const hz = [ 40, 60, 75, 90, 100, 120, 144, 165, 200, 240, 300 ];
 		let fps = [];
 

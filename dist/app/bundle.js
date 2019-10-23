@@ -37187,7 +37187,7 @@
 	
 			var _this = _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).call(this));
 	
-			_this._hrefs = ["https://docs.google.com/forms/d/e/1FAIpQLScD0hNLHtaxyiwUtUKHBxxJAKkuAgytpjHvdd6eHESOXCNH4w/viewform?embedded=true", "https://docs.google.com/forms/d/e/1FAIpQLSe3iNjW7GjNa9gYzHQBbQrIYKrTrU4cojsLamjePURqkKHdtw/viewform?embedded=true"];
+			_this._hrefs = ["https://docs.google.com/forms/d/e/1FAIpQLSe3iNjW7GjNa9gYzHQBbQrIYKrTrU4cojsLamjePURqkKHdtw/viewform?embedded=true"];
 			_this.state = { i: 0 };
 			return _this;
 		}
@@ -37197,39 +37197,6 @@
 			value: function render() {
 				var _this2 = this;
 	
-				return _react2.default.createElement(
-					"div",
-					null,
-					_react2.default.createElement(_Navbar2.default, null),
-					_react2.default.createElement(
-						"div",
-						{ className: "container", style: { maxWidth: 400 } },
-						_react2.default.createElement("br", null),
-						_react2.default.createElement("br", null),
-						_react2.default.createElement("br", null),
-						_react2.default.createElement(
-							"center",
-							null,
-							_react2.default.createElement(
-								"h1",
-								{ className: "theme-text" },
-								"Sorry!"
-							),
-							_react2.default.createElement(
-								"p",
-								null,
-								"Requests have been disabled, If theres a bug, mention a dev in the",
-								_react2.default.createElement(
-									"a",
-									{ href: "https://discord.gg/XBr5nzu", className: "primary-text" },
-									" Discord"
-								),
-								"."
-							)
-						)
-					),
-					_react2.default.createElement(_Footer2.default, null)
-				);
 				return _react2.default.createElement(
 					"div",
 					null,
@@ -37259,7 +37226,7 @@
 							),
 							"."
 						),
-						_react2.default.createElement("iframe", { id: "request-frame", src: this._hrefs[this.state.i], width: "500", height: "700", frameBorder: "0", marginHeight: "0", marginWidth: "0", scrolling: "no" })
+						_react2.default.createElement("iframe", { id: "request-frame", src: this._hrefs[this.state.i], width: "500", height: "868", frameBorder: "0", marginHeight: "0", marginWidth: "0" })
 					),
 					_react2.default.createElement(_Footer2.default, null)
 				);
@@ -38144,7 +38111,7 @@
 			_this2._fps = 0;
 			_this2._mounted = false;
 			_this2._framecounter = performance.now();
-			_this2.state = { FPS: 0 };
+			_this2.state = { FPS: 0, refresh: 0 };
 	
 			var _this = _this2;
 			(function frameCounter() {
@@ -38153,8 +38120,28 @@
 				_this._framecounter = performance.now();
 			})();
 	
+			var SAMPLE = 3;
+			var hz = [40, 60, 75, 90, 100, 120, 144, 165, 200, 240, 300];
+			var fps = [];
+	
 			setInterval(function () {
-				return _this2._mounted && _this2.setState({ FPS: Math.floor(_this2._fps) });
+				if (_this2._mounted) {
+					var avgfps = _this2._fps + fps;
+					fps.push(_this2._fps);
+	
+					while (fps.length > SAMPLE) {
+						fps.shift();
+					}avgfps = fps.reduce(function (a, b) {
+						return a + b;
+					}, 0) / fps.length - 1;
+	
+					_this2.setState({
+						FPS: Math.floor(_this2._fps),
+						refresh: hz.reduce(function (prev, curr) {
+							return Math.abs(curr - avgfps) < Math.abs(prev - avgfps) ? curr : prev;
+						})
+					});
+				}
 			}, 1000);
 			return _this2;
 		}
@@ -38176,7 +38163,12 @@
 					"div",
 					{ style: { position: "absolute", top: "0px", left: "24px", lineHeight: "52px" } },
 					"FPS: ",
-					this.state.FPS
+					this.state.FPS,
+					" - ",
+					screen.height,
+					"p@",
+					this.state.refresh,
+					"hz"
 				);
 			}
 		}]);

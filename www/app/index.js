@@ -20,6 +20,7 @@ class App extends React.Component {
 
 		Photon.disableArrowKeyScrolling = false;
 		app.game && app.game.engine === "nes" && (nes = undefined);
+		window.hasOwnProperty("audio_ctx") && window.audio_ctx.close();
 
 		for (let route of ROUTES) {
 			if(route.path === location.pathname) {

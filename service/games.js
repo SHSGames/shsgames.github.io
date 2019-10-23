@@ -103,6 +103,11 @@ module.exports = {
 			params: { options: {} }
 		},
 		{
+			name: "Dragon Fist 3",
+			engine: "flash",
+			params: { options: {} }
+		},
+		{
 			name: "Electric Man 2",
 			engine: "flash",
 			params: { options: {} }
@@ -308,6 +313,16 @@ module.exports = {
 			params: { aspectRatio: 64/43, width: 640, options: {} }
 		},
 		{
+			name: "Potty Racers 3",
+			engine: "flash",
+			params: { options: {} }
+		},
+		{
+			name: "Run 2",
+			engine: "flash",
+			params: { options: { "framerate": "60", "wmode": "direct", "data-target": "game.game" } }
+		},
+		{
 			name: "Run 3",
 			engine: "flash",
 			params: { options: { "framerate": "60", "wmode": "direct", "data-target": "game.game" } }
@@ -381,6 +396,11 @@ module.exports = {
 			name: "Super Mario Flash 2",
 			engine: "flash",
 			params: { options: {} }
+		},
+		{
+			name: "Super Smash Flash",
+			engine: "flash",
+			params: { aspectRatio: 2/1, width: 640, options: {} }
 		},
 		{
 			name: "Tetris",
@@ -537,6 +557,14 @@ module.exports = {
 				options: {}
 			}
 		}, {
+			name: "Final Fantasy 1",
+			engine: "nes",
+			params: {
+				aspectRatio: 16/15,
+				width: 640,
+				options: {}
+			}
+		}, {
 			name: "Hoops",
 			engine: "nes",
 			params: {
@@ -663,6 +691,15 @@ module.exports = {
 		name: "SNES",
 		games: [{
 			name: "Super Mario World",
+			engine: "snes",
+			params: {
+				aspectRatio: 8/7,
+				width: 512,
+				options: {}
+			}
+		},
+		{
+			name: "Super Mario World Yoshis Island",
 			engine: "snes",
 			params: {
 				aspectRatio: 8/7,

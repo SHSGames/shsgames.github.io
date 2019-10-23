@@ -36,8 +36,8 @@ function audio_remain(){
 }
 
 function audio_callback(event){
-	return;
-	
+	//return;
+
 	var dst = event.outputBuffer;
 	var len = dst.length;
 
@@ -94,10 +94,15 @@ function nes_init(canvas_id){
 	framebuffer_u32 = new Uint32Array(buffer);
 
 	// Setup audio.
-	var audio_ctx = new window.AudioContext();
-	var script_processor = audio_ctx.createScriptProcessor(AUDIO_BUFFERING, 0, 2);
+	window.audio_ctx = new AudioContext();
+	let script_processor = window.audio_ctx.createScriptProcessor(AUDIO_BUFFERING, 0, 2);
 	script_processor.onaudioprocess = audio_callback;
-	script_processor.connect(audio_ctx.destination);
+	script_processor.connect(window.audio_ctx.destination);
+
+	$(document).on("click, keypress", () => {
+		window.audio_ctx.resume();
+	});
+
 }
 
 function nes_boot(rom_data){
