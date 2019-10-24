@@ -110,6 +110,7 @@
 	
 				Photon.disableArrowKeyScrolling = false;
 				app.game && app.game.engine === "nes" && (nes = undefined);
+				window.hasOwnProperty("audio_ctx") && window.audio_ctx.close();
 	
 				var _iteratorNormalCompletion = true;
 				var _didIteratorError = false;
@@ -29708,6 +29709,7 @@
 	
 	global.app = {
 		NAME: "SHS Games",
+		events: ["blur", "change", "click", "dblclick", "error", "focus", "focusin", "focusout", "hover", "keydown", "keypress", "keyup", "load", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseout", "mouseover", "mouseup", "mousewheel", "resize", "scroll", "select", "submit", "wheel"],
 		service: "//" + location.hostname + PORT.backend + "/service",
 		pubkey: "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3Lblv+neygQC4vvG6qPARg39S\nVQHmGdoOcz6GIWoFdRt6yW5T5VSAPRpaVF9c1Qt19a7JsqhVRwLG5nnOmrmOAzy5\nk4DD9qAxrjnhpcJW4LyUWxGoaBxcvU2UBOgSrATQ2V/nrdySpMyi7RkBgubyOGdp\n+/eiknG6PnofX1vW+wIDAQAB\n-----END PUBLIC KEY-----",
 		version: 1,
@@ -38120,7 +38122,7 @@
 				_this._framecounter = performance.now();
 			})();
 	
-			var SAMPLE = 3;
+			var SAMPLE = 10;
 			var hz = [40, 60, 75, 90, 100, 120, 144, 165, 200, 240, 300];
 			var fps = [];
 	

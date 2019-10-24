@@ -403,6 +403,21 @@ module.exports = {
 			params: { aspectRatio: 2/1, width: 640, options: {} }
 		},
 		{
+			name: "Swords and Sandals 1",
+			engine: "flash",
+			params: { options: {} }
+		},
+		{
+			name: "Swords and Sandals 2",
+			engine: "flash",
+			params: { options: {} }
+		},
+		{
+			name: "Swords and Sandals 3",
+			engine: "flash",
+			params: { options: {} }
+		},
+		{
 			name: "Tetris",
 			engine: "flash",
 			params: { options: {} }
