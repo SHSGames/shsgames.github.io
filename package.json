@@ -22,7 +22,8 @@
         "express-http-to-https": "^1.1.4",
         "formidable": "^1.2.1",
         "node-jsencrypt": "^1.0.0",
-        "request": "^2.88.0"
+        "request": "^2.88.0",
+        "request-promise": "^4.2.4"
     },
     "devDependencies": {
         "babel-core": "^6.26.3",

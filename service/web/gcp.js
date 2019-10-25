@@ -1,6 +1,24 @@
-const request = require("request");
+const fs = require("fs");
+const path = require("path");
+const request = require("request-promise");
 
 module.exports = (req, res) => {
 	const { container, image } = req.params;
-	req.pipe(request(`http://storage.googleapis.com/shsgames_storage/games/${container}/${image}`)).pipe(res)
+	const CACHE = path.join(__appdir, "cached_resources", `${container}_${image}`);
+
+	(function attempt() {
+		fs.exists(CACHE, exists => {
+			if(exists) {
+				fs.createReadStream(CACHE).pipe(res);
+			} else {
+				request.get(`http://storage.googleapis.com/shsgames_storage/games/${container}/${image}`, { encoding: null }).then(res => {
+    				const buf = Buffer.from(res, "utf8");
+    				fs.writeFile(CACHE, buf, attempt);
+  				}, err => {
+					console.error(err);
+					fs.unlink(CACHE, buf, attempt);
+				});
+			}
+		})
+	}());
 }

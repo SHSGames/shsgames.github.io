@@ -717,15 +717,6 @@ module.exports = {
 				width: 512,
 				options: {}
 			}
-		},
-		{
-			name: "Super Mario World Yoshis Island",
-			engine: "snes",
-			params: {
-				aspectRatio: 8/7,
-				width: 512,
-				options: {}
-			}
 		}]
 
 	}, {
