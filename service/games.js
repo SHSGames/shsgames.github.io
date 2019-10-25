@@ -78,6 +78,11 @@ module.exports = {
 			params: { options: {} }
 		},
 		{
+			name: "Doom Triple Pack",
+			engine: "flash",
+			params: { options: {} }
+		},
+		{
 			name: "Duck Life 4",
 			engine: "unity",
 			params: {
