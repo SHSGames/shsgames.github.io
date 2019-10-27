@@ -46,7 +46,7 @@ export default class Home extends React.Component {
 							{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <li key={key}><a data-scrollto={"#" + app.slug(group.name)}>{group.name}</a></li>) }
 						</ul>
 						<RandomGame>
-							<a style={{ margin: 0 }} className="autolink waves-effect photon-init">
+							<a style={{ margin: 0, marginBottom: 8 }} className="autolink waves-effect photon-init">
 								<div className="padding-layer">
 									<div className="external-img">
 										<img src="/img/res/shuffle-24px.svg" alt=""/>
