@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import GameGroup from "../components/GameGroup";
 import Searchbar from "../components/Searchbar";
+import RandomGame from "../components/RandomGame";
 
 export default class Home extends React.Component {
 	constructor() {
@@ -12,12 +13,14 @@ export default class Home extends React.Component {
 		let _this = this;
 		let _cache = null;
 		this._mounted = false;
-		this.state = { games: [], alts: [ "https://shsgames.herokuapp.com", "https://shs-games.herokuapp.com" ] };
+		this.state = { games: [], num: 0, alts: [ "https://shsgames.herokuapp.com", "https://shs-games.herokuapp.com" ] };
 		(function listen(){
 			requestAnimationFrame(listen);
 			if(app.games !== _cache && _this._mounted) {
 				_cache = app.games;
-				_this.setState({ games: app.games });
+				let num = 0;
+				for (let group of app.games.groups) num += group.games.length;
+				_this.setState({ games: app.games, num });
 				setTimeout(() => Photon.reload());
 			}
 		}());
@@ -42,6 +45,18 @@ export default class Home extends React.Component {
 							<li><h1>Categories</h1></li>
 							{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <li key={key}><a data-scrollto={"#" + app.slug(group.name)}>{group.name}</a></li>) }
 						</ul>
+						<RandomGame>
+							<a style={{ margin: 0 }} className="autolink waves-effect photon-init">
+								<div className="padding-layer">
+									<div className="external-img">
+										<img src="/img/res/shuffle-24px.svg" alt=""/>
+									</div>
+									<div className="title">Random Game</div>
+									<p>Why not switch it up a bit?</p>
+									<div className="ref">Pick from {this.state.num} games</div>
+								</div>
+							</a>
+						</RandomGame>
 					</div>
 					<div className="col s12 l5">
 						<div className="note important">

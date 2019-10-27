@@ -20,29 +20,8 @@ class ExitLink extends React.Component {
 class Sidenav extends React.Component {
 	constructor() {
 		super();
-
-		let _this = this;
-		let _cache = null;
-		this._mounted = false;
 		this.state = { games: [] };
-		(function listen(){
-			requestAnimationFrame(listen);
-			if(app.games !== _cache && _this._mounted) {
-				_cache = app.games;
-				let games = [];
-				app.games.groups.map(group => group.games.map(game => games.push(game)));
-				games = games.sort((a,b) => a.name.localeCompare(b.name));
-				_this.setState({ games });
-			}
-		}());
-	}
-
-	componentDidMount() {
-		this._mounted = true;
-	}
-
-	componentWillUnmount() {
-		this._mounted = false;
+		app.getGames().then(games => this.setState({ games }));
 	}
 
 	render() {

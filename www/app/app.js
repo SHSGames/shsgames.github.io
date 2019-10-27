@@ -1,3 +1,4 @@
+import React from "react";
 import JSEncrypt from "jsencrypt";
 import LAST_BUILD from "../src/LAST_BUILD.txt";
 
@@ -79,6 +80,28 @@ global.app = {
 		}
 	},
 
+	getGames() {
+		return new Promise(resolve => {
+			(function loop() {
+				if(app.games !== null && app.games.hasOwnProperty("groups")) {
+					let games = [];
+					for (let group of app.games.groups) games.push(...group.games);
+					games = games.sort((a,b) => a.name.localeCompare(b.name));
+					resolve(games);
+				} else setTimeout(loop);
+			}())
+		});
+	},
+
+	random() {
+		return new Promise(resolve => {
+			app.getGames().then(games => {
+				const game = games[Math.floor(games.length * Math.random())];
+				resolve(game);
+			})
+		});
+	},
+
 	slug(string) {
 		string = string.replace(/\s/g,"-");
 		string = string.replace(/\'/g,"");
@@ -94,7 +117,7 @@ global.app = {
 		}).catch(e => console.error(e));
 	},
 
-	launch(game,redirector) {
+	launch(game, redirector) {
 		const path = app.slug(game.name);
 		if(localStorage.getItem("hidewarn") !== "true"){
 			let dialog = new Photon.dialog({
@@ -108,7 +131,7 @@ global.app = {
 					click() {
 						localStorage.setItem("hidewarn","true");
 						setTimeout(() => {
-							redirector.setState({ redirect: `/game/${path}` });
+							redirector instanceof React.Component ? redirector.setState({ redirect: `/game/${path}` }) : location.pathname = `/game/${path}`;
 							dialog.destroy();
 						},250);
 					}
@@ -116,7 +139,7 @@ global.app = {
 				{
 					name:"proceed",
 					click() {
-						redirector.setState({ redirect: `/game/${path}` });
+						redirector instanceof React.Component ? redirector.setState({ redirect: `/game/${path}` }) : location.pathname = `/game/${path}`;
 						dialog.destroy();
 					}
 				},
@@ -130,7 +153,7 @@ global.app = {
 
 			dialog.open();
 		} else {
-			redirector.setState({ redirect: `/game/${path}` });
+			redirector instanceof React.Component ? redirector.setState({ redirect: `/game/${path}` }) : location.pathname = `/game/${path}`;
 		}
 	},
 
