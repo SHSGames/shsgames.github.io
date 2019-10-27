@@ -2253,9 +2253,9 @@ $(() => {
     });
 
     if ($(document).scrollTop() > 0) {
-      $(".toolbar.paper, .app-bar.paper").addClass("raised");
+      $(".toolbar.paper, .app-bar.paper, .toolbar.floating, .app-bar.floating").addClass("raised");
     } else {
-      $(".toolbar.paper, .app-bar.paper").removeClass("raised");
+      $(".toolbar.paper, .app-bar.paper, .toolbar.floating, .app-bar.floating").removeClass("raised");
     }
 
     $(".card-image.parallax").each(function () {
