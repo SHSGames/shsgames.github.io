@@ -45,7 +45,7 @@ Ensure that you have the following installed on your system:
 ## General Information
 
 ### The `/cached_resources` directory:
-This is soley to reduce the cost on our end. We are charged by the gigabyte that is sent from our storage service. By allowing this to fill up with cache, it prevents unexpected and additional charges on our end.
+This is soley to reduce the cost on our end. We are charged by the gigabyte that is sent from our storage service. By allowing this to fill up with cache, it prevents unexpected additional charges on our end.
 
 ### Web Services (API'S):
 The `/service` directory consists of JavaScript modules that can ONLY be accessed by the backend. For example,
