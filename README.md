@@ -32,3 +32,8 @@ Ensure that you have `NodeJS` installed on your system.
 4. Production versions not served from `http://localhost/` will redirect to HTTPS so it is required for professional production enviroments.
 
 5. Production builds have an agressive caching algorithm. Even if the server is shut down, it will display SHSGames. You can use the `Clear cache` option in the settings menu and disable service workers to prevent this.
+
+# General Information
+
+### The `/cached_resources` directory:
+This is soley to reduce the cost on our end. We are charged by the gigabyte that is sent from our storage service. By allowing this to fill up with cache, it prevents unexpected and additional charges on our end.
