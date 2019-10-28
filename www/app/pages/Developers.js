@@ -2,8 +2,18 @@ import React from "react";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Markdown from "../components/Markdown";
 
 class Request extends React.Component {
+	constructor() {
+		super();
+		this.state = { markdown: "" };
+	}
+
+	componentDidMount() {
+		service("README")()(markdown => this.setState({ markdown }))
+	}
+
 	render() {
 		return (
 			<div>
@@ -22,42 +32,40 @@ class Request extends React.Component {
 
 						<div className="right">
 
-							<a href="https://github.com/SHSGames" target="_blank" class="autolink waves-effect photon-init">
-								<div class="padding-layer">
-									<div class="external-img invert">
+							<a href="https://github.com/SHSGames" style={{ margin: "8px 0" }} target="_blank" className="autolink waves-effect photon-init">
+								<div className="padding-layer">
+									<div className="external-img invert">
 										<img src="https://github.com/favicon.ico" alt=""/>
 									</div>
-									<div class="title">SHSGames · GitHub</div>
+									<div className="title">SHSGames · GitHub</div>
 									<p>Browse SHSGames on GitHub</p>
-									<div class="ref">Our GitHub</div>
+									<div className="ref">Our GitHub</div>
 								</div>
 							</a>
 
 							<br/>
 
-							<a href="https://discord.gg/XBr5nzu" target="_blank" class="autolink waves-effect photon-init">
-								<div class="padding-layer">
-									<div class="external-img">
+							<a href="https://discord.gg/XBr5nzu" style={{ margin: "8px 0" }} target="_blank" className="autolink waves-effect photon-init">
+								<div className="padding-layer">
+									<div className="external-img">
 										<img src="/img/res/discord.png" alt=""/>
 									</div>
-									<div class="title">SHSGames · Discord</div>
+									<div className="title">SHSGames · Discord</div>
 									<p>Join SHSGames on Discord</p>
-									<div class="ref">Our Discord Server</div>
+									<div className="ref">Our Discord Server</div>
 								</div>
 							</a>
 
 						</div>
 
 					</div>
-				</div>
 
-				<div className="container">
-					<hr/>
-					<p align="center">
-						<img src="/img/dev/banner.png?raw=true" width="50%"/>
-					</p>
-					<h1 align="center">SHS Games</h1>
-					<br/><br/>
+					<div className="col s12">
+						<div className="card-panel md-wrapper">
+							<div className="md-header">README.md</div>
+							<Markdown>{this.state.markdown}</Markdown>
+						</div>
+					</div>
 				</div>
 
 				<Footer/>

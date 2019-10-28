@@ -1,13 +1,22 @@
 <p align="center">
-  <img src="/www/img/dev/banner.png?raw=true" width="50%">
+  <img src="https://shsgames.herokuapp.com/img/dev/banner.png?raw=true" width="50%">
 </p>
 <h1 align="center">SHS Games</h1>
 
-# Prerequisites
-Ensure that you have `NodeJS` installed on your system.
+---
 
-# Getting Started
-1. Clone this repo to your working directory, you can use the `download ZIP` option or just run `$ git clone https://github.com/SHSGames/SHSGames`in your CWD.
+## Prerequisites
+Ensure that you have the following installed on your system:
+1. NodeJS
+
+2. Git
+
+3. Any IDE or code editor (AtomIDE recommended)
+
+4. Any Bash interpreter (Git Bash recommended)
+
+## Getting Started
+1. Clone this repo to your working directory, you can use the `download ZIP` option or just run `$ git clone https://github.com/SHSGames/SHSGames` in your CWD.
 
 2. Open the folder named `SHSGames`
 
@@ -21,7 +30,7 @@ Ensure that you have `NodeJS` installed on your system.
 
 7. Begin developing and happy hacking!
 
-# Testing the Production Build
+## Testing the Production Build
 
 1. After you verified that the development build works, use `$ npm run build` to build SHSGames into a production ready bundle (also slow on old hardware). The production version is locateed in the `/dist` folder.
 
@@ -33,12 +42,12 @@ Ensure that you have `NodeJS` installed on your system.
 
 5. Production builds have an agressive caching algorithm. Even if the server is shut down, it will display SHSGames. You can use the `Clear cache` option in the settings menu and disable service workers to prevent this.
 
-# General Information
+## General Information
 
-##### The `/cached_resources` directory:
+### The `/cached_resources` directory:
 This is soley to reduce the cost on our end. We are charged by the gigabyte that is sent from our storage service. By allowing this to fill up with cache, it prevents unexpected and additional charges on our end.
 
-##### Web Services (API'S):
+### Web Services (API'S):
 The `/service` directory consists of JavaScript modules that can ONLY be accessed by the backend. For example,
 ```javascript
 service("myservice");
@@ -64,5 +73,3 @@ module.exports = (request, response) => {
 	})
 }
 ```
-
-##### `app` has many methods, see them in the wiki

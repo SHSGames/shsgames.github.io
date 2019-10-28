@@ -37,14 +37,14 @@ export default class Footer extends React.Component {
 								<p className="grey-text">Unblocked games • {this.state.phrase}.</p>
 							</div>
 							<div className="col s12 l4">
-								<a href="https://discord.gg/XBr5nzu" target="_blank" class="autolink waves-effect photon-init">
-									<div class="padding-layer">
-										<div class="external-img">
+								<a href="https://discord.gg/XBr5nzu" target="_blank" className="autolink waves-effect photon-init">
+									<div className="padding-layer">
+										<div className="external-img">
 											<img src="/img/res/discord.png" alt=""/>
 										</div>
-										<div class="title">SHSGames · Discord</div>
+										<div className="title">SHSGames · Discord</div>
 										<p>Join SHSGames on Discord</p>
-										<div class="ref">Our Discord Server</div>
+										<div className="ref">Our Discord Server</div>
 									</div>
 								</a>
 							</div>
