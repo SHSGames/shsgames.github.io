@@ -48,7 +48,7 @@ export default class Home extends React.Component {
 						<RandomGame>
 							<a style={{ margin: 0, marginBottom: 8 }} className="autolink waves-effect photon-init">
 								<div className="padding-layer">
-									<div className="external-img">
+									<div className="external-img invert">
 										<img src="/img/res/shuffle-24px.svg" alt=""/>
 									</div>
 									<div className="title">Random Game</div>

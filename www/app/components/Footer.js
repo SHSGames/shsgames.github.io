@@ -35,7 +35,18 @@ export default class Footer extends React.Component {
 							<div className="col s12 l8">
 								<h3 className="grey-text text-lighten-3">{app["NAME"]}</h3>
 								<p className="grey-text">Unblocked games • {this.state.phrase}.</p>
-								<p className="grey-text">Come and Join our <a href="https://discord.gg/XBr5nzu" className="primary-text"> Discord Server</a></p>
+							</div>
+							<div className="col s12 l4">
+								<a href="https://discord.gg/XBr5nzu" target="_blank" class="autolink waves-effect photon-init">
+									<div class="padding-layer">
+										<div class="external-img">
+											<img src="/img/res/discord.png" alt=""/>
+										</div>
+										<div class="title">SHSGames · Discord</div>
+										<p>Join SHSGames on Discord</p>
+										<div class="ref">Our Discord Server</div>
+									</div>
+								</a>
 							</div>
 						</div>
 					</div>

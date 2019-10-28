@@ -32,7 +32,7 @@ class SettingsView extends React.Component {
 		return (
 			<div className="settings-view-wrapper" id="settings-view">
 				<div className="settings-view">
-					<div className={`toolbar ${this.state.flat ? "flat":"raised"} white grey-text text-darken-3`}>
+					<div className={`toolbar ${this.state.flat ? "flat" : "raised"} white grey-text text-darken-3`}>
 						<i className="material-icons waves-effect waves-ink waves-classic" onClick={ () => $("#settings-view").removeClass("active") }>close</i>
 						<div className="title" style={{ userSelect: "none" }}>Settings</div>
 					</div>
