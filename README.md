@@ -35,5 +35,34 @@ Ensure that you have `NodeJS` installed on your system.
 
 # General Information
 
-### The `/cached_resources` directory:
+##### The `/cached_resources` directory:
 This is soley to reduce the cost on our end. We are charged by the gigabyte that is sent from our storage service. By allowing this to fill up with cache, it prevents unexpected and additional charges on our end.
+
+##### Web Services (API'S):
+The `/service` directory consists of JavaScript modules that can ONLY be accessed by the backend. For example,
+```javascript
+service("myservice");
+// This will run the code in `/service/myservice.js` and return `module.exports`
+```
+In the browser, you call a service via
+```javascript
+service("endpoint")({ data })(response => {
+	handleEndpoint(response);
+})
+```
+
+Browser services execute a endpoint located in `/service/web`
+To call endpoint `myEndpoint` the file `/service/web/myEndpoint` must exist and return a module that handles an HTTP request:
+```javascript
+module.exports = (request, response) => {
+	// handle request data
+	response.done({ success: true }) // or any JSON data
+	// You can also combine services like so:
+	service("webservice")(request, response)((params, cookies) => {
+		// Params is a JSON object of the data sent in through the second function of `service` from the browser,
+		// Cookies is a JSON object of the cookies by `key`: `val`
+	})
+}
+```
+
+##### `app` has many methods, see them in the wiki
