@@ -22,10 +22,10 @@ class Request extends React.Component {
 				<div className="container row">
 					<div className="col s12 m10 l8 xl6">
 						<div className="title"><h2>Our Mission</h2></div>
-						<p>Our goal is to create a diverse community of developers. We want as many unique ideas that we can get. Every developer has their own ways of doing things, there own signiture solution. We want as many as we can get brought to the table.</p>
+						<p>Our goal is to create a community of developers around the world.  We value the diversity that everyone has to offer. Having many people with different programming backgrounds on a team makes the product as complete as possible. Having people like you to contribute to ideas and development methods is every software teams dream. Why not join the team.</p>
 
-						<div className="title"><h2>Become a Dev</h2></div>
-						<p>Join our Discord server, then @ an admin and ask for developer access.</p>
+						<div className="title"><h2>How to join</h2></div>
+						<p>All you need to join the development team is join the Discord server. Then ask an admin to become a developer. An admin will dm you asking you for details like your GitHub, add you to the GitHub team and give you the Developer role in the discord.</p>
 					</div>
 
 					<div className="col s12 l4 xl6">
