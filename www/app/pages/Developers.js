@@ -20,29 +20,44 @@ class Request extends React.Component {
 
 					<div className="col s12 l4 xl6">
 
-						<a href="https://github.com/SHSGames" target="_blank" class="autolink waves-effect photon-init">
-							<div class="padding-layer">
-								<div class="external-img invert">
-									<img src="https://github.com/favicon.ico" alt=""/>
-								</div>
-								<div class="title">SHSGames · GitHub</div>
-								<p>Browse SHSGames on GitHub</p>
-								<div class="ref">Our GitHub</div>
-							</div>
-						</a>
+						<div className="right">
 
-						<a href="https://discord.gg/XBr5nzu" target="_blank" class="autolink waves-effect photon-init">
-							<div class="padding-layer">
-								<div class="external-img">
-									<img src="/img/res/discord.png" alt=""/>
+							<a href="https://github.com/SHSGames" target="_blank" class="autolink waves-effect photon-init">
+								<div class="padding-layer">
+									<div class="external-img invert">
+										<img src="https://github.com/favicon.ico" alt=""/>
+									</div>
+									<div class="title">SHSGames · GitHub</div>
+									<p>Browse SHSGames on GitHub</p>
+									<div class="ref">Our GitHub</div>
 								</div>
-								<div class="title">SHSGames · Discord</div>
-								<p>Join SHSGames on Discord</p>
-								<div class="ref">Our Discord Server</div>
-							</div>
-						</a>
+							</a>
+
+							<br/>
+
+							<a href="https://discord.gg/XBr5nzu" target="_blank" class="autolink waves-effect photon-init">
+								<div class="padding-layer">
+									<div class="external-img">
+										<img src="/img/res/discord.png" alt=""/>
+									</div>
+									<div class="title">SHSGames · Discord</div>
+									<p>Join SHSGames on Discord</p>
+									<div class="ref">Our Discord Server</div>
+								</div>
+							</a>
+
+						</div>
 
 					</div>
+				</div>
+
+				<div className="container">
+					<hr/>
+					<p align="center">
+						<img src="/img/dev/banner.png?raw=true" width="50%"/>
+					</p>
+					<h1 align="center">SHS Games</h1>
+					<br/><br/>
 				</div>
 
 				<Footer/>
