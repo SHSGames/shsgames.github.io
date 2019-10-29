@@ -481,6 +481,10 @@ module.exports = {
 			engine: "gba",
 			params: { options: {} }
 		}, {
+			name: "Pokemon Ash Gray",
+			engine: "gba",
+			params: { options: {} }
+		}, {
 			name: "Pokemon Dark Violet",
 			engine: "gba",
 			params: { options: {} }
