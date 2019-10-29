@@ -78,19 +78,24 @@ module.exports = {
 			params: { options: {} }
 		},
 		{
+			name: "Dead Zed 2",
+			engine: "flash",
+			params: { options: {} }
+		},
+		{
 			name: "Doom Triple Pack",
 			engine: "flash",
 			params: { options: {} }
 		},
 		{
-			name: "Duck Life 4",
-			engine: "unity",
-			params: {
-				unityImage: "duck-life-4",
-				aspectRatio: 16/9,
-				width: 1200,
-				options: {}
-			}
+			name: "Drag Racer v3",
+			engine: "flash",
+			params: { options: {} }
+		},
+		{
+			name: "Dragon Fist 3",
+			engine: "flash",
+			params: { options: {} }
 		},
 		{
 			name: "Duck Life 3",
@@ -104,11 +109,6 @@ module.exports = {
 		},
 		{
 			name: "Duck Life 1",
-			engine: "flash",
-			params: { options: {} }
-		},
-		{
-			name: "Dragon Fist 3",
 			engine: "flash",
 			params: { options: {} }
 		},
