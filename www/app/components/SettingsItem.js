@@ -33,7 +33,18 @@ class SettingsOption extends React.Component {
 
 	render() {
 		return (
-			<div className="settings-option waves-effect" id={this._guid}>{this.props.children}</div>
+			<div className={`settings-option waves-effect${this.props.disabled ? " disabled":""}`} id={this._guid}>
+				{this.props.errorMessage ? (
+					<div className="error-wrapper">
+						{this.props.children}
+						<div className="error">{this.props.errorMessage}</div>
+					</div>
+				) : (
+					<div>
+						{this.props.children}
+					</div>
+				)}
+			</div>
 		);
 	}
 }

@@ -173,4 +173,4 @@ global.app = {
 }
 
 if(document.referrer.indexOf("goguardian") > 0) while(true) throw new Error("bad referrer");
-app.setDarkMode(localStorage.getItem("darkmode") === "true")
+app.setDarkMode(true) //localStorage.getItem("darkmode") === "true")

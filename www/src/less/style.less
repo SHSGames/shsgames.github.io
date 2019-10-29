@@ -117,6 +117,22 @@ footer h3 {
 				.settings-option {
 					.transition();
 					position: relative;
+					&.disabled {
+						pointer-events: none;
+						filter: grayscale(1);
+					}
+					.error-wrapper {
+						.settings-name,
+						.error {
+							transform: translateY(-16px);
+						}
+					}
+					.error {
+					    position: absolute;
+					    top: 48px;
+					    left: 80px;
+					    color: #c1c1c1a5;
+					}
 					&:hover {
 						background: #00000005;
 					}

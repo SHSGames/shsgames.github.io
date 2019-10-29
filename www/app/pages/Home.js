@@ -53,7 +53,7 @@ export default class Home extends React.Component {
 									</div>
 									<div className="title">Random Game</div>
 									<p>Why not switch it up a bit?</p>
-									<div className="ref">Pick from {this.state.num} games</div>
+									<div className="ref">From {this.state.num} games</div>
 								</div>
 							</a>
 						</RandomGame>

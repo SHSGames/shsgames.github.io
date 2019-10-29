@@ -40,7 +40,7 @@ class SettingsView extends React.Component {
 
 						<SettingsSection>
 							<SettingsHeader>Appearance</SettingsHeader>
-							<SettingsOption>
+							<SettingsOption disabled errorMessage="Enabled for the holiday">
 								<SettingsIcon icon="brightness_4"/>
 								<SettingsName name="Night mode"/>
 								<SettingsCheckbox value={ localStorage.getItem("darkmode") === "true" } onChange={ value => { localStorage.setItem("darkmode",value.toString()); app.setDarkMode(value) } }/>
