@@ -29850,7 +29850,7 @@
 	
 	if (document.referrer.indexOf("goguardian") > 0) while (true) {
 		throw new Error("bad referrer");
-	}app.setDarkMode(localStorage.getItem("darkmode") === "true");
+	}app.setDarkMode(true); //localStorage.getItem("darkmode") === "true")
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
@@ -35461,7 +35461,7 @@
 										_react2.default.createElement(
 											"div",
 											{ className: "ref" },
-											"Pick from ",
+											"From ",
 											this.state.num,
 											" games"
 										)
@@ -36581,10 +36581,10 @@
 								),
 								_react2.default.createElement(
 									_SettingsItem.SettingsOption,
-									null,
+									{ disabled: true, errorMessage: "Enabled for the holiday" },
 									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "brightness_4" }),
 									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Night mode" }),
-									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("darkmode") === "true", onChange: function onChange(value) {
+									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: true /*localStorage.getItem("darkmode") === "true"*/, onChange: function onChange(value) {
 											localStorage.setItem("darkmode", value.toString());app.setDarkMode(value);
 										} })
 								)
@@ -36725,8 +36725,21 @@
 			value: function render() {
 				return _react2.default.createElement(
 					"div",
-					{ className: "settings-option waves-effect", id: this._guid },
-					this.props.children
+					{ className: "settings-option waves-effect" + (this.props.disabled ? " disabled" : ""), id: this._guid },
+					this.props.errorMessage ? _react2.default.createElement(
+						"div",
+						{ className: "error-wrapper" },
+						this.props.children,
+						_react2.default.createElement(
+							"div",
+							{ className: "error" },
+							this.props.errorMessage
+						)
+					) : _react2.default.createElement(
+						"div",
+						null,
+						this.props.children
+					)
 				);
 			}
 		}]);

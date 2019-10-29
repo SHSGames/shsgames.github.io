@@ -11,12 +11,13 @@ module.exports = (req, res) => {
 			if(exists) {
 				fs.createReadStream(CACHE).pipe(res);
 			} else {
-				request.get(`http://storage.googleapis.com/shsgames_storage/games/${container}/${image}`, { encoding: null }).then(res => {
+				request.get(`http://storage.googleapis.com/shsgames_v2/${container}/${image}`, { encoding: null }).then(res => {
     				const buf = Buffer.from(res, "utf8");
     				fs.writeFile(CACHE, buf, attempt);
   				}, err => {
-					console.error(err);
-					fs.unlink(CACHE, buf, attempt);
+					if(err) {
+						fs.unlink(CACHE, attempt);
+					} else attempt();
 				});
 			}
 		})

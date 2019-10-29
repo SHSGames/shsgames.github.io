@@ -600,14 +600,6 @@ module.exports = {
 				width: 640,
 				options: {}
 			}
-		},  {
-			name: "Ice Hockey: Bones 19",
-			engine: "nes",
-			params: {
-				aspectRatio: 16/15,
-				width: 640,
-				options: {}
-			}
 		}, {
 			name: "Kid Icarus",
 			engine: "nes",
