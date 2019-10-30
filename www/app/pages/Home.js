@@ -70,8 +70,6 @@ export default class Home extends React.Component {
 							<div className="header"></div>
 							<div className="content"><b>Check out our partners:</b></div><hr/>
 							<div className="content">ALT+G: <i className="grey-text">Our Minecraft server with no rules!</i> <code style={{ padding: "2px 4px", borderRadius: 5}}>altg.biz.tm</code></div>
-							<div className="content">DropChat: <i className="grey-text">Share special moments with friends!</i> <a href="https://dropchat.net" target="_blank">https://dropchat.net</a></div>
-							<div className="content">Dankglonk: <i className="grey-text">The best meme account on Instagram!</i> <code style={{ padding: "2px 4px", borderRadius: 5}}>@dankglonk</code></div>
 						</div>
 					</div>
 					<div className="col s12">

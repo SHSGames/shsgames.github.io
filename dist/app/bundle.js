@@ -61,19 +61,17 @@
 	
 	__webpack_require__(/*! ./app */ 44);
 	
-	var _router = __webpack_require__(/*! ./router */ 47);
+	var _router = __webpack_require__(/*! ./router */ 51);
 	
 	var _router2 = _interopRequireDefault(_router);
 	
-	var _mprogressMin = __webpack_require__(/*! ../src/js/mprogress.min.js */ 272);
+	var _mprogressMin = __webpack_require__(/*! ../src/js/mprogress.min.js */ 277);
 	
 	var _mprogressMin2 = _interopRequireDefault(_mprogressMin);
 	
-	var _Sidenav = __webpack_require__(/*! ./components/Sidenav */ 273);
+	var _Sidenav = __webpack_require__(/*! ./components/Sidenav */ 278);
 	
 	var _Sidenav2 = _interopRequireDefault(_Sidenav);
-	
-	var _uuid = __webpack_require__(/*! uuid */ 274);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -84,6 +82,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	window.Mprogress = _mprogressMin2.default;
+	window.remountOnRouteChange = [];
 	
 	service("games")()(function (games) {
 		return app.games = games;
@@ -91,8 +90,6 @@
 	window.alert = function (message) {
 		return console.warn("Alert Halted: " + message);
 	};
-	
-	app.getCookie("x-storageapi") === undefined && app.setCookie("x-storageapi", (0, _uuid.v1)());
 	
 	var App = function (_React$Component) {
 		_inherits(App, _React$Component);
@@ -29625,6 +29622,10 @@
 	
 	var _LAST_BUILD2 = _interopRequireDefault(_LAST_BUILD);
 	
+	var _v = __webpack_require__(/*! uuid/v3 */ 47);
+	
+	var _v2 = _interopRequireDefault(_v);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -29797,7 +29798,8 @@
 			});
 		},
 		launch: function launch(game, redirector) {
-			var path = app.slug(game.name);
+			var path = localStorage.getItem("epath") !== "true" ? app.slug(game.name) : app.hash(app.slug(game.name));
+	
 			if (localStorage.getItem("hidewarn") !== "true") {
 				var dialog = new Photon.dialog({
 					type: "alert",
@@ -29810,14 +29812,14 @@
 						click: function click() {
 							localStorage.setItem("hidewarn", "true");
 							setTimeout(function () {
-								redirector instanceof _react2.default.Component ? redirector.setState({ redirect: "/game/" + path }) : location.pathname = "/game/" + path;
+								redirector instanceof _react2.default.Component ? redirector.setState({ redirect: "/g/" + path }) : location.pathname = "/g/" + path;
 								dialog.destroy();
 							}, 250);
 						}
 					}, {
 						name: "proceed",
 						click: function click() {
-							redirector instanceof _react2.default.Component ? redirector.setState({ redirect: "/game/" + path }) : location.pathname = "/game/" + path;
+							redirector instanceof _react2.default.Component ? redirector.setState({ redirect: "/g/" + path }) : location.pathname = "/g/" + path;
 							dialog.destroy();
 						}
 					}, {
@@ -29830,7 +29832,7 @@
 	
 				dialog.open();
 			} else {
-				redirector instanceof _react2.default.Component ? redirector.setState({ redirect: "/game/" + path }) : location.pathname = "/game/" + path;
+				redirector instanceof _react2.default.Component ? redirector.setState({ redirect: "/g/" + path }) : location.pathname = "/g/" + path;
 			}
 		},
 		setCookie: function setCookie(cname, cvalue) {
@@ -29845,6 +29847,9 @@
 			var value = "; " + document.cookie;
 			var parts = value.split("; " + name + "=");
 			if (parts.length == 2) return parts.pop().split(";").shift();
+		},
+		hash: function hash(str) {
+			return (0, _v2.default)(str, "4fb09b8a-22fa-4b8e-bd8f-41f4f603908f");
 		}
 	};
 	
@@ -35243,6 +35248,342 @@
 
 /***/ }),
 /* 47 */
+/*!**********************!*\
+  !*** ./~/uuid/v3.js ***!
+  \**********************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	var v35 = __webpack_require__(/*! ./lib/v35.js */ 48);
+	var md5 = __webpack_require__(/*! ./lib/md5 */ 50);
+	
+	module.exports = v35('v3', 0x30, md5);
+
+/***/ }),
+/* 48 */
+/*!***************************!*\
+  !*** ./~/uuid/lib/v35.js ***!
+  \***************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	var bytesToUuid = __webpack_require__(/*! ./bytesToUuid */ 49);
+	
+	function uuidToBytes(uuid) {
+	  // Note: We assume we're being passed a valid uuid string
+	  var bytes = [];
+	  uuid.replace(/[a-fA-F0-9]{2}/g, function(hex) {
+	    bytes.push(parseInt(hex, 16));
+	  });
+	
+	  return bytes;
+	}
+	
+	function stringToBytes(str) {
+	  str = unescape(encodeURIComponent(str)); // UTF8 escape
+	  var bytes = new Array(str.length);
+	  for (var i = 0; i < str.length; i++) {
+	    bytes[i] = str.charCodeAt(i);
+	  }
+	  return bytes;
+	}
+	
+	module.exports = function(name, version, hashfunc) {
+	  var generateUUID = function(value, namespace, buf, offset) {
+	    var off = buf && offset || 0;
+	
+	    if (typeof(value) == 'string') value = stringToBytes(value);
+	    if (typeof(namespace) == 'string') namespace = uuidToBytes(namespace);
+	
+	    if (!Array.isArray(value)) throw TypeError('value must be an array of bytes');
+	    if (!Array.isArray(namespace) || namespace.length !== 16) throw TypeError('namespace must be uuid string or an Array of 16 byte values');
+	
+	    // Per 4.3
+	    var bytes = hashfunc(namespace.concat(value));
+	    bytes[6] = (bytes[6] & 0x0f) | version;
+	    bytes[8] = (bytes[8] & 0x3f) | 0x80;
+	
+	    if (buf) {
+	      for (var idx = 0; idx < 16; ++idx) {
+	        buf[off+idx] = bytes[idx];
+	      }
+	    }
+	
+	    return buf || bytesToUuid(bytes);
+	  };
+	
+	  // Function#name is not settable on some platforms (#270)
+	  try {
+	    generateUUID.name = name;
+	  } catch (err) {
+	  }
+	
+	  // Pre-defined namespaces, per Appendix C
+	  generateUUID.DNS = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
+	  generateUUID.URL = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
+	
+	  return generateUUID;
+	};
+
+
+/***/ }),
+/* 49 */
+/*!***********************************!*\
+  !*** ./~/uuid/lib/bytesToUuid.js ***!
+  \***********************************/
+/***/ (function(module, exports) {
+
+	/**
+	 * Convert array of 16 byte values to UUID string format of the form:
+	 * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+	 */
+	var byteToHex = [];
+	for (var i = 0; i < 256; ++i) {
+	  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+	}
+	
+	function bytesToUuid(buf, offset) {
+	  var i = offset || 0;
+	  var bth = byteToHex;
+	  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
+	  return ([bth[buf[i++]], bth[buf[i++]], 
+		bth[buf[i++]], bth[buf[i++]], '-',
+		bth[buf[i++]], bth[buf[i++]], '-',
+		bth[buf[i++]], bth[buf[i++]], '-',
+		bth[buf[i++]], bth[buf[i++]], '-',
+		bth[buf[i++]], bth[buf[i++]],
+		bth[buf[i++]], bth[buf[i++]],
+		bth[buf[i++]], bth[buf[i++]]]).join('');
+	}
+	
+	module.exports = bytesToUuid;
+
+
+/***/ }),
+/* 50 */
+/*!***********************************!*\
+  !*** ./~/uuid/lib/md5-browser.js ***!
+  \***********************************/
+/***/ (function(module, exports) {
+
+	/*
+	 * Browser-compatible JavaScript MD5
+	 *
+	 * Modification of JavaScript MD5
+	 * https://github.com/blueimp/JavaScript-MD5
+	 *
+	 * Copyright 2011, Sebastian Tschan
+	 * https://blueimp.net
+	 *
+	 * Licensed under the MIT license:
+	 * https://opensource.org/licenses/MIT
+	 *
+	 * Based on
+	 * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
+	 * Digest Algorithm, as defined in RFC 1321.
+	 * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
+	 * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+	 * Distributed under the BSD License
+	 * See http://pajhome.org.uk/crypt/md5 for more info.
+	 */
+	
+	'use strict';
+	
+	function md5(bytes) {
+	  if (typeof(bytes) == 'string') {
+	    var msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
+	    bytes = new Array(msg.length);
+	    for (var i = 0; i < msg.length; i++) bytes[i] = msg.charCodeAt(i);
+	  }
+	
+	  return md5ToHexEncodedArray(
+	    wordsToMd5(
+	      bytesToWords(bytes)
+	      , bytes.length * 8)
+	  );
+	}
+	
+	
+	/*
+	* Convert an array of little-endian words to an array of bytes
+	*/
+	function md5ToHexEncodedArray(input) {
+	  var i;
+	  var x;
+	  var output = [];
+	  var length32 = input.length * 32;
+	  var hexTab = '0123456789abcdef';
+	  var hex;
+	
+	  for (i = 0; i < length32; i += 8) {
+	    x = (input[i >> 5] >>> (i % 32)) & 0xFF;
+	
+	    hex = parseInt(hexTab.charAt((x >>> 4) & 0x0F) + hexTab.charAt(x & 0x0F), 16);
+	
+	    output.push(hex);
+	  }
+	  return output;
+	}
+	
+	/*
+	* Calculate the MD5 of an array of little-endian words, and a bit length.
+	*/
+	function wordsToMd5(x, len) {
+	  /* append padding */
+	  x[len >> 5] |= 0x80 << (len % 32);
+	  x[(((len + 64) >>> 9) << 4) + 14] = len;
+	
+	  var i;
+	  var olda;
+	  var oldb;
+	  var oldc;
+	  var oldd;
+	  var a = 1732584193;
+	  var b = -271733879;
+	  var c = -1732584194;
+	
+	  var d = 271733878;
+	
+	  for (i = 0; i < x.length; i += 16) {
+	    olda = a;
+	    oldb = b;
+	    oldc = c;
+	    oldd = d;
+	
+	    a = md5ff(a, b, c, d, x[i], 7, -680876936);
+	    d = md5ff(d, a, b, c, x[i + 1], 12, -389564586);
+	    c = md5ff(c, d, a, b, x[i + 2], 17, 606105819);
+	    b = md5ff(b, c, d, a, x[i + 3], 22, -1044525330);
+	    a = md5ff(a, b, c, d, x[i + 4], 7, -176418897);
+	    d = md5ff(d, a, b, c, x[i + 5], 12, 1200080426);
+	    c = md5ff(c, d, a, b, x[i + 6], 17, -1473231341);
+	    b = md5ff(b, c, d, a, x[i + 7], 22, -45705983);
+	    a = md5ff(a, b, c, d, x[i + 8], 7, 1770035416);
+	    d = md5ff(d, a, b, c, x[i + 9], 12, -1958414417);
+	    c = md5ff(c, d, a, b, x[i + 10], 17, -42063);
+	    b = md5ff(b, c, d, a, x[i + 11], 22, -1990404162);
+	    a = md5ff(a, b, c, d, x[i + 12], 7, 1804603682);
+	    d = md5ff(d, a, b, c, x[i + 13], 12, -40341101);
+	    c = md5ff(c, d, a, b, x[i + 14], 17, -1502002290);
+	    b = md5ff(b, c, d, a, x[i + 15], 22, 1236535329);
+	
+	    a = md5gg(a, b, c, d, x[i + 1], 5, -165796510);
+	    d = md5gg(d, a, b, c, x[i + 6], 9, -1069501632);
+	    c = md5gg(c, d, a, b, x[i + 11], 14, 643717713);
+	    b = md5gg(b, c, d, a, x[i], 20, -373897302);
+	    a = md5gg(a, b, c, d, x[i + 5], 5, -701558691);
+	    d = md5gg(d, a, b, c, x[i + 10], 9, 38016083);
+	    c = md5gg(c, d, a, b, x[i + 15], 14, -660478335);
+	    b = md5gg(b, c, d, a, x[i + 4], 20, -405537848);
+	    a = md5gg(a, b, c, d, x[i + 9], 5, 568446438);
+	    d = md5gg(d, a, b, c, x[i + 14], 9, -1019803690);
+	    c = md5gg(c, d, a, b, x[i + 3], 14, -187363961);
+	    b = md5gg(b, c, d, a, x[i + 8], 20, 1163531501);
+	    a = md5gg(a, b, c, d, x[i + 13], 5, -1444681467);
+	    d = md5gg(d, a, b, c, x[i + 2], 9, -51403784);
+	    c = md5gg(c, d, a, b, x[i + 7], 14, 1735328473);
+	    b = md5gg(b, c, d, a, x[i + 12], 20, -1926607734);
+	
+	    a = md5hh(a, b, c, d, x[i + 5], 4, -378558);
+	    d = md5hh(d, a, b, c, x[i + 8], 11, -2022574463);
+	    c = md5hh(c, d, a, b, x[i + 11], 16, 1839030562);
+	    b = md5hh(b, c, d, a, x[i + 14], 23, -35309556);
+	    a = md5hh(a, b, c, d, x[i + 1], 4, -1530992060);
+	    d = md5hh(d, a, b, c, x[i + 4], 11, 1272893353);
+	    c = md5hh(c, d, a, b, x[i + 7], 16, -155497632);
+	    b = md5hh(b, c, d, a, x[i + 10], 23, -1094730640);
+	    a = md5hh(a, b, c, d, x[i + 13], 4, 681279174);
+	    d = md5hh(d, a, b, c, x[i], 11, -358537222);
+	    c = md5hh(c, d, a, b, x[i + 3], 16, -722521979);
+	    b = md5hh(b, c, d, a, x[i + 6], 23, 76029189);
+	    a = md5hh(a, b, c, d, x[i + 9], 4, -640364487);
+	    d = md5hh(d, a, b, c, x[i + 12], 11, -421815835);
+	    c = md5hh(c, d, a, b, x[i + 15], 16, 530742520);
+	    b = md5hh(b, c, d, a, x[i + 2], 23, -995338651);
+	
+	    a = md5ii(a, b, c, d, x[i], 6, -198630844);
+	    d = md5ii(d, a, b, c, x[i + 7], 10, 1126891415);
+	    c = md5ii(c, d, a, b, x[i + 14], 15, -1416354905);
+	    b = md5ii(b, c, d, a, x[i + 5], 21, -57434055);
+	    a = md5ii(a, b, c, d, x[i + 12], 6, 1700485571);
+	    d = md5ii(d, a, b, c, x[i + 3], 10, -1894986606);
+	    c = md5ii(c, d, a, b, x[i + 10], 15, -1051523);
+	    b = md5ii(b, c, d, a, x[i + 1], 21, -2054922799);
+	    a = md5ii(a, b, c, d, x[i + 8], 6, 1873313359);
+	    d = md5ii(d, a, b, c, x[i + 15], 10, -30611744);
+	    c = md5ii(c, d, a, b, x[i + 6], 15, -1560198380);
+	    b = md5ii(b, c, d, a, x[i + 13], 21, 1309151649);
+	    a = md5ii(a, b, c, d, x[i + 4], 6, -145523070);
+	    d = md5ii(d, a, b, c, x[i + 11], 10, -1120210379);
+	    c = md5ii(c, d, a, b, x[i + 2], 15, 718787259);
+	    b = md5ii(b, c, d, a, x[i + 9], 21, -343485551);
+	
+	    a = safeAdd(a, olda);
+	    b = safeAdd(b, oldb);
+	    c = safeAdd(c, oldc);
+	    d = safeAdd(d, oldd);
+	  }
+	  return [a, b, c, d];
+	}
+	
+	/*
+	* Convert an array bytes to an array of little-endian words
+	* Characters >255 have their high-byte silently ignored.
+	*/
+	function bytesToWords(input) {
+	  var i;
+	  var output = [];
+	  output[(input.length >> 2) - 1] = undefined;
+	  for (i = 0; i < output.length; i += 1) {
+	    output[i] = 0;
+	  }
+	  var length8 = input.length * 8;
+	  for (i = 0; i < length8; i += 8) {
+	    output[i >> 5] |= (input[(i / 8)] & 0xFF) << (i % 32);
+	  }
+	
+	  return output;
+	}
+	
+	/*
+	* Add integers, wrapping at 2^32. This uses 16-bit operations internally
+	* to work around bugs in some JS interpreters.
+	*/
+	function safeAdd(x, y) {
+	  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+	  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+	  return (msw << 16) | (lsw & 0xFFFF);
+	}
+	
+	/*
+	* Bitwise rotate a 32-bit number to the left.
+	*/
+	function bitRotateLeft(num, cnt) {
+	  return (num << cnt) | (num >>> (32 - cnt));
+	}
+	
+	/*
+	* These functions implement the four basic operations the algorithm uses.
+	*/
+	function md5cmn(q, a, b, x, s, t) {
+	  return safeAdd(bitRotateLeft(safeAdd(safeAdd(a, q), safeAdd(x, t)), s), b);
+	}
+	function md5ff(a, b, c, d, x, s, t) {
+	  return md5cmn((b & c) | ((~b) & d), a, b, x, s, t);
+	}
+	function md5gg(a, b, c, d, x, s, t) {
+	  return md5cmn((b & d) | (c & (~d)), a, b, x, s, t);
+	}
+	function md5hh(a, b, c, d, x, s, t) {
+	  return md5cmn(b ^ c ^ d, a, b, x, s, t);
+	}
+	function md5ii(a, b, c, d, x, s, t) {
+	  return md5cmn(c ^ (b | (~d)), a, b, x, s, t);
+	}
+	
+	module.exports = md5;
+
+
+/***/ }),
+/* 51 */
 /*!***************************!*\
   !*** ./www/app/router.js ***!
   \***************************/
@@ -35254,19 +35595,23 @@
 		value: true
 	});
 	
-	var _Home = __webpack_require__(/*! ./pages/Home */ 48);
+	var _Home = __webpack_require__(/*! ./pages/Home */ 52);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _Request = __webpack_require__(/*! ./pages/Request */ 67);
+	var _Request = __webpack_require__(/*! ./pages/Request */ 71);
 	
 	var _Request2 = _interopRequireDefault(_Request);
 	
-	var _GameView = __webpack_require__(/*! ./pages/GameView */ 68);
+	var _GameView = __webpack_require__(/*! ./pages/GameView */ 72);
 	
 	var _GameView2 = _interopRequireDefault(_GameView);
 	
-	var _Developers = __webpack_require__(/*! ./pages/Developers */ 82);
+	var _LegacyGame = __webpack_require__(/*! ./pages/LegacyGame */ 86);
+	
+	var _LegacyGame2 = _interopRequireDefault(_LegacyGame);
+	
+	var _Developers = __webpack_require__(/*! ./pages/Developers */ 87);
 	
 	var _Developers2 = _interopRequireDefault(_Developers);
 	
@@ -35284,14 +35629,17 @@
 		title: "Become a Developer",
 		view: _Developers2.default
 	}, {
-		path: "/game/*",
+		path: "/g/*",
 		view: _GameView2.default
+	}, {
+		path: "/game/*",
+		view: _LegacyGame2.default
 	}];
 	
 	exports.default = ROUTES;
 
 /***/ }),
-/* 48 */
+/* 52 */
 /*!*******************************!*\
   !*** ./www/app/pages/Home.js ***!
   \*******************************/
@@ -35309,23 +35657,23 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Footer = __webpack_require__(/*! ../components/Footer */ 49);
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 53);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 55);
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 59);
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _GameGroup = __webpack_require__(/*! ../components/GameGroup */ 58);
+	var _GameGroup = __webpack_require__(/*! ../components/GameGroup */ 62);
 	
 	var _GameGroup2 = _interopRequireDefault(_GameGroup);
 	
-	var _Searchbar = __webpack_require__(/*! ../components/Searchbar */ 65);
+	var _Searchbar = __webpack_require__(/*! ../components/Searchbar */ 69);
 	
 	var _Searchbar2 = _interopRequireDefault(_Searchbar);
 	
-	var _RandomGame = __webpack_require__(/*! ../components/RandomGame */ 66);
+	var _RandomGame = __webpack_require__(/*! ../components/RandomGame */ 70);
 	
 	var _RandomGame2 = _interopRequireDefault(_RandomGame);
 	
@@ -35586,7 +35934,7 @@
 	exports.default = Home;
 
 /***/ }),
-/* 49 */
+/* 53 */
 /*!**************************************!*\
   !*** ./www/app/components/Footer.js ***!
   \**************************************/
@@ -35604,7 +35952,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	__webpack_require__(/*! ./Footer.less */ 50);
+	__webpack_require__(/*! ./Footer.less */ 54);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35735,14 +36083,14 @@
 	exports.default = Footer;
 
 /***/ }),
-/* 50 */
+/* 54 */
 /*!****************************************!*\
   !*** ./www/app/components/Footer.less ***!
   \****************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./Footer.less */ 51);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./Footer.less */ 55);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -35756,7 +36104,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 53)(content, options);
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 57)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -35788,20 +36136,20 @@
 	}
 
 /***/ }),
-/* 51 */
+/* 55 */
 /*!***********************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/Footer.less ***!
   \***********************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 52)(false);
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 56)(false);
 	// Module
 	exports.push([module.id, "footer {\n  background: #191919;\n  border-color: transparent;\n}\nfooter .footer-copyright {\n  background: #141414;\n  color: rgba(255, 255, 255, 0.7);\n}\nfooter h3 {\n  font-family: Roboto Mono;\n  display: inline-block;\n  padding: 12px 0;\n  margin: 0;\n  margin-bottom: -4px;\n  border-bottom: 2px solid #d1d1d1;\n  text-transform: uppercase;\n  letter-spacing: 8px;\n}\n", ""]);
 	
 
 
 /***/ }),
-/* 52 */
+/* 56 */
 /*!******************************************!*\
   !*** ./~/css-loader/dist/runtime/api.js ***!
   \******************************************/
@@ -35894,7 +36242,7 @@
 	}
 
 /***/ }),
-/* 53 */
+/* 57 */
 /*!*****************************************!*\
   !*** ./~/style-loader/lib/addStyles.js ***!
   \*****************************************/
@@ -35966,7 +36314,7 @@
 	var	singletonCounter = 0;
 	var	stylesInsertedAtTop = [];
 	
-	var	fixUrls = __webpack_require__(/*! ./urls */ 54);
+	var	fixUrls = __webpack_require__(/*! ./urls */ 58);
 	
 	module.exports = function(list, options) {
 		if (true) {
@@ -36303,7 +36651,7 @@
 
 
 /***/ }),
-/* 54 */
+/* 58 */
 /*!************************************!*\
   !*** ./~/style-loader/lib/urls.js ***!
   \************************************/
@@ -36401,7 +36749,7 @@
 
 
 /***/ }),
-/* 55 */
+/* 59 */
 /*!**************************************!*\
   !*** ./www/app/components/Navbar.js ***!
   \**************************************/
@@ -36419,7 +36767,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _SettingsView = __webpack_require__(/*! ./SettingsView */ 56);
+	var _SettingsView = __webpack_require__(/*! ./SettingsView */ 60);
 	
 	var _SettingsView2 = _interopRequireDefault(_SettingsView);
 	
@@ -36481,7 +36829,7 @@
 	exports.default = Navbar;
 
 /***/ }),
-/* 56 */
+/* 60 */
 /*!********************************************!*\
   !*** ./www/app/components/SettingsView.js ***!
   \********************************************/
@@ -36499,7 +36847,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _SettingsItem = __webpack_require__(/*! ./SettingsItem */ 57);
+	var _SettingsItem = __webpack_require__(/*! ./SettingsItem */ 61);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36581,7 +36929,7 @@
 								),
 								_react2.default.createElement(
 									_SettingsItem.SettingsOption,
-									{ disabled: true, errorMessage: "Enabled for the holiday" },
+									{ disabled: true, altMessage: "Enabled for the holiday" },
 									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "brightness_4" }),
 									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Night mode" }),
 									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: true /*localStorage.getItem("darkmode") === "true"*/, onChange: function onChange(value) {
@@ -36612,6 +36960,24 @@
 									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "cached" }),
 									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Clean cache" })
 								)
+							),
+							_react2.default.createElement(
+								_SettingsItem.SettingsSection,
+								null,
+								_react2.default.createElement(
+									_SettingsItem.SettingsHeader,
+									null,
+									"Unblocking Methods"
+								),
+								_react2.default.createElement(
+									_SettingsItem.SettingsOption,
+									{ altMessage: "Encrypts the URL so blockers think its a random website" },
+									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "lock_outline" }),
+									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Encrypted Games" }),
+									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("epath") == "true", onChange: function onChange(value) {
+											return localStorage.setItem("epath", value.toString());
+										} })
+								)
 							)
 						)
 					)
@@ -36625,7 +36991,7 @@
 	exports.default = SettingsView;
 
 /***/ }),
-/* 57 */
+/* 61 */
 /*!********************************************!*\
   !*** ./www/app/components/SettingsItem.js ***!
   \********************************************/
@@ -36715,7 +37081,7 @@
 			value: function componentDidMount() {
 				var _this = this;
 				$("#" + this._guid).click(function () {
-					var checkbox = $(this).children(".settings-checkbox").children(".checkbox").children("input");
+					var checkbox = $(this).children("div").children(".settings-checkbox").children(".checkbox").children("input");
 					checkbox.prop("checked", !checkbox.prop("checked")).change();
 					_this.props.hasOwnProperty("onClick") && _this.props.onClick();
 				});
@@ -36726,14 +37092,14 @@
 				return _react2.default.createElement(
 					"div",
 					{ className: "settings-option waves-effect" + (this.props.disabled ? " disabled" : ""), id: this._guid },
-					this.props.errorMessage ? _react2.default.createElement(
+					this.props.altMessage ? _react2.default.createElement(
 						"div",
 						{ className: "error-wrapper" },
 						this.props.children,
 						_react2.default.createElement(
 							"div",
 							{ className: "error" },
-							this.props.errorMessage
+							this.props.altMessage
 						)
 					) : _react2.default.createElement(
 						"div",
@@ -36839,7 +37205,7 @@
 	exports.SettingsSection = SettingsSection;
 
 /***/ }),
-/* 58 */
+/* 62 */
 /*!*****************************************!*\
   !*** ./www/app/components/GameGroup.js ***!
   \*****************************************/
@@ -36857,13 +37223,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	__webpack_require__(/*! ./GameGroup.less */ 59);
+	__webpack_require__(/*! ./GameGroup.less */ 63);
 	
-	var _GameCard = __webpack_require__(/*! ./GameCard */ 61);
+	var _GameCard = __webpack_require__(/*! ./GameCard */ 65);
 	
 	var _GameCard2 = _interopRequireDefault(_GameCard);
 	
-	var _Adview = __webpack_require__(/*! ./Adview */ 64);
+	var _Adview = __webpack_require__(/*! ./Adview */ 68);
 	
 	var _Adview2 = _interopRequireDefault(_Adview);
 	
@@ -36917,14 +37283,14 @@
 	exports.default = GameGroup;
 
 /***/ }),
-/* 59 */
+/* 63 */
 /*!*******************************************!*\
   !*** ./www/app/components/GameGroup.less ***!
   \*******************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameGroup.less */ 60);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameGroup.less */ 64);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -36938,7 +37304,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 53)(content, options);
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 57)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -36970,20 +37336,20 @@
 	}
 
 /***/ }),
-/* 60 */
+/* 64 */
 /*!**************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameGroup.less ***!
   \**************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 52)(false);
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 56)(false);
 	// Module
 	exports.push([module.id, ".gamegroup .row {\n  margin: 0 -4px;\n}\n", ""]);
 	
 
 
 /***/ }),
-/* 61 */
+/* 65 */
 /*!****************************************!*\
   !*** ./www/app/components/GameCard.js ***!
   \****************************************/
@@ -37003,7 +37369,7 @@
 	
 	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
 	
-	__webpack_require__(/*! ./GameCard.less */ 62);
+	__webpack_require__(/*! ./GameCard.less */ 66);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37085,14 +37451,14 @@
 	exports.default = GameCard;
 
 /***/ }),
-/* 62 */
+/* 66 */
 /*!******************************************!*\
   !*** ./www/app/components/GameCard.less ***!
   \******************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameCard.less */ 63);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameCard.less */ 67);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -37106,7 +37472,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 53)(content, options);
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 57)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -37138,20 +37504,20 @@
 	}
 
 /***/ }),
-/* 63 */
+/* 67 */
 /*!*************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameCard.less ***!
   \*************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 52)(false);
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 56)(false);
 	// Module
 	exports.push([module.id, ".gamecard .card-content .card-title {\n  margin: -8px 0;\n  font-size: 22px;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n}\n.gamecard .card-content .thumbnail-wrapper {\n  margin: -24px;\n  margin-top: 24px;\n  padding-top: 56.25%;\n  position: relative;\n}\n.gamecard .card-content .thumbnail-wrapper .thumbnail {\n  pointer-events: none;\n  position: absolute;\n  width: 100%;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.gamecard .card-content .thumbnail-wrapper .thumbnail.pixelated {\n  image-rendering: pixelated;\n}\n.gamecard .card-action:not(.offline) {\n  border: none;\n}\n", ""]);
 	
 
 
 /***/ }),
-/* 64 */
+/* 68 */
 /*!**************************************!*\
   !*** ./www/app/components/Adview.js ***!
   \**************************************/
@@ -37217,7 +37583,7 @@
 	exports.default = Adview;
 
 /***/ }),
-/* 65 */
+/* 69 */
 /*!*****************************************!*\
   !*** ./www/app/components/Searchbar.js ***!
   \*****************************************/
@@ -37306,7 +37672,7 @@
 	exports.default = Searchbar;
 
 /***/ }),
-/* 66 */
+/* 70 */
 /*!******************************************!*\
   !*** ./www/app/components/RandomGame.js ***!
   \******************************************/
@@ -37374,7 +37740,7 @@
 	exports.default = RandomGame;
 
 /***/ }),
-/* 67 */
+/* 71 */
 /*!**********************************!*\
   !*** ./www/app/pages/Request.js ***!
   \**********************************/
@@ -37392,11 +37758,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 55);
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 59);
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _Footer = __webpack_require__(/*! ../components/Footer */ 49);
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 53);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
@@ -37453,7 +37819,7 @@
 	exports.default = Request;
 
 /***/ }),
-/* 68 */
+/* 72 */
 /*!***********************************!*\
   !*** ./www/app/pages/GameView.js ***!
   \***********************************/
@@ -37471,19 +37837,19 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ErrorDocument = __webpack_require__(/*! ./ErrorDocument */ 69);
+	var _ErrorDocument = __webpack_require__(/*! ./ErrorDocument */ 73);
 	
 	var _ErrorDocument2 = _interopRequireDefault(_ErrorDocument);
 	
-	var _GamePlayer = __webpack_require__(/*! ../components/GamePlayer */ 70);
+	var _GamePlayer = __webpack_require__(/*! ../components/GamePlayer */ 74);
 	
 	var _GamePlayer2 = _interopRequireDefault(_GamePlayer);
 	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 55);
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 59);
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _Footer = __webpack_require__(/*! ../components/Footer */ 49);
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 53);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
@@ -37503,37 +37869,17 @@
 	
 			var _this2 = _possibleConstructorReturn(this, (GameView.__proto__ || Object.getPrototypeOf(GameView)).call(this));
 	
-			var _this = _this2;
-			var _cache = null;
-			var _pathname = location.pathname;
-			_this2._mounted = false;
 			_this2.state = { game: false, error: false };
+			_this2.resetState = _this2.resetState.bind(_this2);
+			_this2._mounted = false;
+			var _this = _this2;
 	
-			var found = false;
-			(function listen() {
-				requestAnimationFrame(listen);
-				if (app.games !== _cache && _this._mounted || _pathname !== location.pathname) {
-					_pathname = location.pathname;
-					_cache = app.games;
-	
-					var games = [];
-					app.games.groups.map(function (group) {
-						return group.games.map(function (game) {
-							return games.push(game);
-						});
-					});
-	
-					games.map(function (game) {
-						if (app.slug(game.name) == location.pathname.split("game/")[1]) {
-							_this.setState({ game: game });
-							found = true;
-							document.title = game.name + " - " + app["NAME"];
-						}
-					});
-	
-					if (found === false) {
-						_this.setState({ error: true });
-					}
+			var cache = location.pathname;
+			(function loop() {
+				requestAnimationFrame(loop);
+				if (_this._mounted && location.pathname !== cache) {
+					cache = location.pathname;
+					_this.resetState();
 				}
 			})();
 			return _this2;
@@ -37542,6 +37888,7 @@
 		_createClass(GameView, [{
 			key: "componentDidMount",
 			value: function componentDidMount() {
+				this.resetState();
 				this._mounted = true;
 			}
 		}, {
@@ -37550,12 +37897,29 @@
 				this._mounted = false;
 			}
 		}, {
+			key: "resetState",
+			value: function resetState() {
+				var _this3 = this;
+	
+				this.found = false;
+				app.getGames().then(function (games) {
+					games.map(function (game) {
+						if (app.slug(game.name) == location.pathname.split("g/")[1] || app.hash(app.slug(game.name)) == location.pathname.split("g/")[1]) {
+							_this3.found = true;
+							_this3.setState({ game: game });
+							document.title = game.name + " - " + app["NAME"];
+						}
+					});
+					_this3.found === false && _this3.setState({ error: true });
+				});
+			}
+		}, {
 			key: "render",
 			value: function render() {
 				if (this.state.error) return _react2.default.createElement(_ErrorDocument2.default, null);
 				return _react2.default.createElement(
 					"div",
-					null,
+					{ "data-num": this.state.num },
 					_react2.default.createElement(_Navbar2.default, null),
 					this.state.game && _react2.default.createElement(_GamePlayer2.default, { game: this.state.game }),
 					_react2.default.createElement(_Footer2.default, { "static": true })
@@ -37569,7 +37933,7 @@
 	exports.default = GameView;
 
 /***/ }),
-/* 69 */
+/* 73 */
 /*!****************************************!*\
   !*** ./www/app/pages/ErrorDocument.js ***!
   \****************************************/
@@ -37651,7 +38015,7 @@
 	exports.default = ErrorDocument;
 
 /***/ }),
-/* 70 */
+/* 74 */
 /*!******************************************!*\
   !*** ./www/app/components/GamePlayer.js ***!
   \******************************************/
@@ -37669,31 +38033,31 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Flash = __webpack_require__(/*! ./Players/Flash */ 71);
+	var _Flash = __webpack_require__(/*! ./Players/Flash */ 75);
 	
 	var _Flash2 = _interopRequireDefault(_Flash);
 	
-	var _GBA = __webpack_require__(/*! ./Players/GBA */ 72);
+	var _GBA = __webpack_require__(/*! ./Players/GBA */ 76);
 	
 	var _GBA2 = _interopRequireDefault(_GBA);
 	
-	var _NES = __webpack_require__(/*! ./Players/NES */ 73);
+	var _NES = __webpack_require__(/*! ./Players/NES */ 77);
 	
 	var _NES2 = _interopRequireDefault(_NES);
 	
-	var _SNES = __webpack_require__(/*! ./Players/SNES */ 74);
+	var _SNES = __webpack_require__(/*! ./Players/SNES */ 78);
 	
 	var _SNES2 = _interopRequireDefault(_SNES);
 	
-	var _Unity = __webpack_require__(/*! ./Players/Unity */ 75);
+	var _Unity = __webpack_require__(/*! ./Players/Unity */ 79);
 	
 	var _Unity2 = _interopRequireDefault(_Unity);
 	
-	var _GameControls = __webpack_require__(/*! ./GameControls */ 76);
+	var _GameControls = __webpack_require__(/*! ./GameControls */ 80);
 	
 	var _GameControls2 = _interopRequireDefault(_GameControls);
 	
-	__webpack_require__(/*! ./GamePlayer.less */ 80);
+	__webpack_require__(/*! ./GamePlayer.less */ 84);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37776,7 +38140,7 @@
 	exports.default = GamePlayer;
 
 /***/ }),
-/* 71 */
+/* 75 */
 /*!*********************************************!*\
   !*** ./www/app/components/Players/Flash.js ***!
   \*********************************************/
@@ -37831,7 +38195,7 @@
 	exports.default = FlashPlayer;
 
 /***/ }),
-/* 72 */
+/* 76 */
 /*!*******************************************!*\
   !*** ./www/app/components/Players/GBA.js ***!
   \*******************************************/
@@ -37901,7 +38265,7 @@
 	exports.default = GBAPlayer;
 
 /***/ }),
-/* 73 */
+/* 77 */
 /*!*******************************************!*\
   !*** ./www/app/components/Players/NES.js ***!
   \*******************************************/
@@ -37970,7 +38334,7 @@
 	exports.default = NESPlayer;
 
 /***/ }),
-/* 74 */
+/* 78 */
 /*!********************************************!*\
   !*** ./www/app/components/Players/SNES.js ***!
   \********************************************/
@@ -38029,7 +38393,7 @@
 	exports.default = FlashPlayer;
 
 /***/ }),
-/* 75 */
+/* 79 */
 /*!*********************************************!*\
   !*** ./www/app/components/Players/Unity.js ***!
   \*********************************************/
@@ -38103,7 +38467,7 @@
 	exports.default = UnityPlayer;
 
 /***/ }),
-/* 76 */
+/* 80 */
 /*!********************************************!*\
   !*** ./www/app/components/GameControls.js ***!
   \********************************************/
@@ -38121,9 +38485,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	__webpack_require__(/*! ./GameControls.less */ 77);
+	__webpack_require__(/*! ./GameControls.less */ 81);
 	
-	var _FrameCounter = __webpack_require__(/*! ./FrameCounter */ 79);
+	var _FrameCounter = __webpack_require__(/*! ./FrameCounter */ 83);
 	
 	var _FrameCounter2 = _interopRequireDefault(_FrameCounter);
 	
@@ -38222,14 +38586,14 @@
 	exports.default = GameControls;
 
 /***/ }),
-/* 77 */
+/* 81 */
 /*!**********************************************!*\
   !*** ./www/app/components/GameControls.less ***!
   \**********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameControls.less */ 78);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameControls.less */ 82);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -38243,7 +38607,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 53)(content, options);
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 57)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -38275,20 +38639,20 @@
 	}
 
 /***/ }),
-/* 78 */
+/* 82 */
 /*!*****************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameControls.less ***!
   \*****************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 52)(false);
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 56)(false);
 	// Module
 	exports.push([module.id, ".game-controls {\n  direction: rtl;\n  height: 52px;\n  background: #f5f5f5;\n  position: relative;\n}\n", ""]);
 	
 
 
 /***/ }),
-/* 79 */
+/* 83 */
 /*!********************************************!*\
   !*** ./www/app/components/FrameCounter.js ***!
   \********************************************/
@@ -38393,14 +38757,14 @@
 	exports.default = FrameCounter;
 
 /***/ }),
-/* 80 */
+/* 84 */
 /*!********************************************!*\
   !*** ./www/app/components/GamePlayer.less ***!
   \********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GamePlayer.less */ 81);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GamePlayer.less */ 85);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -38414,7 +38778,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 53)(content, options);
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 57)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -38446,20 +38810,73 @@
 	}
 
 /***/ }),
-/* 81 */
+/* 85 */
 /*!***************************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GamePlayer.less ***!
   \***************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 52)(false);
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 56)(false);
 	// Module
 	exports.push([module.id, ".game-view {\n  margin: 0 auto;\n  width: 800px;\n}\n", ""]);
 	
 
 
 /***/ }),
-/* 82 */
+/* 86 */
+/*!*************************************!*\
+  !*** ./www/app/pages/LegacyGame.js ***!
+  \*************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GameView = function (_React$Component) {
+		_inherits(GameView, _React$Component);
+	
+		function GameView() {
+			_classCallCheck(this, GameView);
+	
+			var _this = _possibleConstructorReturn(this, (GameView.__proto__ || Object.getPrototypeOf(GameView)).call(this));
+	
+			_this.state = { redirect: location.pathname.split("/game/")[1] };
+			return _this;
+		}
+	
+		_createClass(GameView, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(_reactRouterDom.Redirect, { to: "/g/" + this.state.redirect });
+			}
+		}]);
+	
+		return GameView;
+	}(_react2.default.Component);
+	
+	exports.default = GameView;
+
+/***/ }),
+/* 87 */
 /*!*************************************!*\
   !*** ./www/app/pages/Developers.js ***!
   \*************************************/
@@ -38477,15 +38894,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 55);
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 59);
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _Footer = __webpack_require__(/*! ../components/Footer */ 49);
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 53);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
-	var _Markdown = __webpack_require__(/*! ../components/Markdown */ 83);
+	var _Markdown = __webpack_require__(/*! ../components/Markdown */ 88);
 	
 	var _Markdown2 = _interopRequireDefault(_Markdown);
 	
@@ -38659,7 +39076,7 @@
 	exports.default = Request;
 
 /***/ }),
-/* 83 */
+/* 88 */
 /*!****************************************!*\
   !*** ./www/app/components/Markdown.js ***!
   \****************************************/
@@ -38677,9 +39094,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _remarkable = __webpack_require__(/*! remarkable */ 84);
+	var _remarkable = __webpack_require__(/*! remarkable */ 89);
 	
-	var _highlight = __webpack_require__(/*! highlight.js */ 85);
+	var _highlight = __webpack_require__(/*! highlight.js */ 90);
 	
 	var _highlight2 = _interopRequireDefault(_highlight);
 	
@@ -38728,7 +39145,7 @@
 	exports.default = Markdown;
 
 /***/ }),
-/* 84 */
+/* 89 */
 /*!************************************************!*\
   !*** ./~/remarkable/dist/cjs/index.browser.js ***!
   \************************************************/
@@ -43906,204 +44323,204 @@
 
 
 /***/ }),
-/* 85 */
+/* 90 */
 /*!*************************************!*\
   !*** ./~/highlight.js/lib/index.js ***!
   \*************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var hljs = __webpack_require__(/*! ./highlight */ 86);
+	var hljs = __webpack_require__(/*! ./highlight */ 91);
 	
-	hljs.registerLanguage('1c', __webpack_require__(/*! ./languages/1c */ 87));
-	hljs.registerLanguage('abnf', __webpack_require__(/*! ./languages/abnf */ 88));
-	hljs.registerLanguage('accesslog', __webpack_require__(/*! ./languages/accesslog */ 89));
-	hljs.registerLanguage('actionscript', __webpack_require__(/*! ./languages/actionscript */ 90));
-	hljs.registerLanguage('ada', __webpack_require__(/*! ./languages/ada */ 91));
-	hljs.registerLanguage('angelscript', __webpack_require__(/*! ./languages/angelscript */ 92));
-	hljs.registerLanguage('apache', __webpack_require__(/*! ./languages/apache */ 93));
-	hljs.registerLanguage('applescript', __webpack_require__(/*! ./languages/applescript */ 94));
-	hljs.registerLanguage('arcade', __webpack_require__(/*! ./languages/arcade */ 95));
-	hljs.registerLanguage('cpp', __webpack_require__(/*! ./languages/cpp */ 96));
-	hljs.registerLanguage('arduino', __webpack_require__(/*! ./languages/arduino */ 97));
-	hljs.registerLanguage('armasm', __webpack_require__(/*! ./languages/armasm */ 98));
-	hljs.registerLanguage('xml', __webpack_require__(/*! ./languages/xml */ 99));
-	hljs.registerLanguage('asciidoc', __webpack_require__(/*! ./languages/asciidoc */ 100));
-	hljs.registerLanguage('aspectj', __webpack_require__(/*! ./languages/aspectj */ 101));
-	hljs.registerLanguage('autohotkey', __webpack_require__(/*! ./languages/autohotkey */ 102));
-	hljs.registerLanguage('autoit', __webpack_require__(/*! ./languages/autoit */ 103));
-	hljs.registerLanguage('avrasm', __webpack_require__(/*! ./languages/avrasm */ 104));
-	hljs.registerLanguage('awk', __webpack_require__(/*! ./languages/awk */ 105));
-	hljs.registerLanguage('axapta', __webpack_require__(/*! ./languages/axapta */ 106));
-	hljs.registerLanguage('bash', __webpack_require__(/*! ./languages/bash */ 107));
-	hljs.registerLanguage('basic', __webpack_require__(/*! ./languages/basic */ 108));
-	hljs.registerLanguage('bnf', __webpack_require__(/*! ./languages/bnf */ 109));
-	hljs.registerLanguage('brainfuck', __webpack_require__(/*! ./languages/brainfuck */ 110));
-	hljs.registerLanguage('cal', __webpack_require__(/*! ./languages/cal */ 111));
-	hljs.registerLanguage('capnproto', __webpack_require__(/*! ./languages/capnproto */ 112));
-	hljs.registerLanguage('ceylon', __webpack_require__(/*! ./languages/ceylon */ 113));
-	hljs.registerLanguage('clean', __webpack_require__(/*! ./languages/clean */ 114));
-	hljs.registerLanguage('clojure', __webpack_require__(/*! ./languages/clojure */ 115));
-	hljs.registerLanguage('clojure-repl', __webpack_require__(/*! ./languages/clojure-repl */ 116));
-	hljs.registerLanguage('cmake', __webpack_require__(/*! ./languages/cmake */ 117));
-	hljs.registerLanguage('coffeescript', __webpack_require__(/*! ./languages/coffeescript */ 118));
-	hljs.registerLanguage('coq', __webpack_require__(/*! ./languages/coq */ 119));
-	hljs.registerLanguage('cos', __webpack_require__(/*! ./languages/cos */ 120));
-	hljs.registerLanguage('crmsh', __webpack_require__(/*! ./languages/crmsh */ 121));
-	hljs.registerLanguage('crystal', __webpack_require__(/*! ./languages/crystal */ 122));
-	hljs.registerLanguage('cs', __webpack_require__(/*! ./languages/cs */ 123));
-	hljs.registerLanguage('csp', __webpack_require__(/*! ./languages/csp */ 124));
-	hljs.registerLanguage('css', __webpack_require__(/*! ./languages/css */ 125));
-	hljs.registerLanguage('d', __webpack_require__(/*! ./languages/d */ 126));
-	hljs.registerLanguage('markdown', __webpack_require__(/*! ./languages/markdown */ 127));
-	hljs.registerLanguage('dart', __webpack_require__(/*! ./languages/dart */ 128));
-	hljs.registerLanguage('delphi', __webpack_require__(/*! ./languages/delphi */ 129));
-	hljs.registerLanguage('diff', __webpack_require__(/*! ./languages/diff */ 130));
-	hljs.registerLanguage('django', __webpack_require__(/*! ./languages/django */ 131));
-	hljs.registerLanguage('dns', __webpack_require__(/*! ./languages/dns */ 132));
-	hljs.registerLanguage('dockerfile', __webpack_require__(/*! ./languages/dockerfile */ 133));
-	hljs.registerLanguage('dos', __webpack_require__(/*! ./languages/dos */ 134));
-	hljs.registerLanguage('dsconfig', __webpack_require__(/*! ./languages/dsconfig */ 135));
-	hljs.registerLanguage('dts', __webpack_require__(/*! ./languages/dts */ 136));
-	hljs.registerLanguage('dust', __webpack_require__(/*! ./languages/dust */ 137));
-	hljs.registerLanguage('ebnf', __webpack_require__(/*! ./languages/ebnf */ 138));
-	hljs.registerLanguage('elixir', __webpack_require__(/*! ./languages/elixir */ 139));
-	hljs.registerLanguage('elm', __webpack_require__(/*! ./languages/elm */ 140));
-	hljs.registerLanguage('ruby', __webpack_require__(/*! ./languages/ruby */ 141));
-	hljs.registerLanguage('erb', __webpack_require__(/*! ./languages/erb */ 142));
-	hljs.registerLanguage('erlang-repl', __webpack_require__(/*! ./languages/erlang-repl */ 143));
-	hljs.registerLanguage('erlang', __webpack_require__(/*! ./languages/erlang */ 144));
-	hljs.registerLanguage('excel', __webpack_require__(/*! ./languages/excel */ 145));
-	hljs.registerLanguage('fix', __webpack_require__(/*! ./languages/fix */ 146));
-	hljs.registerLanguage('flix', __webpack_require__(/*! ./languages/flix */ 147));
-	hljs.registerLanguage('fortran', __webpack_require__(/*! ./languages/fortran */ 148));
-	hljs.registerLanguage('fsharp', __webpack_require__(/*! ./languages/fsharp */ 149));
-	hljs.registerLanguage('gams', __webpack_require__(/*! ./languages/gams */ 150));
-	hljs.registerLanguage('gauss', __webpack_require__(/*! ./languages/gauss */ 151));
-	hljs.registerLanguage('gcode', __webpack_require__(/*! ./languages/gcode */ 152));
-	hljs.registerLanguage('gherkin', __webpack_require__(/*! ./languages/gherkin */ 153));
-	hljs.registerLanguage('glsl', __webpack_require__(/*! ./languages/glsl */ 154));
-	hljs.registerLanguage('gml', __webpack_require__(/*! ./languages/gml */ 155));
-	hljs.registerLanguage('go', __webpack_require__(/*! ./languages/go */ 156));
-	hljs.registerLanguage('golo', __webpack_require__(/*! ./languages/golo */ 157));
-	hljs.registerLanguage('gradle', __webpack_require__(/*! ./languages/gradle */ 158));
-	hljs.registerLanguage('groovy', __webpack_require__(/*! ./languages/groovy */ 159));
-	hljs.registerLanguage('haml', __webpack_require__(/*! ./languages/haml */ 160));
-	hljs.registerLanguage('handlebars', __webpack_require__(/*! ./languages/handlebars */ 161));
-	hljs.registerLanguage('haskell', __webpack_require__(/*! ./languages/haskell */ 162));
-	hljs.registerLanguage('haxe', __webpack_require__(/*! ./languages/haxe */ 163));
-	hljs.registerLanguage('hsp', __webpack_require__(/*! ./languages/hsp */ 164));
-	hljs.registerLanguage('htmlbars', __webpack_require__(/*! ./languages/htmlbars */ 165));
-	hljs.registerLanguage('http', __webpack_require__(/*! ./languages/http */ 166));
-	hljs.registerLanguage('hy', __webpack_require__(/*! ./languages/hy */ 167));
-	hljs.registerLanguage('inform7', __webpack_require__(/*! ./languages/inform7 */ 168));
-	hljs.registerLanguage('ini', __webpack_require__(/*! ./languages/ini */ 169));
-	hljs.registerLanguage('irpf90', __webpack_require__(/*! ./languages/irpf90 */ 170));
-	hljs.registerLanguage('isbl', __webpack_require__(/*! ./languages/isbl */ 171));
-	hljs.registerLanguage('java', __webpack_require__(/*! ./languages/java */ 172));
-	hljs.registerLanguage('javascript', __webpack_require__(/*! ./languages/javascript */ 173));
-	hljs.registerLanguage('jboss-cli', __webpack_require__(/*! ./languages/jboss-cli */ 174));
-	hljs.registerLanguage('json', __webpack_require__(/*! ./languages/json */ 175));
-	hljs.registerLanguage('julia', __webpack_require__(/*! ./languages/julia */ 176));
-	hljs.registerLanguage('julia-repl', __webpack_require__(/*! ./languages/julia-repl */ 177));
-	hljs.registerLanguage('kotlin', __webpack_require__(/*! ./languages/kotlin */ 178));
-	hljs.registerLanguage('lasso', __webpack_require__(/*! ./languages/lasso */ 179));
-	hljs.registerLanguage('ldif', __webpack_require__(/*! ./languages/ldif */ 180));
-	hljs.registerLanguage('leaf', __webpack_require__(/*! ./languages/leaf */ 181));
-	hljs.registerLanguage('less', __webpack_require__(/*! ./languages/less */ 182));
-	hljs.registerLanguage('lisp', __webpack_require__(/*! ./languages/lisp */ 183));
-	hljs.registerLanguage('livecodeserver', __webpack_require__(/*! ./languages/livecodeserver */ 184));
-	hljs.registerLanguage('livescript', __webpack_require__(/*! ./languages/livescript */ 185));
-	hljs.registerLanguage('llvm', __webpack_require__(/*! ./languages/llvm */ 186));
-	hljs.registerLanguage('lsl', __webpack_require__(/*! ./languages/lsl */ 187));
-	hljs.registerLanguage('lua', __webpack_require__(/*! ./languages/lua */ 188));
-	hljs.registerLanguage('makefile', __webpack_require__(/*! ./languages/makefile */ 189));
-	hljs.registerLanguage('mathematica', __webpack_require__(/*! ./languages/mathematica */ 190));
-	hljs.registerLanguage('matlab', __webpack_require__(/*! ./languages/matlab */ 191));
-	hljs.registerLanguage('maxima', __webpack_require__(/*! ./languages/maxima */ 192));
-	hljs.registerLanguage('mel', __webpack_require__(/*! ./languages/mel */ 193));
-	hljs.registerLanguage('mercury', __webpack_require__(/*! ./languages/mercury */ 194));
-	hljs.registerLanguage('mipsasm', __webpack_require__(/*! ./languages/mipsasm */ 195));
-	hljs.registerLanguage('mizar', __webpack_require__(/*! ./languages/mizar */ 196));
-	hljs.registerLanguage('perl', __webpack_require__(/*! ./languages/perl */ 197));
-	hljs.registerLanguage('mojolicious', __webpack_require__(/*! ./languages/mojolicious */ 198));
-	hljs.registerLanguage('monkey', __webpack_require__(/*! ./languages/monkey */ 199));
-	hljs.registerLanguage('moonscript', __webpack_require__(/*! ./languages/moonscript */ 200));
-	hljs.registerLanguage('n1ql', __webpack_require__(/*! ./languages/n1ql */ 201));
-	hljs.registerLanguage('nginx', __webpack_require__(/*! ./languages/nginx */ 202));
-	hljs.registerLanguage('nimrod', __webpack_require__(/*! ./languages/nimrod */ 203));
-	hljs.registerLanguage('nix', __webpack_require__(/*! ./languages/nix */ 204));
-	hljs.registerLanguage('nsis', __webpack_require__(/*! ./languages/nsis */ 205));
-	hljs.registerLanguage('objectivec', __webpack_require__(/*! ./languages/objectivec */ 206));
-	hljs.registerLanguage('ocaml', __webpack_require__(/*! ./languages/ocaml */ 207));
-	hljs.registerLanguage('openscad', __webpack_require__(/*! ./languages/openscad */ 208));
-	hljs.registerLanguage('oxygene', __webpack_require__(/*! ./languages/oxygene */ 209));
-	hljs.registerLanguage('parser3', __webpack_require__(/*! ./languages/parser3 */ 210));
-	hljs.registerLanguage('pf', __webpack_require__(/*! ./languages/pf */ 211));
-	hljs.registerLanguage('pgsql', __webpack_require__(/*! ./languages/pgsql */ 212));
-	hljs.registerLanguage('php', __webpack_require__(/*! ./languages/php */ 213));
-	hljs.registerLanguage('plaintext', __webpack_require__(/*! ./languages/plaintext */ 214));
-	hljs.registerLanguage('pony', __webpack_require__(/*! ./languages/pony */ 215));
-	hljs.registerLanguage('powershell', __webpack_require__(/*! ./languages/powershell */ 216));
-	hljs.registerLanguage('processing', __webpack_require__(/*! ./languages/processing */ 217));
-	hljs.registerLanguage('profile', __webpack_require__(/*! ./languages/profile */ 218));
-	hljs.registerLanguage('prolog', __webpack_require__(/*! ./languages/prolog */ 219));
-	hljs.registerLanguage('properties', __webpack_require__(/*! ./languages/properties */ 220));
-	hljs.registerLanguage('protobuf', __webpack_require__(/*! ./languages/protobuf */ 221));
-	hljs.registerLanguage('puppet', __webpack_require__(/*! ./languages/puppet */ 222));
-	hljs.registerLanguage('purebasic', __webpack_require__(/*! ./languages/purebasic */ 223));
-	hljs.registerLanguage('python', __webpack_require__(/*! ./languages/python */ 224));
-	hljs.registerLanguage('q', __webpack_require__(/*! ./languages/q */ 225));
-	hljs.registerLanguage('qml', __webpack_require__(/*! ./languages/qml */ 226));
-	hljs.registerLanguage('r', __webpack_require__(/*! ./languages/r */ 227));
-	hljs.registerLanguage('reasonml', __webpack_require__(/*! ./languages/reasonml */ 228));
-	hljs.registerLanguage('rib', __webpack_require__(/*! ./languages/rib */ 229));
-	hljs.registerLanguage('roboconf', __webpack_require__(/*! ./languages/roboconf */ 230));
-	hljs.registerLanguage('routeros', __webpack_require__(/*! ./languages/routeros */ 231));
-	hljs.registerLanguage('rsl', __webpack_require__(/*! ./languages/rsl */ 232));
-	hljs.registerLanguage('ruleslanguage', __webpack_require__(/*! ./languages/ruleslanguage */ 233));
-	hljs.registerLanguage('rust', __webpack_require__(/*! ./languages/rust */ 234));
-	hljs.registerLanguage('sas', __webpack_require__(/*! ./languages/sas */ 235));
-	hljs.registerLanguage('scala', __webpack_require__(/*! ./languages/scala */ 236));
-	hljs.registerLanguage('scheme', __webpack_require__(/*! ./languages/scheme */ 237));
-	hljs.registerLanguage('scilab', __webpack_require__(/*! ./languages/scilab */ 238));
-	hljs.registerLanguage('scss', __webpack_require__(/*! ./languages/scss */ 239));
-	hljs.registerLanguage('shell', __webpack_require__(/*! ./languages/shell */ 240));
-	hljs.registerLanguage('smali', __webpack_require__(/*! ./languages/smali */ 241));
-	hljs.registerLanguage('smalltalk', __webpack_require__(/*! ./languages/smalltalk */ 242));
-	hljs.registerLanguage('sml', __webpack_require__(/*! ./languages/sml */ 243));
-	hljs.registerLanguage('sqf', __webpack_require__(/*! ./languages/sqf */ 244));
-	hljs.registerLanguage('sql', __webpack_require__(/*! ./languages/sql */ 245));
-	hljs.registerLanguage('stan', __webpack_require__(/*! ./languages/stan */ 246));
-	hljs.registerLanguage('stata', __webpack_require__(/*! ./languages/stata */ 247));
-	hljs.registerLanguage('step21', __webpack_require__(/*! ./languages/step21 */ 248));
-	hljs.registerLanguage('stylus', __webpack_require__(/*! ./languages/stylus */ 249));
-	hljs.registerLanguage('subunit', __webpack_require__(/*! ./languages/subunit */ 250));
-	hljs.registerLanguage('swift', __webpack_require__(/*! ./languages/swift */ 251));
-	hljs.registerLanguage('taggerscript', __webpack_require__(/*! ./languages/taggerscript */ 252));
-	hljs.registerLanguage('yaml', __webpack_require__(/*! ./languages/yaml */ 253));
-	hljs.registerLanguage('tap', __webpack_require__(/*! ./languages/tap */ 254));
-	hljs.registerLanguage('tcl', __webpack_require__(/*! ./languages/tcl */ 255));
-	hljs.registerLanguage('tex', __webpack_require__(/*! ./languages/tex */ 256));
-	hljs.registerLanguage('thrift', __webpack_require__(/*! ./languages/thrift */ 257));
-	hljs.registerLanguage('tp', __webpack_require__(/*! ./languages/tp */ 258));
-	hljs.registerLanguage('twig', __webpack_require__(/*! ./languages/twig */ 259));
-	hljs.registerLanguage('typescript', __webpack_require__(/*! ./languages/typescript */ 260));
-	hljs.registerLanguage('vala', __webpack_require__(/*! ./languages/vala */ 261));
-	hljs.registerLanguage('vbnet', __webpack_require__(/*! ./languages/vbnet */ 262));
-	hljs.registerLanguage('vbscript', __webpack_require__(/*! ./languages/vbscript */ 263));
-	hljs.registerLanguage('vbscript-html', __webpack_require__(/*! ./languages/vbscript-html */ 264));
-	hljs.registerLanguage('verilog', __webpack_require__(/*! ./languages/verilog */ 265));
-	hljs.registerLanguage('vhdl', __webpack_require__(/*! ./languages/vhdl */ 266));
-	hljs.registerLanguage('vim', __webpack_require__(/*! ./languages/vim */ 267));
-	hljs.registerLanguage('x86asm', __webpack_require__(/*! ./languages/x86asm */ 268));
-	hljs.registerLanguage('xl', __webpack_require__(/*! ./languages/xl */ 269));
-	hljs.registerLanguage('xquery', __webpack_require__(/*! ./languages/xquery */ 270));
-	hljs.registerLanguage('zephir', __webpack_require__(/*! ./languages/zephir */ 271));
+	hljs.registerLanguage('1c', __webpack_require__(/*! ./languages/1c */ 92));
+	hljs.registerLanguage('abnf', __webpack_require__(/*! ./languages/abnf */ 93));
+	hljs.registerLanguage('accesslog', __webpack_require__(/*! ./languages/accesslog */ 94));
+	hljs.registerLanguage('actionscript', __webpack_require__(/*! ./languages/actionscript */ 95));
+	hljs.registerLanguage('ada', __webpack_require__(/*! ./languages/ada */ 96));
+	hljs.registerLanguage('angelscript', __webpack_require__(/*! ./languages/angelscript */ 97));
+	hljs.registerLanguage('apache', __webpack_require__(/*! ./languages/apache */ 98));
+	hljs.registerLanguage('applescript', __webpack_require__(/*! ./languages/applescript */ 99));
+	hljs.registerLanguage('arcade', __webpack_require__(/*! ./languages/arcade */ 100));
+	hljs.registerLanguage('cpp', __webpack_require__(/*! ./languages/cpp */ 101));
+	hljs.registerLanguage('arduino', __webpack_require__(/*! ./languages/arduino */ 102));
+	hljs.registerLanguage('armasm', __webpack_require__(/*! ./languages/armasm */ 103));
+	hljs.registerLanguage('xml', __webpack_require__(/*! ./languages/xml */ 104));
+	hljs.registerLanguage('asciidoc', __webpack_require__(/*! ./languages/asciidoc */ 105));
+	hljs.registerLanguage('aspectj', __webpack_require__(/*! ./languages/aspectj */ 106));
+	hljs.registerLanguage('autohotkey', __webpack_require__(/*! ./languages/autohotkey */ 107));
+	hljs.registerLanguage('autoit', __webpack_require__(/*! ./languages/autoit */ 108));
+	hljs.registerLanguage('avrasm', __webpack_require__(/*! ./languages/avrasm */ 109));
+	hljs.registerLanguage('awk', __webpack_require__(/*! ./languages/awk */ 110));
+	hljs.registerLanguage('axapta', __webpack_require__(/*! ./languages/axapta */ 111));
+	hljs.registerLanguage('bash', __webpack_require__(/*! ./languages/bash */ 112));
+	hljs.registerLanguage('basic', __webpack_require__(/*! ./languages/basic */ 113));
+	hljs.registerLanguage('bnf', __webpack_require__(/*! ./languages/bnf */ 114));
+	hljs.registerLanguage('brainfuck', __webpack_require__(/*! ./languages/brainfuck */ 115));
+	hljs.registerLanguage('cal', __webpack_require__(/*! ./languages/cal */ 116));
+	hljs.registerLanguage('capnproto', __webpack_require__(/*! ./languages/capnproto */ 117));
+	hljs.registerLanguage('ceylon', __webpack_require__(/*! ./languages/ceylon */ 118));
+	hljs.registerLanguage('clean', __webpack_require__(/*! ./languages/clean */ 119));
+	hljs.registerLanguage('clojure', __webpack_require__(/*! ./languages/clojure */ 120));
+	hljs.registerLanguage('clojure-repl', __webpack_require__(/*! ./languages/clojure-repl */ 121));
+	hljs.registerLanguage('cmake', __webpack_require__(/*! ./languages/cmake */ 122));
+	hljs.registerLanguage('coffeescript', __webpack_require__(/*! ./languages/coffeescript */ 123));
+	hljs.registerLanguage('coq', __webpack_require__(/*! ./languages/coq */ 124));
+	hljs.registerLanguage('cos', __webpack_require__(/*! ./languages/cos */ 125));
+	hljs.registerLanguage('crmsh', __webpack_require__(/*! ./languages/crmsh */ 126));
+	hljs.registerLanguage('crystal', __webpack_require__(/*! ./languages/crystal */ 127));
+	hljs.registerLanguage('cs', __webpack_require__(/*! ./languages/cs */ 128));
+	hljs.registerLanguage('csp', __webpack_require__(/*! ./languages/csp */ 129));
+	hljs.registerLanguage('css', __webpack_require__(/*! ./languages/css */ 130));
+	hljs.registerLanguage('d', __webpack_require__(/*! ./languages/d */ 131));
+	hljs.registerLanguage('markdown', __webpack_require__(/*! ./languages/markdown */ 132));
+	hljs.registerLanguage('dart', __webpack_require__(/*! ./languages/dart */ 133));
+	hljs.registerLanguage('delphi', __webpack_require__(/*! ./languages/delphi */ 134));
+	hljs.registerLanguage('diff', __webpack_require__(/*! ./languages/diff */ 135));
+	hljs.registerLanguage('django', __webpack_require__(/*! ./languages/django */ 136));
+	hljs.registerLanguage('dns', __webpack_require__(/*! ./languages/dns */ 137));
+	hljs.registerLanguage('dockerfile', __webpack_require__(/*! ./languages/dockerfile */ 138));
+	hljs.registerLanguage('dos', __webpack_require__(/*! ./languages/dos */ 139));
+	hljs.registerLanguage('dsconfig', __webpack_require__(/*! ./languages/dsconfig */ 140));
+	hljs.registerLanguage('dts', __webpack_require__(/*! ./languages/dts */ 141));
+	hljs.registerLanguage('dust', __webpack_require__(/*! ./languages/dust */ 142));
+	hljs.registerLanguage('ebnf', __webpack_require__(/*! ./languages/ebnf */ 143));
+	hljs.registerLanguage('elixir', __webpack_require__(/*! ./languages/elixir */ 144));
+	hljs.registerLanguage('elm', __webpack_require__(/*! ./languages/elm */ 145));
+	hljs.registerLanguage('ruby', __webpack_require__(/*! ./languages/ruby */ 146));
+	hljs.registerLanguage('erb', __webpack_require__(/*! ./languages/erb */ 147));
+	hljs.registerLanguage('erlang-repl', __webpack_require__(/*! ./languages/erlang-repl */ 148));
+	hljs.registerLanguage('erlang', __webpack_require__(/*! ./languages/erlang */ 149));
+	hljs.registerLanguage('excel', __webpack_require__(/*! ./languages/excel */ 150));
+	hljs.registerLanguage('fix', __webpack_require__(/*! ./languages/fix */ 151));
+	hljs.registerLanguage('flix', __webpack_require__(/*! ./languages/flix */ 152));
+	hljs.registerLanguage('fortran', __webpack_require__(/*! ./languages/fortran */ 153));
+	hljs.registerLanguage('fsharp', __webpack_require__(/*! ./languages/fsharp */ 154));
+	hljs.registerLanguage('gams', __webpack_require__(/*! ./languages/gams */ 155));
+	hljs.registerLanguage('gauss', __webpack_require__(/*! ./languages/gauss */ 156));
+	hljs.registerLanguage('gcode', __webpack_require__(/*! ./languages/gcode */ 157));
+	hljs.registerLanguage('gherkin', __webpack_require__(/*! ./languages/gherkin */ 158));
+	hljs.registerLanguage('glsl', __webpack_require__(/*! ./languages/glsl */ 159));
+	hljs.registerLanguage('gml', __webpack_require__(/*! ./languages/gml */ 160));
+	hljs.registerLanguage('go', __webpack_require__(/*! ./languages/go */ 161));
+	hljs.registerLanguage('golo', __webpack_require__(/*! ./languages/golo */ 162));
+	hljs.registerLanguage('gradle', __webpack_require__(/*! ./languages/gradle */ 163));
+	hljs.registerLanguage('groovy', __webpack_require__(/*! ./languages/groovy */ 164));
+	hljs.registerLanguage('haml', __webpack_require__(/*! ./languages/haml */ 165));
+	hljs.registerLanguage('handlebars', __webpack_require__(/*! ./languages/handlebars */ 166));
+	hljs.registerLanguage('haskell', __webpack_require__(/*! ./languages/haskell */ 167));
+	hljs.registerLanguage('haxe', __webpack_require__(/*! ./languages/haxe */ 168));
+	hljs.registerLanguage('hsp', __webpack_require__(/*! ./languages/hsp */ 169));
+	hljs.registerLanguage('htmlbars', __webpack_require__(/*! ./languages/htmlbars */ 170));
+	hljs.registerLanguage('http', __webpack_require__(/*! ./languages/http */ 171));
+	hljs.registerLanguage('hy', __webpack_require__(/*! ./languages/hy */ 172));
+	hljs.registerLanguage('inform7', __webpack_require__(/*! ./languages/inform7 */ 173));
+	hljs.registerLanguage('ini', __webpack_require__(/*! ./languages/ini */ 174));
+	hljs.registerLanguage('irpf90', __webpack_require__(/*! ./languages/irpf90 */ 175));
+	hljs.registerLanguage('isbl', __webpack_require__(/*! ./languages/isbl */ 176));
+	hljs.registerLanguage('java', __webpack_require__(/*! ./languages/java */ 177));
+	hljs.registerLanguage('javascript', __webpack_require__(/*! ./languages/javascript */ 178));
+	hljs.registerLanguage('jboss-cli', __webpack_require__(/*! ./languages/jboss-cli */ 179));
+	hljs.registerLanguage('json', __webpack_require__(/*! ./languages/json */ 180));
+	hljs.registerLanguage('julia', __webpack_require__(/*! ./languages/julia */ 181));
+	hljs.registerLanguage('julia-repl', __webpack_require__(/*! ./languages/julia-repl */ 182));
+	hljs.registerLanguage('kotlin', __webpack_require__(/*! ./languages/kotlin */ 183));
+	hljs.registerLanguage('lasso', __webpack_require__(/*! ./languages/lasso */ 184));
+	hljs.registerLanguage('ldif', __webpack_require__(/*! ./languages/ldif */ 185));
+	hljs.registerLanguage('leaf', __webpack_require__(/*! ./languages/leaf */ 186));
+	hljs.registerLanguage('less', __webpack_require__(/*! ./languages/less */ 187));
+	hljs.registerLanguage('lisp', __webpack_require__(/*! ./languages/lisp */ 188));
+	hljs.registerLanguage('livecodeserver', __webpack_require__(/*! ./languages/livecodeserver */ 189));
+	hljs.registerLanguage('livescript', __webpack_require__(/*! ./languages/livescript */ 190));
+	hljs.registerLanguage('llvm', __webpack_require__(/*! ./languages/llvm */ 191));
+	hljs.registerLanguage('lsl', __webpack_require__(/*! ./languages/lsl */ 192));
+	hljs.registerLanguage('lua', __webpack_require__(/*! ./languages/lua */ 193));
+	hljs.registerLanguage('makefile', __webpack_require__(/*! ./languages/makefile */ 194));
+	hljs.registerLanguage('mathematica', __webpack_require__(/*! ./languages/mathematica */ 195));
+	hljs.registerLanguage('matlab', __webpack_require__(/*! ./languages/matlab */ 196));
+	hljs.registerLanguage('maxima', __webpack_require__(/*! ./languages/maxima */ 197));
+	hljs.registerLanguage('mel', __webpack_require__(/*! ./languages/mel */ 198));
+	hljs.registerLanguage('mercury', __webpack_require__(/*! ./languages/mercury */ 199));
+	hljs.registerLanguage('mipsasm', __webpack_require__(/*! ./languages/mipsasm */ 200));
+	hljs.registerLanguage('mizar', __webpack_require__(/*! ./languages/mizar */ 201));
+	hljs.registerLanguage('perl', __webpack_require__(/*! ./languages/perl */ 202));
+	hljs.registerLanguage('mojolicious', __webpack_require__(/*! ./languages/mojolicious */ 203));
+	hljs.registerLanguage('monkey', __webpack_require__(/*! ./languages/monkey */ 204));
+	hljs.registerLanguage('moonscript', __webpack_require__(/*! ./languages/moonscript */ 205));
+	hljs.registerLanguage('n1ql', __webpack_require__(/*! ./languages/n1ql */ 206));
+	hljs.registerLanguage('nginx', __webpack_require__(/*! ./languages/nginx */ 207));
+	hljs.registerLanguage('nimrod', __webpack_require__(/*! ./languages/nimrod */ 208));
+	hljs.registerLanguage('nix', __webpack_require__(/*! ./languages/nix */ 209));
+	hljs.registerLanguage('nsis', __webpack_require__(/*! ./languages/nsis */ 210));
+	hljs.registerLanguage('objectivec', __webpack_require__(/*! ./languages/objectivec */ 211));
+	hljs.registerLanguage('ocaml', __webpack_require__(/*! ./languages/ocaml */ 212));
+	hljs.registerLanguage('openscad', __webpack_require__(/*! ./languages/openscad */ 213));
+	hljs.registerLanguage('oxygene', __webpack_require__(/*! ./languages/oxygene */ 214));
+	hljs.registerLanguage('parser3', __webpack_require__(/*! ./languages/parser3 */ 215));
+	hljs.registerLanguage('pf', __webpack_require__(/*! ./languages/pf */ 216));
+	hljs.registerLanguage('pgsql', __webpack_require__(/*! ./languages/pgsql */ 217));
+	hljs.registerLanguage('php', __webpack_require__(/*! ./languages/php */ 218));
+	hljs.registerLanguage('plaintext', __webpack_require__(/*! ./languages/plaintext */ 219));
+	hljs.registerLanguage('pony', __webpack_require__(/*! ./languages/pony */ 220));
+	hljs.registerLanguage('powershell', __webpack_require__(/*! ./languages/powershell */ 221));
+	hljs.registerLanguage('processing', __webpack_require__(/*! ./languages/processing */ 222));
+	hljs.registerLanguage('profile', __webpack_require__(/*! ./languages/profile */ 223));
+	hljs.registerLanguage('prolog', __webpack_require__(/*! ./languages/prolog */ 224));
+	hljs.registerLanguage('properties', __webpack_require__(/*! ./languages/properties */ 225));
+	hljs.registerLanguage('protobuf', __webpack_require__(/*! ./languages/protobuf */ 226));
+	hljs.registerLanguage('puppet', __webpack_require__(/*! ./languages/puppet */ 227));
+	hljs.registerLanguage('purebasic', __webpack_require__(/*! ./languages/purebasic */ 228));
+	hljs.registerLanguage('python', __webpack_require__(/*! ./languages/python */ 229));
+	hljs.registerLanguage('q', __webpack_require__(/*! ./languages/q */ 230));
+	hljs.registerLanguage('qml', __webpack_require__(/*! ./languages/qml */ 231));
+	hljs.registerLanguage('r', __webpack_require__(/*! ./languages/r */ 232));
+	hljs.registerLanguage('reasonml', __webpack_require__(/*! ./languages/reasonml */ 233));
+	hljs.registerLanguage('rib', __webpack_require__(/*! ./languages/rib */ 234));
+	hljs.registerLanguage('roboconf', __webpack_require__(/*! ./languages/roboconf */ 235));
+	hljs.registerLanguage('routeros', __webpack_require__(/*! ./languages/routeros */ 236));
+	hljs.registerLanguage('rsl', __webpack_require__(/*! ./languages/rsl */ 237));
+	hljs.registerLanguage('ruleslanguage', __webpack_require__(/*! ./languages/ruleslanguage */ 238));
+	hljs.registerLanguage('rust', __webpack_require__(/*! ./languages/rust */ 239));
+	hljs.registerLanguage('sas', __webpack_require__(/*! ./languages/sas */ 240));
+	hljs.registerLanguage('scala', __webpack_require__(/*! ./languages/scala */ 241));
+	hljs.registerLanguage('scheme', __webpack_require__(/*! ./languages/scheme */ 242));
+	hljs.registerLanguage('scilab', __webpack_require__(/*! ./languages/scilab */ 243));
+	hljs.registerLanguage('scss', __webpack_require__(/*! ./languages/scss */ 244));
+	hljs.registerLanguage('shell', __webpack_require__(/*! ./languages/shell */ 245));
+	hljs.registerLanguage('smali', __webpack_require__(/*! ./languages/smali */ 246));
+	hljs.registerLanguage('smalltalk', __webpack_require__(/*! ./languages/smalltalk */ 247));
+	hljs.registerLanguage('sml', __webpack_require__(/*! ./languages/sml */ 248));
+	hljs.registerLanguage('sqf', __webpack_require__(/*! ./languages/sqf */ 249));
+	hljs.registerLanguage('sql', __webpack_require__(/*! ./languages/sql */ 250));
+	hljs.registerLanguage('stan', __webpack_require__(/*! ./languages/stan */ 251));
+	hljs.registerLanguage('stata', __webpack_require__(/*! ./languages/stata */ 252));
+	hljs.registerLanguage('step21', __webpack_require__(/*! ./languages/step21 */ 253));
+	hljs.registerLanguage('stylus', __webpack_require__(/*! ./languages/stylus */ 254));
+	hljs.registerLanguage('subunit', __webpack_require__(/*! ./languages/subunit */ 255));
+	hljs.registerLanguage('swift', __webpack_require__(/*! ./languages/swift */ 256));
+	hljs.registerLanguage('taggerscript', __webpack_require__(/*! ./languages/taggerscript */ 257));
+	hljs.registerLanguage('yaml', __webpack_require__(/*! ./languages/yaml */ 258));
+	hljs.registerLanguage('tap', __webpack_require__(/*! ./languages/tap */ 259));
+	hljs.registerLanguage('tcl', __webpack_require__(/*! ./languages/tcl */ 260));
+	hljs.registerLanguage('tex', __webpack_require__(/*! ./languages/tex */ 261));
+	hljs.registerLanguage('thrift', __webpack_require__(/*! ./languages/thrift */ 262));
+	hljs.registerLanguage('tp', __webpack_require__(/*! ./languages/tp */ 263));
+	hljs.registerLanguage('twig', __webpack_require__(/*! ./languages/twig */ 264));
+	hljs.registerLanguage('typescript', __webpack_require__(/*! ./languages/typescript */ 265));
+	hljs.registerLanguage('vala', __webpack_require__(/*! ./languages/vala */ 266));
+	hljs.registerLanguage('vbnet', __webpack_require__(/*! ./languages/vbnet */ 267));
+	hljs.registerLanguage('vbscript', __webpack_require__(/*! ./languages/vbscript */ 268));
+	hljs.registerLanguage('vbscript-html', __webpack_require__(/*! ./languages/vbscript-html */ 269));
+	hljs.registerLanguage('verilog', __webpack_require__(/*! ./languages/verilog */ 270));
+	hljs.registerLanguage('vhdl', __webpack_require__(/*! ./languages/vhdl */ 271));
+	hljs.registerLanguage('vim', __webpack_require__(/*! ./languages/vim */ 272));
+	hljs.registerLanguage('x86asm', __webpack_require__(/*! ./languages/x86asm */ 273));
+	hljs.registerLanguage('xl', __webpack_require__(/*! ./languages/xl */ 274));
+	hljs.registerLanguage('xquery', __webpack_require__(/*! ./languages/xquery */ 275));
+	hljs.registerLanguage('zephir', __webpack_require__(/*! ./languages/zephir */ 276));
 	
 	module.exports = hljs;
 
 /***/ }),
-/* 86 */
+/* 91 */
 /*!*****************************************!*\
   !*** ./~/highlight.js/lib/highlight.js ***!
   \*****************************************/
@@ -45003,7 +45420,7 @@
 
 
 /***/ }),
-/* 87 */
+/* 92 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/1c.js ***!
   \********************************************/
@@ -45520,7 +45937,7 @@
 	};
 
 /***/ }),
-/* 88 */
+/* 93 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/abnf.js ***!
   \**********************************************/
@@ -45598,7 +46015,7 @@
 	};
 
 /***/ }),
-/* 89 */
+/* 94 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/accesslog.js ***!
   \***************************************************/
@@ -45643,7 +46060,7 @@
 	};
 
 /***/ }),
-/* 90 */
+/* 95 */
 /*!******************************************************!*\
   !*** ./~/highlight.js/lib/languages/actionscript.js ***!
   \******************************************************/
@@ -45724,7 +46141,7 @@
 	};
 
 /***/ }),
-/* 91 */
+/* 96 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/ada.js ***!
   \*********************************************/
@@ -45904,7 +46321,7 @@
 	};
 
 /***/ }),
-/* 92 */
+/* 97 */
 /*!*****************************************************!*\
   !*** ./~/highlight.js/lib/languages/angelscript.js ***!
   \*****************************************************/
@@ -46018,7 +46435,7 @@
 	};
 
 /***/ }),
-/* 93 */
+/* 98 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/apache.js ***!
   \************************************************/
@@ -46071,7 +46488,7 @@
 	};
 
 /***/ }),
-/* 94 */
+/* 99 */
 /*!*****************************************************!*\
   !*** ./~/highlight.js/lib/languages/applescript.js ***!
   \*****************************************************/
@@ -46164,7 +46581,7 @@
 	};
 
 /***/ }),
-/* 95 */
+/* 100 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/arcade.js ***!
   \************************************************/
@@ -46308,7 +46725,7 @@
 	};
 
 /***/ }),
-/* 96 */
+/* 101 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/cpp.js ***!
   \*********************************************/
@@ -46501,7 +46918,7 @@
 	};
 
 /***/ }),
-/* 97 */
+/* 102 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/arduino.js ***!
   \*************************************************/
@@ -46608,7 +47025,7 @@
 	};
 
 /***/ }),
-/* 98 */
+/* 103 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/armasm.js ***!
   \************************************************/
@@ -46707,7 +47124,7 @@
 	};
 
 /***/ }),
-/* 99 */
+/* 104 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/xml.js ***!
   \*********************************************/
@@ -46822,7 +47239,7 @@
 	};
 
 /***/ }),
-/* 100 */
+/* 105 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/asciidoc.js ***!
   \**************************************************/
@@ -47017,7 +47434,7 @@
 	};
 
 /***/ }),
-/* 101 */
+/* 106 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/aspectj.js ***!
   \*************************************************/
@@ -47169,7 +47586,7 @@
 	};
 
 /***/ }),
-/* 102 */
+/* 107 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/autohotkey.js ***!
   \****************************************************/
@@ -47234,7 +47651,7 @@
 	};
 
 /***/ }),
-/* 103 */
+/* 108 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/autoit.js ***!
   \************************************************/
@@ -47377,7 +47794,7 @@
 	};
 
 /***/ }),
-/* 104 */
+/* 109 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/avrasm.js ***!
   \************************************************/
@@ -47446,7 +47863,7 @@
 	};
 
 /***/ }),
-/* 105 */
+/* 110 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/awk.js ***!
   \*********************************************/
@@ -47506,7 +47923,7 @@
 	};
 
 /***/ }),
-/* 106 */
+/* 111 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/axapta.js ***!
   \************************************************/
@@ -47544,7 +47961,7 @@
 	};
 
 /***/ }),
-/* 107 */
+/* 112 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/bash.js ***!
   \**********************************************/
@@ -47632,7 +48049,7 @@
 	};
 
 /***/ }),
-/* 108 */
+/* 113 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/basic.js ***!
   \***********************************************/
@@ -47690,7 +48107,7 @@
 	};
 
 /***/ }),
-/* 109 */
+/* 114 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/bnf.js ***!
   \*********************************************/
@@ -47726,7 +48143,7 @@
 	};
 
 /***/ }),
-/* 110 */
+/* 115 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/brainfuck.js ***!
   \***************************************************/
@@ -47770,7 +48187,7 @@
 	};
 
 /***/ }),
-/* 111 */
+/* 116 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/cal.js ***!
   \*********************************************/
@@ -47857,7 +48274,7 @@
 	};
 
 /***/ }),
-/* 112 */
+/* 117 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/capnproto.js ***!
   \***************************************************/
@@ -47913,7 +48330,7 @@
 	};
 
 /***/ }),
-/* 113 */
+/* 118 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/ceylon.js ***!
   \************************************************/
@@ -47987,7 +48404,7 @@
 	};
 
 /***/ }),
-/* 114 */
+/* 119 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/clean.js ***!
   \***********************************************/
@@ -48021,7 +48438,7 @@
 	};
 
 /***/ }),
-/* 115 */
+/* 120 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/clojure.js ***!
   \*************************************************/
@@ -48124,7 +48541,7 @@
 	};
 
 /***/ }),
-/* 116 */
+/* 121 */
 /*!******************************************************!*\
   !*** ./~/highlight.js/lib/languages/clojure-repl.js ***!
   \******************************************************/
@@ -48146,7 +48563,7 @@
 	};
 
 /***/ }),
-/* 117 */
+/* 122 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/cmake.js ***!
   \***********************************************/
@@ -48206,7 +48623,7 @@
 	};
 
 /***/ }),
-/* 118 */
+/* 123 */
 /*!******************************************************!*\
   !*** ./~/highlight.js/lib/languages/coffeescript.js ***!
   \******************************************************/
@@ -48359,7 +48776,7 @@
 	};
 
 /***/ }),
-/* 119 */
+/* 124 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/coq.js ***!
   \*********************************************/
@@ -48433,7 +48850,7 @@
 	};
 
 /***/ }),
-/* 120 */
+/* 125 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/cos.js ***!
   \*********************************************/
@@ -48564,7 +48981,7 @@
 	};
 
 /***/ }),
-/* 121 */
+/* 126 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/crmsh.js ***!
   \***********************************************/
@@ -48665,7 +49082,7 @@
 	};
 
 /***/ }),
-/* 122 */
+/* 127 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/crystal.js ***!
   \*************************************************/
@@ -48860,7 +49277,7 @@
 	};
 
 /***/ }),
-/* 123 */
+/* 128 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/cs.js ***!
   \********************************************/
@@ -49052,7 +49469,7 @@
 	};
 
 /***/ }),
-/* 124 */
+/* 129 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/csp.js ***!
   \*********************************************/
@@ -49081,7 +49498,7 @@
 	};
 
 /***/ }),
-/* 125 */
+/* 130 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/css.js ***!
   \*********************************************/
@@ -49193,7 +49610,7 @@
 	};
 
 /***/ }),
-/* 126 */
+/* 131 */
 /*!*******************************************!*\
   !*** ./~/highlight.js/lib/languages/d.js ***!
   \*******************************************/
@@ -49458,7 +49875,7 @@
 	};
 
 /***/ }),
-/* 127 */
+/* 132 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/markdown.js ***!
   \**************************************************/
@@ -49573,7 +49990,7 @@
 	};
 
 /***/ }),
-/* 128 */
+/* 133 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/dart.js ***!
   \**********************************************/
@@ -49690,7 +50107,7 @@
 	};
 
 /***/ }),
-/* 129 */
+/* 134 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/delphi.js ***!
   \************************************************/
@@ -49766,7 +50183,7 @@
 	};
 
 /***/ }),
-/* 130 */
+/* 135 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/diff.js ***!
   \**********************************************/
@@ -49813,7 +50230,7 @@
 	};
 
 /***/ }),
-/* 131 */
+/* 136 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/django.js ***!
   \************************************************/
@@ -49884,7 +50301,7 @@
 	};
 
 /***/ }),
-/* 132 */
+/* 137 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/dns.js ***!
   \*********************************************/
@@ -49920,7 +50337,7 @@
 	};
 
 /***/ }),
-/* 133 */
+/* 138 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/dockerfile.js ***!
   \****************************************************/
@@ -49949,7 +50366,7 @@
 	};
 
 /***/ }),
-/* 134 */
+/* 139 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/dos.js ***!
   \*********************************************/
@@ -50008,7 +50425,7 @@
 	};
 
 /***/ }),
-/* 135 */
+/* 140 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/dsconfig.js ***!
   \**************************************************/
@@ -50062,7 +50479,7 @@
 	};
 
 /***/ }),
-/* 136 */
+/* 141 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/dts.js ***!
   \*********************************************/
@@ -50193,7 +50610,7 @@
 	};
 
 /***/ }),
-/* 137 */
+/* 142 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/dust.js ***!
   \**********************************************/
@@ -50232,7 +50649,7 @@
 	};
 
 /***/ }),
-/* 138 */
+/* 143 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/ebnf.js ***!
   \**********************************************/
@@ -50272,7 +50689,7 @@
 	};
 
 /***/ }),
-/* 139 */
+/* 144 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/elixir.js ***!
   \************************************************/
@@ -50379,7 +50796,7 @@
 	};
 
 /***/ }),
-/* 140 */
+/* 145 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/elm.js ***!
   \*********************************************/
@@ -50476,7 +50893,7 @@
 	};
 
 /***/ }),
-/* 141 */
+/* 146 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/ruby.js ***!
   \**********************************************/
@@ -50668,7 +51085,7 @@
 	};
 
 /***/ }),
-/* 142 */
+/* 147 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/erb.js ***!
   \*********************************************/
@@ -50690,7 +51107,7 @@
 	};
 
 /***/ }),
-/* 143 */
+/* 148 */
 /*!*****************************************************!*\
   !*** ./~/highlight.js/lib/languages/erlang-repl.js ***!
   \*****************************************************/
@@ -50743,7 +51160,7 @@
 	};
 
 /***/ }),
-/* 144 */
+/* 149 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/erlang.js ***!
   \************************************************/
@@ -50896,7 +51313,7 @@
 	};
 
 /***/ }),
-/* 145 */
+/* 150 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/excel.js ***!
   \***********************************************/
@@ -50951,7 +51368,7 @@
 	};
 
 /***/ }),
-/* 146 */
+/* 151 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/fix.js ***!
   \*********************************************/
@@ -50987,7 +51404,7 @@
 	};
 
 /***/ }),
-/* 147 */
+/* 152 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/flix.js ***!
   \**********************************************/
@@ -51039,7 +51456,7 @@
 	};
 
 /***/ }),
-/* 148 */
+/* 153 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/fortran.js ***!
   \*************************************************/
@@ -51117,7 +51534,7 @@
 	};
 
 /***/ }),
-/* 149 */
+/* 154 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/fsharp.js ***!
   \************************************************/
@@ -51183,7 +51600,7 @@
 	};
 
 /***/ }),
-/* 150 */
+/* 155 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/gams.js ***!
   \**********************************************/
@@ -51344,7 +51761,7 @@
 	};
 
 /***/ }),
-/* 151 */
+/* 156 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/gauss.js ***!
   \***********************************************/
@@ -51642,7 +52059,7 @@
 	};
 
 /***/ }),
-/* 152 */
+/* 157 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/gcode.js ***!
   \***********************************************/
@@ -51716,7 +52133,7 @@
 	};
 
 /***/ }),
-/* 153 */
+/* 158 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/gherkin.js ***!
   \*************************************************/
@@ -51760,7 +52177,7 @@
 	};
 
 /***/ }),
-/* 154 */
+/* 159 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/glsl.js ***!
   \**********************************************/
@@ -51884,7 +52301,7 @@
 	};
 
 /***/ }),
-/* 155 */
+/* 160 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/gml.js ***!
   \*********************************************/
@@ -52764,7 +53181,7 @@
 	};
 
 /***/ }),
-/* 156 */
+/* 161 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/go.js ***!
   \********************************************/
@@ -52825,7 +53242,7 @@
 	};
 
 /***/ }),
-/* 157 */
+/* 162 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/golo.js ***!
   \**********************************************/
@@ -52855,7 +53272,7 @@
 	};
 
 /***/ }),
-/* 158 */
+/* 163 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/gradle.js ***!
   \************************************************/
@@ -52897,7 +53314,7 @@
 	};
 
 /***/ }),
-/* 159 */
+/* 164 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/groovy.js ***!
   \************************************************/
@@ -52998,7 +53415,7 @@
 	};
 
 /***/ }),
-/* 160 */
+/* 165 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/haml.js ***!
   \**********************************************/
@@ -53112,7 +53529,7 @@
 	};
 
 /***/ }),
-/* 161 */
+/* 166 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/handlebars.js ***!
   \****************************************************/
@@ -53153,7 +53570,7 @@
 	};
 
 /***/ }),
-/* 162 */
+/* 167 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/haskell.js ***!
   \*************************************************/
@@ -53282,7 +53699,7 @@
 	};
 
 /***/ }),
-/* 163 */
+/* 168 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/haxe.js ***!
   \**********************************************/
@@ -53401,7 +53818,7 @@
 	};
 
 /***/ }),
-/* 164 */
+/* 169 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/hsp.js ***!
   \*********************************************/
@@ -53454,7 +53871,7 @@
 	};
 
 /***/ }),
-/* 165 */
+/* 170 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/htmlbars.js ***!
   \**************************************************/
@@ -53532,7 +53949,7 @@
 	};
 
 /***/ }),
-/* 166 */
+/* 171 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/http.js ***!
   \**********************************************/
@@ -53580,7 +53997,7 @@
 	};
 
 /***/ }),
-/* 167 */
+/* 172 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/hy.js ***!
   \********************************************/
@@ -53689,7 +54106,7 @@
 	};
 
 /***/ }),
-/* 168 */
+/* 173 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/inform7.js ***!
   \*************************************************/
@@ -53753,7 +54170,7 @@
 	};
 
 /***/ }),
-/* 169 */
+/* 174 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/ini.js ***!
   \*********************************************/
@@ -53828,7 +54245,7 @@
 	};
 
 /***/ }),
-/* 170 */
+/* 175 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/irpf90.js ***!
   \************************************************/
@@ -53911,7 +54328,7 @@
 	};
 
 /***/ }),
-/* 171 */
+/* 176 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/isbl.js ***!
   \**********************************************/
@@ -57091,7 +57508,7 @@
 	};
 
 /***/ }),
-/* 172 */
+/* 177 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/java.js ***!
   \**********************************************/
@@ -57206,7 +57623,7 @@
 	};
 
 /***/ }),
-/* 173 */
+/* 178 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/javascript.js ***!
   \****************************************************/
@@ -57415,7 +57832,7 @@
 	};
 
 /***/ }),
-/* 174 */
+/* 179 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/jboss-cli.js ***!
   \***************************************************/
@@ -57469,7 +57886,7 @@
 	};
 
 /***/ }),
-/* 175 */
+/* 180 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/json.js ***!
   \**********************************************/
@@ -57513,7 +57930,7 @@
 	};
 
 /***/ }),
-/* 176 */
+/* 181 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/julia.js ***!
   \***********************************************/
@@ -57682,7 +58099,7 @@
 	};
 
 /***/ }),
-/* 177 */
+/* 182 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/julia-repl.js ***!
   \****************************************************/
@@ -57713,7 +58130,7 @@
 	};
 
 /***/ }),
-/* 178 */
+/* 183 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/kotlin.js ***!
   \************************************************/
@@ -57936,7 +58353,7 @@
 	};
 
 /***/ }),
-/* 179 */
+/* 184 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/lasso.js ***!
   \***********************************************/
@@ -58106,7 +58523,7 @@
 	};
 
 /***/ }),
-/* 180 */
+/* 185 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/ldif.js ***!
   \**********************************************/
@@ -58136,7 +58553,7 @@
 	};
 
 /***/ }),
-/* 181 */
+/* 186 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/leaf.js ***!
   \**********************************************/
@@ -58183,7 +58600,7 @@
 	};
 
 /***/ }),
-/* 182 */
+/* 187 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/less.js ***!
   \**********************************************/
@@ -58330,7 +58747,7 @@
 	};
 
 /***/ }),
-/* 183 */
+/* 188 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/lisp.js ***!
   \**********************************************/
@@ -58440,7 +58857,7 @@
 	};
 
 /***/ }),
-/* 184 */
+/* 189 */
 /*!********************************************************!*\
   !*** ./~/highlight.js/lib/languages/livecodeserver.js ***!
   \********************************************************/
@@ -58608,7 +59025,7 @@
 	};
 
 /***/ }),
-/* 185 */
+/* 190 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/livescript.js ***!
   \****************************************************/
@@ -58764,7 +59181,7 @@
 	};
 
 /***/ }),
-/* 186 */
+/* 191 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/llvm.js ***!
   \**********************************************/
@@ -58860,7 +59277,7 @@
 	};
 
 /***/ }),
-/* 187 */
+/* 192 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/lsl.js ***!
   \*********************************************/
@@ -58950,7 +59367,7 @@
 	};
 
 /***/ }),
-/* 188 */
+/* 193 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/lua.js ***!
   \*********************************************/
@@ -59023,7 +59440,7 @@
 	};
 
 /***/ }),
-/* 189 */
+/* 194 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/makefile.js ***!
   \**************************************************/
@@ -59111,7 +59528,7 @@
 	};
 
 /***/ }),
-/* 190 */
+/* 195 */
 /*!*****************************************************!*\
   !*** ./~/highlight.js/lib/languages/mathematica.js ***!
   \*****************************************************/
@@ -59167,7 +59584,7 @@
 	};
 
 /***/ }),
-/* 191 */
+/* 196 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/matlab.js ***!
   \************************************************/
@@ -59270,7 +59687,7 @@
 	};
 
 /***/ }),
-/* 192 */
+/* 197 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/maxima.js ***!
   \************************************************/
@@ -59683,7 +60100,7 @@
 	};
 
 /***/ }),
-/* 193 */
+/* 198 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/mel.js ***!
   \*********************************************/
@@ -59915,7 +60332,7 @@
 	};
 
 /***/ }),
-/* 194 */
+/* 199 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/mercury.js ***!
   \*************************************************/
@@ -60004,7 +60421,7 @@
 	};
 
 /***/ }),
-/* 195 */
+/* 200 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/mipsasm.js ***!
   \*************************************************/
@@ -60097,7 +60514,7 @@
 	};
 
 /***/ }),
-/* 196 */
+/* 201 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/mizar.js ***!
   \***********************************************/
@@ -60123,7 +60540,7 @@
 	};
 
 /***/ }),
-/* 197 */
+/* 202 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/perl.js ***!
   \**********************************************/
@@ -60287,7 +60704,7 @@
 	};
 
 /***/ }),
-/* 198 */
+/* 203 */
 /*!*****************************************************!*\
   !*** ./~/highlight.js/lib/languages/mojolicious.js ***!
   \*****************************************************/
@@ -60319,7 +60736,7 @@
 	};
 
 /***/ }),
-/* 199 */
+/* 204 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/monkey.js ***!
   \************************************************/
@@ -60401,7 +60818,7 @@
 	};
 
 /***/ }),
-/* 200 */
+/* 205 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/moonscript.js ***!
   \****************************************************/
@@ -60520,7 +60937,7 @@
 	};
 
 /***/ }),
-/* 201 */
+/* 206 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/n1ql.js ***!
   \**********************************************/
@@ -60596,7 +61013,7 @@
 	};
 
 /***/ }),
-/* 202 */
+/* 207 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/nginx.js ***!
   \***********************************************/
@@ -60696,7 +61113,7 @@
 	};
 
 /***/ }),
-/* 203 */
+/* 208 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/nimrod.js ***!
   \************************************************/
@@ -60758,7 +61175,7 @@
 	};
 
 /***/ }),
-/* 204 */
+/* 209 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/nix.js ***!
   \*********************************************/
@@ -60814,7 +61231,7 @@
 	};
 
 /***/ }),
-/* 205 */
+/* 210 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/nsis.js ***!
   \**********************************************/
@@ -60927,7 +61344,7 @@
 	};
 
 /***/ }),
-/* 206 */
+/* 211 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/objectivec.js ***!
   \****************************************************/
@@ -61025,7 +61442,7 @@
 	};
 
 /***/ }),
-/* 207 */
+/* 212 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/ocaml.js ***!
   \***********************************************/
@@ -61103,7 +61520,7 @@
 	};
 
 /***/ }),
-/* 208 */
+/* 213 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/openscad.js ***!
   \**************************************************/
@@ -61167,7 +61584,7 @@
 	};
 
 /***/ }),
-/* 209 */
+/* 214 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/oxygene.js ***!
   \*************************************************/
@@ -61244,7 +61661,7 @@
 	};
 
 /***/ }),
-/* 210 */
+/* 215 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/parser3.js ***!
   \*************************************************/
@@ -61299,7 +61716,7 @@
 	};
 
 /***/ }),
-/* 211 */
+/* 216 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/pf.js ***!
   \********************************************/
@@ -61358,7 +61775,7 @@
 	};
 
 /***/ }),
-/* 212 */
+/* 217 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/pgsql.js ***!
   \***********************************************/
@@ -61853,7 +62270,7 @@
 	};
 
 /***/ }),
-/* 213 */
+/* 218 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/php.js ***!
   \*********************************************/
@@ -61987,7 +62404,7 @@
 	};
 
 /***/ }),
-/* 214 */
+/* 219 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/plaintext.js ***!
   \***************************************************/
@@ -62000,7 +62417,7 @@
 	};
 
 /***/ }),
-/* 215 */
+/* 220 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/pony.js ***!
   \**********************************************/
@@ -62076,7 +62493,7 @@
 	};
 
 /***/ }),
-/* 216 */
+/* 221 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/powershell.js ***!
   \****************************************************/
@@ -62355,7 +62772,7 @@
 	};
 
 /***/ }),
-/* 217 */
+/* 222 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/processing.js ***!
   \****************************************************/
@@ -62410,7 +62827,7 @@
 	};
 
 /***/ }),
-/* 218 */
+/* 223 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/profile.js ***!
   \*************************************************/
@@ -62447,7 +62864,7 @@
 	};
 
 /***/ }),
-/* 219 */
+/* 224 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/prolog.js ***!
   \************************************************/
@@ -62542,7 +62959,7 @@
 	};
 
 /***/ }),
-/* 220 */
+/* 225 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/properties.js ***!
   \****************************************************/
@@ -62619,7 +63036,7 @@
 	};
 
 /***/ }),
-/* 221 */
+/* 226 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/protobuf.js ***!
   \**************************************************/
@@ -62662,7 +63079,7 @@
 	};
 
 /***/ }),
-/* 222 */
+/* 227 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/puppet.js ***!
   \************************************************/
@@ -62784,7 +63201,7 @@
 	};
 
 /***/ }),
-/* 223 */
+/* 228 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/purebasic.js ***!
   \***************************************************/
@@ -62876,7 +63293,7 @@
 	*/;
 
 /***/ }),
-/* 224 */
+/* 229 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/python.js ***!
   \************************************************/
@@ -63000,7 +63417,7 @@
 	};
 
 /***/ }),
-/* 225 */
+/* 230 */
 /*!*******************************************!*\
   !*** ./~/highlight.js/lib/languages/q.js ***!
   \*******************************************/
@@ -63030,7 +63447,7 @@
 	};
 
 /***/ }),
-/* 226 */
+/* 231 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/qml.js ***!
   \*********************************************/
@@ -63206,7 +63623,7 @@
 	};
 
 /***/ }),
-/* 227 */
+/* 232 */
 /*!*******************************************!*\
   !*** ./~/highlight.js/lib/languages/r.js ***!
   \*******************************************/
@@ -63283,7 +63700,7 @@
 	};
 
 /***/ }),
-/* 228 */
+/* 233 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/reasonml.js ***!
   \**************************************************/
@@ -63590,7 +64007,7 @@
 	};
 
 /***/ }),
-/* 229 */
+/* 234 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/rib.js ***!
   \*********************************************/
@@ -63624,7 +64041,7 @@
 	};
 
 /***/ }),
-/* 230 */
+/* 235 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/roboconf.js ***!
   \**************************************************/
@@ -63698,7 +64115,7 @@
 	};
 
 /***/ }),
-/* 231 */
+/* 236 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/routeros.js ***!
   \**************************************************/
@@ -63864,7 +64281,7 @@
 	};
 
 /***/ }),
-/* 232 */
+/* 237 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/rsl.js ***!
   \*********************************************/
@@ -63907,7 +64324,7 @@
 	};
 
 /***/ }),
-/* 233 */
+/* 238 */
 /*!*******************************************************!*\
   !*** ./~/highlight.js/lib/languages/ruleslanguage.js ***!
   \*******************************************************/
@@ -63975,7 +64392,7 @@
 	};
 
 /***/ }),
-/* 234 */
+/* 239 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/rust.js ***!
   \**********************************************/
@@ -64090,7 +64507,7 @@
 	};
 
 /***/ }),
-/* 235 */
+/* 240 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/sas.js ***!
   \*********************************************/
@@ -64223,7 +64640,7 @@
 	};
 
 /***/ }),
-/* 236 */
+/* 241 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/scala.js ***!
   \***********************************************/
@@ -64345,7 +64762,7 @@
 	};
 
 /***/ }),
-/* 237 */
+/* 242 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/scheme.js ***!
   \************************************************/
@@ -64496,7 +64913,7 @@
 	};
 
 /***/ }),
-/* 238 */
+/* 243 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/scilab.js ***!
   \************************************************/
@@ -64557,7 +64974,7 @@
 	};
 
 /***/ }),
-/* 239 */
+/* 244 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/scss.js ***!
   \**********************************************/
@@ -64662,7 +65079,7 @@
 	};
 
 /***/ }),
-/* 240 */
+/* 245 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/shell.js ***!
   \***********************************************/
@@ -64684,7 +65101,7 @@
 	};
 
 /***/ }),
-/* 241 */
+/* 246 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/smali.js ***!
   \***********************************************/
@@ -64747,7 +65164,7 @@
 	};
 
 /***/ }),
-/* 242 */
+/* 247 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/smalltalk.js ***!
   \***************************************************/
@@ -64804,7 +65221,7 @@
 	};
 
 /***/ }),
-/* 243 */
+/* 248 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/sml.js ***!
   \*********************************************/
@@ -64877,7 +65294,7 @@
 	};
 
 /***/ }),
-/* 244 */
+/* 249 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/sqf.js ***!
   \*********************************************/
@@ -65289,7 +65706,7 @@
 	};
 
 /***/ }),
-/* 245 */
+/* 250 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/sql.js ***!
   \*********************************************/
@@ -65458,7 +65875,7 @@
 	};
 
 /***/ }),
-/* 246 */
+/* 251 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/stan.js ***!
   \**********************************************/
@@ -65548,7 +65965,7 @@
 	};
 
 /***/ }),
-/* 247 */
+/* 252 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/stata.js ***!
   \***********************************************/
@@ -65593,7 +66010,7 @@
 	};
 
 /***/ }),
-/* 248 */
+/* 253 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/step21.js ***!
   \************************************************/
@@ -65647,7 +66064,7 @@
 	};
 
 /***/ }),
-/* 249 */
+/* 254 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/stylus.js ***!
   \************************************************/
@@ -66108,7 +66525,7 @@
 	};
 
 /***/ }),
-/* 250 */
+/* 255 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/subunit.js ***!
   \*************************************************/
@@ -66149,7 +66566,7 @@
 	};
 
 /***/ }),
-/* 251 */
+/* 256 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/swift.js ***!
   \***********************************************/
@@ -66286,7 +66703,7 @@
 	};
 
 /***/ }),
-/* 252 */
+/* 257 */
 /*!******************************************************!*\
   !*** ./~/highlight.js/lib/languages/taggerscript.js ***!
   \******************************************************/
@@ -66337,7 +66754,7 @@
 	};
 
 /***/ }),
-/* 253 */
+/* 258 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/yaml.js ***!
   \**********************************************/
@@ -66436,7 +66853,7 @@
 	};
 
 /***/ }),
-/* 254 */
+/* 259 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/tap.js ***!
   \*********************************************/
@@ -66479,7 +66896,7 @@
 	};
 
 /***/ }),
-/* 255 */
+/* 260 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/tcl.js ***!
   \*********************************************/
@@ -66546,7 +66963,7 @@
 	};
 
 /***/ }),
-/* 256 */
+/* 261 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/tex.js ***!
   \*********************************************/
@@ -66615,7 +67032,7 @@
 	};
 
 /***/ }),
-/* 257 */
+/* 262 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/thrift.js ***!
   \************************************************/
@@ -66657,7 +67074,7 @@
 	};
 
 /***/ }),
-/* 258 */
+/* 263 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/tp.js ***!
   \********************************************/
@@ -66748,7 +67165,7 @@
 	};
 
 /***/ }),
-/* 259 */
+/* 264 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/twig.js ***!
   \**********************************************/
@@ -66821,7 +67238,7 @@
 	};
 
 /***/ }),
-/* 260 */
+/* 265 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/typescript.js ***!
   \****************************************************/
@@ -67034,7 +67451,7 @@
 	};
 
 /***/ }),
-/* 261 */
+/* 266 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/vala.js ***!
   \**********************************************/
@@ -67091,7 +67508,7 @@
 	};
 
 /***/ }),
-/* 262 */
+/* 267 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/vbnet.js ***!
   \***********************************************/
@@ -67154,7 +67571,7 @@
 	};
 
 /***/ }),
-/* 263 */
+/* 268 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/vbscript.js ***!
   \**************************************************/
@@ -67200,7 +67617,7 @@
 	};
 
 /***/ }),
-/* 264 */
+/* 269 */
 /*!*******************************************************!*\
   !*** ./~/highlight.js/lib/languages/vbscript-html.js ***!
   \*******************************************************/
@@ -67219,7 +67636,7 @@
 	};
 
 /***/ }),
-/* 265 */
+/* 270 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/verilog.js ***!
   \*************************************************/
@@ -67325,7 +67742,7 @@
 	};
 
 /***/ }),
-/* 266 */
+/* 271 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/vhdl.js ***!
   \**********************************************/
@@ -67393,7 +67810,7 @@
 	};
 
 /***/ }),
-/* 267 */
+/* 272 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/vim.js ***!
   \*********************************************/
@@ -67510,7 +67927,7 @@
 	};
 
 /***/ }),
-/* 268 */
+/* 273 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/x86asm.js ***!
   \************************************************/
@@ -67653,7 +68070,7 @@
 	};
 
 /***/ }),
-/* 269 */
+/* 274 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/xl.js ***!
   \********************************************/
@@ -67733,7 +68150,7 @@
 	};
 
 /***/ }),
-/* 270 */
+/* 275 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/xquery.js ***!
   \************************************************/
@@ -67910,7 +68327,7 @@
 	};
 
 /***/ }),
-/* 271 */
+/* 276 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/zephir.js ***!
   \************************************************/
@@ -68024,7 +68441,7 @@
 	};
 
 /***/ }),
-/* 272 */
+/* 277 */
 /*!*************************************!*\
   !*** ./www/src/js/mprogress.min.js ***!
   \*************************************/
@@ -68210,7 +68627,7 @@
 	}).call(undefined);
 
 /***/ }),
-/* 273 */
+/* 278 */
 /*!***************************************!*\
   !*** ./www/app/components/Sidenav.js ***!
   \***************************************/
@@ -68395,255 +68812,6 @@
 	}(_react2.default.Component);
 	
 	exports.default = Sidenav;
-
-/***/ }),
-/* 274 */
-/*!*************************!*\
-  !*** ./~/uuid/index.js ***!
-  \*************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	var v1 = __webpack_require__(/*! ./v1 */ 275);
-	var v4 = __webpack_require__(/*! ./v4 */ 278);
-	
-	var uuid = v4;
-	uuid.v1 = v1;
-	uuid.v4 = v4;
-	
-	module.exports = uuid;
-
-
-/***/ }),
-/* 275 */
-/*!**********************!*\
-  !*** ./~/uuid/v1.js ***!
-  \**********************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	var rng = __webpack_require__(/*! ./lib/rng */ 276);
-	var bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ 277);
-	
-	// **`v1()` - Generate time-based UUID**
-	//
-	// Inspired by https://github.com/LiosK/UUID.js
-	// and http://docs.python.org/library/uuid.html
-	
-	var _nodeId;
-	var _clockseq;
-	
-	// Previous uuid creation time
-	var _lastMSecs = 0;
-	var _lastNSecs = 0;
-	
-	// See https://github.com/broofa/node-uuid for API details
-	function v1(options, buf, offset) {
-	  var i = buf && offset || 0;
-	  var b = buf || [];
-	
-	  options = options || {};
-	  var node = options.node || _nodeId;
-	  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq;
-	
-	  // node and clockseq need to be initialized to random values if they're not
-	  // specified.  We do this lazily to minimize issues related to insufficient
-	  // system entropy.  See #189
-	  if (node == null || clockseq == null) {
-	    var seedBytes = rng();
-	    if (node == null) {
-	      // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
-	      node = _nodeId = [
-	        seedBytes[0] | 0x01,
-	        seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]
-	      ];
-	    }
-	    if (clockseq == null) {
-	      // Per 4.2.2, randomize (14 bit) clockseq
-	      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 0x3fff;
-	    }
-	  }
-	
-	  // UUID timestamps are 100 nano-second units since the Gregorian epoch,
-	  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
-	  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
-	  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
-	  var msecs = options.msecs !== undefined ? options.msecs : new Date().getTime();
-	
-	  // Per 4.2.1.2, use count of uuid's generated during the current clock
-	  // cycle to simulate higher resolution clock
-	  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1;
-	
-	  // Time since last uuid creation (in msecs)
-	  var dt = (msecs - _lastMSecs) + (nsecs - _lastNSecs)/10000;
-	
-	  // Per 4.2.1.2, Bump clockseq on clock regression
-	  if (dt < 0 && options.clockseq === undefined) {
-	    clockseq = clockseq + 1 & 0x3fff;
-	  }
-	
-	  // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
-	  // time interval
-	  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
-	    nsecs = 0;
-	  }
-	
-	  // Per 4.2.1.2 Throw error if too many uuids are requested
-	  if (nsecs >= 10000) {
-	    throw new Error('uuid.v1(): Can\'t create more than 10M uuids/sec');
-	  }
-	
-	  _lastMSecs = msecs;
-	  _lastNSecs = nsecs;
-	  _clockseq = clockseq;
-	
-	  // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
-	  msecs += 12219292800000;
-	
-	  // `time_low`
-	  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
-	  b[i++] = tl >>> 24 & 0xff;
-	  b[i++] = tl >>> 16 & 0xff;
-	  b[i++] = tl >>> 8 & 0xff;
-	  b[i++] = tl & 0xff;
-	
-	  // `time_mid`
-	  var tmh = (msecs / 0x100000000 * 10000) & 0xfffffff;
-	  b[i++] = tmh >>> 8 & 0xff;
-	  b[i++] = tmh & 0xff;
-	
-	  // `time_high_and_version`
-	  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
-	  b[i++] = tmh >>> 16 & 0xff;
-	
-	  // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
-	  b[i++] = clockseq >>> 8 | 0x80;
-	
-	  // `clock_seq_low`
-	  b[i++] = clockseq & 0xff;
-	
-	  // `node`
-	  for (var n = 0; n < 6; ++n) {
-	    b[i + n] = node[n];
-	  }
-	
-	  return buf ? buf : bytesToUuid(b);
-	}
-	
-	module.exports = v1;
-
-
-/***/ }),
-/* 276 */
-/*!***********************************!*\
-  !*** ./~/uuid/lib/rng-browser.js ***!
-  \***********************************/
-/***/ (function(module, exports) {
-
-	// Unique ID creation requires a high quality random # generator.  In the
-	// browser this is a little complicated due to unknown quality of Math.random()
-	// and inconsistent support for the `crypto` API.  We do the best we can via
-	// feature-detection
-	
-	// getRandomValues needs to be invoked in a context where "this" is a Crypto
-	// implementation. Also, find the complete implementation of crypto on IE11.
-	var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto)) ||
-	                      (typeof(msCrypto) != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto));
-	
-	if (getRandomValues) {
-	  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
-	  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
-	
-	  module.exports = function whatwgRNG() {
-	    getRandomValues(rnds8);
-	    return rnds8;
-	  };
-	} else {
-	  // Math.random()-based (RNG)
-	  //
-	  // If all else fails, use Math.random().  It's fast, but is of unspecified
-	  // quality.
-	  var rnds = new Array(16);
-	
-	  module.exports = function mathRNG() {
-	    for (var i = 0, r; i < 16; i++) {
-	      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-	      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-	    }
-	
-	    return rnds;
-	  };
-	}
-
-
-/***/ }),
-/* 277 */
-/*!***********************************!*\
-  !*** ./~/uuid/lib/bytesToUuid.js ***!
-  \***********************************/
-/***/ (function(module, exports) {
-
-	/**
-	 * Convert array of 16 byte values to UUID string format of the form:
-	 * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-	 */
-	var byteToHex = [];
-	for (var i = 0; i < 256; ++i) {
-	  byteToHex[i] = (i + 0x100).toString(16).substr(1);
-	}
-	
-	function bytesToUuid(buf, offset) {
-	  var i = offset || 0;
-	  var bth = byteToHex;
-	  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
-	  return ([bth[buf[i++]], bth[buf[i++]], 
-		bth[buf[i++]], bth[buf[i++]], '-',
-		bth[buf[i++]], bth[buf[i++]], '-',
-		bth[buf[i++]], bth[buf[i++]], '-',
-		bth[buf[i++]], bth[buf[i++]], '-',
-		bth[buf[i++]], bth[buf[i++]],
-		bth[buf[i++]], bth[buf[i++]],
-		bth[buf[i++]], bth[buf[i++]]]).join('');
-	}
-	
-	module.exports = bytesToUuid;
-
-
-/***/ }),
-/* 278 */
-/*!**********************!*\
-  !*** ./~/uuid/v4.js ***!
-  \**********************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	var rng = __webpack_require__(/*! ./lib/rng */ 276);
-	var bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ 277);
-	
-	function v4(options, buf, offset) {
-	  var i = buf && offset || 0;
-	
-	  if (typeof(options) == 'string') {
-	    buf = options === 'binary' ? new Array(16) : null;
-	    options = null;
-	  }
-	  options = options || {};
-	
-	  var rnds = options.random || (options.rng || rng)();
-	
-	  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-	  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-	  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-	
-	  // Copy bytes to buffer, if provided
-	  if (buf) {
-	    for (var ii = 0; ii < 16; ++ii) {
-	      buf[i + ii] = rnds[ii];
-	    }
-	  }
-	
-	  return buf || bytesToUuid(rnds);
-	}
-	
-	module.exports = v4;
-
 
 /***/ })
 /******/ ]);

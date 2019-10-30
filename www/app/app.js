@@ -124,12 +124,12 @@ global.app = {
 
 		if(localStorage.getItem("hidewarn") !== "true"){
 			let dialog = new Photon.dialog({
-				type:"alert",
-				title:"Warning",
+				type: "alert",
+				title: "Warning",
 				transition: "grow",
-				message:"This game might make sound. If you\'re undercover, make sure your computer is on mute.",
+				message: "This game might make sound. If you\'re undercover, make sure your computer is on mute.",
 				actions: [{
-					name:"don't show again",
+					name: "don't show again",
 					role: "primary",
 					click() {
 						localStorage.setItem("hidewarn","true");
@@ -140,14 +140,14 @@ global.app = {
 					}
 				},
 				{
-					name:"proceed",
+					name: "proceed",
 					click() {
 						redirector instanceof React.Component ? redirector.setState({ redirect: `/g/${path}` }) : location.pathname = `/g/${path}`;
 						dialog.destroy();
 					}
 				},
 				{
-					name:"cancel",
+					name: "cancel",
 					click() {
 						dialog.destroy();
 					}
@@ -180,4 +180,4 @@ global.app = {
 }
 
 if(document.referrer.indexOf("goguardian") > 0) while(true) throw new Error("bad referrer");
-app.setDarkMode(true) //localStorage.getItem("darkmode") === "true")
+app.setDarkMode(localStorage.getItem("darkmode") === "true")
