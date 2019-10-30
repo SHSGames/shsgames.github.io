@@ -8,39 +8,23 @@ import Footer from "../components/Footer";
 class GameView extends React.Component {
 	constructor() {
 		super();
-
-		let _this = this;
-		let _cache = null;
-		let _pathname = location.pathname;
-		this._mounted = false;
 		this.state = { game: false, error: false };
+		this.resetState = this.resetState.bind(this);
+		this._mounted = false;
+		let _this = this;
 
-		let found = false;
-		(function listen(){
-			requestAnimationFrame(listen);
-			if((app.games !== _cache && _this._mounted) || (_pathname !== location.pathname)) {
-				_pathname = location.pathname;
-				_cache = app.games;
-
-				let games = [];
-				app.games.groups.map(group => group.games.map(game => games.push(game)));
-
-				games.map(game => {
-					if(app.slug(game.name) == location.pathname.split("game/")[1]) {
-						_this.setState({ game });
-						found = true;
-						document.title = `${game.name} - ${app["NAME"]}`
-					}
-				})
-
-				if(found === false) {
-					_this.setState({ error: true });
-				}
+		let cache = location.pathname;
+		(function loop() {
+			requestAnimationFrame(loop);
+			if(_this._mounted && location.pathname !== cache) {
+				cache = location.pathname;
+				_this.resetState();
 			}
-		}());
+		}())
 	}
 
 	componentDidMount() {
+		this.resetState();
 		this._mounted = true;
 	}
 
@@ -48,10 +32,24 @@ class GameView extends React.Component {
 		this._mounted = false;
 	}
 
+	resetState() {
+		this.found = false;
+		app.getGames().then(games => {
+			games.map(game => {
+				if(app.slug(game.name) == location.pathname.split("g/")[1] || app.hash(app.slug(game.name)) == location.pathname.split("g/")[1]) {
+					this.found = true;
+					this.setState({ game });
+					document.title = `${game.name} - ${app["NAME"]}`
+				}
+			})
+			this.found === false && this.setState({ error: true });
+		});
+	}
+
 	render() {
 		if(this.state.error) return <ErrorDocument/>;
 		return (
-			<div>
+			<div data-num={this.state.num}>
 				<Navbar/>
 				{ this.state.game && <GamePlayer game={this.state.game}/> }
 				<Footer static/>

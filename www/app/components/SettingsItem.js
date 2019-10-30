@@ -25,7 +25,7 @@ class SettingsOption extends React.Component {
 	componentDidMount() {
 		let _this = this;
 		$(`#${this._guid}`).click(function() {
-			let checkbox = $(this).children(".settings-checkbox").children(".checkbox").children("input");
+			let checkbox = $(this).children("div").children(".settings-checkbox").children(".checkbox").children("input");
 			checkbox.prop("checked", !checkbox.prop("checked")).change();
 			_this.props.hasOwnProperty("onClick") && _this.props.onClick();
 		})
@@ -34,10 +34,10 @@ class SettingsOption extends React.Component {
 	render() {
 		return (
 			<div className={`settings-option waves-effect${this.props.disabled ? " disabled":""}`} id={this._guid}>
-				{this.props.errorMessage ? (
+				{this.props.altMessage ? (
 					<div className="error-wrapper">
 						{this.props.children}
-						<div className="error">{this.props.errorMessage}</div>
+						<div className="error">{this.props.altMessage}</div>
 					</div>
 				) : (
 					<div>

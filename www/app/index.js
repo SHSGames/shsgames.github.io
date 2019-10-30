@@ -7,12 +7,10 @@ import ROUTES from "./router";
 import Mprogress from "../src/js/mprogress.min.js";
 import Sidenav from "./components/Sidenav";
 window.Mprogress = Mprogress;
+window.remountOnRouteChange = [];
 
 service("games")()(games => app.games = games);
 window.alert = message => console.warn(`Alert Halted: ${message}`);
-
-import { v1 as uuid } from "uuid";
-app.getCookie("x-storageapi") === undefined && app.setCookie("x-storageapi", uuid());
 
 class App extends React.Component {
 	routeChanged() {

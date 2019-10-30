@@ -1,6 +1,7 @@
 import Home from "./pages/Home";
 import Request from "./pages/Request";
 import GameView from "./pages/GameView";
+import LegacyGame from "./pages/LegacyGame";
 import Developers from "./pages/Developers";
 
 const ROUTES = [{
@@ -15,8 +16,11 @@ const ROUTES = [{
 	title: "Become a Developer",
 	view: Developers
 }, {
-	path: "/game/*",
+	path: "/g/*",
 	view: GameView
+}, {
+	path: "/game/*",
+	view: LegacyGame
 }];
 
 export default ROUTES;

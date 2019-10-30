@@ -1,6 +1,7 @@
 import React from "react";
 import JSEncrypt from "jsencrypt";
 import LAST_BUILD from "../src/LAST_BUILD.txt";
+import uuid from "uuid/v3";
 
 global.PORT = {
     frontend: parseInt(location.port || 80),
@@ -118,7 +119,9 @@ global.app = {
 	},
 
 	launch(game, redirector) {
-		const path = app.slug(game.name);
+		const path = localStorage.getItem("epath") !== "true" ? app.slug(game.name) : app.hash(app.slug(game.name));
+
+
 		if(localStorage.getItem("hidewarn") !== "true"){
 			let dialog = new Photon.dialog({
 				type:"alert",
@@ -131,7 +134,7 @@ global.app = {
 					click() {
 						localStorage.setItem("hidewarn","true");
 						setTimeout(() => {
-							redirector instanceof React.Component ? redirector.setState({ redirect: `/game/${path}` }) : location.pathname = `/game/${path}`;
+							redirector instanceof React.Component ? redirector.setState({ redirect: `/g/${path}` }) : location.pathname = `/g/${path}`;
 							dialog.destroy();
 						},250);
 					}
@@ -139,7 +142,7 @@ global.app = {
 				{
 					name:"proceed",
 					click() {
-						redirector instanceof React.Component ? redirector.setState({ redirect: `/game/${path}` }) : location.pathname = `/game/${path}`;
+						redirector instanceof React.Component ? redirector.setState({ redirect: `/g/${path}` }) : location.pathname = `/g/${path}`;
 						dialog.destroy();
 					}
 				},
@@ -153,7 +156,7 @@ global.app = {
 
 			dialog.open();
 		} else {
-			redirector instanceof React.Component ? redirector.setState({ redirect: `/game/${path}` }) : location.pathname = `/game/${path}`;
+			redirector instanceof React.Component ? redirector.setState({ redirect: `/g/${path}` }) : location.pathname = `/g/${path}`;
 		}
 	},
 
@@ -168,7 +171,11 @@ global.app = {
         let value = "; " + document.cookie;
         let parts = value.split("; " + name + "=");
         if (parts.length == 2) return parts.pop().split(";").shift();
-    }
+    },
+
+	hash(str) {
+		return uuid(str, "4fb09b8a-22fa-4b8e-bd8f-41f4f603908f");
+	}
 
 }
 

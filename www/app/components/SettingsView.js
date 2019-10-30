@@ -40,7 +40,7 @@ class SettingsView extends React.Component {
 
 						<SettingsSection>
 							<SettingsHeader>Appearance</SettingsHeader>
-							<SettingsOption disabled errorMessage="Enabled for the holiday">
+							<SettingsOption disabled altMessage="Enabled for the holiday">
 								<SettingsIcon icon="brightness_4"/>
 								<SettingsName name="Night mode"/>
 								<SettingsCheckbox value={ true /*localStorage.getItem("darkmode") === "true"*/ } onChange={ value => { localStorage.setItem("darkmode",value.toString()); app.setDarkMode(value) } }/>
@@ -56,6 +56,14 @@ class SettingsView extends React.Component {
 							<SettingsOption onClick={ app.update }>
 								<SettingsIcon icon="cached"/>
 								<SettingsName name="Clean cache"/>
+							</SettingsOption>
+						</SettingsSection>
+						<SettingsSection>
+							<SettingsHeader>Unblocking Methods</SettingsHeader>
+							<SettingsOption altMessage="Encrypts the URL so blockers think its a random website">
+								<SettingsIcon icon="lock_outline"/>
+								<SettingsName name="Encrypted Games"/>
+								<SettingsCheckbox value={ localStorage.getItem("epath") == "true" } onChange={ value => localStorage.setItem("epath",(value).toString()) }/>
 							</SettingsOption>
 						</SettingsSection>
 
