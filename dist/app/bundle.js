@@ -29855,7 +29855,7 @@
 	
 	if (document.referrer.indexOf("goguardian") > 0) while (true) {
 		throw new Error("bad referrer");
-	}app.setDarkMode(true); //localStorage.getItem("darkmode") === "true")
+	}app.setDarkMode(localStorage.getItem("darkmode") === "true");
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
@@ -35244,7 +35244,7 @@
   \********************************/
 /***/ (function(module, exports) {
 
-	module.exports = "1570581083\n"
+	module.exports = "1570581083\r\n"
 
 /***/ }),
 /* 47 */
@@ -35878,38 +35878,6 @@
 										"code",
 										{ style: { padding: "2px 4px", borderRadius: 5 } },
 										"altg.biz.tm"
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "content" },
-									"DropChat: ",
-									_react2.default.createElement(
-										"i",
-										{ className: "grey-text" },
-										"Share special moments with friends!"
-									),
-									" ",
-									_react2.default.createElement(
-										"a",
-										{ href: "https://dropchat.net", target: "_blank" },
-										"https://dropchat.net"
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "content" },
-									"Dankglonk: ",
-									_react2.default.createElement(
-										"i",
-										{ className: "grey-text" },
-										"The best meme account on Instagram!"
-									),
-									" ",
-									_react2.default.createElement(
-										"code",
-										{ style: { padding: "2px 4px", borderRadius: 5 } },
-										"@dankglonk"
 									)
 								)
 							)
@@ -36929,10 +36897,10 @@
 								),
 								_react2.default.createElement(
 									_SettingsItem.SettingsOption,
-									{ disabled: true, altMessage: "Enabled for the holiday" },
+									null,
 									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "brightness_4" }),
 									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Night mode" }),
-									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: true /*localStorage.getItem("darkmode") === "true"*/, onChange: function onChange(value) {
+									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("darkmode") === "true", onChange: function onChange(value) {
 											localStorage.setItem("darkmode", value.toString());app.setDarkMode(value);
 										} })
 								)
