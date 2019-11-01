@@ -323,6 +323,11 @@ module.exports = {
 			params: { options: {} }
 		},
 		{
+			name: "Raze 3",
+			engine: "flash",
+			params: { options: { "wmode": "window" } }
+		},
+		{
 			name: "Run 2",
 			engine: "flash",
 			params: { options: { "framerate": "60", "wmode": "direct", "data-target": "game.game" } }
@@ -719,6 +724,15 @@ module.exports = {
 
 		name: "Unity",
 		games: [{
+			name: "Falling Ball",
+			engine: "unity",
+			params: {
+				unityImage: "slope-ball",
+				aspectRatio: 16/9,
+				width: 1200,
+				options: {}
+			}
+		}, {
 			name: "Slope",
 			engine: "unity",
 			params: {

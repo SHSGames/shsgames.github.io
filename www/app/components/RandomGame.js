@@ -15,7 +15,7 @@ class RandomGame extends React.Component {
 	render() {
 		if(this.state.redirect) return <Redirect to={this.state.redirect} push/>;
 		return (
-			<div onClick={this.onClick}>{this.props.children}</div>
+			<div onClick={this.onClick} style={{ display: "inline-block" }}>{this.props.children}</div>
 		);
 	}
 }

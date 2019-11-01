@@ -6,6 +6,7 @@ class UnityPlayer extends React.Component {
 
 		this._arguments = props.game.params.options;
 		$("body").append(`<script src="/src/js/unity.min.js" class="router-reset"></script>`)
+		$("body").append(`<script src="/src/js/unity-loader.min.js" class="router-reset"></script>`)
 
 		this._loader = new Photon.dialog({
 			type:"progress",
