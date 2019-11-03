@@ -208,6 +208,11 @@ module.exports = {
 			params: { options: {} }
 		},
 		{
+			name: "Learn to Fly 2",
+			engine: "flash",
+			params: { options: {} }
+		},
+		{
 			name: "Mutilate a Doll 2",
 			engine: "flash",
 			params: { options: {} }

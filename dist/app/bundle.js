@@ -37696,7 +37696,7 @@
 				if (this.state.redirect) return _react2.default.createElement(_reactRouterDom.Redirect, { to: this.state.redirect, push: true });
 				return _react2.default.createElement(
 					"div",
-					{ onClick: this.onClick },
+					{ onClick: this.onClick, style: { display: "inline-block" } },
 					this.props.children
 				);
 			}
@@ -38397,6 +38397,7 @@
 	
 			_this2._arguments = props.game.params.options;
 			$("body").append("<script src=\"/src/js/unity.min.js\" class=\"router-reset\"></script>");
+			$("body").append("<script src=\"/src/js/unity-loader.min.js\" class=\"router-reset\"></script>");
 	
 			_this2._loader = new Photon.dialog({
 				type: "progress",
