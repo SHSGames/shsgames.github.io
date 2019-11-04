@@ -61,7 +61,7 @@ service("endpoint")({ data })(response => {
 ```
 
 Browser services execute a endpoint located in `/service/web`
-To call endpoint `myEndpoint` the file `/service/web/myEndpoint` must exist and return a module that handles an HTTP request:
+To call endpoint `myEndpoint` the file `/service/web/myEndpoint.js` must exist and return a module that handles an HTTP request:
 ```javascript
 module.exports = (request, response) => {
 	// handle request data
