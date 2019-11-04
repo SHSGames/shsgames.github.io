@@ -65,11 +65,12 @@ To call endpoint `myEndpoint` the file `/service/web/myEndpoint.js` must exist a
 ```javascript
 module.exports = (request, response) => {
 	// handle request data
-	response.done({ success: true }) // or any JSON data
+	response.json({ success: true }) // or any JSON data
 	// You can also combine services like so:
 	service("webservice")(request, response)((params, cookies) => {
 		// Params is a JSON object of the data sent in through the second function of `service` from the browser,
 		// Cookies is a JSON object of the cookies by `key`: `val`
+		response.json({ success: true }) // or any JSON data
 	})
 }
 ```
