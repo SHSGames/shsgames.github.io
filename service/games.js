@@ -729,6 +729,15 @@ module.exports = {
 
 		name: "Unity",
 		games: [{
+			name: "Drift Hunters",
+			engine: "unity",
+			params: {
+				unityImage: "ItchIO",
+				aspectRatio: 16/9,
+				width: 1200,
+				options: {}
+			}
+		}, {
 			name: "Falling Ball",
 			engine: "unity",
 			params: {
