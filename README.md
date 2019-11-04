@@ -61,15 +61,16 @@ service("endpoint")({ data })(response => {
 ```
 
 Browser services execute a endpoint located in `/service/web`
-To call endpoint `myEndpoint` the file `/service/web/myEndpoint` must exist and return a module that handles an HTTP request:
+To call endpoint `myEndpoint` the file `/service/web/myEndpoint.js` must exist and return a module that handles an HTTP request:
 ```javascript
 module.exports = (request, response) => {
 	// handle request data
-	response.done({ success: true }) // or any JSON data
+	response.json({ success: true }) // or any JSON data
 	// You can also combine services like so:
 	service("webservice")(request, response)((params, cookies) => {
 		// Params is a JSON object of the data sent in through the second function of `service` from the browser,
 		// Cookies is a JSON object of the cookies by `key`: `val`
+		response.json({ success: true }) // or any JSON data
 	})
 }
 ```
