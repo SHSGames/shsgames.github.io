@@ -609,6 +609,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Castlevania - Aria of Sorrow",
+            engine: "gba",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Fire Emblem",
             engine: "gba",
             params: {
