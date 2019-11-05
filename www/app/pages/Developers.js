@@ -1,19 +1,11 @@
 import React from "react";
+import README from "../../../README.md";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Markdown from "../components/Markdown";
 
 class Request extends React.Component {
-	constructor() {
-		super();
-		this.state = { markdown: "" };
-	}
-
-	componentDidMount() {
-		service("README")()(markdown => this.setState({ markdown }))
-	}
-
 	render() {
 		return (
 			<div>
@@ -63,7 +55,7 @@ class Request extends React.Component {
 					<div className="col s12">
 						<div className="card-panel md-wrapper">
 							<div className="md-header">README.md</div>
-							<Markdown>{this.state.markdown}</Markdown>
+							<Markdown>{README}</Markdown>
 						</div>
 					</div>
 				</div>

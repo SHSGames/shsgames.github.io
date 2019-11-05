@@ -1,5 +1,5 @@
 module.exports = SRC_DIR => [{
-	test: /\.(txt|pem)$/,
+	test: /\.(txt|pem|md)$/,
 	loader: "text-loader",
 }, {
 	test: /\.js?/,
