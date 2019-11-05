@@ -1,5 +1,6 @@
 import React from "react";
 
+import Body from "../components/Body";
 import ErrorDocument from "./ErrorDocument";
 import GamePlayer from "../components/GamePlayer";
 import Navbar from "../components/Navbar";
@@ -51,7 +52,9 @@ class GameView extends React.Component {
 		return (
 			<div data-num={this.state.num}>
 				<Navbar/>
-				{ this.state.game && <GamePlayer game={this.state.game}/> }
+				<Body>
+					{ this.state.game && <GamePlayer game={this.state.game}/> }
+				</Body>
 				<Footer static/>
 			</div>
 		);

@@ -1,5 +1,6 @@
 import React from "react";
 
+import Body from "../components/Body";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import GameGroup from "../components/GameGroup";
@@ -38,46 +39,46 @@ export default class Home extends React.Component {
 		return (
 			<div>
 				<Navbar/>
-
-				<div className="container row">
-					<div className="col s12 l7">
-						<ul className="scrollnav" data-offset="0">
-							<li><h1>Categories</h1></li>
-							{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <li key={key}><a data-scrollto={"#" + app.slug(group.name)}>{group.name}</a></li>) }
-						</ul>
-						<RandomGame>
-							<a style={{ margin: 0, marginBottom: 8 }} className="autolink waves-effect photon-init">
-								<div className="padding-layer">
-									<div className="external-img invert">
-										<img src="/img/res/shuffle-24px.svg" alt=""/>
+				<Body>
+					<div className="container row">
+						<div className="col s12 l7">
+							<ul className="scrollnav" data-offset="0">
+								<li><h1>Categories</h1></li>
+								{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <li key={key}><a data-scrollto={"#" + app.slug(group.name)}>{group.name}</a></li>) }
+							</ul>
+							<RandomGame>
+								<a style={{ margin: 0, marginBottom: 8 }} className="autolink waves-effect photon-init">
+									<div className="padding-layer">
+										<div className="external-img invert">
+											<img src="/img/res/shuffle-24px.svg" alt=""/>
+										</div>
+										<div className="title">Random Game</div>
+										<p>Why not switch it up a bit?</p>
+										<div className="ref">From {this.state.num} games</div>
 									</div>
-									<div className="title">Random Game</div>
-									<p>Why not switch it up a bit?</p>
-									<div className="ref">From {this.state.num} games</div>
-								</div>
-							</a>
-						</RandomGame>
-					</div>
-					<div className="col s12 l5">
-						<div className="note important">
-							<div className="header"></div>
-							<div className="content"><b>Dont forget: Unblocked versions can be found here</b></div><hr/>
-							{ this.state.alts.map((a,k) => location.origin !== a && <div className="content" key={k}><a href={a}>{a}</a></div>)}
+								</a>
+							</RandomGame>
+						</div>
+						<div className="col s12 l5">
+							<div className="note important">
+								<div className="header"></div>
+								<div className="content"><b>Dont forget: Unblocked versions can be found here</b></div><hr/>
+								{ this.state.alts.map((a,k) => location.origin !== a && <div className="content" key={k}><a href={a}>{a}</a></div>)}
+							</div>
+						</div>
+						<div className="col s12 l5">
+							<div className="note partners">
+								<div className="header"></div>
+								<div className="content"><b>Check out our partners:</b></div><hr/>
+								<div className="content">ALT+G: <i className="grey-text">Our Minecraft server with no rules!</i> <code style={{ padding: "2px 4px", borderRadius: 5}}>altg.biz.tm</code></div>
+							</div>
+						</div>
+						<div className="col s12">
+							<Searchbar/>
+							{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <GameGroup key={key} group={group}/>) }
 						</div>
 					</div>
-					<div className="col s12 l5">
-						<div className="note partners">
-							<div className="header"></div>
-							<div className="content"><b>Check out our partners:</b></div><hr/>
-							<div className="content">ALT+G: <i className="grey-text">Our Minecraft server with no rules!</i> <code style={{ padding: "2px 4px", borderRadius: 5}}>altg.biz.tm</code></div>
-						</div>
-					</div>
-					<div className="col s12">
-						<Searchbar/>
-						{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <GameGroup key={key} group={group}/>) }
-					</div>
-				</div>
-
+				</Body>
 				<Footer static/>
 			</div>
 		)
