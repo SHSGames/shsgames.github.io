@@ -65,11 +65,11 @@
 	
 	var _router2 = _interopRequireDefault(_router);
 	
-	var _mprogressMin = __webpack_require__(/*! ../src/js/mprogress.min.js */ 277);
+	var _mprogressMin = __webpack_require__(/*! ../src/js/mprogress.min.js */ 285);
 	
 	var _mprogressMin2 = _interopRequireDefault(_mprogressMin);
 	
-	var _Sidenav = __webpack_require__(/*! ./components/Sidenav */ 278);
+	var _Sidenav = __webpack_require__(/*! ./components/Sidenav */ 286);
 	
 	var _Sidenav2 = _interopRequireDefault(_Sidenav);
 	
@@ -35595,23 +35595,27 @@
 		value: true
 	});
 	
-	var _Home = __webpack_require__(/*! ./pages/Home */ 52);
+	var _Wiki = __webpack_require__(/*! ./pages/Wiki */ 52);
+	
+	var _Wiki2 = _interopRequireDefault(_Wiki);
+	
+	var _Home = __webpack_require__(/*! ./pages/Home */ 258);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _Request = __webpack_require__(/*! ./pages/Request */ 71);
+	var _Request = __webpack_require__(/*! ./pages/Request */ 268);
 	
 	var _Request2 = _interopRequireDefault(_Request);
 	
-	var _GameView = __webpack_require__(/*! ./pages/GameView */ 72);
+	var _GameView = __webpack_require__(/*! ./pages/GameView */ 269);
 	
 	var _GameView2 = _interopRequireDefault(_GameView);
 	
-	var _LegacyGame = __webpack_require__(/*! ./pages/LegacyGame */ 86);
+	var _LegacyGame = __webpack_require__(/*! ./pages/LegacyGame */ 283);
 	
 	var _LegacyGame2 = _interopRequireDefault(_LegacyGame);
 	
-	var _Developers = __webpack_require__(/*! ./pages/Developers */ 87);
+	var _Developers = __webpack_require__(/*! ./pages/Developers */ 284);
 	
 	var _Developers2 = _interopRequireDefault(_Developers);
 	
@@ -35629,6 +35633,14 @@
 		title: "Become a Developer",
 		view: _Developers2.default
 	}, {
+		path: "/developers/wiki/",
+		title: "Wiki - Become a Developer",
+		view: _Wiki2.default
+	}, {
+		path: "/developers/wiki/:wiki",
+		title: "Wiki - Become a Developer",
+		view: _Wiki2.default
+	}, {
 		path: "/g/*",
 		view: _GameView2.default
 	}, {
@@ -35641,7 +35653,7 @@
 /***/ }),
 /* 52 */
 /*!*******************************!*\
-  !*** ./www/app/pages/Home.js ***!
+  !*** ./www/app/pages/Wiki.js ***!
   \*******************************/
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35657,25 +35669,31 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Footer = __webpack_require__(/*! ../components/Footer */ 53);
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
 	
-	var _Footer2 = _interopRequireDefault(_Footer);
+	var _js = __webpack_require__(/*! dir!../../../wiki/.js */ 53);
 	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 59);
+	var _js2 = _interopRequireDefault(_js);
+	
+	var _README = __webpack_require__(/*! ../../../README.md */ 58);
+	
+	var _README2 = _interopRequireDefault(_README);
+	
+	var _Body = __webpack_require__(/*! ../components/Body */ 59);
+	
+	var _Body2 = _interopRequireDefault(_Body);
+	
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 60);
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _GameGroup = __webpack_require__(/*! ../components/GameGroup */ 62);
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 63);
 	
-	var _GameGroup2 = _interopRequireDefault(_GameGroup);
+	var _Footer2 = _interopRequireDefault(_Footer);
 	
-	var _Searchbar = __webpack_require__(/*! ../components/Searchbar */ 69);
+	var _Markdown = __webpack_require__(/*! ../components/Markdown */ 69);
 	
-	var _Searchbar2 = _interopRequireDefault(_Searchbar);
-	
-	var _RandomGame = __webpack_require__(/*! ../components/RandomGame */ 70);
-	
-	var _RandomGame2 = _interopRequireDefault(_RandomGame);
+	var _Markdown2 = _interopRequireDefault(_Markdown);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35685,57 +35703,285 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var Home = function (_React$Component) {
-		_inherits(Home, _React$Component);
+	var WikiLink = function WikiLink(props) {
+		return _react2.default.createElement(
+			_reactRouterDom.Link,
+			{ to: props.to, onClick: function onClick() {
+					return props.owner.refreshState();
+				} },
+			_react2.default.createElement(
+				"div",
+				{ className: "wikilink waves-effect" },
+				_react2.default.createElement(
+					"i",
+					{ className: "material-icons" },
+					"book"
+				),
+				_react2.default.createElement(
+					"span",
+					null,
+					props.children
+				)
+			)
+		);
+	};
 	
-		function Home() {
-			_classCallCheck(this, Home);
+	var Wiki = function (_React$Component) {
+		_inherits(Wiki, _React$Component);
 	
-			var _this2 = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
+		function Wiki() {
+			_classCallCheck(this, Wiki);
+	
+			var _this = _possibleConstructorReturn(this, (Wiki.__proto__ || Object.getPrototypeOf(Wiki)).call(this));
+	
+			_this.state = {
+				name: null,
+				page: null,
+				home: null
+			};
+	
+			_this.refreshState = _this.refreshState.bind(_this);
+			return _this;
+		}
+	
+		_createClass(Wiki, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				this.refreshState();
+			}
+		}, {
+			key: "refreshState",
+			value: function refreshState() {
+				var _this2 = this;
+	
+				setTimeout(function () {
+					_this2.setState({
+						name: location.pathname.split("/wiki/")[1] + ".md",
+						page: _js2.default[location.pathname.split("/wiki/")[1] + ".md"],
+						home: location.pathname === "/developers/wiki" || location.pathname === "/developers/wiki/"
+					});
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				var _this3 = this;
+	
+				if (this.state.page === null) return null;
+				return _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(_Navbar2.default, null),
+					_react2.default.createElement(
+						_Body2.default,
+						null,
+						_react2.default.createElement(
+							"div",
+							{ className: "row container" },
+							_react2.default.createElement(
+								"div",
+								{ className: "col s12 l3" },
+								_react2.default.createElement(
+									"div",
+									{ style: { marginTop: 8 } },
+									_react2.default.createElement(
+										WikiLink,
+										{ to: "/developers/wiki", owner: this },
+										"README.md"
+									),
+									_react2.default.createElement(
+										"div",
+										{ className: "title" },
+										_react2.default.createElement(
+											"h2",
+											null,
+											"Pages"
+										)
+									),
+									Object.keys(_js2.default).map(function (val, key) {
+										return _react2.default.createElement(
+											WikiLink,
+											{ owner: _this3, key: key, to: "/developers/wiki/" + val.split(".")[0] },
+											val
+										);
+									})
+								)
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "col s12 l9" },
+								_react2.default.createElement(
+									"div",
+									{ className: "card-panel md-wrapper" },
+									_react2.default.createElement(
+										"div",
+										{ className: "md-header" },
+										this.state.home ? "README.md" : this.state.name
+									),
+									_react2.default.createElement(
+										_Markdown2.default,
+										null,
+										this.state.home ? _README2.default : this.state.page.src
+									)
+								)
+							)
+						)
+					),
+					_react2.default.createElement(_Footer2.default, null)
+				);
+			}
+		}]);
+	
+		return Wiki;
+	}(_react2.default.Component);
+	
+	exports.default = Wiki;
+
+/***/ }),
+/* 53 */
+/*!*********************************!*\
+  !*** ./~/dir-loader!./wiki/.js ***!
+  \*********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {module.exports = {
+	  "App.md": {
+	    "src": __webpack_require__(/*! ./App.md */ 55),
+	    "size": 456,
+	    "mtime": "2019-11-05T01:20:24.010Z",
+	    [Symbol.for("__location__")]: [
+	      "App.md"
+	    ],
+	    [Symbol.for("__type__")]: "file",
+	    "__onHMRUpdate__": (function(cb) { module.hot.accept("./App.md", function() { cb(__webpack_require__(/*! ./App.md */ 55)); });})
+	  },
+	  "Game.md": {
+	    "src": __webpack_require__(/*! ./Game.md */ 56),
+	    "size": 333,
+	    "mtime": "2019-11-05T01:29:42.979Z",
+	    [Symbol.for("__location__")]: [
+	      "Game.md"
+	    ],
+	    [Symbol.for("__type__")]: "file",
+	    "__onHMRUpdate__": (function(cb) { module.hot.accept("./Game.md", function() { cb(__webpack_require__(/*! ./Game.md */ 56)); });})
+	  },
+	  "Redirectable.md": {
+	    "src": __webpack_require__(/*! ./Redirectable.md */ 57),
+	    "size": 0,
+	    "mtime": "2019-11-05T01:52:09.455Z",
+	    [Symbol.for("__location__")]: [
+	      "Redirectable.md"
+	    ],
+	    [Symbol.for("__type__")]: "file",
+	    "__onHMRUpdate__": (function(cb) { module.hot.accept("./Redirectable.md", function() { cb(__webpack_require__(/*! ./Redirectable.md */ 57)); });})
+	  },
+	  [Symbol.for("__type__")]: "directory",
+	  [Symbol.for("__location__")]: []
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../~/webpack/buildin/module.js */ 54)(module)))
+
+/***/ }),
+/* 54 */
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
+/***/ (function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ }),
+/* 55 */
+/*!*********************!*\
+  !*** ./wiki/App.md ***!
+  \*********************/
+/***/ (function(module, exports) {
+
+	module.exports = "## Overview\r\nThe `app` object contains many methods that can control SHSGames, for example: launching games, changing settings, ect. all are done through methods in the `app` object.\r\n\r\n### Launch\r\nLaunching games are done through the `app.launch(Game game[, Redirectable redirect])` method.\r\nOnce called, SHSGames will ask the user to make sure there computer is on mute and launch the game.\r\n\r\nRead also: [Game](./Game), [Redirectable](./Redirectable).\r\n"
+
+/***/ }),
+/* 56 */
+/*!**********************!*\
+  !*** ./wiki/Game.md ***!
+  \**********************/
+/***/ (function(module, exports) {
+
+	module.exports = "## Overview\r\nA `Game` is an object that contains all the information that the app needs to launch it.\r\nFor example:\r\n```javascript\r\n{\r\n\tname: \"Run 3\",\r\n\tengine: \"flash\",\r\n\tparams: {\r\n\t\toptions: {\r\n\t\t\tframerate: \"60\",\r\n\t\t\twmode: \"direct\",\r\n\t\t\t\"data-target\": \"game.game\"\r\n\t\t}\r\n\t}\r\n}\r\n```\r\nis the `Game` instance for the game `Run 3`.\r\n"
+
+/***/ }),
+/* 57 */
+/*!******************************!*\
+  !*** ./wiki/Redirectable.md ***!
+  \******************************/
+/***/ (function(module, exports) {
+
+	module.exports = ""
+
+/***/ }),
+/* 58 */
+/*!*******************!*\
+  !*** ./README.md ***!
+  \*******************/
+/***/ (function(module, exports) {
+
+	module.exports = "<p align=\"center\">\r\n  <img src=\"https://shsgames.herokuapp.com/img/dev/banner.png?raw=true\" width=\"50%\">\r\n</p>\r\n<h1 align=\"center\">SHS Games</h1>\r\n\r\n---\r\n\r\n## Prerequisites\r\nEnsure that you have the following installed on your system:\r\n1. NodeJS\r\n\r\n2. Git\r\n\r\n3. Any IDE or code editor (AtomIDE recommended)\r\n\r\n4. Any Bash interpreter (Git Bash recommended)\r\n\r\n## Getting Started\r\n1. Clone this repo to your working directory, you can use the `download ZIP` option or just run `$ git clone https://github.com/SHSGames/SHSGames` in your CWD.\r\n\r\n2. Open the folder named `SHSGames`\r\n\r\n3. Install modules using npm `$ npm install` (this has the potential to take a while on dated hardware or slow internet connections)\r\n\r\n4. After all the modules are installed, open your IDE or editor in the `SHSGames` folder.\r\n\r\n5. Start the development server using `$ npm run dev` (this can also be slow on dated hardware)\r\n\r\n6. Navigate to `http://localhost:8080/`\r\n\r\n7. Begin developing and happy hacking!\r\n\r\n## Testing the Production Build\r\n\r\n1. After you verified that the development build works, use `$ npm run build` to build SHSGames into a production ready bundle (also slow on old hardware). The production version is located in the `/dist` folder.\r\n\r\n2. After the build succeeded, use `$ npm run serve` to launch the production instance of SHSGames.\r\n\r\n3. The production build is served on `http://localhost/`.\r\n\r\n4. Production versions not served from `http://localhost/` will redirect to HTTPS so it is required for professional production environments.\r\n\r\n5. Production builds have an aggressive caching algorithm. Even if the server is shut down, it will display SHSGames. You can use the `Clear cache` option in the settings menu and disable service workers to prevent this.\r\n\r\n## More Information\r\n\r\nMore info can be found on our [Developer's Wiki](https://shsgames.herokuapp.com/developers/wiki).\r\n"
+
+/***/ }),
+/* 59 */
+/*!************************************!*\
+  !*** ./www/app/components/Body.js ***!
+  \************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Body = function (_React$Component) {
+		_inherits(Body, _React$Component);
+	
+		function Body() {
+			_classCallCheck(this, Body);
+	
+			var _this2 = _possibleConstructorReturn(this, (Body.__proto__ || Object.getPrototypeOf(Body)).call(this));
+	
+			_this2._mounted = false;
+			_this2.state = { height: 0 };
 	
 			var _this = _this2;
-			var _cache = null;
-			_this2._mounted = false;
-			_this2.state = { games: [], num: 0, alts: ["https://shsgames.herokuapp.com", "https://shs-games.herokuapp.com"] };
-			(function listen() {
-				requestAnimationFrame(listen);
-				if (app.games !== _cache && _this._mounted) {
-					_cache = app.games;
-					var num = 0;
-					var _iteratorNormalCompletion = true;
-					var _didIteratorError = false;
-					var _iteratorError = undefined;
-	
-					try {
-						for (var _iterator = app.games.groups[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-							var group = _step.value;
-							num += group.games.length;
-						}
-					} catch (err) {
-						_didIteratorError = true;
-						_iteratorError = err;
-					} finally {
-						try {
-							if (!_iteratorNormalCompletion && _iterator.return) {
-								_iterator.return();
-							}
-						} finally {
-							if (_didIteratorError) {
-								throw _iteratorError;
-							}
-						}
-					}
-	
-					_this.setState({ games: app.games, num: num });
-					setTimeout(function () {
-						return Photon.reload();
-					});
-				}
+			(function frame() {
+				requestAnimationFrame(frame);
+				_this._mounted && _this.setState({ height: window.innerHeight - $("footer").height() - 130 });
 			})();
 			return _this2;
 		}
 	
-		_createClass(Home, [{
+		_createClass(Body, [{
 			key: "componentDidMount",
 			value: function componentDidMount() {
 				this._mounted = true;
@@ -35750,159 +35996,475 @@
 			value: function render() {
 				return _react2.default.createElement(
 					"div",
-					null,
-					_react2.default.createElement(_Navbar2.default, null),
-					_react2.default.createElement(
-						"div",
-						{ className: "container row" },
-						_react2.default.createElement(
-							"div",
-							{ className: "col s12 l7" },
-							_react2.default.createElement(
-								"ul",
-								{ className: "scrollnav", "data-offset": "0" },
-								_react2.default.createElement(
-									"li",
-									null,
-									_react2.default.createElement(
-										"h1",
-										null,
-										"Categories"
-									)
-								),
-								this.state.games.length !== 0 && this.state.games.groups.map(function (group, key) {
-									return _react2.default.createElement(
-										"li",
-										{ key: key },
-										_react2.default.createElement(
-											"a",
-											{ "data-scrollto": "#" + app.slug(group.name) },
-											group.name
-										)
-									);
-								})
-							),
-							_react2.default.createElement(
-								_RandomGame2.default,
-								null,
-								_react2.default.createElement(
-									"a",
-									{ style: { margin: 0, marginBottom: 8 }, className: "autolink waves-effect photon-init" },
-									_react2.default.createElement(
-										"div",
-										{ className: "padding-layer" },
-										_react2.default.createElement(
-											"div",
-											{ className: "external-img invert" },
-											_react2.default.createElement("img", { src: "/img/res/shuffle-24px.svg", alt: "" })
-										),
-										_react2.default.createElement(
-											"div",
-											{ className: "title" },
-											"Random Game"
-										),
-										_react2.default.createElement(
-											"p",
-											null,
-											"Why not switch it up a bit?"
-										),
-										_react2.default.createElement(
-											"div",
-											{ className: "ref" },
-											"From ",
-											this.state.num,
-											" games"
-										)
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "col s12 l5" },
-							_react2.default.createElement(
-								"div",
-								{ className: "note important" },
-								_react2.default.createElement("div", { className: "header" }),
-								_react2.default.createElement(
-									"div",
-									{ className: "content" },
-									_react2.default.createElement(
-										"b",
-										null,
-										"Dont forget: Unblocked versions can be found here"
-									)
-								),
-								_react2.default.createElement("hr", null),
-								this.state.alts.map(function (a, k) {
-									return location.origin !== a && _react2.default.createElement(
-										"div",
-										{ className: "content", key: k },
-										_react2.default.createElement(
-											"a",
-											{ href: a },
-											a
-										)
-									);
-								})
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "col s12 l5" },
-							_react2.default.createElement(
-								"div",
-								{ className: "note partners" },
-								_react2.default.createElement("div", { className: "header" }),
-								_react2.default.createElement(
-									"div",
-									{ className: "content" },
-									_react2.default.createElement(
-										"b",
-										null,
-										"Check out our partners:"
-									)
-								),
-								_react2.default.createElement("hr", null),
-								_react2.default.createElement(
-									"div",
-									{ className: "content" },
-									"ALT+G: ",
-									_react2.default.createElement(
-										"i",
-										{ className: "grey-text" },
-										"Our Minecraft server with no rules!"
-									),
-									" ",
-									_react2.default.createElement(
-										"code",
-										{ style: { padding: "2px 4px", borderRadius: 5 } },
-										"altg.biz.tm"
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "col s12" },
-							_react2.default.createElement(_Searchbar2.default, null),
-							this.state.games.length !== 0 && this.state.games.groups.map(function (group, key) {
-								return _react2.default.createElement(_GameGroup2.default, { key: key, group: group });
-							})
-						)
-					),
-					_react2.default.createElement(_Footer2.default, { "static": true })
+					{ style: { minHeight: this.state.height, display: "inline-block", width: "100%" } },
+					this.props.children
 				);
 			}
 		}]);
 	
-		return Home;
+		return Body;
 	}(_react2.default.Component);
 	
-	exports.default = Home;
+	exports.default = Body;
 
 /***/ }),
-/* 53 */
+/* 60 */
+/*!**************************************!*\
+  !*** ./www/app/components/Navbar.js ***!
+  \**************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _SettingsView = __webpack_require__(/*! ./SettingsView */ 61);
+	
+	var _SettingsView2 = _interopRequireDefault(_SettingsView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Navbar = function (_React$Component) {
+		_inherits(Navbar, _React$Component);
+	
+		function Navbar() {
+			_classCallCheck(this, Navbar);
+	
+			return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
+		}
+	
+		_createClass(Navbar, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				setTimeout(function () {
+					return Photon.reload();
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(
+						"div",
+						{ className: "toolbar paper" + (this.props.tabs && " tall" || "") },
+						_react2.default.createElement(
+							"i",
+							{ className: "material-icons waves-effect waves-ink", onClick: function onClick() {
+									return $("#sn-webview").sidenav("open");
+								} },
+							"menu"
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "title" },
+							this.props.children ? this.props.children : app["NAME"]
+						),
+						this.props.tabs && this.props.tabs()
+					),
+					_react2.default.createElement(_SettingsView2.default, null)
+				);
+			}
+		}]);
+	
+		return Navbar;
+	}(_react2.default.Component);
+	
+	exports.default = Navbar;
+
+/***/ }),
+/* 61 */
+/*!********************************************!*\
+  !*** ./www/app/components/SettingsView.js ***!
+  \********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _SettingsItem = __webpack_require__(/*! ./SettingsItem */ 62);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SettingsView = function (_React$Component) {
+		_inherits(SettingsView, _React$Component);
+	
+		function SettingsView() {
+			_classCallCheck(this, SettingsView);
+	
+			var _this2 = _possibleConstructorReturn(this, (SettingsView.__proto__ || Object.getPrototypeOf(SettingsView)).call(this));
+	
+			_this2._mounted = false;
+	
+			_this2._guid = Photon.guid();
+			_this2.state = { flat: true };
+	
+			var _this = _this2;
+			(function observe() {
+				requestAnimationFrame(observe);
+				if (_this._mounted) {
+					_this.setState({ flat: $("#" + _this._guid)[0].scrollTop === 0 });
+				}
+			})();
+			return _this2;
+		}
+	
+		_createClass(SettingsView, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				this._mounted = true;
+				Photon.reload();
+			}
+		}, {
+			key: "componentWillUnmount",
+			value: function componentWillUnmount() {
+				this._mounted = false;
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-view-wrapper", id: "settings-view" },
+					_react2.default.createElement(
+						"div",
+						{ className: "settings-view" },
+						_react2.default.createElement(
+							"div",
+							{ className: "toolbar " + (this.state.flat ? "flat" : "raised") + " white grey-text text-darken-3" },
+							_react2.default.createElement(
+								"i",
+								{ className: "material-icons waves-effect waves-ink waves-classic", onClick: function onClick() {
+										return $("#settings-view").removeClass("active");
+									} },
+								"close"
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "title", style: { userSelect: "none" } },
+								"Settings"
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "content", id: this._guid },
+							_react2.default.createElement(
+								_SettingsItem.SettingsSection,
+								null,
+								_react2.default.createElement(
+									_SettingsItem.SettingsHeader,
+									null,
+									"Appearance"
+								),
+								_react2.default.createElement(
+									_SettingsItem.SettingsOption,
+									null,
+									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "brightness_4" }),
+									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Night mode" }),
+									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("darkmode") === "true", onChange: function onChange(value) {
+											localStorage.setItem("darkmode", value.toString());app.setDarkMode(value);
+										} })
+								)
+							),
+							_react2.default.createElement(
+								_SettingsItem.SettingsSection,
+								null,
+								_react2.default.createElement(
+									_SettingsItem.SettingsHeader,
+									null,
+									"Application"
+								),
+								_react2.default.createElement(
+									_SettingsItem.SettingsOption,
+									null,
+									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "error_outline" }),
+									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Warn about volume" }),
+									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("hidewarn") !== "true", onChange: function onChange(value) {
+											return localStorage.setItem("hidewarn", (!value).toString());
+										} })
+								),
+								_react2.default.createElement(
+									_SettingsItem.SettingsOption,
+									{ onClick: app.update },
+									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "cached" }),
+									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Clean cache" })
+								)
+							),
+							_react2.default.createElement(
+								_SettingsItem.SettingsSection,
+								null,
+								_react2.default.createElement(
+									_SettingsItem.SettingsHeader,
+									null,
+									"Unblocking Methods"
+								),
+								_react2.default.createElement(
+									_SettingsItem.SettingsOption,
+									{ altMessage: "Encrypts the URL so blockers think its a random website" },
+									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "lock_outline" }),
+									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Encrypted Games" }),
+									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("epath") == "true", onChange: function onChange(value) {
+											return localStorage.setItem("epath", value.toString());
+										} })
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+	
+		return SettingsView;
+	}(_react2.default.Component);
+	
+	exports.default = SettingsView;
+
+/***/ }),
+/* 62 */
+/*!********************************************!*\
+  !*** ./www/app/components/SettingsItem.js ***!
+  \********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.SettingsSection = exports.SettingsOption = exports.SettingsName = exports.SettingsIcon = exports.SettingsHeader = exports.SettingsCheckbox = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SettingsHeader = function (_React$Component) {
+		_inherits(SettingsHeader, _React$Component);
+	
+		function SettingsHeader() {
+			_classCallCheck(this, SettingsHeader);
+	
+			return _possibleConstructorReturn(this, (SettingsHeader.__proto__ || Object.getPrototypeOf(SettingsHeader)).apply(this, arguments));
+		}
+	
+		_createClass(SettingsHeader, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-header" },
+					this.props.children
+				);
+			}
+		}]);
+	
+		return SettingsHeader;
+	}(_react2.default.Component);
+	
+	var SettingsSection = function (_React$Component2) {
+		_inherits(SettingsSection, _React$Component2);
+	
+		function SettingsSection() {
+			_classCallCheck(this, SettingsSection);
+	
+			return _possibleConstructorReturn(this, (SettingsSection.__proto__ || Object.getPrototypeOf(SettingsSection)).apply(this, arguments));
+		}
+	
+		_createClass(SettingsSection, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-section" },
+					this.props.children
+				);
+			}
+		}]);
+	
+		return SettingsSection;
+	}(_react2.default.Component);
+	
+	var SettingsOption = function (_React$Component3) {
+		_inherits(SettingsOption, _React$Component3);
+	
+		function SettingsOption() {
+			_classCallCheck(this, SettingsOption);
+	
+			var _this4 = _possibleConstructorReturn(this, (SettingsOption.__proto__ || Object.getPrototypeOf(SettingsOption)).call(this));
+	
+			_this4._guid = Photon.guid();
+			return _this4;
+		}
+	
+		_createClass(SettingsOption, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				var _this = this;
+				$("#" + this._guid).click(function () {
+					var checkbox = $(this).children("div").children(".settings-checkbox").children(".checkbox").children("input");
+					checkbox.prop("checked", !checkbox.prop("checked")).change();
+					_this.props.hasOwnProperty("onClick") && _this.props.onClick();
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-option waves-effect" + (this.props.disabled ? " disabled" : ""), id: this._guid },
+					this.props.altMessage ? _react2.default.createElement(
+						"div",
+						{ className: "error-wrapper" },
+						this.props.children,
+						_react2.default.createElement(
+							"div",
+							{ className: "error" },
+							this.props.altMessage
+						)
+					) : _react2.default.createElement(
+						"div",
+						null,
+						this.props.children
+					)
+				);
+			}
+		}]);
+	
+		return SettingsOption;
+	}(_react2.default.Component);
+	
+	var SettingsIcon = function (_React$Component4) {
+		_inherits(SettingsIcon, _React$Component4);
+	
+		function SettingsIcon() {
+			_classCallCheck(this, SettingsIcon);
+	
+			return _possibleConstructorReturn(this, (SettingsIcon.__proto__ || Object.getPrototypeOf(SettingsIcon)).apply(this, arguments));
+		}
+	
+		_createClass(SettingsIcon, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"i",
+					{ className: "settings-icon material-icons" },
+					this.props.icon
+				);
+			}
+		}]);
+	
+		return SettingsIcon;
+	}(_react2.default.Component);
+	
+	var SettingsName = function (_React$Component5) {
+		_inherits(SettingsName, _React$Component5);
+	
+		function SettingsName() {
+			_classCallCheck(this, SettingsName);
+	
+			return _possibleConstructorReturn(this, (SettingsName.__proto__ || Object.getPrototypeOf(SettingsName)).apply(this, arguments));
+		}
+	
+		_createClass(SettingsName, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-name" },
+					this.props.name
+				);
+			}
+		}]);
+	
+		return SettingsName;
+	}(_react2.default.Component);
+	
+	var SettingsCheckbox = function (_React$Component6) {
+		_inherits(SettingsCheckbox, _React$Component6);
+	
+		function SettingsCheckbox() {
+			_classCallCheck(this, SettingsCheckbox);
+	
+			var _this7 = _possibleConstructorReturn(this, (SettingsCheckbox.__proto__ || Object.getPrototypeOf(SettingsCheckbox)).call(this));
+	
+			_this7._guid = Photon.guid();
+			return _this7;
+		}
+	
+		_createClass(SettingsCheckbox, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				var _this = this;
+				$("#" + this._guid).change(function () {
+					_this.props.onChange($(this).prop("checked"));
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "settings-checkbox" },
+					_react2.default.createElement(
+						"div",
+						{ className: "checkbox" },
+						_react2.default.createElement("input", { type: "checkbox", label: "0", defaultChecked: this.props.value, id: this._guid })
+					)
+				);
+			}
+		}]);
+	
+		return SettingsCheckbox;
+	}(_react2.default.Component);
+	
+	exports.SettingsCheckbox = SettingsCheckbox;
+	exports.SettingsHeader = SettingsHeader;
+	exports.SettingsIcon = SettingsIcon;
+	exports.SettingsName = SettingsName;
+	exports.SettingsOption = SettingsOption;
+	exports.SettingsSection = SettingsSection;
+
+/***/ }),
+/* 63 */
 /*!**************************************!*\
   !*** ./www/app/components/Footer.js ***!
   \**************************************/
@@ -35920,7 +36482,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	__webpack_require__(/*! ./Footer.less */ 54);
+	__webpack_require__(/*! ./Footer.less */ 64);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35956,7 +36518,7 @@
 					null,
 					_react2.default.createElement(
 						"footer",
-						{ className: this.props.static && "static" },
+						null,
 						_react2.default.createElement(
 							"div",
 							{ className: "container" },
@@ -36051,14 +36613,14 @@
 	exports.default = Footer;
 
 /***/ }),
-/* 54 */
+/* 64 */
 /*!****************************************!*\
   !*** ./www/app/components/Footer.less ***!
   \****************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./Footer.less */ 55);
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./Footer.less */ 65);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -36072,7 +36634,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 57)(content, options);
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 67)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -36104,20 +36666,20 @@
 	}
 
 /***/ }),
-/* 55 */
+/* 65 */
 /*!***********************************************************************************************!*\
   !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/Footer.less ***!
   \***********************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 56)(false);
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 66)(false);
 	// Module
 	exports.push([module.id, "footer {\n  background: #191919;\n  border-color: transparent;\n}\nfooter .footer-copyright {\n  background: #141414;\n  color: rgba(255, 255, 255, 0.7);\n}\nfooter h3 {\n  font-family: Roboto Mono;\n  display: inline-block;\n  padding: 12px 0;\n  margin: 0;\n  margin-bottom: -4px;\n  border-bottom: 2px solid #d1d1d1;\n  text-transform: uppercase;\n  letter-spacing: 8px;\n}\n", ""]);
 	
 
 
 /***/ }),
-/* 56 */
+/* 66 */
 /*!******************************************!*\
   !*** ./~/css-loader/dist/runtime/api.js ***!
   \******************************************/
@@ -36210,7 +36772,7 @@
 	}
 
 /***/ }),
-/* 57 */
+/* 67 */
 /*!*****************************************!*\
   !*** ./~/style-loader/lib/addStyles.js ***!
   \*****************************************/
@@ -36282,7 +36844,7 @@
 	var	singletonCounter = 0;
 	var	stylesInsertedAtTop = [];
 	
-	var	fixUrls = __webpack_require__(/*! ./urls */ 58);
+	var	fixUrls = __webpack_require__(/*! ./urls */ 68);
 	
 	module.exports = function(list, options) {
 		if (true) {
@@ -36619,7 +37181,7 @@
 
 
 /***/ }),
-/* 58 */
+/* 68 */
 /*!************************************!*\
   !*** ./~/style-loader/lib/urls.js ***!
   \************************************/
@@ -36717,2335 +37279,7 @@
 
 
 /***/ }),
-/* 59 */
-/*!**************************************!*\
-  !*** ./www/app/components/Navbar.js ***!
-  \**************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _SettingsView = __webpack_require__(/*! ./SettingsView */ 60);
-	
-	var _SettingsView2 = _interopRequireDefault(_SettingsView);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Navbar = function (_React$Component) {
-		_inherits(Navbar, _React$Component);
-	
-		function Navbar() {
-			_classCallCheck(this, Navbar);
-	
-			return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
-		}
-	
-		_createClass(Navbar, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				setTimeout(function () {
-					return Photon.reload();
-				});
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					null,
-					_react2.default.createElement(
-						"div",
-						{ className: "toolbar paper" + (this.props.tabs && " tall" || "") },
-						_react2.default.createElement(
-							"i",
-							{ className: "material-icons waves-effect waves-ink", onClick: function onClick() {
-									return $("#sn-webview").sidenav("open");
-								} },
-							"menu"
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "title" },
-							this.props.children ? this.props.children : app["NAME"]
-						),
-						this.props.tabs && this.props.tabs()
-					),
-					_react2.default.createElement(_SettingsView2.default, null)
-				);
-			}
-		}]);
-	
-		return Navbar;
-	}(_react2.default.Component);
-	
-	exports.default = Navbar;
-
-/***/ }),
-/* 60 */
-/*!********************************************!*\
-  !*** ./www/app/components/SettingsView.js ***!
-  \********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _SettingsItem = __webpack_require__(/*! ./SettingsItem */ 61);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var SettingsView = function (_React$Component) {
-		_inherits(SettingsView, _React$Component);
-	
-		function SettingsView() {
-			_classCallCheck(this, SettingsView);
-	
-			var _this2 = _possibleConstructorReturn(this, (SettingsView.__proto__ || Object.getPrototypeOf(SettingsView)).call(this));
-	
-			_this2._mounted = false;
-	
-			_this2._guid = Photon.guid();
-			_this2.state = { flat: true };
-	
-			var _this = _this2;
-			(function observe() {
-				requestAnimationFrame(observe);
-				if (_this._mounted) {
-					_this.setState({ flat: $("#" + _this._guid)[0].scrollTop === 0 });
-				}
-			})();
-			return _this2;
-		}
-	
-		_createClass(SettingsView, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				this._mounted = true;
-				Photon.reload();
-			}
-		}, {
-			key: "componentWillUnmount",
-			value: function componentWillUnmount() {
-				this._mounted = false;
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "settings-view-wrapper", id: "settings-view" },
-					_react2.default.createElement(
-						"div",
-						{ className: "settings-view" },
-						_react2.default.createElement(
-							"div",
-							{ className: "toolbar " + (this.state.flat ? "flat" : "raised") + " white grey-text text-darken-3" },
-							_react2.default.createElement(
-								"i",
-								{ className: "material-icons waves-effect waves-ink waves-classic", onClick: function onClick() {
-										return $("#settings-view").removeClass("active");
-									} },
-								"close"
-							),
-							_react2.default.createElement(
-								"div",
-								{ className: "title", style: { userSelect: "none" } },
-								"Settings"
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "content", id: this._guid },
-							_react2.default.createElement(
-								_SettingsItem.SettingsSection,
-								null,
-								_react2.default.createElement(
-									_SettingsItem.SettingsHeader,
-									null,
-									"Appearance"
-								),
-								_react2.default.createElement(
-									_SettingsItem.SettingsOption,
-									null,
-									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "brightness_4" }),
-									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Night mode" }),
-									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("darkmode") === "true", onChange: function onChange(value) {
-											localStorage.setItem("darkmode", value.toString());app.setDarkMode(value);
-										} })
-								)
-							),
-							_react2.default.createElement(
-								_SettingsItem.SettingsSection,
-								null,
-								_react2.default.createElement(
-									_SettingsItem.SettingsHeader,
-									null,
-									"Application"
-								),
-								_react2.default.createElement(
-									_SettingsItem.SettingsOption,
-									null,
-									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "error_outline" }),
-									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Warn about volume" }),
-									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("hidewarn") !== "true", onChange: function onChange(value) {
-											return localStorage.setItem("hidewarn", (!value).toString());
-										} })
-								),
-								_react2.default.createElement(
-									_SettingsItem.SettingsOption,
-									{ onClick: app.update },
-									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "cached" }),
-									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Clean cache" })
-								)
-							),
-							_react2.default.createElement(
-								_SettingsItem.SettingsSection,
-								null,
-								_react2.default.createElement(
-									_SettingsItem.SettingsHeader,
-									null,
-									"Unblocking Methods"
-								),
-								_react2.default.createElement(
-									_SettingsItem.SettingsOption,
-									{ altMessage: "Encrypts the URL so blockers think its a random website" },
-									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "lock_outline" }),
-									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Encrypted Games" }),
-									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("epath") == "true", onChange: function onChange(value) {
-											return localStorage.setItem("epath", value.toString());
-										} })
-								)
-							)
-						)
-					)
-				);
-			}
-		}]);
-	
-		return SettingsView;
-	}(_react2.default.Component);
-	
-	exports.default = SettingsView;
-
-/***/ }),
-/* 61 */
-/*!********************************************!*\
-  !*** ./www/app/components/SettingsItem.js ***!
-  \********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.SettingsSection = exports.SettingsOption = exports.SettingsName = exports.SettingsIcon = exports.SettingsHeader = exports.SettingsCheckbox = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var SettingsHeader = function (_React$Component) {
-		_inherits(SettingsHeader, _React$Component);
-	
-		function SettingsHeader() {
-			_classCallCheck(this, SettingsHeader);
-	
-			return _possibleConstructorReturn(this, (SettingsHeader.__proto__ || Object.getPrototypeOf(SettingsHeader)).apply(this, arguments));
-		}
-	
-		_createClass(SettingsHeader, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "settings-header" },
-					this.props.children
-				);
-			}
-		}]);
-	
-		return SettingsHeader;
-	}(_react2.default.Component);
-	
-	var SettingsSection = function (_React$Component2) {
-		_inherits(SettingsSection, _React$Component2);
-	
-		function SettingsSection() {
-			_classCallCheck(this, SettingsSection);
-	
-			return _possibleConstructorReturn(this, (SettingsSection.__proto__ || Object.getPrototypeOf(SettingsSection)).apply(this, arguments));
-		}
-	
-		_createClass(SettingsSection, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "settings-section" },
-					this.props.children
-				);
-			}
-		}]);
-	
-		return SettingsSection;
-	}(_react2.default.Component);
-	
-	var SettingsOption = function (_React$Component3) {
-		_inherits(SettingsOption, _React$Component3);
-	
-		function SettingsOption() {
-			_classCallCheck(this, SettingsOption);
-	
-			var _this4 = _possibleConstructorReturn(this, (SettingsOption.__proto__ || Object.getPrototypeOf(SettingsOption)).call(this));
-	
-			_this4._guid = Photon.guid();
-			return _this4;
-		}
-	
-		_createClass(SettingsOption, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				var _this = this;
-				$("#" + this._guid).click(function () {
-					var checkbox = $(this).children("div").children(".settings-checkbox").children(".checkbox").children("input");
-					checkbox.prop("checked", !checkbox.prop("checked")).change();
-					_this.props.hasOwnProperty("onClick") && _this.props.onClick();
-				});
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "settings-option waves-effect" + (this.props.disabled ? " disabled" : ""), id: this._guid },
-					this.props.altMessage ? _react2.default.createElement(
-						"div",
-						{ className: "error-wrapper" },
-						this.props.children,
-						_react2.default.createElement(
-							"div",
-							{ className: "error" },
-							this.props.altMessage
-						)
-					) : _react2.default.createElement(
-						"div",
-						null,
-						this.props.children
-					)
-				);
-			}
-		}]);
-	
-		return SettingsOption;
-	}(_react2.default.Component);
-	
-	var SettingsIcon = function (_React$Component4) {
-		_inherits(SettingsIcon, _React$Component4);
-	
-		function SettingsIcon() {
-			_classCallCheck(this, SettingsIcon);
-	
-			return _possibleConstructorReturn(this, (SettingsIcon.__proto__ || Object.getPrototypeOf(SettingsIcon)).apply(this, arguments));
-		}
-	
-		_createClass(SettingsIcon, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"i",
-					{ className: "settings-icon material-icons" },
-					this.props.icon
-				);
-			}
-		}]);
-	
-		return SettingsIcon;
-	}(_react2.default.Component);
-	
-	var SettingsName = function (_React$Component5) {
-		_inherits(SettingsName, _React$Component5);
-	
-		function SettingsName() {
-			_classCallCheck(this, SettingsName);
-	
-			return _possibleConstructorReturn(this, (SettingsName.__proto__ || Object.getPrototypeOf(SettingsName)).apply(this, arguments));
-		}
-	
-		_createClass(SettingsName, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "settings-name" },
-					this.props.name
-				);
-			}
-		}]);
-	
-		return SettingsName;
-	}(_react2.default.Component);
-	
-	var SettingsCheckbox = function (_React$Component6) {
-		_inherits(SettingsCheckbox, _React$Component6);
-	
-		function SettingsCheckbox() {
-			_classCallCheck(this, SettingsCheckbox);
-	
-			var _this7 = _possibleConstructorReturn(this, (SettingsCheckbox.__proto__ || Object.getPrototypeOf(SettingsCheckbox)).call(this));
-	
-			_this7._guid = Photon.guid();
-			return _this7;
-		}
-	
-		_createClass(SettingsCheckbox, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				var _this = this;
-				$("#" + this._guid).change(function () {
-					_this.props.onChange($(this).prop("checked"));
-				});
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "settings-checkbox" },
-					_react2.default.createElement(
-						"div",
-						{ className: "checkbox" },
-						_react2.default.createElement("input", { type: "checkbox", label: "0", defaultChecked: this.props.value, id: this._guid })
-					)
-				);
-			}
-		}]);
-	
-		return SettingsCheckbox;
-	}(_react2.default.Component);
-	
-	exports.SettingsCheckbox = SettingsCheckbox;
-	exports.SettingsHeader = SettingsHeader;
-	exports.SettingsIcon = SettingsIcon;
-	exports.SettingsName = SettingsName;
-	exports.SettingsOption = SettingsOption;
-	exports.SettingsSection = SettingsSection;
-
-/***/ }),
-/* 62 */
-/*!*****************************************!*\
-  !*** ./www/app/components/GameGroup.js ***!
-  \*****************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	__webpack_require__(/*! ./GameGroup.less */ 63);
-	
-	var _GameCard = __webpack_require__(/*! ./GameCard */ 65);
-	
-	var _GameCard2 = _interopRequireDefault(_GameCard);
-	
-	var _Adview = __webpack_require__(/*! ./Adview */ 68);
-	
-	var _Adview2 = _interopRequireDefault(_Adview);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var GameGroup = function (_React$Component) {
-		_inherits(GameGroup, _React$Component);
-	
-		function GameGroup() {
-			_classCallCheck(this, GameGroup);
-	
-			return _possibleConstructorReturn(this, (GameGroup.__proto__ || Object.getPrototypeOf(GameGroup)).apply(this, arguments));
-		}
-	
-		_createClass(GameGroup, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "gamegroup" },
-					_react2.default.createElement(_Adview2.default, null),
-					_react2.default.createElement(
-						"div",
-						{ className: "title" },
-						_react2.default.createElement(
-							"h2",
-							{ id: app.slug(this.props.group.name) },
-							this.props.group.name
-						)
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "row" },
-						this.props.group.games.map(function (game, key) {
-							return _react2.default.createElement(_GameCard2.default, { game: game, key: key });
-						})
-					)
-				);
-			}
-		}]);
-	
-		return GameGroup;
-	}(_react2.default.Component);
-	
-	exports.default = GameGroup;
-
-/***/ }),
-/* 63 */
-/*!*******************************************!*\
-  !*** ./www/app/components/GameGroup.less ***!
-  \*******************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameGroup.less */ 64);
-	
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	
-	var transform;
-	var insertInto;
-	
-	
-	
-	var options = {"hmr":true}
-	
-	options.transform = transform
-	options.insertInto = undefined;
-	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 57)(content, options);
-	
-	if(content.locals) module.exports = content.locals;
-	
-	if(false) {
-		module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameGroup.less", function() {
-			var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameGroup.less");
-	
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-	
-			var locals = (function(a, b) {
-				var key, idx = 0;
-	
-				for(key in a) {
-					if(!b || a[key] !== b[key]) return false;
-					idx++;
-				}
-	
-				for(key in b) idx--;
-	
-				return idx === 0;
-			}(content.locals, newContent.locals));
-	
-			if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-	
-			update(newContent);
-		});
-	
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 64 */
-/*!**************************************************************************************************!*\
-  !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameGroup.less ***!
-  \**************************************************************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 56)(false);
-	// Module
-	exports.push([module.id, ".gamegroup .row {\n  margin: 0 -4px;\n}\n", ""]);
-	
-
-
-/***/ }),
-/* 65 */
-/*!****************************************!*\
-  !*** ./www/app/components/GameCard.js ***!
-  \****************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
-	
-	__webpack_require__(/*! ./GameCard.less */ 66);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var GameCard = function (_React$Component) {
-		_inherits(GameCard, _React$Component);
-	
-		function GameCard() {
-			_classCallCheck(this, GameCard);
-	
-			var _this = _possibleConstructorReturn(this, (GameCard.__proto__ || Object.getPrototypeOf(GameCard)).call(this));
-	
-			_this.state = { redirect: null };
-			return _this;
-		}
-	
-		_createClass(GameCard, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				setTimeout(function () {
-					return new LazyLoad({ elements_selector: ".thumbnail" });
-				});
-			}
-		}, {
-			key: "componentDidUpdate",
-			value: function componentDidUpdate() {
-				this.state.redirect !== null && this.setState({ redirect: null });
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				var _this2 = this;
-	
-				if (this.state.redirect) return _react2.default.createElement(_reactRouterDom.Redirect, { to: this.state.redirect, push: true });
-				return _react2.default.createElement(
-					"div",
-					{ className: "col s12 m6 l4 xl3" },
-					_react2.default.createElement(
-						"div",
-						{ className: "gamecard card" },
-						_react2.default.createElement(
-							"div",
-							{ className: "card-content" },
-							_react2.default.createElement(
-								"div",
-								{ className: "card-title" },
-								this.props.game.name
-							),
-							_react2.default.createElement(
-								"div",
-								{ className: "thumbnail-wrapper" },
-								_react2.default.createElement("img", { "data-src": app.service + "/gcp/thumbs/" + app.slug(this.props.game.name) + ".jpg", alt: "", className: "thumbnail" })
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "card-action" },
-							_react2.default.createElement(
-								"a",
-								{ className: "btn flat waves-effect primary", onClick: function onClick() {
-										return app.launch(_this2.props.game, _this2);
-									} },
-								"play"
-							)
-						)
-					)
-				);
-			}
-		}]);
-	
-		return GameCard;
-	}(_react2.default.Component);
-	
-	exports.default = GameCard;
-
-/***/ }),
-/* 66 */
-/*!******************************************!*\
-  !*** ./www/app/components/GameCard.less ***!
-  \******************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameCard.less */ 67);
-	
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	
-	var transform;
-	var insertInto;
-	
-	
-	
-	var options = {"hmr":true}
-	
-	options.transform = transform
-	options.insertInto = undefined;
-	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 57)(content, options);
-	
-	if(content.locals) module.exports = content.locals;
-	
-	if(false) {
-		module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameCard.less", function() {
-			var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameCard.less");
-	
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-	
-			var locals = (function(a, b) {
-				var key, idx = 0;
-	
-				for(key in a) {
-					if(!b || a[key] !== b[key]) return false;
-					idx++;
-				}
-	
-				for(key in b) idx--;
-	
-				return idx === 0;
-			}(content.locals, newContent.locals));
-	
-			if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-	
-			update(newContent);
-		});
-	
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 67 */
-/*!*************************************************************************************************!*\
-  !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameCard.less ***!
-  \*************************************************************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 56)(false);
-	// Module
-	exports.push([module.id, ".gamecard .card-content .card-title {\n  margin: -8px 0;\n  font-size: 22px;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n}\n.gamecard .card-content .thumbnail-wrapper {\n  margin: -24px;\n  margin-top: 24px;\n  padding-top: 56.25%;\n  position: relative;\n}\n.gamecard .card-content .thumbnail-wrapper .thumbnail {\n  pointer-events: none;\n  position: absolute;\n  width: 100%;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.gamecard .card-content .thumbnail-wrapper .thumbnail.pixelated {\n  image-rendering: pixelated;\n}\n.gamecard .card-action:not(.offline) {\n  border: none;\n}\n", ""]);
-	
-
-
-/***/ }),
-/* 68 */
-/*!**************************************!*\
-  !*** ./www/app/components/Adview.js ***!
-  \**************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Adview = function (_React$Component) {
-		_inherits(Adview, _React$Component);
-	
-		function Adview() {
-			_classCallCheck(this, Adview);
-	
-			var _this = _possibleConstructorReturn(this, (Adview.__proto__ || Object.getPrototypeOf(Adview)).call(this));
-	
-			_this.state = { visible: true };
-			return _this;
-		}
-	
-		_createClass(Adview, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				try {
-					(adsbygoogle = window.adsbygoogle || []).push({});
-				} catch (e) {
-					this.setState({ visible: false });
-					console.warn("Ads not shown. Network does not support.");
-				}
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return !this.state.visible ? null : _react2.default.createElement("ins", { className: "adsbygoogle",
-					style: { display: "block", marginTop: 8 },
-					"data-ad-format": "fluid",
-					"data-ad-layout-key": "-g7-u+8l-8s-d3",
-					"data-ad-client": "ca-pub-6128732932572955",
-					"data-ad-slot": "8757072245" });
-			}
-		}]);
-	
-		return Adview;
-	}(_react2.default.Component);
-	
-	exports.default = Adview;
-
-/***/ }),
 /* 69 */
-/*!*****************************************!*\
-  !*** ./www/app/components/Searchbar.js ***!
-  \*****************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Searchbar = function (_React$Component) {
-		_inherits(Searchbar, _React$Component);
-	
-		function Searchbar() {
-			_classCallCheck(this, Searchbar);
-	
-			return _possibleConstructorReturn(this, (Searchbar.__proto__ || Object.getPrototypeOf(Searchbar)).apply(this, arguments));
-		}
-	
-		_createClass(Searchbar, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				$("#search").on("keyup", function () {
-					var v = $(this).val();
-	
-					$(".gamecard").parent().removeClass("hidden");
-					$(".gamegroup").removeClass("hidden");
-	
-					$(".gamecard").each(function () {
-						if ($(this).children(".card-content").children(".card-title").text().toLowerCase().match(v.toLowerCase()) === null) {
-							$(this).parent().addClass("hidden");
-	
-							var hidden = true;
-							$(this).parents(".gamegroup").children(".row").children(".col").each(function () {
-								if ($(this).hasClass("hidden") === false) {
-									hidden = false;
-								}
-							});
-	
-							hidden && $(this).parents(".gamegroup").addClass("hidden");
-						}
-					});
-				});
-	
-				document.addEventListener("keydown", function (e) {
-					if (e.ctrlKey && e.which === 70) {
-						e.preventDefault();
-						$("#search").focus();
-					}
-				});
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "search-wrapper" },
-					_react2.default.createElement(
-						"i",
-						{ className: "material-icons" },
-						"search"
-					),
-					_react2.default.createElement("input", { type: "text", placeholder: "Search", id: "search" })
-				);
-			}
-		}]);
-	
-		return Searchbar;
-	}(_react2.default.Component);
-	
-	exports.default = Searchbar;
-
-/***/ }),
-/* 70 */
-/*!******************************************!*\
-  !*** ./www/app/components/RandomGame.js ***!
-  \******************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var RandomGame = function (_React$Component) {
-		_inherits(RandomGame, _React$Component);
-	
-		function RandomGame() {
-			_classCallCheck(this, RandomGame);
-	
-			var _this = _possibleConstructorReturn(this, (RandomGame.__proto__ || Object.getPrototypeOf(RandomGame)).call(this));
-	
-			_this.state = { redirect: null };
-			_this.onClick = _this.onClick.bind(_this);
-			return _this;
-		}
-	
-		_createClass(RandomGame, [{
-			key: "onClick",
-			value: function onClick() {
-				var _this2 = this;
-	
-				app.random().then(function (game) {
-					return app.launch(game, _this2);
-				});
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				if (this.state.redirect) return _react2.default.createElement(_reactRouterDom.Redirect, { to: this.state.redirect, push: true });
-				return _react2.default.createElement(
-					"div",
-					{ onClick: this.onClick, style: { display: "inline-block" } },
-					this.props.children
-				);
-			}
-		}]);
-	
-		return RandomGame;
-	}(_react2.default.Component);
-	
-	exports.default = RandomGame;
-
-/***/ }),
-/* 71 */
-/*!**********************************!*\
-  !*** ./www/app/pages/Request.js ***!
-  \**********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 59);
-	
-	var _Navbar2 = _interopRequireDefault(_Navbar);
-	
-	var _Footer = __webpack_require__(/*! ../components/Footer */ 53);
-	
-	var _Footer2 = _interopRequireDefault(_Footer);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Request = function (_React$Component) {
-		_inherits(Request, _React$Component);
-	
-		function Request() {
-			_classCallCheck(this, Request);
-	
-			return _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).apply(this, arguments));
-		}
-	
-		_createClass(Request, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					null,
-					_react2.default.createElement(_Navbar2.default, null),
-					_react2.default.createElement(
-						"div",
-						{ className: "container", style: { maxWidth: 512 } },
-						_react2.default.createElement(
-							"div",
-							{ className: "title" },
-							_react2.default.createElement(
-								"h2",
-								null,
-								"Request"
-							)
-						),
-						_react2.default.createElement(
-							"iframe",
-							{ src: "https://docs.google.com/forms/d/e/1FAIpQLSdYfBSNxPLPYS87V8F5H_srzNHeMyR0GQ-ronruWZs1FzGbfQ/viewform?embedded=true", width: "640", height: "1512", frameBorder: "0", marginHeight: "0", marginWidth: "0", style: { margin: "0 -26px" } },
-							"Loading\u2026"
-						)
-					),
-					_react2.default.createElement(_Footer2.default, null)
-				);
-			}
-		}]);
-	
-		return Request;
-	}(_react2.default.Component);
-	
-	exports.default = Request;
-
-/***/ }),
-/* 72 */
-/*!***********************************!*\
-  !*** ./www/app/pages/GameView.js ***!
-  \***********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _ErrorDocument = __webpack_require__(/*! ./ErrorDocument */ 73);
-	
-	var _ErrorDocument2 = _interopRequireDefault(_ErrorDocument);
-	
-	var _GamePlayer = __webpack_require__(/*! ../components/GamePlayer */ 74);
-	
-	var _GamePlayer2 = _interopRequireDefault(_GamePlayer);
-	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 59);
-	
-	var _Navbar2 = _interopRequireDefault(_Navbar);
-	
-	var _Footer = __webpack_require__(/*! ../components/Footer */ 53);
-	
-	var _Footer2 = _interopRequireDefault(_Footer);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var GameView = function (_React$Component) {
-		_inherits(GameView, _React$Component);
-	
-		function GameView() {
-			_classCallCheck(this, GameView);
-	
-			var _this2 = _possibleConstructorReturn(this, (GameView.__proto__ || Object.getPrototypeOf(GameView)).call(this));
-	
-			_this2.state = { game: false, error: false };
-			_this2.resetState = _this2.resetState.bind(_this2);
-			_this2._mounted = false;
-			var _this = _this2;
-	
-			var cache = location.pathname;
-			(function loop() {
-				requestAnimationFrame(loop);
-				if (_this._mounted && location.pathname !== cache) {
-					cache = location.pathname;
-					_this.resetState();
-				}
-			})();
-			return _this2;
-		}
-	
-		_createClass(GameView, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				this.resetState();
-				this._mounted = true;
-			}
-		}, {
-			key: "componentWillUnmount",
-			value: function componentWillUnmount() {
-				this._mounted = false;
-			}
-		}, {
-			key: "resetState",
-			value: function resetState() {
-				var _this3 = this;
-	
-				this.found = false;
-				app.getGames().then(function (games) {
-					games.map(function (game) {
-						if (app.slug(game.name) == location.pathname.split("g/")[1] || app.hash(app.slug(game.name)) == location.pathname.split("g/")[1]) {
-							_this3.found = true;
-							_this3.setState({ game: game });
-							document.title = game.name + " - " + app["NAME"];
-						}
-					});
-					_this3.found === false && _this3.setState({ error: true });
-				});
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				if (this.state.error) return _react2.default.createElement(_ErrorDocument2.default, null);
-				return _react2.default.createElement(
-					"div",
-					{ "data-num": this.state.num },
-					_react2.default.createElement(_Navbar2.default, null),
-					this.state.game && _react2.default.createElement(_GamePlayer2.default, { game: this.state.game }),
-					_react2.default.createElement(_Footer2.default, { "static": true })
-				);
-			}
-		}]);
-	
-		return GameView;
-	}(_react2.default.Component);
-	
-	exports.default = GameView;
-
-/***/ }),
-/* 73 */
-/*!****************************************!*\
-  !*** ./www/app/pages/ErrorDocument.js ***!
-  \****************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ErrorDocument = function (_React$Component) {
-		_inherits(ErrorDocument, _React$Component);
-	
-		function ErrorDocument() {
-			_classCallCheck(this, ErrorDocument);
-	
-			return _possibleConstructorReturn(this, (ErrorDocument.__proto__ || Object.getPrototypeOf(ErrorDocument)).apply(this, arguments));
-		}
-	
-		_createClass(ErrorDocument, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "og-vh-center" },
-					_react2.default.createElement(
-						"center",
-						null,
-						_react2.default.createElement("img", { src: "/img/icon/web_hi_res_512.png", alt: "", width: "168" }),
-						_react2.default.createElement("br", null),
-						_react2.default.createElement(
-							"h1",
-							null,
-							"404 - Not found"
-						),
-						_react2.default.createElement(
-							"h2",
-							null,
-							"Was it a broken link or deleted???"
-						),
-						_react2.default.createElement(
-							"div",
-							null,
-							_react2.default.createElement(
-								_reactRouterDom.Link,
-								{ to: "/" },
-								_react2.default.createElement(
-									"div",
-									{ className: "btn raised waves-effect primary" },
-									"home"
-								)
-							)
-						)
-					)
-				);
-			}
-		}]);
-	
-		return ErrorDocument;
-	}(_react2.default.Component);
-	
-	exports.default = ErrorDocument;
-
-/***/ }),
-/* 74 */
-/*!******************************************!*\
-  !*** ./www/app/components/GamePlayer.js ***!
-  \******************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Flash = __webpack_require__(/*! ./Players/Flash */ 75);
-	
-	var _Flash2 = _interopRequireDefault(_Flash);
-	
-	var _GBA = __webpack_require__(/*! ./Players/GBA */ 76);
-	
-	var _GBA2 = _interopRequireDefault(_GBA);
-	
-	var _NES = __webpack_require__(/*! ./Players/NES */ 77);
-	
-	var _NES2 = _interopRequireDefault(_NES);
-	
-	var _SNES = __webpack_require__(/*! ./Players/SNES */ 78);
-	
-	var _SNES2 = _interopRequireDefault(_SNES);
-	
-	var _Unity = __webpack_require__(/*! ./Players/Unity */ 79);
-	
-	var _Unity2 = _interopRequireDefault(_Unity);
-	
-	var _GameControls = __webpack_require__(/*! ./GameControls */ 80);
-	
-	var _GameControls2 = _interopRequireDefault(_GameControls);
-	
-	__webpack_require__(/*! ./GamePlayer.less */ 84);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var GamePlayer = function (_React$Component) {
-		_inherits(GamePlayer, _React$Component);
-	
-		function GamePlayer() {
-			_classCallCheck(this, GamePlayer);
-	
-			return _possibleConstructorReturn(this, (GamePlayer.__proto__ || Object.getPrototypeOf(GamePlayer)).apply(this, arguments));
-		}
-	
-		_createClass(GamePlayer, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				var _this = this;
-				(function resize() {
-					requestAnimationFrame(resize);
-					$(".game").height($(".game-view").width() * Math.pow(_this.props.game.params.aspectRatio || 4 / 3, -1));
-				})();
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "game-view", style: { width: this.props.game.params.width } },
-					_react2.default.createElement(
-						"div",
-						{ className: "title" },
-						_react2.default.createElement(
-							"h2",
-							null,
-							this.props.game.name
-						)
-					),
-					this.props.game.engine === "flash" && _react2.default.createElement(
-						"div",
-						{ className: "note warning" },
-						_react2.default.createElement("div", { className: "header" }),
-						_react2.default.createElement(
-							"div",
-							{ className: "content" },
-							"Flash will no longer be supported in all web browsers in December of 2020. This means that after that date, all of the flash games on here (including this one) will be removed."
-						),
-						_react2.default.createElement("hr", null),
-						_react2.default.createElement(
-							"div",
-							{ className: "content" },
-							_react2.default.createElement(
-								"a",
-								{ href: "https://www.rystedtcreative.com/tech-talks/flash-dead/" },
-								"https://www.rystedtcreative.com/tech-talks/flash-dead/"
-							)
-						)
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "game" },
-						this.props.game.engine === "flash" && _react2.default.createElement(_Flash2.default, { game: this.props.game }),
-						this.props.game.engine === "unity" && _react2.default.createElement(_Unity2.default, { game: this.props.game }),
-						this.props.game.engine === "nes" && _react2.default.createElement(_NES2.default, { game: this.props.game }),
-						this.props.game.engine === "snes" && _react2.default.createElement(_SNES2.default, { game: this.props.game }),
-						this.props.game.engine === "gba" && _react2.default.createElement(_GBA2.default, { game: this.props.game })
-					),
-					_react2.default.createElement(_GameControls2.default, { engine: this.props.game.engine })
-				);
-			}
-		}]);
-	
-		return GamePlayer;
-	}(_react2.default.Component);
-	
-	exports.default = GamePlayer;
-
-/***/ }),
-/* 75 */
-/*!*********************************************!*\
-  !*** ./www/app/components/Players/Flash.js ***!
-  \*********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var FlashPlayer = function (_React$Component) {
-		_inherits(FlashPlayer, _React$Component);
-	
-		function FlashPlayer() {
-			_classCallCheck(this, FlashPlayer);
-	
-			return _possibleConstructorReturn(this, (FlashPlayer.__proto__ || Object.getPrototypeOf(FlashPlayer)).apply(this, arguments));
-		}
-	
-		_createClass(FlashPlayer, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				app.game = this.props.game;
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement("object", _extends({ id: "flash-player", data: app.service + "/gcp/games/" + app.slug(this.props.game.name) + ".swf", width: "100%", height: "100%" }, this.props.game.params.options));
-			}
-		}]);
-	
-		return FlashPlayer;
-	}(_react2.default.Component);
-	
-	exports.default = FlashPlayer;
-
-/***/ }),
-/* 76 */
-/*!*******************************************!*\
-  !*** ./www/app/components/Players/GBA.js ***!
-  \*******************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var GBAPlayer = function (_React$Component) {
-		_inherits(GBAPlayer, _React$Component);
-	
-		function GBAPlayer(props) {
-			_classCallCheck(this, GBAPlayer);
-	
-			var _this = _possibleConstructorReturn(this, (GBAPlayer.__proto__ || Object.getPrototypeOf(GBAPlayer)).call(this, props));
-	
-			_this._arguments = props.game.params.options;
-			return _this;
-		}
-	
-		_createClass(GBAPlayer, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				app.game = this.props.game;
-				setTimeout(this.componentProbablyRendered);
-				Photon.disableArrowKeyScrolling = true;
-	
-				window.gbaloader = new Photon.dialog({
-					type: "progress",
-					circular: true,
-					message: "Loading game..."
-				});
-	
-				window.gbaloader.open();
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ id: "gba-player", style: { width: "100%", height: "100%", margin: "auto" } },
-					_react2.default.createElement("iframe", { src: "/src/IodineGBA/launcher.html", frameBorder: "0", height: "600px" })
-				);
-			}
-		}]);
-	
-		return GBAPlayer;
-	}(_react2.default.Component);
-	
-	exports.default = GBAPlayer;
-
-/***/ }),
-/* 77 */
-/*!*******************************************!*\
-  !*** ./www/app/components/Players/NES.js ***!
-  \*******************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var NESPlayer = function (_React$Component) {
-		_inherits(NESPlayer, _React$Component);
-	
-		function NESPlayer(props) {
-			_classCallCheck(this, NESPlayer);
-	
-			var _this = _possibleConstructorReturn(this, (NESPlayer.__proto__ || Object.getPrototypeOf(NESPlayer)).call(this, props));
-	
-			_this._arguments = props.game.params.options;
-			$("body").append("<script src=\"/src/js/jsnes.min.js\" class=\"router-reset\"></script>");
-			$("body").append("<script src=\"/src/js/jsnesplayer.js\" class=\"router-reset\"></script>");
-			return _this;
-		}
-	
-		_createClass(NESPlayer, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				app.game = this.props.game;
-				nes_load_url("jsnes-game", app.service + "/gcp/games/" + app.slug(this.props.game.name) + ".nes");
-				(function resize() {
-					requestAnimationFrame(resize);
-					$("#jsnes-game").css("transform", "scale(" + $("#nes-player").width() / $("#jsnes-game").width() + ")");
-				})();
-	
-				Photon.disableArrowKeyScrolling = true;
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ id: "nes-player", style: { width: "100%", height: "100%", margin: "auto" } },
-					_react2.default.createElement("canvas", { id: "jsnes-game", width: "256", height: "240" })
-				);
-			}
-		}]);
-	
-		return NESPlayer;
-	}(_react2.default.Component);
-	
-	exports.default = NESPlayer;
-
-/***/ }),
-/* 78 */
-/*!********************************************!*\
-  !*** ./www/app/components/Players/SNES.js ***!
-  \********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var FlashPlayer = function (_React$Component) {
-		_inherits(FlashPlayer, _React$Component);
-	
-		function FlashPlayer() {
-			_classCallCheck(this, FlashPlayer);
-	
-			return _possibleConstructorReturn(this, (FlashPlayer.__proto__ || Object.getPrototypeOf(FlashPlayer)).apply(this, arguments));
-		}
-	
-		_createClass(FlashPlayer, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				app.game = this.props.game;
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"object",
-					_extends({ id: "snes-player", data: "/src/snes-player.swf", width: "100%", height: "100%" }, this.props.game.params.options),
-					_react2.default.createElement("param", { name: "flashvars", value: "system=snes&url=" + app.service + "/gcp/games/" + app.slug(this.props.game.name) + ".smc" })
-				);
-			}
-		}]);
-	
-		return FlashPlayer;
-	}(_react2.default.Component);
-	
-	exports.default = FlashPlayer;
-
-/***/ }),
-/* 79 */
-/*!*********************************************!*\
-  !*** ./www/app/components/Players/Unity.js ***!
-  \*********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var UnityPlayer = function (_React$Component) {
-		_inherits(UnityPlayer, _React$Component);
-	
-		function UnityPlayer(props) {
-			_classCallCheck(this, UnityPlayer);
-	
-			var _this2 = _possibleConstructorReturn(this, (UnityPlayer.__proto__ || Object.getPrototypeOf(UnityPlayer)).call(this, props));
-	
-			_this2._arguments = props.game.params.options;
-			$("body").append("<script src=\"/src/js/unity.min.js\" class=\"router-reset\"></script>");
-			$("body").append("<script src=\"/src/js/unity-loader.min.js\" class=\"router-reset\"></script>");
-	
-			_this2._loader = new Photon.dialog({
-				type: "progress",
-				circular: true,
-				message: "Loading Unity player..."
-			});
-	
-			_this2._loader.open();
-			return _this2;
-		}
-	
-		_createClass(UnityPlayer, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				var _this = this;
-				app.game = this.props.game;
-				this._unity = UnityLoader.instantiate("unity-player", app.service + "/gcp/games/" + this.props.game.params.unityImage + ".json", {
-					Module: {
-						onRuntimeInitialized: function onRuntimeInitialized() {
-							_this._loader.resolved = true;
-							_this._loader.destroy();
-						}
-					}
-				});
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement("div", { id: "unity-player", style: { width: "100%", height: "100%", margin: "auto" } });
-			}
-		}]);
-	
-		return UnityPlayer;
-	}(_react2.default.Component);
-	
-	exports.default = UnityPlayer;
-
-/***/ }),
-/* 80 */
-/*!********************************************!*\
-  !*** ./www/app/components/GameControls.js ***!
-  \********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	__webpack_require__(/*! ./GameControls.less */ 81);
-	
-	var _FrameCounter = __webpack_require__(/*! ./FrameCounter */ 83);
-	
-	var _FrameCounter2 = _interopRequireDefault(_FrameCounter);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var GameControls = function (_React$Component) {
-		_inherits(GameControls, _React$Component);
-	
-		function GameControls() {
-			_classCallCheck(this, GameControls);
-	
-			return _possibleConstructorReturn(this, (GameControls.__proto__ || Object.getPrototypeOf(GameControls)).apply(this, arguments));
-		}
-	
-		_createClass(GameControls, [{
-			key: "render",
-			value: function render() {
-				if (this.props.engine === "flash") {
-					return _react2.default.createElement(
-						"div",
-						{ className: "game-controls" },
-						_react2.default.createElement(_FrameCounter2.default, null),
-						_react2.default.createElement(
-							"a",
-							{ className: "btn flat primary waves-effect", onClick: function onClick() {
-									return $("#flash-player")[0].requestFullscreen();
-								} },
-							"fullscreen"
-						)
-					);
-				} else if (this.props.engine === "gba") {
-					return _react2.default.createElement(
-						"div",
-						{ className: "game-controls" },
-						_react2.default.createElement(_FrameCounter2.default, null),
-						_react2.default.createElement(
-							"a",
-							{ className: "btn flat primary waves-effect", onClick: function onClick() {
-									return $("#gba-player")[0].requestFullscreen();
-								} },
-							"fullscreen"
-						)
-					);
-				} else if (this.props.engine === "nes") {
-					return _react2.default.createElement(
-						"div",
-						{ className: "game-controls" },
-						_react2.default.createElement(_FrameCounter2.default, null),
-						_react2.default.createElement(
-							"a",
-							{ className: "btn flat primary waves-effect", onClick: function onClick() {
-									return $("#jsnes-game")[0].requestFullscreen();
-								} },
-							"fullscreen"
-						)
-					);
-				} else if (this.props.engine === "snes") {
-					return _react2.default.createElement(
-						"div",
-						{ className: "game-controls" },
-						_react2.default.createElement(_FrameCounter2.default, null),
-						_react2.default.createElement(
-							"a",
-							{ className: "btn flat primary waves-effect", onClick: function onClick() {
-									return $("#snes-game")[0].requestFullscreen();
-								} },
-							"fullscreen"
-						)
-					);
-				} else if (this.props.engine === "unity") {
-					return _react2.default.createElement(
-						"div",
-						{ className: "game-controls" },
-						_react2.default.createElement(_FrameCounter2.default, null),
-						_react2.default.createElement(
-							"a",
-							{ className: "btn flat primary waves-effect", onClick: function onClick() {
-									return $("#unity-player")[0].requestFullscreen();
-								} },
-							"fullscreen"
-						)
-					);
-				}
-			}
-		}]);
-	
-		return GameControls;
-	}(_react2.default.Component);
-	
-	exports.default = GameControls;
-
-/***/ }),
-/* 81 */
-/*!**********************************************!*\
-  !*** ./www/app/components/GameControls.less ***!
-  \**********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameControls.less */ 82);
-	
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	
-	var transform;
-	var insertInto;
-	
-	
-	
-	var options = {"hmr":true}
-	
-	options.transform = transform
-	options.insertInto = undefined;
-	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 57)(content, options);
-	
-	if(content.locals) module.exports = content.locals;
-	
-	if(false) {
-		module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameControls.less", function() {
-			var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameControls.less");
-	
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-	
-			var locals = (function(a, b) {
-				var key, idx = 0;
-	
-				for(key in a) {
-					if(!b || a[key] !== b[key]) return false;
-					idx++;
-				}
-	
-				for(key in b) idx--;
-	
-				return idx === 0;
-			}(content.locals, newContent.locals));
-	
-			if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-	
-			update(newContent);
-		});
-	
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 82 */
-/*!*****************************************************************************************************!*\
-  !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameControls.less ***!
-  \*****************************************************************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 56)(false);
-	// Module
-	exports.push([module.id, ".game-controls {\n  direction: rtl;\n  height: 52px;\n  background: #f5f5f5;\n  position: relative;\n}\n", ""]);
-	
-
-
-/***/ }),
-/* 83 */
-/*!********************************************!*\
-  !*** ./www/app/components/FrameCounter.js ***!
-  \********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var FrameCounter = function (_React$Component) {
-		_inherits(FrameCounter, _React$Component);
-	
-		function FrameCounter() {
-			_classCallCheck(this, FrameCounter);
-	
-			var _this2 = _possibleConstructorReturn(this, (FrameCounter.__proto__ || Object.getPrototypeOf(FrameCounter)).call(this));
-	
-			_this2._fps = 0;
-			_this2._mounted = false;
-			_this2._framecounter = performance.now();
-			_this2.state = { FPS: 0, refresh: 0 };
-	
-			var _this = _this2;
-			(function frameCounter() {
-				requestAnimationFrame(frameCounter);
-				_this._fps = 1000 / (performance.now() - _this._framecounter);
-				_this._framecounter = performance.now();
-			})();
-	
-			var SAMPLE = 10;
-			var hz = [40, 60, 75, 90, 100, 120, 144, 165, 200, 240, 300];
-			var fps = [];
-	
-			setInterval(function () {
-				if (_this2._mounted) {
-					var avgfps = _this2._fps + fps;
-					fps.push(_this2._fps);
-	
-					while (fps.length > SAMPLE) {
-						fps.shift();
-					}avgfps = fps.reduce(function (a, b) {
-						return a + b;
-					}, 0) / fps.length - 1;
-	
-					_this2.setState({
-						FPS: Math.floor(_this2._fps),
-						refresh: hz.reduce(function (prev, curr) {
-							return Math.abs(curr - avgfps) < Math.abs(prev - avgfps) ? curr : prev;
-						})
-					});
-				}
-			}, 1000);
-			return _this2;
-		}
-	
-		_createClass(FrameCounter, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				this._mounted = true;
-			}
-		}, {
-			key: "componentWillUnmount",
-			value: function componentWillUnmount() {
-				this._mounted = false;
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ style: { position: "absolute", top: "0px", left: "24px", lineHeight: "52px" } },
-					"FPS: ",
-					this.state.FPS,
-					" - ",
-					screen.height,
-					"p@",
-					this.state.refresh,
-					"hz"
-				);
-			}
-		}]);
-	
-		return FrameCounter;
-	}(_react2.default.Component);
-	
-	exports.default = FrameCounter;
-
-/***/ }),
-/* 84 */
-/*!********************************************!*\
-  !*** ./www/app/components/GamePlayer.less ***!
-  \********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	
-	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GamePlayer.less */ 85);
-	
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	
-	var transform;
-	var insertInto;
-	
-	
-	
-	var options = {"hmr":true}
-	
-	options.transform = transform
-	options.insertInto = undefined;
-	
-	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 57)(content, options);
-	
-	if(content.locals) module.exports = content.locals;
-	
-	if(false) {
-		module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GamePlayer.less", function() {
-			var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GamePlayer.less");
-	
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-	
-			var locals = (function(a, b) {
-				var key, idx = 0;
-	
-				for(key in a) {
-					if(!b || a[key] !== b[key]) return false;
-					idx++;
-				}
-	
-				for(key in b) idx--;
-	
-				return idx === 0;
-			}(content.locals, newContent.locals));
-	
-			if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-	
-			update(newContent);
-		});
-	
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 85 */
-/*!***************************************************************************************************!*\
-  !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GamePlayer.less ***!
-  \***************************************************************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 56)(false);
-	// Module
-	exports.push([module.id, ".game-view {\n  margin: 0 auto;\n  width: 800px;\n}\n", ""]);
-	
-
-
-/***/ }),
-/* 86 */
-/*!*************************************!*\
-  !*** ./www/app/pages/LegacyGame.js ***!
-  \*************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var GameView = function (_React$Component) {
-		_inherits(GameView, _React$Component);
-	
-		function GameView() {
-			_classCallCheck(this, GameView);
-	
-			var _this = _possibleConstructorReturn(this, (GameView.__proto__ || Object.getPrototypeOf(GameView)).call(this));
-	
-			_this.state = { redirect: location.pathname.split("/game/")[1] };
-			return _this;
-		}
-	
-		_createClass(GameView, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(_reactRouterDom.Redirect, { to: "/g/" + this.state.redirect });
-			}
-		}]);
-	
-		return GameView;
-	}(_react2.default.Component);
-	
-	exports.default = GameView;
-
-/***/ }),
-/* 87 */
-/*!*************************************!*\
-  !*** ./www/app/pages/Developers.js ***!
-  \*************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 59);
-	
-	var _Navbar2 = _interopRequireDefault(_Navbar);
-	
-	var _Footer = __webpack_require__(/*! ../components/Footer */ 53);
-	
-	var _Footer2 = _interopRequireDefault(_Footer);
-	
-	var _Markdown = __webpack_require__(/*! ../components/Markdown */ 88);
-	
-	var _Markdown2 = _interopRequireDefault(_Markdown);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Request = function (_React$Component) {
-		_inherits(Request, _React$Component);
-	
-		function Request() {
-			_classCallCheck(this, Request);
-	
-			var _this = _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).call(this));
-	
-			_this.state = { markdown: "" };
-			return _this;
-		}
-	
-		_createClass(Request, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				var _this2 = this;
-	
-				service("README")()(function (markdown) {
-					return _this2.setState({ markdown: markdown });
-				});
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					null,
-					_react2.default.createElement(
-						_Navbar2.default,
-						null,
-						"Become a Developer"
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "container row" },
-						_react2.default.createElement(
-							"div",
-							{ className: "col s12 m10 l8 xl6" },
-							_react2.default.createElement(
-								"div",
-								{ className: "title" },
-								_react2.default.createElement(
-									"h2",
-									null,
-									"Our Mission"
-								)
-							),
-							_react2.default.createElement(
-								"p",
-								null,
-								"Our goal is to create a community of developers around the world.  We value the diversity that everyone has to offer. Having many people with different programming backgrounds on a team makes the product as complete as possible. Having people like you to contribute to ideas and development methods is every software teams dream. Why not join the team."
-							),
-							_react2.default.createElement(
-								"div",
-								{ className: "title" },
-								_react2.default.createElement(
-									"h2",
-									null,
-									"How to join"
-								)
-							),
-							_react2.default.createElement(
-								"p",
-								null,
-								"All you need to join the development team is join the Discord server. Then ask an admin to become a developer. An admin will dm you asking you for details like your GitHub, add you to the GitHub team and give you the Developer role in the discord."
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "col s12 l4 xl6" },
-							_react2.default.createElement(
-								"div",
-								{ className: "right" },
-								_react2.default.createElement(
-									"a",
-									{ href: "https://github.com/SHSGames", style: { margin: "8px 0" }, target: "_blank", className: "autolink waves-effect photon-init" },
-									_react2.default.createElement(
-										"div",
-										{ className: "padding-layer" },
-										_react2.default.createElement(
-											"div",
-											{ className: "external-img invert" },
-											_react2.default.createElement("img", { src: "https://github.com/favicon.ico", alt: "" })
-										),
-										_react2.default.createElement(
-											"div",
-											{ className: "title" },
-											"SHSGames \xB7 GitHub"
-										),
-										_react2.default.createElement(
-											"p",
-											null,
-											"Browse SHSGames on GitHub"
-										),
-										_react2.default.createElement(
-											"div",
-											{ className: "ref" },
-											"Our GitHub"
-										)
-									)
-								),
-								_react2.default.createElement("br", null),
-								_react2.default.createElement(
-									"a",
-									{ href: "https://discord.gg/XBr5nzu", style: { margin: "8px 0" }, target: "_blank", className: "autolink waves-effect photon-init" },
-									_react2.default.createElement(
-										"div",
-										{ className: "padding-layer" },
-										_react2.default.createElement(
-											"div",
-											{ className: "external-img" },
-											_react2.default.createElement("img", { src: "/img/res/discord.png", alt: "" })
-										),
-										_react2.default.createElement(
-											"div",
-											{ className: "title" },
-											"SHSGames \xB7 Discord"
-										),
-										_react2.default.createElement(
-											"p",
-											null,
-											"Join SHSGames on Discord"
-										),
-										_react2.default.createElement(
-											"div",
-											{ className: "ref" },
-											"Our Discord Server"
-										)
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "col s12" },
-							_react2.default.createElement(
-								"div",
-								{ className: "card-panel md-wrapper" },
-								_react2.default.createElement(
-									"div",
-									{ className: "md-header" },
-									"README.md"
-								),
-								_react2.default.createElement(
-									_Markdown2.default,
-									null,
-									this.state.markdown
-								)
-							)
-						)
-					),
-					_react2.default.createElement(_Footer2.default, null)
-				);
-			}
-		}]);
-	
-		return Request;
-	}(_react2.default.Component);
-	
-	exports.default = Request;
-
-/***/ }),
-/* 88 */
 /*!****************************************!*\
   !*** ./www/app/components/Markdown.js ***!
   \****************************************/
@@ -39063,9 +37297,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _remarkable = __webpack_require__(/*! remarkable */ 89);
+	var _remarkable = __webpack_require__(/*! remarkable */ 70);
 	
-	var _highlight = __webpack_require__(/*! highlight.js */ 90);
+	var _highlight = __webpack_require__(/*! highlight.js */ 71);
 	
 	var _highlight2 = _interopRequireDefault(_highlight);
 	
@@ -39114,7 +37348,7 @@
 	exports.default = Markdown;
 
 /***/ }),
-/* 89 */
+/* 70 */
 /*!************************************************!*\
   !*** ./~/remarkable/dist/cjs/index.browser.js ***!
   \************************************************/
@@ -44292,204 +42526,204 @@
 
 
 /***/ }),
-/* 90 */
+/* 71 */
 /*!*************************************!*\
   !*** ./~/highlight.js/lib/index.js ***!
   \*************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var hljs = __webpack_require__(/*! ./highlight */ 91);
+	var hljs = __webpack_require__(/*! ./highlight */ 72);
 	
-	hljs.registerLanguage('1c', __webpack_require__(/*! ./languages/1c */ 92));
-	hljs.registerLanguage('abnf', __webpack_require__(/*! ./languages/abnf */ 93));
-	hljs.registerLanguage('accesslog', __webpack_require__(/*! ./languages/accesslog */ 94));
-	hljs.registerLanguage('actionscript', __webpack_require__(/*! ./languages/actionscript */ 95));
-	hljs.registerLanguage('ada', __webpack_require__(/*! ./languages/ada */ 96));
-	hljs.registerLanguage('angelscript', __webpack_require__(/*! ./languages/angelscript */ 97));
-	hljs.registerLanguage('apache', __webpack_require__(/*! ./languages/apache */ 98));
-	hljs.registerLanguage('applescript', __webpack_require__(/*! ./languages/applescript */ 99));
-	hljs.registerLanguage('arcade', __webpack_require__(/*! ./languages/arcade */ 100));
-	hljs.registerLanguage('cpp', __webpack_require__(/*! ./languages/cpp */ 101));
-	hljs.registerLanguage('arduino', __webpack_require__(/*! ./languages/arduino */ 102));
-	hljs.registerLanguage('armasm', __webpack_require__(/*! ./languages/armasm */ 103));
-	hljs.registerLanguage('xml', __webpack_require__(/*! ./languages/xml */ 104));
-	hljs.registerLanguage('asciidoc', __webpack_require__(/*! ./languages/asciidoc */ 105));
-	hljs.registerLanguage('aspectj', __webpack_require__(/*! ./languages/aspectj */ 106));
-	hljs.registerLanguage('autohotkey', __webpack_require__(/*! ./languages/autohotkey */ 107));
-	hljs.registerLanguage('autoit', __webpack_require__(/*! ./languages/autoit */ 108));
-	hljs.registerLanguage('avrasm', __webpack_require__(/*! ./languages/avrasm */ 109));
-	hljs.registerLanguage('awk', __webpack_require__(/*! ./languages/awk */ 110));
-	hljs.registerLanguage('axapta', __webpack_require__(/*! ./languages/axapta */ 111));
-	hljs.registerLanguage('bash', __webpack_require__(/*! ./languages/bash */ 112));
-	hljs.registerLanguage('basic', __webpack_require__(/*! ./languages/basic */ 113));
-	hljs.registerLanguage('bnf', __webpack_require__(/*! ./languages/bnf */ 114));
-	hljs.registerLanguage('brainfuck', __webpack_require__(/*! ./languages/brainfuck */ 115));
-	hljs.registerLanguage('cal', __webpack_require__(/*! ./languages/cal */ 116));
-	hljs.registerLanguage('capnproto', __webpack_require__(/*! ./languages/capnproto */ 117));
-	hljs.registerLanguage('ceylon', __webpack_require__(/*! ./languages/ceylon */ 118));
-	hljs.registerLanguage('clean', __webpack_require__(/*! ./languages/clean */ 119));
-	hljs.registerLanguage('clojure', __webpack_require__(/*! ./languages/clojure */ 120));
-	hljs.registerLanguage('clojure-repl', __webpack_require__(/*! ./languages/clojure-repl */ 121));
-	hljs.registerLanguage('cmake', __webpack_require__(/*! ./languages/cmake */ 122));
-	hljs.registerLanguage('coffeescript', __webpack_require__(/*! ./languages/coffeescript */ 123));
-	hljs.registerLanguage('coq', __webpack_require__(/*! ./languages/coq */ 124));
-	hljs.registerLanguage('cos', __webpack_require__(/*! ./languages/cos */ 125));
-	hljs.registerLanguage('crmsh', __webpack_require__(/*! ./languages/crmsh */ 126));
-	hljs.registerLanguage('crystal', __webpack_require__(/*! ./languages/crystal */ 127));
-	hljs.registerLanguage('cs', __webpack_require__(/*! ./languages/cs */ 128));
-	hljs.registerLanguage('csp', __webpack_require__(/*! ./languages/csp */ 129));
-	hljs.registerLanguage('css', __webpack_require__(/*! ./languages/css */ 130));
-	hljs.registerLanguage('d', __webpack_require__(/*! ./languages/d */ 131));
-	hljs.registerLanguage('markdown', __webpack_require__(/*! ./languages/markdown */ 132));
-	hljs.registerLanguage('dart', __webpack_require__(/*! ./languages/dart */ 133));
-	hljs.registerLanguage('delphi', __webpack_require__(/*! ./languages/delphi */ 134));
-	hljs.registerLanguage('diff', __webpack_require__(/*! ./languages/diff */ 135));
-	hljs.registerLanguage('django', __webpack_require__(/*! ./languages/django */ 136));
-	hljs.registerLanguage('dns', __webpack_require__(/*! ./languages/dns */ 137));
-	hljs.registerLanguage('dockerfile', __webpack_require__(/*! ./languages/dockerfile */ 138));
-	hljs.registerLanguage('dos', __webpack_require__(/*! ./languages/dos */ 139));
-	hljs.registerLanguage('dsconfig', __webpack_require__(/*! ./languages/dsconfig */ 140));
-	hljs.registerLanguage('dts', __webpack_require__(/*! ./languages/dts */ 141));
-	hljs.registerLanguage('dust', __webpack_require__(/*! ./languages/dust */ 142));
-	hljs.registerLanguage('ebnf', __webpack_require__(/*! ./languages/ebnf */ 143));
-	hljs.registerLanguage('elixir', __webpack_require__(/*! ./languages/elixir */ 144));
-	hljs.registerLanguage('elm', __webpack_require__(/*! ./languages/elm */ 145));
-	hljs.registerLanguage('ruby', __webpack_require__(/*! ./languages/ruby */ 146));
-	hljs.registerLanguage('erb', __webpack_require__(/*! ./languages/erb */ 147));
-	hljs.registerLanguage('erlang-repl', __webpack_require__(/*! ./languages/erlang-repl */ 148));
-	hljs.registerLanguage('erlang', __webpack_require__(/*! ./languages/erlang */ 149));
-	hljs.registerLanguage('excel', __webpack_require__(/*! ./languages/excel */ 150));
-	hljs.registerLanguage('fix', __webpack_require__(/*! ./languages/fix */ 151));
-	hljs.registerLanguage('flix', __webpack_require__(/*! ./languages/flix */ 152));
-	hljs.registerLanguage('fortran', __webpack_require__(/*! ./languages/fortran */ 153));
-	hljs.registerLanguage('fsharp', __webpack_require__(/*! ./languages/fsharp */ 154));
-	hljs.registerLanguage('gams', __webpack_require__(/*! ./languages/gams */ 155));
-	hljs.registerLanguage('gauss', __webpack_require__(/*! ./languages/gauss */ 156));
-	hljs.registerLanguage('gcode', __webpack_require__(/*! ./languages/gcode */ 157));
-	hljs.registerLanguage('gherkin', __webpack_require__(/*! ./languages/gherkin */ 158));
-	hljs.registerLanguage('glsl', __webpack_require__(/*! ./languages/glsl */ 159));
-	hljs.registerLanguage('gml', __webpack_require__(/*! ./languages/gml */ 160));
-	hljs.registerLanguage('go', __webpack_require__(/*! ./languages/go */ 161));
-	hljs.registerLanguage('golo', __webpack_require__(/*! ./languages/golo */ 162));
-	hljs.registerLanguage('gradle', __webpack_require__(/*! ./languages/gradle */ 163));
-	hljs.registerLanguage('groovy', __webpack_require__(/*! ./languages/groovy */ 164));
-	hljs.registerLanguage('haml', __webpack_require__(/*! ./languages/haml */ 165));
-	hljs.registerLanguage('handlebars', __webpack_require__(/*! ./languages/handlebars */ 166));
-	hljs.registerLanguage('haskell', __webpack_require__(/*! ./languages/haskell */ 167));
-	hljs.registerLanguage('haxe', __webpack_require__(/*! ./languages/haxe */ 168));
-	hljs.registerLanguage('hsp', __webpack_require__(/*! ./languages/hsp */ 169));
-	hljs.registerLanguage('htmlbars', __webpack_require__(/*! ./languages/htmlbars */ 170));
-	hljs.registerLanguage('http', __webpack_require__(/*! ./languages/http */ 171));
-	hljs.registerLanguage('hy', __webpack_require__(/*! ./languages/hy */ 172));
-	hljs.registerLanguage('inform7', __webpack_require__(/*! ./languages/inform7 */ 173));
-	hljs.registerLanguage('ini', __webpack_require__(/*! ./languages/ini */ 174));
-	hljs.registerLanguage('irpf90', __webpack_require__(/*! ./languages/irpf90 */ 175));
-	hljs.registerLanguage('isbl', __webpack_require__(/*! ./languages/isbl */ 176));
-	hljs.registerLanguage('java', __webpack_require__(/*! ./languages/java */ 177));
-	hljs.registerLanguage('javascript', __webpack_require__(/*! ./languages/javascript */ 178));
-	hljs.registerLanguage('jboss-cli', __webpack_require__(/*! ./languages/jboss-cli */ 179));
-	hljs.registerLanguage('json', __webpack_require__(/*! ./languages/json */ 180));
-	hljs.registerLanguage('julia', __webpack_require__(/*! ./languages/julia */ 181));
-	hljs.registerLanguage('julia-repl', __webpack_require__(/*! ./languages/julia-repl */ 182));
-	hljs.registerLanguage('kotlin', __webpack_require__(/*! ./languages/kotlin */ 183));
-	hljs.registerLanguage('lasso', __webpack_require__(/*! ./languages/lasso */ 184));
-	hljs.registerLanguage('ldif', __webpack_require__(/*! ./languages/ldif */ 185));
-	hljs.registerLanguage('leaf', __webpack_require__(/*! ./languages/leaf */ 186));
-	hljs.registerLanguage('less', __webpack_require__(/*! ./languages/less */ 187));
-	hljs.registerLanguage('lisp', __webpack_require__(/*! ./languages/lisp */ 188));
-	hljs.registerLanguage('livecodeserver', __webpack_require__(/*! ./languages/livecodeserver */ 189));
-	hljs.registerLanguage('livescript', __webpack_require__(/*! ./languages/livescript */ 190));
-	hljs.registerLanguage('llvm', __webpack_require__(/*! ./languages/llvm */ 191));
-	hljs.registerLanguage('lsl', __webpack_require__(/*! ./languages/lsl */ 192));
-	hljs.registerLanguage('lua', __webpack_require__(/*! ./languages/lua */ 193));
-	hljs.registerLanguage('makefile', __webpack_require__(/*! ./languages/makefile */ 194));
-	hljs.registerLanguage('mathematica', __webpack_require__(/*! ./languages/mathematica */ 195));
-	hljs.registerLanguage('matlab', __webpack_require__(/*! ./languages/matlab */ 196));
-	hljs.registerLanguage('maxima', __webpack_require__(/*! ./languages/maxima */ 197));
-	hljs.registerLanguage('mel', __webpack_require__(/*! ./languages/mel */ 198));
-	hljs.registerLanguage('mercury', __webpack_require__(/*! ./languages/mercury */ 199));
-	hljs.registerLanguage('mipsasm', __webpack_require__(/*! ./languages/mipsasm */ 200));
-	hljs.registerLanguage('mizar', __webpack_require__(/*! ./languages/mizar */ 201));
-	hljs.registerLanguage('perl', __webpack_require__(/*! ./languages/perl */ 202));
-	hljs.registerLanguage('mojolicious', __webpack_require__(/*! ./languages/mojolicious */ 203));
-	hljs.registerLanguage('monkey', __webpack_require__(/*! ./languages/monkey */ 204));
-	hljs.registerLanguage('moonscript', __webpack_require__(/*! ./languages/moonscript */ 205));
-	hljs.registerLanguage('n1ql', __webpack_require__(/*! ./languages/n1ql */ 206));
-	hljs.registerLanguage('nginx', __webpack_require__(/*! ./languages/nginx */ 207));
-	hljs.registerLanguage('nimrod', __webpack_require__(/*! ./languages/nimrod */ 208));
-	hljs.registerLanguage('nix', __webpack_require__(/*! ./languages/nix */ 209));
-	hljs.registerLanguage('nsis', __webpack_require__(/*! ./languages/nsis */ 210));
-	hljs.registerLanguage('objectivec', __webpack_require__(/*! ./languages/objectivec */ 211));
-	hljs.registerLanguage('ocaml', __webpack_require__(/*! ./languages/ocaml */ 212));
-	hljs.registerLanguage('openscad', __webpack_require__(/*! ./languages/openscad */ 213));
-	hljs.registerLanguage('oxygene', __webpack_require__(/*! ./languages/oxygene */ 214));
-	hljs.registerLanguage('parser3', __webpack_require__(/*! ./languages/parser3 */ 215));
-	hljs.registerLanguage('pf', __webpack_require__(/*! ./languages/pf */ 216));
-	hljs.registerLanguage('pgsql', __webpack_require__(/*! ./languages/pgsql */ 217));
-	hljs.registerLanguage('php', __webpack_require__(/*! ./languages/php */ 218));
-	hljs.registerLanguage('plaintext', __webpack_require__(/*! ./languages/plaintext */ 219));
-	hljs.registerLanguage('pony', __webpack_require__(/*! ./languages/pony */ 220));
-	hljs.registerLanguage('powershell', __webpack_require__(/*! ./languages/powershell */ 221));
-	hljs.registerLanguage('processing', __webpack_require__(/*! ./languages/processing */ 222));
-	hljs.registerLanguage('profile', __webpack_require__(/*! ./languages/profile */ 223));
-	hljs.registerLanguage('prolog', __webpack_require__(/*! ./languages/prolog */ 224));
-	hljs.registerLanguage('properties', __webpack_require__(/*! ./languages/properties */ 225));
-	hljs.registerLanguage('protobuf', __webpack_require__(/*! ./languages/protobuf */ 226));
-	hljs.registerLanguage('puppet', __webpack_require__(/*! ./languages/puppet */ 227));
-	hljs.registerLanguage('purebasic', __webpack_require__(/*! ./languages/purebasic */ 228));
-	hljs.registerLanguage('python', __webpack_require__(/*! ./languages/python */ 229));
-	hljs.registerLanguage('q', __webpack_require__(/*! ./languages/q */ 230));
-	hljs.registerLanguage('qml', __webpack_require__(/*! ./languages/qml */ 231));
-	hljs.registerLanguage('r', __webpack_require__(/*! ./languages/r */ 232));
-	hljs.registerLanguage('reasonml', __webpack_require__(/*! ./languages/reasonml */ 233));
-	hljs.registerLanguage('rib', __webpack_require__(/*! ./languages/rib */ 234));
-	hljs.registerLanguage('roboconf', __webpack_require__(/*! ./languages/roboconf */ 235));
-	hljs.registerLanguage('routeros', __webpack_require__(/*! ./languages/routeros */ 236));
-	hljs.registerLanguage('rsl', __webpack_require__(/*! ./languages/rsl */ 237));
-	hljs.registerLanguage('ruleslanguage', __webpack_require__(/*! ./languages/ruleslanguage */ 238));
-	hljs.registerLanguage('rust', __webpack_require__(/*! ./languages/rust */ 239));
-	hljs.registerLanguage('sas', __webpack_require__(/*! ./languages/sas */ 240));
-	hljs.registerLanguage('scala', __webpack_require__(/*! ./languages/scala */ 241));
-	hljs.registerLanguage('scheme', __webpack_require__(/*! ./languages/scheme */ 242));
-	hljs.registerLanguage('scilab', __webpack_require__(/*! ./languages/scilab */ 243));
-	hljs.registerLanguage('scss', __webpack_require__(/*! ./languages/scss */ 244));
-	hljs.registerLanguage('shell', __webpack_require__(/*! ./languages/shell */ 245));
-	hljs.registerLanguage('smali', __webpack_require__(/*! ./languages/smali */ 246));
-	hljs.registerLanguage('smalltalk', __webpack_require__(/*! ./languages/smalltalk */ 247));
-	hljs.registerLanguage('sml', __webpack_require__(/*! ./languages/sml */ 248));
-	hljs.registerLanguage('sqf', __webpack_require__(/*! ./languages/sqf */ 249));
-	hljs.registerLanguage('sql', __webpack_require__(/*! ./languages/sql */ 250));
-	hljs.registerLanguage('stan', __webpack_require__(/*! ./languages/stan */ 251));
-	hljs.registerLanguage('stata', __webpack_require__(/*! ./languages/stata */ 252));
-	hljs.registerLanguage('step21', __webpack_require__(/*! ./languages/step21 */ 253));
-	hljs.registerLanguage('stylus', __webpack_require__(/*! ./languages/stylus */ 254));
-	hljs.registerLanguage('subunit', __webpack_require__(/*! ./languages/subunit */ 255));
-	hljs.registerLanguage('swift', __webpack_require__(/*! ./languages/swift */ 256));
-	hljs.registerLanguage('taggerscript', __webpack_require__(/*! ./languages/taggerscript */ 257));
-	hljs.registerLanguage('yaml', __webpack_require__(/*! ./languages/yaml */ 258));
-	hljs.registerLanguage('tap', __webpack_require__(/*! ./languages/tap */ 259));
-	hljs.registerLanguage('tcl', __webpack_require__(/*! ./languages/tcl */ 260));
-	hljs.registerLanguage('tex', __webpack_require__(/*! ./languages/tex */ 261));
-	hljs.registerLanguage('thrift', __webpack_require__(/*! ./languages/thrift */ 262));
-	hljs.registerLanguage('tp', __webpack_require__(/*! ./languages/tp */ 263));
-	hljs.registerLanguage('twig', __webpack_require__(/*! ./languages/twig */ 264));
-	hljs.registerLanguage('typescript', __webpack_require__(/*! ./languages/typescript */ 265));
-	hljs.registerLanguage('vala', __webpack_require__(/*! ./languages/vala */ 266));
-	hljs.registerLanguage('vbnet', __webpack_require__(/*! ./languages/vbnet */ 267));
-	hljs.registerLanguage('vbscript', __webpack_require__(/*! ./languages/vbscript */ 268));
-	hljs.registerLanguage('vbscript-html', __webpack_require__(/*! ./languages/vbscript-html */ 269));
-	hljs.registerLanguage('verilog', __webpack_require__(/*! ./languages/verilog */ 270));
-	hljs.registerLanguage('vhdl', __webpack_require__(/*! ./languages/vhdl */ 271));
-	hljs.registerLanguage('vim', __webpack_require__(/*! ./languages/vim */ 272));
-	hljs.registerLanguage('x86asm', __webpack_require__(/*! ./languages/x86asm */ 273));
-	hljs.registerLanguage('xl', __webpack_require__(/*! ./languages/xl */ 274));
-	hljs.registerLanguage('xquery', __webpack_require__(/*! ./languages/xquery */ 275));
-	hljs.registerLanguage('zephir', __webpack_require__(/*! ./languages/zephir */ 276));
+	hljs.registerLanguage('1c', __webpack_require__(/*! ./languages/1c */ 73));
+	hljs.registerLanguage('abnf', __webpack_require__(/*! ./languages/abnf */ 74));
+	hljs.registerLanguage('accesslog', __webpack_require__(/*! ./languages/accesslog */ 75));
+	hljs.registerLanguage('actionscript', __webpack_require__(/*! ./languages/actionscript */ 76));
+	hljs.registerLanguage('ada', __webpack_require__(/*! ./languages/ada */ 77));
+	hljs.registerLanguage('angelscript', __webpack_require__(/*! ./languages/angelscript */ 78));
+	hljs.registerLanguage('apache', __webpack_require__(/*! ./languages/apache */ 79));
+	hljs.registerLanguage('applescript', __webpack_require__(/*! ./languages/applescript */ 80));
+	hljs.registerLanguage('arcade', __webpack_require__(/*! ./languages/arcade */ 81));
+	hljs.registerLanguage('cpp', __webpack_require__(/*! ./languages/cpp */ 82));
+	hljs.registerLanguage('arduino', __webpack_require__(/*! ./languages/arduino */ 83));
+	hljs.registerLanguage('armasm', __webpack_require__(/*! ./languages/armasm */ 84));
+	hljs.registerLanguage('xml', __webpack_require__(/*! ./languages/xml */ 85));
+	hljs.registerLanguage('asciidoc', __webpack_require__(/*! ./languages/asciidoc */ 86));
+	hljs.registerLanguage('aspectj', __webpack_require__(/*! ./languages/aspectj */ 87));
+	hljs.registerLanguage('autohotkey', __webpack_require__(/*! ./languages/autohotkey */ 88));
+	hljs.registerLanguage('autoit', __webpack_require__(/*! ./languages/autoit */ 89));
+	hljs.registerLanguage('avrasm', __webpack_require__(/*! ./languages/avrasm */ 90));
+	hljs.registerLanguage('awk', __webpack_require__(/*! ./languages/awk */ 91));
+	hljs.registerLanguage('axapta', __webpack_require__(/*! ./languages/axapta */ 92));
+	hljs.registerLanguage('bash', __webpack_require__(/*! ./languages/bash */ 93));
+	hljs.registerLanguage('basic', __webpack_require__(/*! ./languages/basic */ 94));
+	hljs.registerLanguage('bnf', __webpack_require__(/*! ./languages/bnf */ 95));
+	hljs.registerLanguage('brainfuck', __webpack_require__(/*! ./languages/brainfuck */ 96));
+	hljs.registerLanguage('cal', __webpack_require__(/*! ./languages/cal */ 97));
+	hljs.registerLanguage('capnproto', __webpack_require__(/*! ./languages/capnproto */ 98));
+	hljs.registerLanguage('ceylon', __webpack_require__(/*! ./languages/ceylon */ 99));
+	hljs.registerLanguage('clean', __webpack_require__(/*! ./languages/clean */ 100));
+	hljs.registerLanguage('clojure', __webpack_require__(/*! ./languages/clojure */ 101));
+	hljs.registerLanguage('clojure-repl', __webpack_require__(/*! ./languages/clojure-repl */ 102));
+	hljs.registerLanguage('cmake', __webpack_require__(/*! ./languages/cmake */ 103));
+	hljs.registerLanguage('coffeescript', __webpack_require__(/*! ./languages/coffeescript */ 104));
+	hljs.registerLanguage('coq', __webpack_require__(/*! ./languages/coq */ 105));
+	hljs.registerLanguage('cos', __webpack_require__(/*! ./languages/cos */ 106));
+	hljs.registerLanguage('crmsh', __webpack_require__(/*! ./languages/crmsh */ 107));
+	hljs.registerLanguage('crystal', __webpack_require__(/*! ./languages/crystal */ 108));
+	hljs.registerLanguage('cs', __webpack_require__(/*! ./languages/cs */ 109));
+	hljs.registerLanguage('csp', __webpack_require__(/*! ./languages/csp */ 110));
+	hljs.registerLanguage('css', __webpack_require__(/*! ./languages/css */ 111));
+	hljs.registerLanguage('d', __webpack_require__(/*! ./languages/d */ 112));
+	hljs.registerLanguage('markdown', __webpack_require__(/*! ./languages/markdown */ 113));
+	hljs.registerLanguage('dart', __webpack_require__(/*! ./languages/dart */ 114));
+	hljs.registerLanguage('delphi', __webpack_require__(/*! ./languages/delphi */ 115));
+	hljs.registerLanguage('diff', __webpack_require__(/*! ./languages/diff */ 116));
+	hljs.registerLanguage('django', __webpack_require__(/*! ./languages/django */ 117));
+	hljs.registerLanguage('dns', __webpack_require__(/*! ./languages/dns */ 118));
+	hljs.registerLanguage('dockerfile', __webpack_require__(/*! ./languages/dockerfile */ 119));
+	hljs.registerLanguage('dos', __webpack_require__(/*! ./languages/dos */ 120));
+	hljs.registerLanguage('dsconfig', __webpack_require__(/*! ./languages/dsconfig */ 121));
+	hljs.registerLanguage('dts', __webpack_require__(/*! ./languages/dts */ 122));
+	hljs.registerLanguage('dust', __webpack_require__(/*! ./languages/dust */ 123));
+	hljs.registerLanguage('ebnf', __webpack_require__(/*! ./languages/ebnf */ 124));
+	hljs.registerLanguage('elixir', __webpack_require__(/*! ./languages/elixir */ 125));
+	hljs.registerLanguage('elm', __webpack_require__(/*! ./languages/elm */ 126));
+	hljs.registerLanguage('ruby', __webpack_require__(/*! ./languages/ruby */ 127));
+	hljs.registerLanguage('erb', __webpack_require__(/*! ./languages/erb */ 128));
+	hljs.registerLanguage('erlang-repl', __webpack_require__(/*! ./languages/erlang-repl */ 129));
+	hljs.registerLanguage('erlang', __webpack_require__(/*! ./languages/erlang */ 130));
+	hljs.registerLanguage('excel', __webpack_require__(/*! ./languages/excel */ 131));
+	hljs.registerLanguage('fix', __webpack_require__(/*! ./languages/fix */ 132));
+	hljs.registerLanguage('flix', __webpack_require__(/*! ./languages/flix */ 133));
+	hljs.registerLanguage('fortran', __webpack_require__(/*! ./languages/fortran */ 134));
+	hljs.registerLanguage('fsharp', __webpack_require__(/*! ./languages/fsharp */ 135));
+	hljs.registerLanguage('gams', __webpack_require__(/*! ./languages/gams */ 136));
+	hljs.registerLanguage('gauss', __webpack_require__(/*! ./languages/gauss */ 137));
+	hljs.registerLanguage('gcode', __webpack_require__(/*! ./languages/gcode */ 138));
+	hljs.registerLanguage('gherkin', __webpack_require__(/*! ./languages/gherkin */ 139));
+	hljs.registerLanguage('glsl', __webpack_require__(/*! ./languages/glsl */ 140));
+	hljs.registerLanguage('gml', __webpack_require__(/*! ./languages/gml */ 141));
+	hljs.registerLanguage('go', __webpack_require__(/*! ./languages/go */ 142));
+	hljs.registerLanguage('golo', __webpack_require__(/*! ./languages/golo */ 143));
+	hljs.registerLanguage('gradle', __webpack_require__(/*! ./languages/gradle */ 144));
+	hljs.registerLanguage('groovy', __webpack_require__(/*! ./languages/groovy */ 145));
+	hljs.registerLanguage('haml', __webpack_require__(/*! ./languages/haml */ 146));
+	hljs.registerLanguage('handlebars', __webpack_require__(/*! ./languages/handlebars */ 147));
+	hljs.registerLanguage('haskell', __webpack_require__(/*! ./languages/haskell */ 148));
+	hljs.registerLanguage('haxe', __webpack_require__(/*! ./languages/haxe */ 149));
+	hljs.registerLanguage('hsp', __webpack_require__(/*! ./languages/hsp */ 150));
+	hljs.registerLanguage('htmlbars', __webpack_require__(/*! ./languages/htmlbars */ 151));
+	hljs.registerLanguage('http', __webpack_require__(/*! ./languages/http */ 152));
+	hljs.registerLanguage('hy', __webpack_require__(/*! ./languages/hy */ 153));
+	hljs.registerLanguage('inform7', __webpack_require__(/*! ./languages/inform7 */ 154));
+	hljs.registerLanguage('ini', __webpack_require__(/*! ./languages/ini */ 155));
+	hljs.registerLanguage('irpf90', __webpack_require__(/*! ./languages/irpf90 */ 156));
+	hljs.registerLanguage('isbl', __webpack_require__(/*! ./languages/isbl */ 157));
+	hljs.registerLanguage('java', __webpack_require__(/*! ./languages/java */ 158));
+	hljs.registerLanguage('javascript', __webpack_require__(/*! ./languages/javascript */ 159));
+	hljs.registerLanguage('jboss-cli', __webpack_require__(/*! ./languages/jboss-cli */ 160));
+	hljs.registerLanguage('json', __webpack_require__(/*! ./languages/json */ 161));
+	hljs.registerLanguage('julia', __webpack_require__(/*! ./languages/julia */ 162));
+	hljs.registerLanguage('julia-repl', __webpack_require__(/*! ./languages/julia-repl */ 163));
+	hljs.registerLanguage('kotlin', __webpack_require__(/*! ./languages/kotlin */ 164));
+	hljs.registerLanguage('lasso', __webpack_require__(/*! ./languages/lasso */ 165));
+	hljs.registerLanguage('ldif', __webpack_require__(/*! ./languages/ldif */ 166));
+	hljs.registerLanguage('leaf', __webpack_require__(/*! ./languages/leaf */ 167));
+	hljs.registerLanguage('less', __webpack_require__(/*! ./languages/less */ 168));
+	hljs.registerLanguage('lisp', __webpack_require__(/*! ./languages/lisp */ 169));
+	hljs.registerLanguage('livecodeserver', __webpack_require__(/*! ./languages/livecodeserver */ 170));
+	hljs.registerLanguage('livescript', __webpack_require__(/*! ./languages/livescript */ 171));
+	hljs.registerLanguage('llvm', __webpack_require__(/*! ./languages/llvm */ 172));
+	hljs.registerLanguage('lsl', __webpack_require__(/*! ./languages/lsl */ 173));
+	hljs.registerLanguage('lua', __webpack_require__(/*! ./languages/lua */ 174));
+	hljs.registerLanguage('makefile', __webpack_require__(/*! ./languages/makefile */ 175));
+	hljs.registerLanguage('mathematica', __webpack_require__(/*! ./languages/mathematica */ 176));
+	hljs.registerLanguage('matlab', __webpack_require__(/*! ./languages/matlab */ 177));
+	hljs.registerLanguage('maxima', __webpack_require__(/*! ./languages/maxima */ 178));
+	hljs.registerLanguage('mel', __webpack_require__(/*! ./languages/mel */ 179));
+	hljs.registerLanguage('mercury', __webpack_require__(/*! ./languages/mercury */ 180));
+	hljs.registerLanguage('mipsasm', __webpack_require__(/*! ./languages/mipsasm */ 181));
+	hljs.registerLanguage('mizar', __webpack_require__(/*! ./languages/mizar */ 182));
+	hljs.registerLanguage('perl', __webpack_require__(/*! ./languages/perl */ 183));
+	hljs.registerLanguage('mojolicious', __webpack_require__(/*! ./languages/mojolicious */ 184));
+	hljs.registerLanguage('monkey', __webpack_require__(/*! ./languages/monkey */ 185));
+	hljs.registerLanguage('moonscript', __webpack_require__(/*! ./languages/moonscript */ 186));
+	hljs.registerLanguage('n1ql', __webpack_require__(/*! ./languages/n1ql */ 187));
+	hljs.registerLanguage('nginx', __webpack_require__(/*! ./languages/nginx */ 188));
+	hljs.registerLanguage('nimrod', __webpack_require__(/*! ./languages/nimrod */ 189));
+	hljs.registerLanguage('nix', __webpack_require__(/*! ./languages/nix */ 190));
+	hljs.registerLanguage('nsis', __webpack_require__(/*! ./languages/nsis */ 191));
+	hljs.registerLanguage('objectivec', __webpack_require__(/*! ./languages/objectivec */ 192));
+	hljs.registerLanguage('ocaml', __webpack_require__(/*! ./languages/ocaml */ 193));
+	hljs.registerLanguage('openscad', __webpack_require__(/*! ./languages/openscad */ 194));
+	hljs.registerLanguage('oxygene', __webpack_require__(/*! ./languages/oxygene */ 195));
+	hljs.registerLanguage('parser3', __webpack_require__(/*! ./languages/parser3 */ 196));
+	hljs.registerLanguage('pf', __webpack_require__(/*! ./languages/pf */ 197));
+	hljs.registerLanguage('pgsql', __webpack_require__(/*! ./languages/pgsql */ 198));
+	hljs.registerLanguage('php', __webpack_require__(/*! ./languages/php */ 199));
+	hljs.registerLanguage('plaintext', __webpack_require__(/*! ./languages/plaintext */ 200));
+	hljs.registerLanguage('pony', __webpack_require__(/*! ./languages/pony */ 201));
+	hljs.registerLanguage('powershell', __webpack_require__(/*! ./languages/powershell */ 202));
+	hljs.registerLanguage('processing', __webpack_require__(/*! ./languages/processing */ 203));
+	hljs.registerLanguage('profile', __webpack_require__(/*! ./languages/profile */ 204));
+	hljs.registerLanguage('prolog', __webpack_require__(/*! ./languages/prolog */ 205));
+	hljs.registerLanguage('properties', __webpack_require__(/*! ./languages/properties */ 206));
+	hljs.registerLanguage('protobuf', __webpack_require__(/*! ./languages/protobuf */ 207));
+	hljs.registerLanguage('puppet', __webpack_require__(/*! ./languages/puppet */ 208));
+	hljs.registerLanguage('purebasic', __webpack_require__(/*! ./languages/purebasic */ 209));
+	hljs.registerLanguage('python', __webpack_require__(/*! ./languages/python */ 210));
+	hljs.registerLanguage('q', __webpack_require__(/*! ./languages/q */ 211));
+	hljs.registerLanguage('qml', __webpack_require__(/*! ./languages/qml */ 212));
+	hljs.registerLanguage('r', __webpack_require__(/*! ./languages/r */ 213));
+	hljs.registerLanguage('reasonml', __webpack_require__(/*! ./languages/reasonml */ 214));
+	hljs.registerLanguage('rib', __webpack_require__(/*! ./languages/rib */ 215));
+	hljs.registerLanguage('roboconf', __webpack_require__(/*! ./languages/roboconf */ 216));
+	hljs.registerLanguage('routeros', __webpack_require__(/*! ./languages/routeros */ 217));
+	hljs.registerLanguage('rsl', __webpack_require__(/*! ./languages/rsl */ 218));
+	hljs.registerLanguage('ruleslanguage', __webpack_require__(/*! ./languages/ruleslanguage */ 219));
+	hljs.registerLanguage('rust', __webpack_require__(/*! ./languages/rust */ 220));
+	hljs.registerLanguage('sas', __webpack_require__(/*! ./languages/sas */ 221));
+	hljs.registerLanguage('scala', __webpack_require__(/*! ./languages/scala */ 222));
+	hljs.registerLanguage('scheme', __webpack_require__(/*! ./languages/scheme */ 223));
+	hljs.registerLanguage('scilab', __webpack_require__(/*! ./languages/scilab */ 224));
+	hljs.registerLanguage('scss', __webpack_require__(/*! ./languages/scss */ 225));
+	hljs.registerLanguage('shell', __webpack_require__(/*! ./languages/shell */ 226));
+	hljs.registerLanguage('smali', __webpack_require__(/*! ./languages/smali */ 227));
+	hljs.registerLanguage('smalltalk', __webpack_require__(/*! ./languages/smalltalk */ 228));
+	hljs.registerLanguage('sml', __webpack_require__(/*! ./languages/sml */ 229));
+	hljs.registerLanguage('sqf', __webpack_require__(/*! ./languages/sqf */ 230));
+	hljs.registerLanguage('sql', __webpack_require__(/*! ./languages/sql */ 231));
+	hljs.registerLanguage('stan', __webpack_require__(/*! ./languages/stan */ 232));
+	hljs.registerLanguage('stata', __webpack_require__(/*! ./languages/stata */ 233));
+	hljs.registerLanguage('step21', __webpack_require__(/*! ./languages/step21 */ 234));
+	hljs.registerLanguage('stylus', __webpack_require__(/*! ./languages/stylus */ 235));
+	hljs.registerLanguage('subunit', __webpack_require__(/*! ./languages/subunit */ 236));
+	hljs.registerLanguage('swift', __webpack_require__(/*! ./languages/swift */ 237));
+	hljs.registerLanguage('taggerscript', __webpack_require__(/*! ./languages/taggerscript */ 238));
+	hljs.registerLanguage('yaml', __webpack_require__(/*! ./languages/yaml */ 239));
+	hljs.registerLanguage('tap', __webpack_require__(/*! ./languages/tap */ 240));
+	hljs.registerLanguage('tcl', __webpack_require__(/*! ./languages/tcl */ 241));
+	hljs.registerLanguage('tex', __webpack_require__(/*! ./languages/tex */ 242));
+	hljs.registerLanguage('thrift', __webpack_require__(/*! ./languages/thrift */ 243));
+	hljs.registerLanguage('tp', __webpack_require__(/*! ./languages/tp */ 244));
+	hljs.registerLanguage('twig', __webpack_require__(/*! ./languages/twig */ 245));
+	hljs.registerLanguage('typescript', __webpack_require__(/*! ./languages/typescript */ 246));
+	hljs.registerLanguage('vala', __webpack_require__(/*! ./languages/vala */ 247));
+	hljs.registerLanguage('vbnet', __webpack_require__(/*! ./languages/vbnet */ 248));
+	hljs.registerLanguage('vbscript', __webpack_require__(/*! ./languages/vbscript */ 249));
+	hljs.registerLanguage('vbscript-html', __webpack_require__(/*! ./languages/vbscript-html */ 250));
+	hljs.registerLanguage('verilog', __webpack_require__(/*! ./languages/verilog */ 251));
+	hljs.registerLanguage('vhdl', __webpack_require__(/*! ./languages/vhdl */ 252));
+	hljs.registerLanguage('vim', __webpack_require__(/*! ./languages/vim */ 253));
+	hljs.registerLanguage('x86asm', __webpack_require__(/*! ./languages/x86asm */ 254));
+	hljs.registerLanguage('xl', __webpack_require__(/*! ./languages/xl */ 255));
+	hljs.registerLanguage('xquery', __webpack_require__(/*! ./languages/xquery */ 256));
+	hljs.registerLanguage('zephir', __webpack_require__(/*! ./languages/zephir */ 257));
 	
 	module.exports = hljs;
 
 /***/ }),
-/* 91 */
+/* 72 */
 /*!*****************************************!*\
   !*** ./~/highlight.js/lib/highlight.js ***!
   \*****************************************/
@@ -45389,7 +43623,7 @@
 
 
 /***/ }),
-/* 92 */
+/* 73 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/1c.js ***!
   \********************************************/
@@ -45906,7 +44140,7 @@
 	};
 
 /***/ }),
-/* 93 */
+/* 74 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/abnf.js ***!
   \**********************************************/
@@ -45984,7 +44218,7 @@
 	};
 
 /***/ }),
-/* 94 */
+/* 75 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/accesslog.js ***!
   \***************************************************/
@@ -46029,7 +44263,7 @@
 	};
 
 /***/ }),
-/* 95 */
+/* 76 */
 /*!******************************************************!*\
   !*** ./~/highlight.js/lib/languages/actionscript.js ***!
   \******************************************************/
@@ -46110,7 +44344,7 @@
 	};
 
 /***/ }),
-/* 96 */
+/* 77 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/ada.js ***!
   \*********************************************/
@@ -46290,7 +44524,7 @@
 	};
 
 /***/ }),
-/* 97 */
+/* 78 */
 /*!*****************************************************!*\
   !*** ./~/highlight.js/lib/languages/angelscript.js ***!
   \*****************************************************/
@@ -46404,7 +44638,7 @@
 	};
 
 /***/ }),
-/* 98 */
+/* 79 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/apache.js ***!
   \************************************************/
@@ -46457,7 +44691,7 @@
 	};
 
 /***/ }),
-/* 99 */
+/* 80 */
 /*!*****************************************************!*\
   !*** ./~/highlight.js/lib/languages/applescript.js ***!
   \*****************************************************/
@@ -46550,7 +44784,7 @@
 	};
 
 /***/ }),
-/* 100 */
+/* 81 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/arcade.js ***!
   \************************************************/
@@ -46694,7 +44928,7 @@
 	};
 
 /***/ }),
-/* 101 */
+/* 82 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/cpp.js ***!
   \*********************************************/
@@ -46887,7 +45121,7 @@
 	};
 
 /***/ }),
-/* 102 */
+/* 83 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/arduino.js ***!
   \*************************************************/
@@ -46994,7 +45228,7 @@
 	};
 
 /***/ }),
-/* 103 */
+/* 84 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/armasm.js ***!
   \************************************************/
@@ -47093,7 +45327,7 @@
 	};
 
 /***/ }),
-/* 104 */
+/* 85 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/xml.js ***!
   \*********************************************/
@@ -47208,7 +45442,7 @@
 	};
 
 /***/ }),
-/* 105 */
+/* 86 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/asciidoc.js ***!
   \**************************************************/
@@ -47403,7 +45637,7 @@
 	};
 
 /***/ }),
-/* 106 */
+/* 87 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/aspectj.js ***!
   \*************************************************/
@@ -47555,7 +45789,7 @@
 	};
 
 /***/ }),
-/* 107 */
+/* 88 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/autohotkey.js ***!
   \****************************************************/
@@ -47620,7 +45854,7 @@
 	};
 
 /***/ }),
-/* 108 */
+/* 89 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/autoit.js ***!
   \************************************************/
@@ -47763,7 +45997,7 @@
 	};
 
 /***/ }),
-/* 109 */
+/* 90 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/avrasm.js ***!
   \************************************************/
@@ -47832,7 +46066,7 @@
 	};
 
 /***/ }),
-/* 110 */
+/* 91 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/awk.js ***!
   \*********************************************/
@@ -47892,7 +46126,7 @@
 	};
 
 /***/ }),
-/* 111 */
+/* 92 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/axapta.js ***!
   \************************************************/
@@ -47930,7 +46164,7 @@
 	};
 
 /***/ }),
-/* 112 */
+/* 93 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/bash.js ***!
   \**********************************************/
@@ -48018,7 +46252,7 @@
 	};
 
 /***/ }),
-/* 113 */
+/* 94 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/basic.js ***!
   \***********************************************/
@@ -48076,7 +46310,7 @@
 	};
 
 /***/ }),
-/* 114 */
+/* 95 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/bnf.js ***!
   \*********************************************/
@@ -48112,7 +46346,7 @@
 	};
 
 /***/ }),
-/* 115 */
+/* 96 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/brainfuck.js ***!
   \***************************************************/
@@ -48156,7 +46390,7 @@
 	};
 
 /***/ }),
-/* 116 */
+/* 97 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/cal.js ***!
   \*********************************************/
@@ -48243,7 +46477,7 @@
 	};
 
 /***/ }),
-/* 117 */
+/* 98 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/capnproto.js ***!
   \***************************************************/
@@ -48299,7 +46533,7 @@
 	};
 
 /***/ }),
-/* 118 */
+/* 99 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/ceylon.js ***!
   \************************************************/
@@ -48373,7 +46607,7 @@
 	};
 
 /***/ }),
-/* 119 */
+/* 100 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/clean.js ***!
   \***********************************************/
@@ -48407,7 +46641,7 @@
 	};
 
 /***/ }),
-/* 120 */
+/* 101 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/clojure.js ***!
   \*************************************************/
@@ -48510,7 +46744,7 @@
 	};
 
 /***/ }),
-/* 121 */
+/* 102 */
 /*!******************************************************!*\
   !*** ./~/highlight.js/lib/languages/clojure-repl.js ***!
   \******************************************************/
@@ -48532,7 +46766,7 @@
 	};
 
 /***/ }),
-/* 122 */
+/* 103 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/cmake.js ***!
   \***********************************************/
@@ -48592,7 +46826,7 @@
 	};
 
 /***/ }),
-/* 123 */
+/* 104 */
 /*!******************************************************!*\
   !*** ./~/highlight.js/lib/languages/coffeescript.js ***!
   \******************************************************/
@@ -48745,7 +46979,7 @@
 	};
 
 /***/ }),
-/* 124 */
+/* 105 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/coq.js ***!
   \*********************************************/
@@ -48819,7 +47053,7 @@
 	};
 
 /***/ }),
-/* 125 */
+/* 106 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/cos.js ***!
   \*********************************************/
@@ -48950,7 +47184,7 @@
 	};
 
 /***/ }),
-/* 126 */
+/* 107 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/crmsh.js ***!
   \***********************************************/
@@ -49051,7 +47285,7 @@
 	};
 
 /***/ }),
-/* 127 */
+/* 108 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/crystal.js ***!
   \*************************************************/
@@ -49246,7 +47480,7 @@
 	};
 
 /***/ }),
-/* 128 */
+/* 109 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/cs.js ***!
   \********************************************/
@@ -49438,7 +47672,7 @@
 	};
 
 /***/ }),
-/* 129 */
+/* 110 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/csp.js ***!
   \*********************************************/
@@ -49467,7 +47701,7 @@
 	};
 
 /***/ }),
-/* 130 */
+/* 111 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/css.js ***!
   \*********************************************/
@@ -49579,7 +47813,7 @@
 	};
 
 /***/ }),
-/* 131 */
+/* 112 */
 /*!*******************************************!*\
   !*** ./~/highlight.js/lib/languages/d.js ***!
   \*******************************************/
@@ -49844,7 +48078,7 @@
 	};
 
 /***/ }),
-/* 132 */
+/* 113 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/markdown.js ***!
   \**************************************************/
@@ -49959,7 +48193,7 @@
 	};
 
 /***/ }),
-/* 133 */
+/* 114 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/dart.js ***!
   \**********************************************/
@@ -50076,7 +48310,7 @@
 	};
 
 /***/ }),
-/* 134 */
+/* 115 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/delphi.js ***!
   \************************************************/
@@ -50152,7 +48386,7 @@
 	};
 
 /***/ }),
-/* 135 */
+/* 116 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/diff.js ***!
   \**********************************************/
@@ -50199,7 +48433,7 @@
 	};
 
 /***/ }),
-/* 136 */
+/* 117 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/django.js ***!
   \************************************************/
@@ -50270,7 +48504,7 @@
 	};
 
 /***/ }),
-/* 137 */
+/* 118 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/dns.js ***!
   \*********************************************/
@@ -50306,7 +48540,7 @@
 	};
 
 /***/ }),
-/* 138 */
+/* 119 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/dockerfile.js ***!
   \****************************************************/
@@ -50335,7 +48569,7 @@
 	};
 
 /***/ }),
-/* 139 */
+/* 120 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/dos.js ***!
   \*********************************************/
@@ -50394,7 +48628,7 @@
 	};
 
 /***/ }),
-/* 140 */
+/* 121 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/dsconfig.js ***!
   \**************************************************/
@@ -50448,7 +48682,7 @@
 	};
 
 /***/ }),
-/* 141 */
+/* 122 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/dts.js ***!
   \*********************************************/
@@ -50579,7 +48813,7 @@
 	};
 
 /***/ }),
-/* 142 */
+/* 123 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/dust.js ***!
   \**********************************************/
@@ -50618,7 +48852,7 @@
 	};
 
 /***/ }),
-/* 143 */
+/* 124 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/ebnf.js ***!
   \**********************************************/
@@ -50658,7 +48892,7 @@
 	};
 
 /***/ }),
-/* 144 */
+/* 125 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/elixir.js ***!
   \************************************************/
@@ -50765,7 +48999,7 @@
 	};
 
 /***/ }),
-/* 145 */
+/* 126 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/elm.js ***!
   \*********************************************/
@@ -50862,7 +49096,7 @@
 	};
 
 /***/ }),
-/* 146 */
+/* 127 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/ruby.js ***!
   \**********************************************/
@@ -51054,7 +49288,7 @@
 	};
 
 /***/ }),
-/* 147 */
+/* 128 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/erb.js ***!
   \*********************************************/
@@ -51076,7 +49310,7 @@
 	};
 
 /***/ }),
-/* 148 */
+/* 129 */
 /*!*****************************************************!*\
   !*** ./~/highlight.js/lib/languages/erlang-repl.js ***!
   \*****************************************************/
@@ -51129,7 +49363,7 @@
 	};
 
 /***/ }),
-/* 149 */
+/* 130 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/erlang.js ***!
   \************************************************/
@@ -51282,7 +49516,7 @@
 	};
 
 /***/ }),
-/* 150 */
+/* 131 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/excel.js ***!
   \***********************************************/
@@ -51337,7 +49571,7 @@
 	};
 
 /***/ }),
-/* 151 */
+/* 132 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/fix.js ***!
   \*********************************************/
@@ -51373,7 +49607,7 @@
 	};
 
 /***/ }),
-/* 152 */
+/* 133 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/flix.js ***!
   \**********************************************/
@@ -51425,7 +49659,7 @@
 	};
 
 /***/ }),
-/* 153 */
+/* 134 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/fortran.js ***!
   \*************************************************/
@@ -51503,7 +49737,7 @@
 	};
 
 /***/ }),
-/* 154 */
+/* 135 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/fsharp.js ***!
   \************************************************/
@@ -51569,7 +49803,7 @@
 	};
 
 /***/ }),
-/* 155 */
+/* 136 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/gams.js ***!
   \**********************************************/
@@ -51730,7 +49964,7 @@
 	};
 
 /***/ }),
-/* 156 */
+/* 137 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/gauss.js ***!
   \***********************************************/
@@ -52028,7 +50262,7 @@
 	};
 
 /***/ }),
-/* 157 */
+/* 138 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/gcode.js ***!
   \***********************************************/
@@ -52102,7 +50336,7 @@
 	};
 
 /***/ }),
-/* 158 */
+/* 139 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/gherkin.js ***!
   \*************************************************/
@@ -52146,7 +50380,7 @@
 	};
 
 /***/ }),
-/* 159 */
+/* 140 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/glsl.js ***!
   \**********************************************/
@@ -52270,7 +50504,7 @@
 	};
 
 /***/ }),
-/* 160 */
+/* 141 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/gml.js ***!
   \*********************************************/
@@ -53150,7 +51384,7 @@
 	};
 
 /***/ }),
-/* 161 */
+/* 142 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/go.js ***!
   \********************************************/
@@ -53211,7 +51445,7 @@
 	};
 
 /***/ }),
-/* 162 */
+/* 143 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/golo.js ***!
   \**********************************************/
@@ -53241,7 +51475,7 @@
 	};
 
 /***/ }),
-/* 163 */
+/* 144 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/gradle.js ***!
   \************************************************/
@@ -53283,7 +51517,7 @@
 	};
 
 /***/ }),
-/* 164 */
+/* 145 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/groovy.js ***!
   \************************************************/
@@ -53384,7 +51618,7 @@
 	};
 
 /***/ }),
-/* 165 */
+/* 146 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/haml.js ***!
   \**********************************************/
@@ -53498,7 +51732,7 @@
 	};
 
 /***/ }),
-/* 166 */
+/* 147 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/handlebars.js ***!
   \****************************************************/
@@ -53539,7 +51773,7 @@
 	};
 
 /***/ }),
-/* 167 */
+/* 148 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/haskell.js ***!
   \*************************************************/
@@ -53668,7 +51902,7 @@
 	};
 
 /***/ }),
-/* 168 */
+/* 149 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/haxe.js ***!
   \**********************************************/
@@ -53787,7 +52021,7 @@
 	};
 
 /***/ }),
-/* 169 */
+/* 150 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/hsp.js ***!
   \*********************************************/
@@ -53840,7 +52074,7 @@
 	};
 
 /***/ }),
-/* 170 */
+/* 151 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/htmlbars.js ***!
   \**************************************************/
@@ -53918,7 +52152,7 @@
 	};
 
 /***/ }),
-/* 171 */
+/* 152 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/http.js ***!
   \**********************************************/
@@ -53966,7 +52200,7 @@
 	};
 
 /***/ }),
-/* 172 */
+/* 153 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/hy.js ***!
   \********************************************/
@@ -54075,7 +52309,7 @@
 	};
 
 /***/ }),
-/* 173 */
+/* 154 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/inform7.js ***!
   \*************************************************/
@@ -54139,7 +52373,7 @@
 	};
 
 /***/ }),
-/* 174 */
+/* 155 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/ini.js ***!
   \*********************************************/
@@ -54214,7 +52448,7 @@
 	};
 
 /***/ }),
-/* 175 */
+/* 156 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/irpf90.js ***!
   \************************************************/
@@ -54297,7 +52531,7 @@
 	};
 
 /***/ }),
-/* 176 */
+/* 157 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/isbl.js ***!
   \**********************************************/
@@ -57477,7 +55711,7 @@
 	};
 
 /***/ }),
-/* 177 */
+/* 158 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/java.js ***!
   \**********************************************/
@@ -57592,7 +55826,7 @@
 	};
 
 /***/ }),
-/* 178 */
+/* 159 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/javascript.js ***!
   \****************************************************/
@@ -57801,7 +56035,7 @@
 	};
 
 /***/ }),
-/* 179 */
+/* 160 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/jboss-cli.js ***!
   \***************************************************/
@@ -57855,7 +56089,7 @@
 	};
 
 /***/ }),
-/* 180 */
+/* 161 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/json.js ***!
   \**********************************************/
@@ -57899,7 +56133,7 @@
 	};
 
 /***/ }),
-/* 181 */
+/* 162 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/julia.js ***!
   \***********************************************/
@@ -58068,7 +56302,7 @@
 	};
 
 /***/ }),
-/* 182 */
+/* 163 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/julia-repl.js ***!
   \****************************************************/
@@ -58099,7 +56333,7 @@
 	};
 
 /***/ }),
-/* 183 */
+/* 164 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/kotlin.js ***!
   \************************************************/
@@ -58322,7 +56556,7 @@
 	};
 
 /***/ }),
-/* 184 */
+/* 165 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/lasso.js ***!
   \***********************************************/
@@ -58492,7 +56726,7 @@
 	};
 
 /***/ }),
-/* 185 */
+/* 166 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/ldif.js ***!
   \**********************************************/
@@ -58522,7 +56756,7 @@
 	};
 
 /***/ }),
-/* 186 */
+/* 167 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/leaf.js ***!
   \**********************************************/
@@ -58569,7 +56803,7 @@
 	};
 
 /***/ }),
-/* 187 */
+/* 168 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/less.js ***!
   \**********************************************/
@@ -58716,7 +56950,7 @@
 	};
 
 /***/ }),
-/* 188 */
+/* 169 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/lisp.js ***!
   \**********************************************/
@@ -58826,7 +57060,7 @@
 	};
 
 /***/ }),
-/* 189 */
+/* 170 */
 /*!********************************************************!*\
   !*** ./~/highlight.js/lib/languages/livecodeserver.js ***!
   \********************************************************/
@@ -58994,7 +57228,7 @@
 	};
 
 /***/ }),
-/* 190 */
+/* 171 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/livescript.js ***!
   \****************************************************/
@@ -59150,7 +57384,7 @@
 	};
 
 /***/ }),
-/* 191 */
+/* 172 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/llvm.js ***!
   \**********************************************/
@@ -59246,7 +57480,7 @@
 	};
 
 /***/ }),
-/* 192 */
+/* 173 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/lsl.js ***!
   \*********************************************/
@@ -59336,7 +57570,7 @@
 	};
 
 /***/ }),
-/* 193 */
+/* 174 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/lua.js ***!
   \*********************************************/
@@ -59409,7 +57643,7 @@
 	};
 
 /***/ }),
-/* 194 */
+/* 175 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/makefile.js ***!
   \**************************************************/
@@ -59497,7 +57731,7 @@
 	};
 
 /***/ }),
-/* 195 */
+/* 176 */
 /*!*****************************************************!*\
   !*** ./~/highlight.js/lib/languages/mathematica.js ***!
   \*****************************************************/
@@ -59553,7 +57787,7 @@
 	};
 
 /***/ }),
-/* 196 */
+/* 177 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/matlab.js ***!
   \************************************************/
@@ -59656,7 +57890,7 @@
 	};
 
 /***/ }),
-/* 197 */
+/* 178 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/maxima.js ***!
   \************************************************/
@@ -60069,7 +58303,7 @@
 	};
 
 /***/ }),
-/* 198 */
+/* 179 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/mel.js ***!
   \*********************************************/
@@ -60301,7 +58535,7 @@
 	};
 
 /***/ }),
-/* 199 */
+/* 180 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/mercury.js ***!
   \*************************************************/
@@ -60390,7 +58624,7 @@
 	};
 
 /***/ }),
-/* 200 */
+/* 181 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/mipsasm.js ***!
   \*************************************************/
@@ -60483,7 +58717,7 @@
 	};
 
 /***/ }),
-/* 201 */
+/* 182 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/mizar.js ***!
   \***********************************************/
@@ -60509,7 +58743,7 @@
 	};
 
 /***/ }),
-/* 202 */
+/* 183 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/perl.js ***!
   \**********************************************/
@@ -60673,7 +58907,7 @@
 	};
 
 /***/ }),
-/* 203 */
+/* 184 */
 /*!*****************************************************!*\
   !*** ./~/highlight.js/lib/languages/mojolicious.js ***!
   \*****************************************************/
@@ -60705,7 +58939,7 @@
 	};
 
 /***/ }),
-/* 204 */
+/* 185 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/monkey.js ***!
   \************************************************/
@@ -60787,7 +59021,7 @@
 	};
 
 /***/ }),
-/* 205 */
+/* 186 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/moonscript.js ***!
   \****************************************************/
@@ -60906,7 +59140,7 @@
 	};
 
 /***/ }),
-/* 206 */
+/* 187 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/n1ql.js ***!
   \**********************************************/
@@ -60982,7 +59216,7 @@
 	};
 
 /***/ }),
-/* 207 */
+/* 188 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/nginx.js ***!
   \***********************************************/
@@ -61082,7 +59316,7 @@
 	};
 
 /***/ }),
-/* 208 */
+/* 189 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/nimrod.js ***!
   \************************************************/
@@ -61144,7 +59378,7 @@
 	};
 
 /***/ }),
-/* 209 */
+/* 190 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/nix.js ***!
   \*********************************************/
@@ -61200,7 +59434,7 @@
 	};
 
 /***/ }),
-/* 210 */
+/* 191 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/nsis.js ***!
   \**********************************************/
@@ -61313,7 +59547,7 @@
 	};
 
 /***/ }),
-/* 211 */
+/* 192 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/objectivec.js ***!
   \****************************************************/
@@ -61411,7 +59645,7 @@
 	};
 
 /***/ }),
-/* 212 */
+/* 193 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/ocaml.js ***!
   \***********************************************/
@@ -61489,7 +59723,7 @@
 	};
 
 /***/ }),
-/* 213 */
+/* 194 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/openscad.js ***!
   \**************************************************/
@@ -61553,7 +59787,7 @@
 	};
 
 /***/ }),
-/* 214 */
+/* 195 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/oxygene.js ***!
   \*************************************************/
@@ -61630,7 +59864,7 @@
 	};
 
 /***/ }),
-/* 215 */
+/* 196 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/parser3.js ***!
   \*************************************************/
@@ -61685,7 +59919,7 @@
 	};
 
 /***/ }),
-/* 216 */
+/* 197 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/pf.js ***!
   \********************************************/
@@ -61744,7 +59978,7 @@
 	};
 
 /***/ }),
-/* 217 */
+/* 198 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/pgsql.js ***!
   \***********************************************/
@@ -62239,7 +60473,7 @@
 	};
 
 /***/ }),
-/* 218 */
+/* 199 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/php.js ***!
   \*********************************************/
@@ -62373,7 +60607,7 @@
 	};
 
 /***/ }),
-/* 219 */
+/* 200 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/plaintext.js ***!
   \***************************************************/
@@ -62386,7 +60620,7 @@
 	};
 
 /***/ }),
-/* 220 */
+/* 201 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/pony.js ***!
   \**********************************************/
@@ -62462,7 +60696,7 @@
 	};
 
 /***/ }),
-/* 221 */
+/* 202 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/powershell.js ***!
   \****************************************************/
@@ -62741,7 +60975,7 @@
 	};
 
 /***/ }),
-/* 222 */
+/* 203 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/processing.js ***!
   \****************************************************/
@@ -62796,7 +61030,7 @@
 	};
 
 /***/ }),
-/* 223 */
+/* 204 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/profile.js ***!
   \*************************************************/
@@ -62833,7 +61067,7 @@
 	};
 
 /***/ }),
-/* 224 */
+/* 205 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/prolog.js ***!
   \************************************************/
@@ -62928,7 +61162,7 @@
 	};
 
 /***/ }),
-/* 225 */
+/* 206 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/properties.js ***!
   \****************************************************/
@@ -63005,7 +61239,7 @@
 	};
 
 /***/ }),
-/* 226 */
+/* 207 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/protobuf.js ***!
   \**************************************************/
@@ -63048,7 +61282,7 @@
 	};
 
 /***/ }),
-/* 227 */
+/* 208 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/puppet.js ***!
   \************************************************/
@@ -63170,7 +61404,7 @@
 	};
 
 /***/ }),
-/* 228 */
+/* 209 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/purebasic.js ***!
   \***************************************************/
@@ -63262,7 +61496,7 @@
 	*/;
 
 /***/ }),
-/* 229 */
+/* 210 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/python.js ***!
   \************************************************/
@@ -63386,7 +61620,7 @@
 	};
 
 /***/ }),
-/* 230 */
+/* 211 */
 /*!*******************************************!*\
   !*** ./~/highlight.js/lib/languages/q.js ***!
   \*******************************************/
@@ -63416,7 +61650,7 @@
 	};
 
 /***/ }),
-/* 231 */
+/* 212 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/qml.js ***!
   \*********************************************/
@@ -63592,7 +61826,7 @@
 	};
 
 /***/ }),
-/* 232 */
+/* 213 */
 /*!*******************************************!*\
   !*** ./~/highlight.js/lib/languages/r.js ***!
   \*******************************************/
@@ -63669,7 +61903,7 @@
 	};
 
 /***/ }),
-/* 233 */
+/* 214 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/reasonml.js ***!
   \**************************************************/
@@ -63976,7 +62210,7 @@
 	};
 
 /***/ }),
-/* 234 */
+/* 215 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/rib.js ***!
   \*********************************************/
@@ -64010,7 +62244,7 @@
 	};
 
 /***/ }),
-/* 235 */
+/* 216 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/roboconf.js ***!
   \**************************************************/
@@ -64084,7 +62318,7 @@
 	};
 
 /***/ }),
-/* 236 */
+/* 217 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/routeros.js ***!
   \**************************************************/
@@ -64250,7 +62484,7 @@
 	};
 
 /***/ }),
-/* 237 */
+/* 218 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/rsl.js ***!
   \*********************************************/
@@ -64293,7 +62527,7 @@
 	};
 
 /***/ }),
-/* 238 */
+/* 219 */
 /*!*******************************************************!*\
   !*** ./~/highlight.js/lib/languages/ruleslanguage.js ***!
   \*******************************************************/
@@ -64361,7 +62595,7 @@
 	};
 
 /***/ }),
-/* 239 */
+/* 220 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/rust.js ***!
   \**********************************************/
@@ -64476,7 +62710,7 @@
 	};
 
 /***/ }),
-/* 240 */
+/* 221 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/sas.js ***!
   \*********************************************/
@@ -64609,7 +62843,7 @@
 	};
 
 /***/ }),
-/* 241 */
+/* 222 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/scala.js ***!
   \***********************************************/
@@ -64731,7 +62965,7 @@
 	};
 
 /***/ }),
-/* 242 */
+/* 223 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/scheme.js ***!
   \************************************************/
@@ -64882,7 +63116,7 @@
 	};
 
 /***/ }),
-/* 243 */
+/* 224 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/scilab.js ***!
   \************************************************/
@@ -64943,7 +63177,7 @@
 	};
 
 /***/ }),
-/* 244 */
+/* 225 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/scss.js ***!
   \**********************************************/
@@ -65048,7 +63282,7 @@
 	};
 
 /***/ }),
-/* 245 */
+/* 226 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/shell.js ***!
   \***********************************************/
@@ -65070,7 +63304,7 @@
 	};
 
 /***/ }),
-/* 246 */
+/* 227 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/smali.js ***!
   \***********************************************/
@@ -65133,7 +63367,7 @@
 	};
 
 /***/ }),
-/* 247 */
+/* 228 */
 /*!***************************************************!*\
   !*** ./~/highlight.js/lib/languages/smalltalk.js ***!
   \***************************************************/
@@ -65190,7 +63424,7 @@
 	};
 
 /***/ }),
-/* 248 */
+/* 229 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/sml.js ***!
   \*********************************************/
@@ -65263,7 +63497,7 @@
 	};
 
 /***/ }),
-/* 249 */
+/* 230 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/sqf.js ***!
   \*********************************************/
@@ -65675,7 +63909,7 @@
 	};
 
 /***/ }),
-/* 250 */
+/* 231 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/sql.js ***!
   \*********************************************/
@@ -65844,7 +64078,7 @@
 	};
 
 /***/ }),
-/* 251 */
+/* 232 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/stan.js ***!
   \**********************************************/
@@ -65934,7 +64168,7 @@
 	};
 
 /***/ }),
-/* 252 */
+/* 233 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/stata.js ***!
   \***********************************************/
@@ -65979,7 +64213,7 @@
 	};
 
 /***/ }),
-/* 253 */
+/* 234 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/step21.js ***!
   \************************************************/
@@ -66033,7 +64267,7 @@
 	};
 
 /***/ }),
-/* 254 */
+/* 235 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/stylus.js ***!
   \************************************************/
@@ -66494,7 +64728,7 @@
 	};
 
 /***/ }),
-/* 255 */
+/* 236 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/subunit.js ***!
   \*************************************************/
@@ -66535,7 +64769,7 @@
 	};
 
 /***/ }),
-/* 256 */
+/* 237 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/swift.js ***!
   \***********************************************/
@@ -66672,7 +64906,7 @@
 	};
 
 /***/ }),
-/* 257 */
+/* 238 */
 /*!******************************************************!*\
   !*** ./~/highlight.js/lib/languages/taggerscript.js ***!
   \******************************************************/
@@ -66723,7 +64957,7 @@
 	};
 
 /***/ }),
-/* 258 */
+/* 239 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/yaml.js ***!
   \**********************************************/
@@ -66822,7 +65056,7 @@
 	};
 
 /***/ }),
-/* 259 */
+/* 240 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/tap.js ***!
   \*********************************************/
@@ -66865,7 +65099,7 @@
 	};
 
 /***/ }),
-/* 260 */
+/* 241 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/tcl.js ***!
   \*********************************************/
@@ -66932,7 +65166,7 @@
 	};
 
 /***/ }),
-/* 261 */
+/* 242 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/tex.js ***!
   \*********************************************/
@@ -67001,7 +65235,7 @@
 	};
 
 /***/ }),
-/* 262 */
+/* 243 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/thrift.js ***!
   \************************************************/
@@ -67043,7 +65277,7 @@
 	};
 
 /***/ }),
-/* 263 */
+/* 244 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/tp.js ***!
   \********************************************/
@@ -67134,7 +65368,7 @@
 	};
 
 /***/ }),
-/* 264 */
+/* 245 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/twig.js ***!
   \**********************************************/
@@ -67207,7 +65441,7 @@
 	};
 
 /***/ }),
-/* 265 */
+/* 246 */
 /*!****************************************************!*\
   !*** ./~/highlight.js/lib/languages/typescript.js ***!
   \****************************************************/
@@ -67420,7 +65654,7 @@
 	};
 
 /***/ }),
-/* 266 */
+/* 247 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/vala.js ***!
   \**********************************************/
@@ -67477,7 +65711,7 @@
 	};
 
 /***/ }),
-/* 267 */
+/* 248 */
 /*!***********************************************!*\
   !*** ./~/highlight.js/lib/languages/vbnet.js ***!
   \***********************************************/
@@ -67540,7 +65774,7 @@
 	};
 
 /***/ }),
-/* 268 */
+/* 249 */
 /*!**************************************************!*\
   !*** ./~/highlight.js/lib/languages/vbscript.js ***!
   \**************************************************/
@@ -67586,7 +65820,7 @@
 	};
 
 /***/ }),
-/* 269 */
+/* 250 */
 /*!*******************************************************!*\
   !*** ./~/highlight.js/lib/languages/vbscript-html.js ***!
   \*******************************************************/
@@ -67605,7 +65839,7 @@
 	};
 
 /***/ }),
-/* 270 */
+/* 251 */
 /*!*************************************************!*\
   !*** ./~/highlight.js/lib/languages/verilog.js ***!
   \*************************************************/
@@ -67711,7 +65945,7 @@
 	};
 
 /***/ }),
-/* 271 */
+/* 252 */
 /*!**********************************************!*\
   !*** ./~/highlight.js/lib/languages/vhdl.js ***!
   \**********************************************/
@@ -67779,7 +66013,7 @@
 	};
 
 /***/ }),
-/* 272 */
+/* 253 */
 /*!*********************************************!*\
   !*** ./~/highlight.js/lib/languages/vim.js ***!
   \*********************************************/
@@ -67896,7 +66130,7 @@
 	};
 
 /***/ }),
-/* 273 */
+/* 254 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/x86asm.js ***!
   \************************************************/
@@ -68039,7 +66273,7 @@
 	};
 
 /***/ }),
-/* 274 */
+/* 255 */
 /*!********************************************!*\
   !*** ./~/highlight.js/lib/languages/xl.js ***!
   \********************************************/
@@ -68119,7 +66353,7 @@
 	};
 
 /***/ }),
-/* 275 */
+/* 256 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/xquery.js ***!
   \************************************************/
@@ -68296,7 +66530,7 @@
 	};
 
 /***/ }),
-/* 276 */
+/* 257 */
 /*!************************************************!*\
   !*** ./~/highlight.js/lib/languages/zephir.js ***!
   \************************************************/
@@ -68410,7 +66644,2166 @@
 	};
 
 /***/ }),
+/* 258 */
+/*!*******************************!*\
+  !*** ./www/app/pages/Home.js ***!
+  \*******************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Body = __webpack_require__(/*! ../components/Body */ 59);
+	
+	var _Body2 = _interopRequireDefault(_Body);
+	
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 63);
+	
+	var _Footer2 = _interopRequireDefault(_Footer);
+	
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 60);
+	
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+	
+	var _GameGroup = __webpack_require__(/*! ../components/GameGroup */ 259);
+	
+	var _GameGroup2 = _interopRequireDefault(_GameGroup);
+	
+	var _Searchbar = __webpack_require__(/*! ../components/Searchbar */ 266);
+	
+	var _Searchbar2 = _interopRequireDefault(_Searchbar);
+	
+	var _RandomGame = __webpack_require__(/*! ../components/RandomGame */ 267);
+	
+	var _RandomGame2 = _interopRequireDefault(_RandomGame);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Home = function (_React$Component) {
+		_inherits(Home, _React$Component);
+	
+		function Home() {
+			_classCallCheck(this, Home);
+	
+			var _this2 = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
+	
+			var _this = _this2;
+			var _cache = null;
+			_this2._mounted = false;
+			_this2.state = { games: [], num: 0, alts: ["https://shsgames.herokuapp.com", "https://shs-games.herokuapp.com"] };
+			(function listen() {
+				requestAnimationFrame(listen);
+				if (app.games !== _cache && _this._mounted) {
+					_cache = app.games;
+					var num = 0;
+					var _iteratorNormalCompletion = true;
+					var _didIteratorError = false;
+					var _iteratorError = undefined;
+	
+					try {
+						for (var _iterator = app.games.groups[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+							var group = _step.value;
+							num += group.games.length;
+						}
+					} catch (err) {
+						_didIteratorError = true;
+						_iteratorError = err;
+					} finally {
+						try {
+							if (!_iteratorNormalCompletion && _iterator.return) {
+								_iterator.return();
+							}
+						} finally {
+							if (_didIteratorError) {
+								throw _iteratorError;
+							}
+						}
+					}
+	
+					_this.setState({ games: app.games, num: num });
+					setTimeout(function () {
+						return Photon.reload();
+					});
+				}
+			})();
+			return _this2;
+		}
+	
+		_createClass(Home, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				this._mounted = true;
+			}
+		}, {
+			key: "componentWillUnmount",
+			value: function componentWillUnmount() {
+				this._mounted = false;
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(_Navbar2.default, null),
+					_react2.default.createElement(
+						_Body2.default,
+						null,
+						_react2.default.createElement(
+							"div",
+							{ className: "container row" },
+							_react2.default.createElement(
+								"div",
+								{ className: "col s12 l7" },
+								_react2.default.createElement(
+									"ul",
+									{ className: "scrollnav", "data-offset": "0" },
+									_react2.default.createElement(
+										"li",
+										null,
+										_react2.default.createElement(
+											"h1",
+											null,
+											"Categories"
+										)
+									),
+									this.state.games.length !== 0 && this.state.games.groups.map(function (group, key) {
+										return _react2.default.createElement(
+											"li",
+											{ key: key },
+											_react2.default.createElement(
+												"a",
+												{ "data-scrollto": "#" + app.slug(group.name) },
+												group.name
+											)
+										);
+									})
+								),
+								_react2.default.createElement(
+									_RandomGame2.default,
+									null,
+									_react2.default.createElement(
+										"a",
+										{ style: { margin: 0, marginBottom: 8 }, className: "autolink waves-effect photon-init" },
+										_react2.default.createElement(
+											"div",
+											{ className: "padding-layer" },
+											_react2.default.createElement(
+												"div",
+												{ className: "external-img invert" },
+												_react2.default.createElement("img", { src: "/img/res/shuffle-24px.svg", alt: "" })
+											),
+											_react2.default.createElement(
+												"div",
+												{ className: "title" },
+												"Random Game"
+											),
+											_react2.default.createElement(
+												"p",
+												null,
+												"Why not switch it up a bit?"
+											),
+											_react2.default.createElement(
+												"div",
+												{ className: "ref" },
+												"From ",
+												this.state.num,
+												" games"
+											)
+										)
+									)
+								)
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "col s12 l5" },
+								_react2.default.createElement(
+									"div",
+									{ className: "note important" },
+									_react2.default.createElement("div", { className: "header" }),
+									_react2.default.createElement(
+										"div",
+										{ className: "content" },
+										_react2.default.createElement(
+											"b",
+											null,
+											"Dont forget: Unblocked versions can be found here"
+										)
+									),
+									_react2.default.createElement("hr", null),
+									this.state.alts.map(function (a, k) {
+										return location.origin !== a && _react2.default.createElement(
+											"div",
+											{ className: "content", key: k },
+											_react2.default.createElement(
+												"a",
+												{ href: a },
+												a
+											)
+										);
+									})
+								)
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "col s12 l5" },
+								_react2.default.createElement(
+									"div",
+									{ className: "note partners" },
+									_react2.default.createElement("div", { className: "header" }),
+									_react2.default.createElement(
+										"div",
+										{ className: "content" },
+										_react2.default.createElement(
+											"b",
+											null,
+											"Check out our partners:"
+										)
+									),
+									_react2.default.createElement("hr", null),
+									_react2.default.createElement(
+										"div",
+										{ className: "content" },
+										"ALT+G: ",
+										_react2.default.createElement(
+											"i",
+											{ className: "grey-text" },
+											"Our Minecraft server with no rules!"
+										),
+										" ",
+										_react2.default.createElement(
+											"code",
+											{ style: { padding: "2px 4px", borderRadius: 5 } },
+											"altg.biz.tm"
+										)
+									)
+								)
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "col s12" },
+								_react2.default.createElement(_Searchbar2.default, null),
+								this.state.games.length !== 0 && this.state.games.groups.map(function (group, key) {
+									return _react2.default.createElement(_GameGroup2.default, { key: key, group: group });
+								})
+							)
+						)
+					),
+					_react2.default.createElement(_Footer2.default, { "static": true })
+				);
+			}
+		}]);
+	
+		return Home;
+	}(_react2.default.Component);
+	
+	exports.default = Home;
+
+/***/ }),
+/* 259 */
+/*!*****************************************!*\
+  !*** ./www/app/components/GameGroup.js ***!
+  \*****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	__webpack_require__(/*! ./GameGroup.less */ 260);
+	
+	var _GameCard = __webpack_require__(/*! ./GameCard */ 262);
+	
+	var _GameCard2 = _interopRequireDefault(_GameCard);
+	
+	var _Adview = __webpack_require__(/*! ./Adview */ 265);
+	
+	var _Adview2 = _interopRequireDefault(_Adview);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GameGroup = function (_React$Component) {
+		_inherits(GameGroup, _React$Component);
+	
+		function GameGroup() {
+			_classCallCheck(this, GameGroup);
+	
+			return _possibleConstructorReturn(this, (GameGroup.__proto__ || Object.getPrototypeOf(GameGroup)).apply(this, arguments));
+		}
+	
+		_createClass(GameGroup, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "gamegroup" },
+					_react2.default.createElement(_Adview2.default, null),
+					_react2.default.createElement(
+						"div",
+						{ className: "title" },
+						_react2.default.createElement(
+							"h2",
+							{ id: app.slug(this.props.group.name) },
+							this.props.group.name
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "row" },
+						this.props.group.games.map(function (game, key) {
+							return _react2.default.createElement(_GameCard2.default, { game: game, key: key });
+						})
+					)
+				);
+			}
+		}]);
+	
+		return GameGroup;
+	}(_react2.default.Component);
+	
+	exports.default = GameGroup;
+
+/***/ }),
+/* 260 */
+/*!*******************************************!*\
+  !*** ./www/app/components/GameGroup.less ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameGroup.less */ 261);
+	
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	
+	var transform;
+	var insertInto;
+	
+	
+	
+	var options = {"hmr":true}
+	
+	options.transform = transform
+	options.insertInto = undefined;
+	
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 67)(content, options);
+	
+	if(content.locals) module.exports = content.locals;
+	
+	if(false) {
+		module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameGroup.less", function() {
+			var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameGroup.less");
+	
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+	
+			var locals = (function(a, b) {
+				var key, idx = 0;
+	
+				for(key in a) {
+					if(!b || a[key] !== b[key]) return false;
+					idx++;
+				}
+	
+				for(key in b) idx--;
+	
+				return idx === 0;
+			}(content.locals, newContent.locals));
+	
+			if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+	
+			update(newContent);
+		});
+	
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 261 */
+/*!**************************************************************************************************!*\
+  !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameGroup.less ***!
+  \**************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 66)(false);
+	// Module
+	exports.push([module.id, ".gamegroup .row {\n  margin: 0 -4px;\n}\n", ""]);
+	
+
+
+/***/ }),
+/* 262 */
+/*!****************************************!*\
+  !*** ./www/app/components/GameCard.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
+	
+	__webpack_require__(/*! ./GameCard.less */ 263);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GameCard = function (_React$Component) {
+		_inherits(GameCard, _React$Component);
+	
+		function GameCard() {
+			_classCallCheck(this, GameCard);
+	
+			var _this = _possibleConstructorReturn(this, (GameCard.__proto__ || Object.getPrototypeOf(GameCard)).call(this));
+	
+			_this.state = { redirect: null };
+			return _this;
+		}
+	
+		_createClass(GameCard, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				setTimeout(function () {
+					return new LazyLoad({ elements_selector: ".thumbnail" });
+				});
+			}
+		}, {
+			key: "componentDidUpdate",
+			value: function componentDidUpdate() {
+				this.state.redirect !== null && this.setState({ redirect: null });
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				var _this2 = this;
+	
+				if (this.state.redirect) return _react2.default.createElement(_reactRouterDom.Redirect, { to: this.state.redirect, push: true });
+				return _react2.default.createElement(
+					"div",
+					{ className: "col s12 m6 l4 xl3" },
+					_react2.default.createElement(
+						"div",
+						{ className: "gamecard card" },
+						_react2.default.createElement(
+							"div",
+							{ className: "card-content" },
+							_react2.default.createElement(
+								"div",
+								{ className: "card-title" },
+								this.props.game.name
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "thumbnail-wrapper" },
+								_react2.default.createElement("img", { "data-src": app.service + "/gcp/thumbs/" + app.slug(this.props.game.name) + ".jpg", alt: "", className: "thumbnail" })
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "card-action" },
+							_react2.default.createElement(
+								"a",
+								{ className: "btn flat waves-effect primary", onClick: function onClick() {
+										return app.launch(_this2.props.game, _this2);
+									} },
+								"play"
+							)
+						)
+					)
+				);
+			}
+		}]);
+	
+		return GameCard;
+	}(_react2.default.Component);
+	
+	exports.default = GameCard;
+
+/***/ }),
+/* 263 */
+/*!******************************************!*\
+  !*** ./www/app/components/GameCard.less ***!
+  \******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameCard.less */ 264);
+	
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	
+	var transform;
+	var insertInto;
+	
+	
+	
+	var options = {"hmr":true}
+	
+	options.transform = transform
+	options.insertInto = undefined;
+	
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 67)(content, options);
+	
+	if(content.locals) module.exports = content.locals;
+	
+	if(false) {
+		module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameCard.less", function() {
+			var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameCard.less");
+	
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+	
+			var locals = (function(a, b) {
+				var key, idx = 0;
+	
+				for(key in a) {
+					if(!b || a[key] !== b[key]) return false;
+					idx++;
+				}
+	
+				for(key in b) idx--;
+	
+				return idx === 0;
+			}(content.locals, newContent.locals));
+	
+			if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+	
+			update(newContent);
+		});
+	
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 264 */
+/*!*************************************************************************************************!*\
+  !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameCard.less ***!
+  \*************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 66)(false);
+	// Module
+	exports.push([module.id, ".gamecard .card-content .card-title {\n  margin: -8px 0;\n  font-size: 22px;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n}\n.gamecard .card-content .thumbnail-wrapper {\n  margin: -24px;\n  margin-top: 24px;\n  padding-top: 56.25%;\n  position: relative;\n}\n.gamecard .card-content .thumbnail-wrapper .thumbnail {\n  pointer-events: none;\n  position: absolute;\n  width: 100%;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.gamecard .card-content .thumbnail-wrapper .thumbnail.pixelated {\n  image-rendering: pixelated;\n}\n.gamecard .card-action:not(.offline) {\n  border: none;\n}\n", ""]);
+	
+
+
+/***/ }),
+/* 265 */
+/*!**************************************!*\
+  !*** ./www/app/components/Adview.js ***!
+  \**************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Adview = function (_React$Component) {
+		_inherits(Adview, _React$Component);
+	
+		function Adview() {
+			_classCallCheck(this, Adview);
+	
+			var _this = _possibleConstructorReturn(this, (Adview.__proto__ || Object.getPrototypeOf(Adview)).call(this));
+	
+			_this.state = { visible: true };
+			return _this;
+		}
+	
+		_createClass(Adview, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				try {
+					(adsbygoogle = window.adsbygoogle || []).push({});
+				} catch (e) {
+					this.setState({ visible: false });
+					console.warn("Ads not shown. Network does not support.");
+				}
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return !this.state.visible ? null : _react2.default.createElement("ins", { className: "adsbygoogle",
+					style: { display: "block", marginTop: 8 },
+					"data-ad-format": "fluid",
+					"data-ad-layout-key": "-g7-u+8l-8s-d3",
+					"data-ad-client": "ca-pub-6128732932572955",
+					"data-ad-slot": "8757072245" });
+			}
+		}]);
+	
+		return Adview;
+	}(_react2.default.Component);
+	
+	exports.default = Adview;
+
+/***/ }),
+/* 266 */
+/*!*****************************************!*\
+  !*** ./www/app/components/Searchbar.js ***!
+  \*****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Searchbar = function (_React$Component) {
+		_inherits(Searchbar, _React$Component);
+	
+		function Searchbar() {
+			_classCallCheck(this, Searchbar);
+	
+			return _possibleConstructorReturn(this, (Searchbar.__proto__ || Object.getPrototypeOf(Searchbar)).apply(this, arguments));
+		}
+	
+		_createClass(Searchbar, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				$("#search").on("keyup", function () {
+					var v = $(this).val();
+	
+					$(".gamecard").parent().removeClass("hidden");
+					$(".gamegroup").removeClass("hidden");
+	
+					$(".gamecard").each(function () {
+						if ($(this).children(".card-content").children(".card-title").text().toLowerCase().match(v.toLowerCase()) === null) {
+							$(this).parent().addClass("hidden");
+	
+							var hidden = true;
+							$(this).parents(".gamegroup").children(".row").children(".col").each(function () {
+								if ($(this).hasClass("hidden") === false) {
+									hidden = false;
+								}
+							});
+	
+							hidden && $(this).parents(".gamegroup").addClass("hidden");
+						}
+					});
+				});
+	
+				document.addEventListener("keydown", function (e) {
+					if (e.ctrlKey && e.which === 70) {
+						e.preventDefault();
+						$("#search").focus();
+					}
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "search-wrapper" },
+					_react2.default.createElement(
+						"i",
+						{ className: "material-icons" },
+						"search"
+					),
+					_react2.default.createElement("input", { type: "text", placeholder: "Search", id: "search" })
+				);
+			}
+		}]);
+	
+		return Searchbar;
+	}(_react2.default.Component);
+	
+	exports.default = Searchbar;
+
+/***/ }),
+/* 267 */
+/*!******************************************!*\
+  !*** ./www/app/components/RandomGame.js ***!
+  \******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var RandomGame = function (_React$Component) {
+		_inherits(RandomGame, _React$Component);
+	
+		function RandomGame() {
+			_classCallCheck(this, RandomGame);
+	
+			var _this = _possibleConstructorReturn(this, (RandomGame.__proto__ || Object.getPrototypeOf(RandomGame)).call(this));
+	
+			_this.state = { redirect: null };
+			_this.onClick = _this.onClick.bind(_this);
+			return _this;
+		}
+	
+		_createClass(RandomGame, [{
+			key: "onClick",
+			value: function onClick() {
+				var _this2 = this;
+	
+				app.random().then(function (game) {
+					return app.launch(game, _this2);
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				if (this.state.redirect) return _react2.default.createElement(_reactRouterDom.Redirect, { to: this.state.redirect, push: true });
+				return _react2.default.createElement(
+					"div",
+					{ onClick: this.onClick, style: { display: "inline-block" } },
+					this.props.children
+				);
+			}
+		}]);
+	
+		return RandomGame;
+	}(_react2.default.Component);
+	
+	exports.default = RandomGame;
+
+/***/ }),
+/* 268 */
+/*!**********************************!*\
+  !*** ./www/app/pages/Request.js ***!
+  \**********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Body = __webpack_require__(/*! ../components/Body */ 59);
+	
+	var _Body2 = _interopRequireDefault(_Body);
+	
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 60);
+	
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+	
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 63);
+	
+	var _Footer2 = _interopRequireDefault(_Footer);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Request = function (_React$Component) {
+		_inherits(Request, _React$Component);
+	
+		function Request() {
+			_classCallCheck(this, Request);
+	
+			return _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).apply(this, arguments));
+		}
+	
+		_createClass(Request, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(_Navbar2.default, null),
+					_react2.default.createElement(
+						_Body2.default,
+						null,
+						_react2.default.createElement(
+							"div",
+							{ className: "container", style: { maxWidth: 512 } },
+							_react2.default.createElement(
+								"div",
+								{ className: "title" },
+								_react2.default.createElement(
+									"h2",
+									null,
+									"Request"
+								)
+							),
+							_react2.default.createElement(
+								"iframe",
+								{ src: "https://docs.google.com/forms/d/e/1FAIpQLSdYfBSNxPLPYS87V8F5H_srzNHeMyR0GQ-ronruWZs1FzGbfQ/viewform?embedded=true", width: "640", height: "1512", frameBorder: "0", marginHeight: "0", marginWidth: "0", style: { margin: "0 -26px" } },
+								"Loading\u2026"
+							)
+						)
+					),
+					_react2.default.createElement(_Footer2.default, null)
+				);
+			}
+		}]);
+	
+		return Request;
+	}(_react2.default.Component);
+	
+	exports.default = Request;
+
+/***/ }),
+/* 269 */
+/*!***********************************!*\
+  !*** ./www/app/pages/GameView.js ***!
+  \***********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Body = __webpack_require__(/*! ../components/Body */ 59);
+	
+	var _Body2 = _interopRequireDefault(_Body);
+	
+	var _ErrorDocument = __webpack_require__(/*! ./ErrorDocument */ 270);
+	
+	var _ErrorDocument2 = _interopRequireDefault(_ErrorDocument);
+	
+	var _GamePlayer = __webpack_require__(/*! ../components/GamePlayer */ 271);
+	
+	var _GamePlayer2 = _interopRequireDefault(_GamePlayer);
+	
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 60);
+	
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+	
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 63);
+	
+	var _Footer2 = _interopRequireDefault(_Footer);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GameView = function (_React$Component) {
+		_inherits(GameView, _React$Component);
+	
+		function GameView() {
+			_classCallCheck(this, GameView);
+	
+			var _this2 = _possibleConstructorReturn(this, (GameView.__proto__ || Object.getPrototypeOf(GameView)).call(this));
+	
+			_this2.state = { game: false, error: false };
+			_this2.resetState = _this2.resetState.bind(_this2);
+			_this2._mounted = false;
+			var _this = _this2;
+	
+			var cache = location.pathname;
+			(function loop() {
+				requestAnimationFrame(loop);
+				if (_this._mounted && location.pathname !== cache) {
+					cache = location.pathname;
+					_this.resetState();
+				}
+			})();
+			return _this2;
+		}
+	
+		_createClass(GameView, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				this.resetState();
+				this._mounted = true;
+			}
+		}, {
+			key: "componentWillUnmount",
+			value: function componentWillUnmount() {
+				this._mounted = false;
+			}
+		}, {
+			key: "resetState",
+			value: function resetState() {
+				var _this3 = this;
+	
+				this.found = false;
+				app.getGames().then(function (games) {
+					games.map(function (game) {
+						if (app.slug(game.name) == location.pathname.split("g/")[1] || app.hash(app.slug(game.name)) == location.pathname.split("g/")[1]) {
+							_this3.found = true;
+							_this3.setState({ game: game });
+							document.title = game.name + " - " + app["NAME"];
+						}
+					});
+					_this3.found === false && _this3.setState({ error: true });
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				if (this.state.error) return _react2.default.createElement(_ErrorDocument2.default, null);
+				return _react2.default.createElement(
+					"div",
+					{ "data-num": this.state.num },
+					_react2.default.createElement(_Navbar2.default, null),
+					_react2.default.createElement(
+						_Body2.default,
+						null,
+						this.state.game && _react2.default.createElement(_GamePlayer2.default, { game: this.state.game })
+					),
+					_react2.default.createElement(_Footer2.default, { "static": true })
+				);
+			}
+		}]);
+	
+		return GameView;
+	}(_react2.default.Component);
+	
+	exports.default = GameView;
+
+/***/ }),
+/* 270 */
+/*!****************************************!*\
+  !*** ./www/app/pages/ErrorDocument.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ErrorDocument = function (_React$Component) {
+		_inherits(ErrorDocument, _React$Component);
+	
+		function ErrorDocument() {
+			_classCallCheck(this, ErrorDocument);
+	
+			return _possibleConstructorReturn(this, (ErrorDocument.__proto__ || Object.getPrototypeOf(ErrorDocument)).apply(this, arguments));
+		}
+	
+		_createClass(ErrorDocument, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "og-vh-center" },
+					_react2.default.createElement(
+						"center",
+						null,
+						_react2.default.createElement("img", { src: "/img/icon/web_hi_res_512.png", alt: "", width: "168" }),
+						_react2.default.createElement("br", null),
+						_react2.default.createElement(
+							"h1",
+							null,
+							"404 - Not found"
+						),
+						_react2.default.createElement(
+							"h2",
+							null,
+							"Was it a broken link or deleted???"
+						),
+						_react2.default.createElement(
+							"div",
+							null,
+							_react2.default.createElement(
+								_reactRouterDom.Link,
+								{ to: "/" },
+								_react2.default.createElement(
+									"div",
+									{ className: "btn raised waves-effect primary" },
+									"home"
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+	
+		return ErrorDocument;
+	}(_react2.default.Component);
+	
+	exports.default = ErrorDocument;
+
+/***/ }),
+/* 271 */
+/*!******************************************!*\
+  !*** ./www/app/components/GamePlayer.js ***!
+  \******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Flash = __webpack_require__(/*! ./Players/Flash */ 272);
+	
+	var _Flash2 = _interopRequireDefault(_Flash);
+	
+	var _GBA = __webpack_require__(/*! ./Players/GBA */ 273);
+	
+	var _GBA2 = _interopRequireDefault(_GBA);
+	
+	var _NES = __webpack_require__(/*! ./Players/NES */ 274);
+	
+	var _NES2 = _interopRequireDefault(_NES);
+	
+	var _SNES = __webpack_require__(/*! ./Players/SNES */ 275);
+	
+	var _SNES2 = _interopRequireDefault(_SNES);
+	
+	var _Unity = __webpack_require__(/*! ./Players/Unity */ 276);
+	
+	var _Unity2 = _interopRequireDefault(_Unity);
+	
+	var _GameControls = __webpack_require__(/*! ./GameControls */ 277);
+	
+	var _GameControls2 = _interopRequireDefault(_GameControls);
+	
+	__webpack_require__(/*! ./GamePlayer.less */ 281);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GamePlayer = function (_React$Component) {
+		_inherits(GamePlayer, _React$Component);
+	
+		function GamePlayer() {
+			_classCallCheck(this, GamePlayer);
+	
+			return _possibleConstructorReturn(this, (GamePlayer.__proto__ || Object.getPrototypeOf(GamePlayer)).apply(this, arguments));
+		}
+	
+		_createClass(GamePlayer, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				var _this = this;
+				(function resize() {
+					requestAnimationFrame(resize);
+					$(".game").height($(".game-view").width() * Math.pow(_this.props.game.params.aspectRatio || 4 / 3, -1));
+				})();
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "game-view", style: { width: this.props.game.params.width } },
+					_react2.default.createElement(
+						"div",
+						{ className: "title" },
+						_react2.default.createElement(
+							"h2",
+							null,
+							this.props.game.name
+						)
+					),
+					this.props.game.engine === "flash" && _react2.default.createElement(
+						"div",
+						{ className: "note warning" },
+						_react2.default.createElement("div", { className: "header" }),
+						_react2.default.createElement(
+							"div",
+							{ className: "content" },
+							"Flash will no longer be supported in all web browsers in December of 2020. This means that after that date, all of the flash games on here (including this one) will be removed."
+						),
+						_react2.default.createElement("hr", null),
+						_react2.default.createElement(
+							"div",
+							{ className: "content" },
+							_react2.default.createElement(
+								"a",
+								{ href: "https://www.rystedtcreative.com/tech-talks/flash-dead/" },
+								"https://www.rystedtcreative.com/tech-talks/flash-dead/"
+							)
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "game" },
+						this.props.game.engine === "flash" && _react2.default.createElement(_Flash2.default, { game: this.props.game }),
+						this.props.game.engine === "unity" && _react2.default.createElement(_Unity2.default, { game: this.props.game }),
+						this.props.game.engine === "nes" && _react2.default.createElement(_NES2.default, { game: this.props.game }),
+						this.props.game.engine === "snes" && _react2.default.createElement(_SNES2.default, { game: this.props.game }),
+						this.props.game.engine === "gba" && _react2.default.createElement(_GBA2.default, { game: this.props.game })
+					),
+					_react2.default.createElement(_GameControls2.default, { engine: this.props.game.engine })
+				);
+			}
+		}]);
+	
+		return GamePlayer;
+	}(_react2.default.Component);
+	
+	exports.default = GamePlayer;
+
+/***/ }),
+/* 272 */
+/*!*********************************************!*\
+  !*** ./www/app/components/Players/Flash.js ***!
+  \*********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FlashPlayer = function (_React$Component) {
+		_inherits(FlashPlayer, _React$Component);
+	
+		function FlashPlayer() {
+			_classCallCheck(this, FlashPlayer);
+	
+			return _possibleConstructorReturn(this, (FlashPlayer.__proto__ || Object.getPrototypeOf(FlashPlayer)).apply(this, arguments));
+		}
+	
+		_createClass(FlashPlayer, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				app.game = this.props.game;
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement("object", _extends({ id: "flash-player", data: app.service + "/gcp/games/" + app.slug(this.props.game.name) + ".swf", width: "100%", height: "100%" }, this.props.game.params.options));
+			}
+		}]);
+	
+		return FlashPlayer;
+	}(_react2.default.Component);
+	
+	exports.default = FlashPlayer;
+
+/***/ }),
+/* 273 */
+/*!*******************************************!*\
+  !*** ./www/app/components/Players/GBA.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GBAPlayer = function (_React$Component) {
+		_inherits(GBAPlayer, _React$Component);
+	
+		function GBAPlayer(props) {
+			_classCallCheck(this, GBAPlayer);
+	
+			var _this = _possibleConstructorReturn(this, (GBAPlayer.__proto__ || Object.getPrototypeOf(GBAPlayer)).call(this, props));
+	
+			_this._arguments = props.game.params.options;
+			return _this;
+		}
+	
+		_createClass(GBAPlayer, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				app.game = this.props.game;
+				setTimeout(this.componentProbablyRendered);
+				Photon.disableArrowKeyScrolling = true;
+	
+				window.gbaloader = new Photon.dialog({
+					type: "progress",
+					circular: true,
+					message: "Loading game..."
+				});
+	
+				window.gbaloader.open();
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ id: "gba-player", style: { width: "100%", height: "100%", margin: "auto" } },
+					_react2.default.createElement("iframe", { src: "/src/IodineGBA/launcher.html", frameBorder: "0", height: "600px" })
+				);
+			}
+		}]);
+	
+		return GBAPlayer;
+	}(_react2.default.Component);
+	
+	exports.default = GBAPlayer;
+
+/***/ }),
+/* 274 */
+/*!*******************************************!*\
+  !*** ./www/app/components/Players/NES.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var NESPlayer = function (_React$Component) {
+		_inherits(NESPlayer, _React$Component);
+	
+		function NESPlayer(props) {
+			_classCallCheck(this, NESPlayer);
+	
+			var _this = _possibleConstructorReturn(this, (NESPlayer.__proto__ || Object.getPrototypeOf(NESPlayer)).call(this, props));
+	
+			_this._arguments = props.game.params.options;
+			$("body").append("<script src=\"/src/js/jsnes.min.js\" class=\"router-reset\"></script>");
+			$("body").append("<script src=\"/src/js/jsnesplayer.js\" class=\"router-reset\"></script>");
+			return _this;
+		}
+	
+		_createClass(NESPlayer, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				app.game = this.props.game;
+				nes_load_url("jsnes-game", app.service + "/gcp/games/" + app.slug(this.props.game.name) + ".nes");
+				(function resize() {
+					requestAnimationFrame(resize);
+					$("#jsnes-game").css("transform", "scale(" + $("#nes-player").width() / $("#jsnes-game").width() + ")");
+				})();
+	
+				Photon.disableArrowKeyScrolling = true;
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ id: "nes-player", style: { width: "100%", height: "100%", margin: "auto" } },
+					_react2.default.createElement("canvas", { id: "jsnes-game", width: "256", height: "240" })
+				);
+			}
+		}]);
+	
+		return NESPlayer;
+	}(_react2.default.Component);
+	
+	exports.default = NESPlayer;
+
+/***/ }),
+/* 275 */
+/*!********************************************!*\
+  !*** ./www/app/components/Players/SNES.js ***!
+  \********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FlashPlayer = function (_React$Component) {
+		_inherits(FlashPlayer, _React$Component);
+	
+		function FlashPlayer() {
+			_classCallCheck(this, FlashPlayer);
+	
+			return _possibleConstructorReturn(this, (FlashPlayer.__proto__ || Object.getPrototypeOf(FlashPlayer)).apply(this, arguments));
+		}
+	
+		_createClass(FlashPlayer, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				app.game = this.props.game;
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"object",
+					_extends({ id: "snes-player", data: "/src/snes-player.swf", width: "100%", height: "100%" }, this.props.game.params.options),
+					_react2.default.createElement("param", { name: "flashvars", value: "system=snes&url=" + app.service + "/gcp/games/" + app.slug(this.props.game.name) + ".smc" })
+				);
+			}
+		}]);
+	
+		return FlashPlayer;
+	}(_react2.default.Component);
+	
+	exports.default = FlashPlayer;
+
+/***/ }),
+/* 276 */
+/*!*********************************************!*\
+  !*** ./www/app/components/Players/Unity.js ***!
+  \*********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var UnityPlayer = function (_React$Component) {
+		_inherits(UnityPlayer, _React$Component);
+	
+		function UnityPlayer(props) {
+			_classCallCheck(this, UnityPlayer);
+	
+			var _this2 = _possibleConstructorReturn(this, (UnityPlayer.__proto__ || Object.getPrototypeOf(UnityPlayer)).call(this, props));
+	
+			_this2._arguments = props.game.params.options;
+			$("body").append("<script src=\"/src/js/unity.min.js\" class=\"router-reset\"></script>");
+			$("body").append("<script src=\"/src/js/unity-loader.min.js\" class=\"router-reset\"></script>");
+	
+			_this2._loader = new Photon.dialog({
+				type: "progress",
+				circular: true,
+				message: "Loading Unity player..."
+			});
+	
+			_this2._loader.open();
+			return _this2;
+		}
+	
+		_createClass(UnityPlayer, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				var _this = this;
+				app.game = this.props.game;
+				this._unity = UnityLoader.instantiate("unity-player", app.service + "/gcp/games/" + this.props.game.params.unityImage + ".json", {
+					Module: {
+						onRuntimeInitialized: function onRuntimeInitialized() {
+							_this._loader.resolved = true;
+							_this._loader.destroy();
+						}
+					}
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement("div", { id: "unity-player", style: { width: "100%", height: "100%", margin: "auto" } });
+			}
+		}]);
+	
+		return UnityPlayer;
+	}(_react2.default.Component);
+	
+	exports.default = UnityPlayer;
+
+/***/ }),
 /* 277 */
+/*!********************************************!*\
+  !*** ./www/app/components/GameControls.js ***!
+  \********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	__webpack_require__(/*! ./GameControls.less */ 278);
+	
+	var _FrameCounter = __webpack_require__(/*! ./FrameCounter */ 280);
+	
+	var _FrameCounter2 = _interopRequireDefault(_FrameCounter);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GameControls = function (_React$Component) {
+		_inherits(GameControls, _React$Component);
+	
+		function GameControls() {
+			_classCallCheck(this, GameControls);
+	
+			return _possibleConstructorReturn(this, (GameControls.__proto__ || Object.getPrototypeOf(GameControls)).apply(this, arguments));
+		}
+	
+		_createClass(GameControls, [{
+			key: "render",
+			value: function render() {
+				if (this.props.engine === "flash") {
+					return _react2.default.createElement(
+						"div",
+						{ className: "game-controls" },
+						_react2.default.createElement(_FrameCounter2.default, null),
+						_react2.default.createElement(
+							"a",
+							{ className: "btn flat primary waves-effect", onClick: function onClick() {
+									return $("#flash-player")[0].requestFullscreen();
+								} },
+							"fullscreen"
+						)
+					);
+				} else if (this.props.engine === "gba") {
+					return _react2.default.createElement(
+						"div",
+						{ className: "game-controls" },
+						_react2.default.createElement(_FrameCounter2.default, null),
+						_react2.default.createElement(
+							"a",
+							{ className: "btn flat primary waves-effect", onClick: function onClick() {
+									return $("#gba-player")[0].requestFullscreen();
+								} },
+							"fullscreen"
+						)
+					);
+				} else if (this.props.engine === "nes") {
+					return _react2.default.createElement(
+						"div",
+						{ className: "game-controls" },
+						_react2.default.createElement(_FrameCounter2.default, null),
+						_react2.default.createElement(
+							"a",
+							{ className: "btn flat primary waves-effect", onClick: function onClick() {
+									return $("#jsnes-game")[0].requestFullscreen();
+								} },
+							"fullscreen"
+						)
+					);
+				} else if (this.props.engine === "snes") {
+					return _react2.default.createElement(
+						"div",
+						{ className: "game-controls" },
+						_react2.default.createElement(_FrameCounter2.default, null),
+						_react2.default.createElement(
+							"a",
+							{ className: "btn flat primary waves-effect", onClick: function onClick() {
+									return $("#snes-game")[0].requestFullscreen();
+								} },
+							"fullscreen"
+						)
+					);
+				} else if (this.props.engine === "unity") {
+					return _react2.default.createElement(
+						"div",
+						{ className: "game-controls" },
+						_react2.default.createElement(_FrameCounter2.default, null),
+						_react2.default.createElement(
+							"a",
+							{ className: "btn flat primary waves-effect", onClick: function onClick() {
+									return $("#unity-player")[0].requestFullscreen();
+								} },
+							"fullscreen"
+						)
+					);
+				}
+			}
+		}]);
+	
+		return GameControls;
+	}(_react2.default.Component);
+	
+	exports.default = GameControls;
+
+/***/ }),
+/* 278 */
+/*!**********************************************!*\
+  !*** ./www/app/components/GameControls.less ***!
+  \**********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GameControls.less */ 279);
+	
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	
+	var transform;
+	var insertInto;
+	
+	
+	
+	var options = {"hmr":true}
+	
+	options.transform = transform
+	options.insertInto = undefined;
+	
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 67)(content, options);
+	
+	if(content.locals) module.exports = content.locals;
+	
+	if(false) {
+		module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameControls.less", function() {
+			var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GameControls.less");
+	
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+	
+			var locals = (function(a, b) {
+				var key, idx = 0;
+	
+				for(key in a) {
+					if(!b || a[key] !== b[key]) return false;
+					idx++;
+				}
+	
+				for(key in b) idx--;
+	
+				return idx === 0;
+			}(content.locals, newContent.locals));
+	
+			if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+	
+			update(newContent);
+		});
+	
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 279 */
+/*!*****************************************************************************************************!*\
+  !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GameControls.less ***!
+  \*****************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 66)(false);
+	// Module
+	exports.push([module.id, ".game-controls {\n  direction: rtl;\n  height: 52px;\n  background: #f5f5f5;\n  position: relative;\n}\n", ""]);
+	
+
+
+/***/ }),
+/* 280 */
+/*!********************************************!*\
+  !*** ./www/app/components/FrameCounter.js ***!
+  \********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FrameCounter = function (_React$Component) {
+		_inherits(FrameCounter, _React$Component);
+	
+		function FrameCounter() {
+			_classCallCheck(this, FrameCounter);
+	
+			var _this2 = _possibleConstructorReturn(this, (FrameCounter.__proto__ || Object.getPrototypeOf(FrameCounter)).call(this));
+	
+			_this2._fps = 0;
+			_this2._mounted = false;
+			_this2._framecounter = performance.now();
+			_this2.state = { FPS: 0, refresh: 0 };
+	
+			var _this = _this2;
+			(function frameCounter() {
+				requestAnimationFrame(frameCounter);
+				_this._fps = 1000 / (performance.now() - _this._framecounter);
+				_this._framecounter = performance.now();
+			})();
+	
+			var SAMPLE = 10;
+			var hz = [40, 60, 75, 90, 100, 120, 144, 165, 200, 240, 300];
+			var fps = [];
+	
+			setInterval(function () {
+				if (_this2._mounted) {
+					var avgfps = _this2._fps + fps;
+					fps.push(_this2._fps);
+	
+					while (fps.length > SAMPLE) {
+						fps.shift();
+					}avgfps = fps.reduce(function (a, b) {
+						return a + b;
+					}, 0) / fps.length - 1;
+	
+					_this2.setState({
+						FPS: Math.floor(_this2._fps),
+						refresh: hz.reduce(function (prev, curr) {
+							return Math.abs(curr - avgfps) < Math.abs(prev - avgfps) ? curr : prev;
+						})
+					});
+				}
+			}, 1000);
+			return _this2;
+		}
+	
+		_createClass(FrameCounter, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				this._mounted = true;
+			}
+		}, {
+			key: "componentWillUnmount",
+			value: function componentWillUnmount() {
+				this._mounted = false;
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ style: { position: "absolute", top: "0px", left: "24px", lineHeight: "52px" } },
+					"FPS: ",
+					this.state.FPS,
+					" - ",
+					screen.height,
+					"p@",
+					this.state.refresh,
+					"hz"
+				);
+			}
+		}]);
+	
+		return FrameCounter;
+	}(_react2.default.Component);
+	
+	exports.default = FrameCounter;
+
+/***/ }),
+/* 281 */
+/*!********************************************!*\
+  !*** ./www/app/components/GamePlayer.less ***!
+  \********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	
+	var content = __webpack_require__(/*! !../../../~/css-loader/dist/cjs.js!../../../~/less-loader/dist/cjs.js!./GamePlayer.less */ 282);
+	
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	
+	var transform;
+	var insertInto;
+	
+	
+	
+	var options = {"hmr":true}
+	
+	options.transform = transform
+	options.insertInto = undefined;
+	
+	var update = __webpack_require__(/*! ../../../~/style-loader/lib/addStyles.js */ 67)(content, options);
+	
+	if(content.locals) module.exports = content.locals;
+	
+	if(false) {
+		module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GamePlayer.less", function() {
+			var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/less-loader/dist/cjs.js!./GamePlayer.less");
+	
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+	
+			var locals = (function(a, b) {
+				var key, idx = 0;
+	
+				for(key in a) {
+					if(!b || a[key] !== b[key]) return false;
+					idx++;
+				}
+	
+				for(key in b) idx--;
+	
+				return idx === 0;
+			}(content.locals, newContent.locals));
+	
+			if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+	
+			update(newContent);
+		});
+	
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 282 */
+/*!***************************************************************************************************!*\
+  !*** ./~/css-loader/dist/cjs.js!./~/less-loader/dist/cjs.js!./www/app/components/GamePlayer.less ***!
+  \***************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ../../../~/css-loader/dist/runtime/api.js */ 66)(false);
+	// Module
+	exports.push([module.id, ".game-view {\n  margin: 0 auto;\n  width: 800px;\n}\n", ""]);
+	
+
+
+/***/ }),
+/* 283 */
+/*!*************************************!*\
+  !*** ./www/app/pages/LegacyGame.js ***!
+  \*************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 17);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GameView = function (_React$Component) {
+		_inherits(GameView, _React$Component);
+	
+		function GameView() {
+			_classCallCheck(this, GameView);
+	
+			var _this = _possibleConstructorReturn(this, (GameView.__proto__ || Object.getPrototypeOf(GameView)).call(this));
+	
+			_this.state = { redirect: location.pathname.split("/game/")[1] };
+			return _this;
+		}
+	
+		_createClass(GameView, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(_reactRouterDom.Redirect, { to: "/g/" + this.state.redirect });
+			}
+		}]);
+	
+		return GameView;
+	}(_react2.default.Component);
+	
+	exports.default = GameView;
+
+/***/ }),
+/* 284 */
+/*!*************************************!*\
+  !*** ./www/app/pages/Developers.js ***!
+  \*************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _README = __webpack_require__(/*! ../../../README.md */ 58);
+	
+	var _README2 = _interopRequireDefault(_README);
+	
+	var _Body = __webpack_require__(/*! ../components/Body */ 59);
+	
+	var _Body2 = _interopRequireDefault(_Body);
+	
+	var _Navbar = __webpack_require__(/*! ../components/Navbar */ 60);
+	
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+	
+	var _Footer = __webpack_require__(/*! ../components/Footer */ 63);
+	
+	var _Footer2 = _interopRequireDefault(_Footer);
+	
+	var _Markdown = __webpack_require__(/*! ../components/Markdown */ 69);
+	
+	var _Markdown2 = _interopRequireDefault(_Markdown);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Request = function (_React$Component) {
+		_inherits(Request, _React$Component);
+	
+		function Request() {
+			_classCallCheck(this, Request);
+	
+			return _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).apply(this, arguments));
+		}
+	
+		_createClass(Request, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(
+						_Navbar2.default,
+						null,
+						"Become a Developer"
+					),
+					_react2.default.createElement(
+						_Body2.default,
+						null,
+						_react2.default.createElement(
+							"div",
+							{ className: "container row" },
+							_react2.default.createElement(
+								"div",
+								{ className: "col s12 m8 xl6" },
+								_react2.default.createElement(
+									"div",
+									{ className: "title" },
+									_react2.default.createElement(
+										"h2",
+										null,
+										"Our Mission"
+									)
+								),
+								_react2.default.createElement(
+									"p",
+									null,
+									"Our goal is to create a community of developers around the world.  We value the diversity that everyone has to offer. Having many people with different programming backgrounds on a team makes the product as complete as possible. Having people like you to contribute to ideas and development methods is every software teams dream. Why not join the team."
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "title" },
+									_react2.default.createElement(
+										"h2",
+										null,
+										"How to join"
+									)
+								),
+								_react2.default.createElement(
+									"p",
+									null,
+									"All you need to join the development team is join the Discord server. Then ask an admin to become a developer. An admin will dm you asking you for details like your GitHub, add you to the GitHub team and give you the Developer role in the discord."
+								)
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "col s12 m4 xl6" },
+								_react2.default.createElement(
+									"div",
+									{ className: "right" },
+									_react2.default.createElement(
+										"a",
+										{ href: "https://github.com/SHSGames", style: { margin: "8px 0" }, target: "_blank", className: "autolink waves-effect photon-init" },
+										_react2.default.createElement(
+											"div",
+											{ className: "padding-layer" },
+											_react2.default.createElement(
+												"div",
+												{ className: "external-img invert" },
+												_react2.default.createElement("img", { src: "https://github.com/favicon.ico", alt: "" })
+											),
+											_react2.default.createElement(
+												"div",
+												{ className: "title" },
+												"SHSGames \xB7 GitHub"
+											),
+											_react2.default.createElement(
+												"p",
+												null,
+												"Browse SHSGames on GitHub"
+											),
+											_react2.default.createElement(
+												"div",
+												{ className: "ref" },
+												"Our GitHub"
+											)
+										)
+									),
+									_react2.default.createElement("br", null),
+									_react2.default.createElement(
+										"a",
+										{ href: "https://discord.gg/XBr5nzu", style: { margin: "8px 0" }, target: "_blank", className: "autolink waves-effect photon-init" },
+										_react2.default.createElement(
+											"div",
+											{ className: "padding-layer" },
+											_react2.default.createElement(
+												"div",
+												{ className: "external-img" },
+												_react2.default.createElement("img", { src: "/img/res/discord.png", alt: "" })
+											),
+											_react2.default.createElement(
+												"div",
+												{ className: "title" },
+												"SHSGames \xB7 Discord"
+											),
+											_react2.default.createElement(
+												"p",
+												null,
+												"Join SHSGames on Discord"
+											),
+											_react2.default.createElement(
+												"div",
+												{ className: "ref" },
+												"Our Discord Server"
+											)
+										)
+									)
+								)
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "col s12" },
+								_react2.default.createElement(
+									"div",
+									{ className: "card-panel md-wrapper" },
+									_react2.default.createElement(
+										"div",
+										{ className: "md-header" },
+										"README.md"
+									),
+									_react2.default.createElement(
+										_Markdown2.default,
+										null,
+										_README2.default
+									)
+								)
+							)
+						)
+					),
+					_react2.default.createElement(_Footer2.default, null)
+				);
+			}
+		}]);
+	
+		return Request;
+	}(_react2.default.Component);
+	
+	exports.default = Request;
+
+/***/ }),
+/* 285 */
 /*!*************************************!*\
   !*** ./www/src/js/mprogress.min.js ***!
   \*************************************/
@@ -68596,7 +68989,7 @@
 	}).call(undefined);
 
 /***/ }),
-/* 278 */
+/* 286 */
 /*!***************************************!*\
   !*** ./www/app/components/Sidenav.js ***!
   \***************************************/

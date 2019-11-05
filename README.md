@@ -42,6 +42,6 @@ Ensure that you have the following installed on your system:
 
 5. Production builds have an aggressive caching algorithm. Even if the server is shut down, it will display SHSGames. You can use the `Clear cache` option in the settings menu and disable service workers to prevent this.
 
----
+## More Information
 
-More info can be found on our [Developer's Wiki](/developers/wiki).
+More info can be found on our [Developer's Wiki](https://shsgames.herokuapp.com/developers/wiki).

@@ -1,3 +1,4 @@
+import Wiki from "./pages/Wiki";
 import Home from "./pages/Home";
 import Request from "./pages/Request";
 import GameView from "./pages/GameView";
@@ -15,6 +16,14 @@ const ROUTES = [{
 	path: "/developers",
 	title: "Become a Developer",
 	view: Developers
+}, {
+	path: "/developers/wiki/",
+	title: "Wiki - Become a Developer",
+	view: Wiki
+}, {
+	path: "/developers/wiki/:wiki",
+	title: "Wiki - Become a Developer",
+	view: Wiki
 }, {
 	path: "/g/*",
 	view: GameView

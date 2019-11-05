@@ -29,7 +29,7 @@ export default class Footer extends React.Component {
 	render() {
 		return (
 			<div>
-				<footer className={ this.props.static && "static" }>
+				<footer>
 					<div className="container">
 						<div className="row">
 							<div className="col s12 l8">
