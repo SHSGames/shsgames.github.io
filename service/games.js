@@ -922,6 +922,15 @@ module.exports = {
                 width: 1200,
                 options: {}
             }
+		}, {
+            name: "Subway Surfers",
+            engine: "unity",
+            params: {
+                unityImage: "surfers",
+                aspectRatio: 16 / 9,
+                width: 1200,
+                options: {}
+            }
         }]
     }]
 }
