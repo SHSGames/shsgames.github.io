@@ -9,7 +9,8 @@ class RandomGame extends React.Component {
 	}
 
 	onClick() {
-		app.random().then(game => app.launch(game, this));
+		const game = app.random();
+		app.launch(game, this);
 	}
 
 	render() {
