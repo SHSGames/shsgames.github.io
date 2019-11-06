@@ -1036,6 +1036,19 @@ input[type="checkbox"]:not(.switch):checked::after {
 .collapsible li table tbody tr:not(:last-child) td {
   border-bottom: 1px solid #e0e0e0;
 }
+.collapsible li .input-field {
+  margin: 4px;
+}
+.collapsible li .input-field label {
+  background: #fff !important;
+}
+.collapsible li .input-field.outlined {
+  margin: 4px;
+}
+.collapsible li .input-field.outlined .bar,
+.collapsible li .input-field.outlined label {
+  background: #fff !important;
+}
 .collapsible li:first-child {
   border-radius: 4px 4px 0 0;
 }
@@ -1404,6 +1417,19 @@ input[type="checkbox"]:not(.switch):checked::after {
 }
 .collection table tbody tr:not(:last-child) td {
   border-bottom: 1px solid #e0e0e0;
+}
+.collection .input-field {
+  margin: 4px;
+}
+.collection .input-field label {
+  background: #fff !important;
+}
+.collection .input-field.outlined {
+  margin: 4px;
+}
+.collection .input-field.outlined .bar,
+.collection .input-field.outlined label {
+  background: #fff !important;
 }
 .collection .item {
   background-color: #fff;
@@ -4678,6 +4704,19 @@ i.material-icons.waves-ink {
 .note table tbody tr:not(:last-child) td {
   border-bottom: 1px solid #e0e0e0;
 }
+.note .input-field {
+  margin: 4px;
+}
+.note .input-field label {
+  background: #fff !important;
+}
+.note .input-field.outlined {
+  margin: 4px;
+}
+.note .input-field.outlined .bar,
+.note .input-field.outlined label {
+  background: #fff !important;
+}
 .note .header {
   padding: 16px;
   background: rgba(170, 170, 170, 0.1);
@@ -5993,6 +6032,37 @@ input[type="radio"]:disabled::after {
 }
 .col .input-field.inline .bar {
   bottom: 29px!important;
+}
+.input-field.outlined.dense {
+  height: 42px!important;
+}
+.input-field.outlined.dense input {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.input-field.outlined.dense label {
+  top: -25px !important;
+}
+.input-field.outlined.dense input:focus + label,
+.input-field.outlined.dense input.containscontent + label,
+.input-field.outlined.dense input[placeholder] + label {
+  top: -38px !important;
+}
+.card .input-field {
+  margin: 4px;
+}
+.card .input-field label {
+  background: #fff !important;
+}
+.card .input-field.outlined {
+  margin: 4px;
+}
+.card .input-field.outlined .bar,
+.card .input-field.outlined label {
+  background: #fff !important;
+}
+.row .col .input-field .bar {
+  bottom: 30px!important;
 }
 .toasts {
   display: block;

@@ -219,3 +219,38 @@ body when (@photonDarkTheme = true) {
 		bottom:29px!important;
 	}
 }
+
+.input-field.outlined.dense {
+	height: 42px!important;
+	input {
+		padding-top: 6px;
+		padding-bottom: 6px;
+	}
+	label {
+		top: -25px!important;
+	}
+	input:focus+label,
+	input.containscontent+label,
+	input[placeholder]+label {
+		top: -38px!important;
+	}
+}
+
+.card {
+	.input-field {
+		margin: 4px;
+		label {
+			background: #fff!important;
+		}
+	}
+	.input-field.outlined {
+		margin: 4px;
+		.bar, label {
+			background: #fff!important;
+		}
+	}
+}
+
+.row .col .input-field .bar {
+	bottom: 30px!important;
+}
