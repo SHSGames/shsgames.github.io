@@ -47,6 +47,7 @@
         "react-router-dom": "^5.0.0",
         "remarkable": "^2.0.0",
         "style-loader": "^0.23.1",
+        "terser-webpack-plugin": "^2.2.1",
         "text-loader": "0.0.1",
         "url-loader": "^2.2.0",
         "webpack": "^1.13.1",

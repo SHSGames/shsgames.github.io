@@ -13,11 +13,10 @@ returns a `String` of the value of the cookie named _`name`_
 ### getGames
 `app.getGames()`
 
-Returns a promise that will resolve to an array of [`Game`](./Game) instances.
+Returns an array of [`Game`](./Game) instances.
 ```javascript
-app.getGames().then(games => {
-    console.log(games)
-});
+const games = app.getGames()
+console.log(games)
 ```
 
 ---
@@ -34,12 +33,11 @@ Read also: [Game](./Game), [Redirectable](./Redirectable).
 
 ### random
 `app.random()`
-Returns a promise that will resolve to a [`Game`](./Game) instance.
+Returns a [`Game`](./Game) instance.
 
 ```javascript
-app.random().then(game => {
-   console.log(game)
-}
+const randomGame = app.random()
+console.log(randomGame);
 ```
 
 ---

@@ -1,6 +1,7 @@
 import React from "react";
 import JSEncrypt from "jsencrypt";
 import LAST_BUILD from "../src/LAST_BUILD.txt";
+import GAMES from "../../service/games.js";
 import uuid from "uuid/v3";
 
 global.PORT = {
@@ -68,7 +69,7 @@ global.app = {
 	pubkey: "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3Lblv+neygQC4vvG6qPARg39S\nVQHmGdoOcz6GIWoFdRt6yW5T5VSAPRpaVF9c1Qt19a7JsqhVRwLG5nnOmrmOAzy5\nk4DD9qAxrjnhpcJW4LyUWxGoaBxcvU2UBOgSrATQ2V/nrdySpMyi7RkBgubyOGdp\n+/eiknG6PnofX1vW+wIDAQAB\n-----END PUBLIC KEY-----",
 	version: 1,
 	game: null,
-	games: null,
+	games: GAMES,
 	state: { nesready: false },
 
 	setDarkMode(mode) {
@@ -82,25 +83,15 @@ global.app = {
 	},
 
 	getGames() {
-		return new Promise(resolve => {
-			(function loop() {
-				if(app.games !== null && app.games.hasOwnProperty("groups")) {
-					let games = [];
-					for (let group of app.games.groups) games.push(...group.games);
-					games = games.sort((a,b) => a.name.localeCompare(b.name));
-					resolve(games);
-				} else setTimeout(loop);
-			}())
-		});
+		let games = [];
+		for (let group of app.games.groups) games.push(...group.games);
+		games = games.sort((a,b) => a.name.localeCompare(b.name));
+		return games;
 	},
 
 	random() {
-		return new Promise(resolve => {
-			app.getGames().then(games => {
-				const game = games[Math.floor(games.length * Math.random())];
-				resolve(game);
-			})
-		});
+		const games = app.getGames();
+		return games[Math.floor(games.length * Math.random())];
 	},
 
 	slug(string) {
