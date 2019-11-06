@@ -91,6 +91,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Burrito Bison Revenge",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Cat Ninja",
             engine: "flash",
             params: {
@@ -261,6 +267,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Impossible Quiz 2",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Learn to Fly",
             engine: "flash",
             params: {
@@ -268,6 +280,12 @@ module.exports = {
             }
         }, {
             name: "Learn to Fly 2",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Line rider 1",
             engine: "flash",
             params: {
                 options: {}
@@ -288,6 +306,13 @@ module.exports = {
             name: "Ninja Painter 2",
             engine: "flash",
             params: {
+                options: {}
+            }
+        }, {
+            name: "Oh Snow!",
+            engine: "flash",
+            params: {
+                width: 640,
                 options: {}
             }
         }, {
@@ -477,6 +502,18 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Stick Fighter",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Stick RPG",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Stickwar",
             engine: "flash",
             params: {
@@ -557,6 +594,37 @@ module.exports = {
             name: "Tetris",
             engine: "flash",
             params: {
+                options: {}
+            }
+        }, {
+            name: "The Binding of Isaac",
+            engine: "flash",
+            params: {
+                width: 825,
+                options: {}
+            }
+        }, {
+            name: "The Flood Runner",
+            engine: "flash",
+            params: {
+                aspectRatio: 780 / 400,
+                width: 780,
+                options: {}
+            }
+        }, {
+            name: "The Flood Runner 2",
+            engine: "flash",
+            params: {
+                aspectRatio: 780 / 400,
+                width: 780,
+                options: {}
+            }
+        }, {
+            name: "The Flood Runner Armageddon",
+            engine: "flash",
+            params: {
+                aspectRatio: 780 / 400,
+                width: 780,
                 options: {}
             }
         }, {
@@ -699,6 +767,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Pokemon X & Y",
+            engine: "gba",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Sonic Advance",
             engine: "gba",
             params: {
@@ -746,6 +820,14 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Donkey Kong",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
             name: "Double Dribble",
             engine: "nes",
             params: {
@@ -762,7 +844,47 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "DuckTales",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
+            name: "Earthbound Zero",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
             name: "Final Fantasy 1",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
+            name: "Final Fantasy II",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
+            name: "Final Fantasy III",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
+            name: "Galaga",
             engine: "nes",
             params: {
                 aspectRatio: 16 / 15,
@@ -803,6 +925,30 @@ module.exports = {
             }
         }, {
             name: "Legend of Zelda",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
+            name: "Mega Man",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
+            name: "Metroid",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
+            name: "NFL",
             engine: "nes",
             params: {
                 aspectRatio: 16 / 15,
