@@ -1,5 +1,7 @@
 ﻿import React from "react";
 
+import IMG_RES_DISCORD_PNG from "../../img/res/discord.png";
+
 import "./Footer.less";
 
 export default class Footer extends React.Component {
@@ -40,7 +42,7 @@ export default class Footer extends React.Component {
 								<a href="https://discord.gg/XBr5nzu" target="_blank" className="autolink waves-effect photon-init">
 									<div className="padding-layer">
 										<div className="external-img">
-											<img src="/img/res/discord.png" alt=""/>
+											<img src={IMG_RES_DISCORD_PNG} alt=""/>
 										</div>
 										<div className="title">SHSGames · Discord</div>
 										<p>Join SHSGames on Discord</p>
