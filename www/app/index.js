@@ -12,8 +12,6 @@ import ROUTES from "./router";
 import Mprogress from "../src/js/mprogress.min.js";
 import Sidenav from "./components/Sidenav";
 window.Mprogress = Mprogress;
-
-service("games")()(games => app.games = games);
 window.alert = message => console.warn(`Alert Halted: ${message}`);
 
 class App extends React.Component {

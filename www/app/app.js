@@ -30,9 +30,6 @@ global.service = service => data => done => {
 		din = din.join(":")
 		return { din };
 	}
-
-	let finished = false;
-
 	$.ajax({
 		type: "POST",
 		url: `${app.service}/${service}`,
@@ -46,11 +43,6 @@ global.service = service => data => done => {
 			done(args);
 		}
 	});
-
-	setTimeout(() => {
-		service === "games" && finished === false && Photon.toast(`<i class="material-icons red-text">error_outline</i><span>Could not refresh. Are you online?</span>`, 7500);
-		mprogress.end();
-	}, 15000);
 }
 
 $("*").on("keypress keydown keyup", e => {
