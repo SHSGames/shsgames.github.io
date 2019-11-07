@@ -53,10 +53,6 @@ class SettingsView extends React.Component {
 								<SettingsName name="Warn about volume"/>
 								<SettingsCheckbox value={ localStorage.getItem("hidewarn") !== "true" } onChange={ value => localStorage.setItem("hidewarn",(!value).toString()) }/>
 							</SettingsOption>
-							<SettingsOption onClick={ app.update }>
-								<SettingsIcon icon="cached"/>
-								<SettingsName name="Clean cache"/>
-							</SettingsOption>
 						</SettingsSection>
 						<SettingsSection>
 							<SettingsHeader>Unblocking Methods</SettingsHeader>
