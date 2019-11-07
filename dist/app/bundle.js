@@ -36781,6 +36781,8 @@
 			return string;
 		},
 		update: function update() {
+			console.trace();
+			return;
 			Photon.toast("<i class=\"material-icons primary-text\">system_update_alt</i><span>Updating</span>", 2500);
 			caches.delete("application-cache").then(function () {
 				setTimeout(function () {
@@ -42237,7 +42239,7 @@
   \********************************/
 /***/ (function(module, exports) {
 
-	module.exports = "1573046629\n"
+	module.exports = "1573046629\r\n"
 
 /***/ }),
 /* 340 */
@@ -44277,12 +44279,6 @@
 									_react2.default.createElement(_SettingsItem.SettingsCheckbox, { value: localStorage.getItem("hidewarn") !== "true", onChange: function onChange(value) {
 											return localStorage.setItem("hidewarn", (!value).toString());
 										} })
-								),
-								_react2.default.createElement(
-									_SettingsItem.SettingsOption,
-									{ onClick: app.update },
-									_react2.default.createElement(_SettingsItem.SettingsIcon, { icon: "cached" }),
-									_react2.default.createElement(_SettingsItem.SettingsName, { name: "Clean cache" })
 								)
 							),
 							_react2.default.createElement(
@@ -74904,11 +74900,8 @@
 		_createClass(RandomGame, [{
 			key: "onClick",
 			value: function onClick() {
-				var _this2 = this;
-	
-				app.random().then(function (game) {
-					return app.launch(game, _this2);
-				});
+				var game = app.random();
+				app.launch(game, this);
 			}
 		}, {
 			key: "render",
@@ -76102,6 +76095,10 @@
 	
 	var _README2 = _interopRequireDefault(_README);
 	
+	var _discord = __webpack_require__(/*! ../../img/res/discord.png */ 357);
+	
+	var _discord2 = _interopRequireDefault(_discord);
+	
 	var _Body = __webpack_require__(/*! ../components/Body */ 352);
 	
 	var _Body2 = _interopRequireDefault(_Body);
@@ -76228,7 +76225,7 @@
 											_react2.default.createElement(
 												"div",
 												{ className: "external-img" },
-												_react2.default.createElement("img", { src: "/img/res/discord.png", alt: "" })
+												_react2.default.createElement("img", { src: _discord2.default, alt: "" })
 											),
 											_react2.default.createElement(
 												"div",
