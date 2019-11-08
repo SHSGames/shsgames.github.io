@@ -35,21 +35,15 @@ const config = {
 		new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") }),
 		new webpack.optimize.UglifyJsPlugin({
 			parallel: true,
-			uglifyOptions: {
-				extractComments: true,
-				warnings: false,
-				ie8: false,
-				keep_classnames: false,
-				ecma: 5,
-				compress: true,
-				mangle: true,
-				sourceMap: false,
-				safari10: false,
-				keep_fnames: false,
-				output: {
-					comments: false
-				}
-			}
+			mangle: true,
+			comments: false,
+			nameCache: null,
+          	ie8: false,
+          	safari10: false,
+          	keep_fnames: false,
+			compress: {
+        		warnings: false,
+    		}
 		})
 	],
     module: { loaders: require("./loaders.js")(SRC_DIR) }
