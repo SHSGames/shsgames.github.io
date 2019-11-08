@@ -10,6 +10,7 @@ const config = {
         filename: "bundle.js",
         publicPath: "/app/"
     },
+	devtool: "eval-source-map",
 	module: { loaders: require("./loaders.js")(SRC_DIR) }
 };
 
