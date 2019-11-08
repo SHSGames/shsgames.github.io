@@ -1,8 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import WIKI from "dir!../../../wiki/.js";
 import README from "../../../README.md";
+import APP_MD from "../../../wiki/App.md";
+import GAME_MD from "../../../wiki/Game.md";
+import REDIRECTABLE_MD from "../../../wiki/Redirectable.md";
+
+const WIKI = {
+	"App.md": { src: APP_MD },
+	"Game.md": { src: GAME_MD },
+	"Redirectable.md": { src: REDIRECTABLE_MD }
+}
+
+console.log(WIKI)
 
 import Body from "../components/Body";
 import Navbar from "../components/Navbar";

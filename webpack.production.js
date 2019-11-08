@@ -32,23 +32,16 @@ const config = {
 	    minimize: true,
 	},
 	plugins: [
-		new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") }),
+		new webpack.DefinePlugin({
+  			"process.env.NODE_ENV": JSON.stringify("production")
+		}),
 		new webpack.optimize.UglifyJsPlugin({
+			extractComments: true,
 			parallel: true,
-			uglifyOptions: {
-				extractComments: true,
+			mangle: true,
+			ie8: false,
+			compress: {
 				warnings: false,
-				ie8: false,
-				keep_classnames: false,
-				ecma: 5,
-				compress: true,
-				mangle: true,
-				sourceMap: false,
-				safari10: false,
-				keep_fnames: false,
-				output: {
-					comments: false
-				}
 			}
 		})
 	],
