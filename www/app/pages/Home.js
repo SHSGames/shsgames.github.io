@@ -66,13 +66,6 @@ export default class Home extends React.Component {
 								{ this.state.alts.map((a,k) => location.origin !== a && <div className="content" key={k}><a href={a}>{a}</a></div>)}
 							</div>
 						</div>
-						<div className="col s12 l5">
-							<div className="note partners">
-								<div className="header"></div>
-								<div className="content"><b>Check out our partners:</b></div><hr/>
-								<div className="content">ALT+G: <i className="grey-text">Our Minecraft server with no rules!</i> <code style={{ padding: "2px 4px", borderRadius: 5}}>altg.biz.tm</code></div>
-							</div>
-						</div>
 						<div className="col s12">
 							<Searchbar/>
 							{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <GameGroup key={key} group={group}/>) }
