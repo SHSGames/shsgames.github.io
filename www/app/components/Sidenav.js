@@ -22,7 +22,6 @@ class ExitLink extends React.Component {
 class Sidenav extends React.Component {
 	constructor() {
 		super();
-		console.trace();
 		this.state = { games: app.getGames() };
 	}
 
