@@ -285,6 +285,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Learn to Fly 3",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Line rider 1",
             engine: "flash",
             params: {
@@ -1046,6 +1052,15 @@ module.exports = {
             engine: "unity",
             params: {
                 unityImage: "ItchIO",
+                aspectRatio: 16 / 9,
+                width: 1200,
+                options: {}
+            }
+        }, {
+            name: "Duck Life 4",
+            engine: "unity",
+            params: {
+                unityImage: "dl4",
                 aspectRatio: 16 / 9,
                 width: 1200,
                 options: {}

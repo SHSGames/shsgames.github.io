@@ -43932,41 +43932,6 @@
 							),
 							_react2.default.createElement(
 								"div",
-								{ className: "col s12 l5" },
-								_react2.default.createElement(
-									"div",
-									{ className: "note partners" },
-									_react2.default.createElement("div", { className: "header" }),
-									_react2.default.createElement(
-										"div",
-										{ className: "content" },
-										_react2.default.createElement(
-											"b",
-											null,
-											"Check out our partners:"
-										)
-									),
-									_react2.default.createElement("hr", null),
-									_react2.default.createElement(
-										"div",
-										{ className: "content" },
-										"ALT+G: ",
-										_react2.default.createElement(
-											"i",
-											{ className: "grey-text" },
-											"Our Minecraft server with no rules!"
-										),
-										" ",
-										_react2.default.createElement(
-											"code",
-											{ style: { padding: "2px 4px", borderRadius: 5 } },
-											"altg.biz.tm"
-										)
-									)
-								)
-							),
-							_react2.default.createElement(
-								"div",
 								{ className: "col s12" },
 								_react2.default.createElement(_Searchbar2.default, null),
 								this.state.games.length !== 0 && this.state.games.groups.map(function (group, key) {
