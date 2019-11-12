@@ -44,4 +44,4 @@ Ensure that you have the following installed on your system:
 
 ## More Information
 
-More info can be found on our [Developer's Wiki](../wiki).
+More info can be found on our [Developer's Wiki](../../wiki).
