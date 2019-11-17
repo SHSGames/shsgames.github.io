@@ -38,7 +38,7 @@ export default class Home extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<React.Fragment>
 				<Navbar/>
 				<Body>
 					<div className="container row">
@@ -79,14 +79,14 @@ export default class Home extends React.Component {
 								<div className="content"><b>Dont forget: Unblocked versions can be found here</b></div><hr/>
 								{ this.state.alts.map((a,k) => location.origin !== a && <div className="content" key={k}><a href={a}>{a}</a></div>)}
 							</div>
-							
+
 							<Searchbar/>
 							{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <GameGroup key={key} group={group}/>) }
 						</div>
 					</div>
 				</Body>
 				<Footer static/>
-			</div>
+			</React.Fragment>
 		)
 	}
 }

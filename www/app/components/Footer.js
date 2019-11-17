@@ -30,38 +30,36 @@ export default class Footer extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<footer>
-					<div className="container">
-						<div className="row">
-							<div className="col s12 l8">
-								<h3 className="grey-text text-lighten-3">{app["NAME"]}</h3>
-								<p className="grey-text">Unblocked games • {this.state.phrase}.</p>
-							</div>
-							<div className="col s12 l4">
-								<a href="https://discord.gg/XBr5nzu" target="_blank" className="autolink waves-effect photon-init">
-									<div className="padding-layer">
-										<div className="external-img">
-											<img src={IMG_RES_DISCORD_PNG} alt=""/>
-										</div>
-										<div className="title">SHSGames · Discord</div>
-										<p>Join SHSGames on Discord</p>
-										<div className="ref">Our Discord Server</div>
+			<footer>
+				<div className="container">
+					<div className="row">
+						<div className="col s12 l8">
+							<h3 className="grey-text text-lighten-3">{app["NAME"]}</h3>
+							<p className="grey-text">Unblocked games • {this.state.phrase}.</p>
+						</div>
+						<div className="col s12 l4">
+							<a href="https://discord.gg/XBr5nzu" target="_blank" className="autolink waves-effect photon-init">
+								<div className="padding-layer">
+									<div className="external-img">
+										<img src={IMG_RES_DISCORD_PNG} alt=""/>
 									</div>
-								</a>
-							</div>
+									<div className="title">SHSGames · Discord</div>
+									<p>Join SHSGames on Discord</p>
+									<div className="ref">Our Discord Server</div>
+								</div>
+							</a>
 						</div>
 					</div>
-					<div className="footer-copyright">
-						<div className="container">
-							Copyright © { new Date().getFullYear() }
-							<a href="https://joshmerlino.github.io" className="primary-text"> Josh Merlino</a> &
-							<a href="https://th3skeleton.github.io/pshel/" className="primary-text"> Parker Sheldon</a> &
-							<a className="primary-text"> George Lock</a>
-						</div>
+				</div>
+				<div className="footer-copyright">
+					<div className="container">
+						Copyright © { new Date().getFullYear() }
+						<a href="https://joshmerlino.github.io" className="primary-text"> Josh Merlino</a> &
+						<a href="https://th3skeleton.github.io/pshel/" className="primary-text"> Parker Sheldon</a> &
+						<a className="primary-text"> George Lock</a>
 					</div>
-				</footer>
-			</div>
+				</div>
+			</footer>
 		);
 	}
 }

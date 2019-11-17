@@ -49,13 +49,13 @@ class GameView extends React.Component {
 	render() {
 		if(this.state.error) return <ErrorDocument/>;
 		return (
-			<div data-num={this.state.num}>
+			<React.Fragment>
 				<Navbar/>
 				<Body>
 					{ this.state.game && <GamePlayer game={this.state.game}/> }
 				</Body>
 				<Footer static/>
-			</div>
+			</React.Fragment>
 		);
 	}
 }

@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 class Request extends React.Component {
 	render() {
 		return (
-			<div>
+			<React.Fragment>
 				<Navbar/>
 				<Body>
 					<div className="container" style={{ maxWidth: 512 }}>
@@ -16,7 +16,7 @@ class Request extends React.Component {
 					</div>
 				</Body>
 				<Footer/>
-			</div>
+			</React.Fragment>
 		);
 	}
 }

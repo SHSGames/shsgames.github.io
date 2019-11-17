@@ -35,7 +35,7 @@ class App extends React.Component {
 
     render() {
 		return (
-			<div>
+			<React.Fragment>
 				<Router>
 					<div>
 						<Sidenav/>
@@ -46,7 +46,7 @@ class App extends React.Component {
 						} }/>)}
 					</div>
 				</Router>
-			</div>
+			</React.Fragment>
 		);
     }
 }
