@@ -52,11 +52,11 @@ export default class Footer extends React.Component {
 					</div>
 				</div>
 				<div className="footer-copyright">
-					<div className="container">
+					<div className="container grey-text text-lighten-1">
 						Copyright © { new Date().getFullYear() }
-						<a href="https://joshmerlino.github.io" className="primary-text"> Josh Merlino</a> &
-						<a href="https://th3skeleton.github.io/pshel/" className="primary-text"> Parker Sheldon</a> &
-						<a className="primary-text"> George Lock</a>
+						<a href="https://joshmerlino.github.io" className="white-text"> Josh Merlino</a> &
+						<a href="https://th3skeleton.github.io/pshel/" className="white-text"> Parker Sheldon</a> &
+						<a className="white-text"> George Lock</a>
 					</div>
 				</div>
 			</footer>

@@ -53,7 +53,7 @@ export default class Home extends React.Component {
 						</div>
 						<div className="col s12 l6 row">
 							<div className="col s12 m6">
-								<ul className="scrollnav" data-offset="0">
+								<ul className="scrollnav alt-mode" data-offset="0">
 									<li><h1>Categories</h1></li>
 									{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <li key={key}><a data-scrollto={"#" + app.slug(group.name)}>{group.name}</a></li>) }
 								</ul>
