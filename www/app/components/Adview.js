@@ -6,6 +6,10 @@ class Adview extends React.Component {
 		this.state = { visible: typeof window.adsbygoogle === "object" && window.adsbygoogle.hasOwnProperty("loaded") && window.adsbygoogle.loaded === true };
 	}
 
+	componentDidMount() {
+		this.state.visible && (adsbygoogle = window.adsbygoogle || []).push({});
+	}
+
 	style = {
 		borderRadius: 4,
 		padding: 4
@@ -32,7 +36,9 @@ class Adview extends React.Component {
 			<div style={{ background: "#52525210", ...this.style, ...this.props.style, height: this.props.height || "auto" }}>
 				<div style={{ display: "grid", height: "100%" }}>
 					<div style={{ margin: "auto" }}>
-						<ins className="adsbygoogle" {...this.props}/>
+						<div>
+							<ins className="adsbygoogle" {...this.props}/>
+						</div>
 					</div>
 				</div>
 			</div>
