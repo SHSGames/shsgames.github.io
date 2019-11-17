@@ -3,7 +3,7 @@ import React from "react";
 class Adview extends React.Component {
 	constructor() {
 		super();
-		this.state = { visible: typeof window.adsbygoogle === "object" && window.adsbygoogle.hasOwnProperty("loader") && window.adsbygoogle.loaded === true };
+		this.state = { visible: typeof window.adsbygoogle === "object" && window.adsbygoogle.hasOwnProperty("loaded") && window.adsbygoogle.loaded === true };
 	}
 
 	style = {
