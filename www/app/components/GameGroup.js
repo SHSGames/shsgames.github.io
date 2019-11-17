@@ -10,7 +10,7 @@ class GameGroup extends React.Component {
 		return (
 			<div className="gamegroup">
 				<Adview
-				  style={{ display: "block", marginTop: 8 }}
+				  style={{ display: "block", marginTop: 8, textAlign: "center" }}
 				  height={200}
 			      data-ad-layout="in-article"
 			      data-ad-format="fluid"
