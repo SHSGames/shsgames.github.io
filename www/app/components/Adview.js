@@ -7,7 +7,11 @@ class Adview extends React.Component {
 	}
 
 	componentDidMount() {
-		this.state.visible && (adsbygoogle = window.adsbygoogle || []).push({});
+		try {
+			this.state.visible && (adsbygoogle = window.adsbygoogle || []).push({});
+		} catch(e) {
+			
+		}
 	}
 
 	style = {
