@@ -61,34 +61,8 @@ global.app = {
 	pubkey: "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3Lblv+neygQC4vvG6qPARg39S\nVQHmGdoOcz6GIWoFdRt6yW5T5VSAPRpaVF9c1Qt19a7JsqhVRwLG5nnOmrmOAzy5\nk4DD9qAxrjnhpcJW4LyUWxGoaBxcvU2UBOgSrATQ2V/nrdySpMyi7RkBgubyOGdp\n+/eiknG6PnofX1vW+wIDAQAB\n-----END PUBLIC KEY-----",
 	version: 1,
 	game: null,
-	ads: 0,
 	games: GAMES,
 	state: { nesready: false },
-
-	adsAvailibility() {
-		return new Promise(function(resolve, reject) {
-			if(app.ads === 0) {
-				app.ads = 1;
-				fetch("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js").then(() => {
-					app.ads = true;
-					resolve(app.ads);
-				}).catch(err => {
-					app.ads = false;
-					resolve(app.ads);
-				})
-			} else if (app.ads === 1) {
-				(function listen(){
-					if(app.ads === 1) {
-						requestAnimationFrame(listen);
-					} else {
-						resolve(app.ads);
-					}
-				}());
-			} else {
-				resolve(app.ads);
-			}
-		});
-	},
 
 	setDarkMode(mode) {
 		if(mode === true) {
