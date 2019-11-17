@@ -31,7 +31,7 @@ class Sidenav extends React.Component {
 				<li><img src={IMG_ICON_WEB_HI_RES_512_PNG} alt="" style={{ padding: "1rem 25%" }} width="50%"/></li>
 				<li className="divider"></li>
 				<li><Link onClick={ () => $("#sn-webview").sidenav("close") } className="waves-effect" to="/"><i className="material-icons">home</i>Home</Link></li>
-				<li><Link onClick={ () => $("#sn-webview").sidenav("close") } className="waves-effect" to="/request"><i className="material-icons">help_outline</i>Game Request</Link></li>
+				<li><Link onClick={ () => $("#sn-webview").sidenav("close") } className="waves-effect" to="/request"><i className="material-icons">library_add</i>Game Request</Link></li>
 				<li><a onClick={ () => $("#settings-view").addClass("active") } className="waves-effect"><i className="material-icons">settings</i>Settings</a></li>
 				<li className="divider"></li>
 				<li><a className="subheader">Games <span className="badge accent">{this.state.games.length}</span></a></li>
