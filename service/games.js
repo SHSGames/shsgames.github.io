@@ -1107,15 +1107,6 @@ module.exports = {
                 width: 1200,
                 options: {}
             }
-        }, {
-            name: "Sonic Revert",
-            engine: "unity",
-            params: {
-                unityImage: "Web",
-                aspectRatio: 16 / 4,
-                width: 960,
-                options: {}
-            }
         }]
     }]
 }
