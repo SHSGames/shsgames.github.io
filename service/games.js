@@ -1108,10 +1108,10 @@ module.exports = {
                 options: {}
             }
         }, {
-            name: "Tanuki Sunset",
+            name: "Sonic Revert",
             engine: "unity",
             params: {
-                unityImage: "WebGL",
+                unityImage: "Web",
                 aspectRatio: 16 / 4,
                 width: 960,
                 options: {}
