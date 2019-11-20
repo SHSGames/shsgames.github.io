@@ -452,6 +452,12 @@ module.exports = {
                 }
             }
         }, {
+            name: "Return Man 2",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Run 2",
             engine: "flash",
             params: {
@@ -1075,6 +1081,15 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Rooftop Snipers",
+            engine: "unity",
+            params: {
+                unityImage: "rooftop_snipers",
+                aspectRatio: 16 / 9,
+                width: 793,
+                options: {}
+            }
+        }, {
             name: "Slope",
             engine: "unity",
             params: {
@@ -1083,12 +1098,21 @@ module.exports = {
                 width: 1200,
                 options: {}
             }
-		}, {
+	}, {
             name: "Subway Surfers",
             engine: "unity",
             params: {
                 unityImage: "surfers",
                 aspectRatio: 16 / 9,
+                width: 1200,
+                options: {}
+            }
+        }, {
+            name: "Tanuki Sunset",
+            engine: "unity",
+            params: {
+                unityImage: "WebGL",
+                aspectRatio: 16 / 4,
                 width: 1200,
                 options: {}
             }
