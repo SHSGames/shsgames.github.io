@@ -51,7 +51,7 @@ $("*").on("keypress keydown keyup", e => {
 
 $(() => $.ajax({
 	url: "/src/LAST_BUILD.txt?" + Date.now(),
-	success: data => data !== LAST_BUILD && app.update()
+	success: data => parseInt(data) !== parseInt(LAST_BUILD) && app.update()
 }));
 
 global.app = {
