@@ -1090,15 +1090,6 @@ module.exports = {
                 options: {}
             }
         }, {
-            name: "Shrinking Planet",
-            engine: "unity",
-            params: {
-                unityImage: "shrink",
-                aspectRatio: 720 / 720,
-                width: 720,
-                options: {}
-            }
-        }, {
             name: "Slope",
             engine: "unity",
             params: {
