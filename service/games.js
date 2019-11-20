@@ -1113,7 +1113,7 @@ module.exports = {
             params: {
                 unityImage: "WebGL",
                 aspectRatio: 16 / 4,
-                width: 1200,
+                width: 960,
                 options: {}
             }
         }]
