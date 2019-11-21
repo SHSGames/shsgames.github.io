@@ -116,6 +116,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Doodle God",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Doom Triple Pack",
             engine: "flash",
             params: {
@@ -129,6 +135,12 @@ module.exports = {
             }
         }, {
             name: "Dragon Fist 3",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Dragon Ball Z Devolution",
             engine: "flash",
             params: {
                 options: {}
@@ -200,6 +212,12 @@ module.exports = {
             engine: "flash",
             params: {
                 aspectRatio: 35 / 24,
+                options: {}
+            }
+        }, {
+            name: "Gunblood",
+            engine: "flash",
+            params: {
                 options: {}
             }
         }, {
@@ -292,6 +310,12 @@ module.exports = {
             }
         }, {
             name: "Line rider 1",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Madness Project Nexus",
             engine: "flash",
             params: {
                 options: {}
@@ -438,10 +462,24 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Potty Racers",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Potty Racers 3",
             engine: "flash",
             params: {
                 options: {}
+            }
+        }, {
+            name: "Raze",
+            engine: "flash",
+            params: {
+                options: {
+                    wmode: "window"
+                }
             }
         }, {
             name: "Raze 3",
@@ -532,6 +570,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Stick War 2",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Street Fighter 2",
             engine: "flash",
             params: {
@@ -572,6 +616,12 @@ module.exports = {
             }
         }, {
             name: "Super Mario Flash 2",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Super Santa Kicker",
             engine: "flash",
             params: {
                 options: {}
@@ -640,13 +690,37 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "The King of Fighters Wing",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "The Last Stand Union City",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Theme Hotel",
             engine: "flash",
             params: {
                 options: {}
             }
         }, {
+            name: "This is the Only Level",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Truck Loader 4",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Unfair Mario",
             engine: "flash",
             params: {
                 options: {}
