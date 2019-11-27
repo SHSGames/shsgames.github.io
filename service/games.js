@@ -1154,6 +1154,15 @@ module.exports = {
                 width: 1200,
                 options: {}
             }
+        },  {
+            name: "Madalin Cars Multiplayer",
+            engine: "unity",
+            params: {
+                unityImage: "37f4fe02fe4acc34c6a26d8cf99ddc67",
+                aspectRatio: 16 / 9,
+                width: 1200,
+                options: {}
+            }
         }, {
             name: "Rooftop Snipers",
             engine: "unity",
