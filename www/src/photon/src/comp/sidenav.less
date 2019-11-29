@@ -35,26 +35,39 @@
   			background-color: rgba(0, 0, 0, 0.05);
 		}
 		a {
-		  	color: rgba(0, 0, 0, 0.87);
+		  	color: rgba(0, 0, 0, 0.70);
 		 	display: block;
 			font-size: 14px;
 			font-weight: 500;
 			height: 48px;
 			line-height: 48px;
 		 	padding: 0 32px;
+			width: 224px;
+			border-top-right-radius: 50px;
+			border-bottom-right-radius: 50px;
 			&:hover {
   				background-color: rgba(0, 0, 0, 0.05);
 			}
-			i,
-			[class^="mdi-"],
-			[class*="mdi-"],
-			.material-icons {
+			i.material-icons {
 			 	float: left;
 			  	height: 48px;
 			 	line-height: 48px;
 			 	margin: 0 32px 0 0;
 			  	width: 24px;
-			  	color: rgba(0, 0, 0, 0.54);
+			  	color: rgba(0, 0, 0, 0.70);
+			}
+			&.active {
+				background: fade(@primaryColor, 10%);
+				&:hover {
+					background: fade(@primaryColor, 16%);
+				}
+				color: @primaryColor;
+				.material-icons {
+					color: inherit
+				}
+				.waves-ripple {
+					background: fade(@primaryColor, 20%);
+				}
 			}
 		}
 		.btn,
@@ -66,7 +79,8 @@
 		}
 	}
 	.divider {
-		border-bottom:1px solid #bdbdbd;
+		border-bottom:1px solid #ececec;
+		margin: 12px 0;
 	}
 	.subheader {
 	  	cursor: initial;
@@ -75,6 +89,7 @@
 	  	font-size: 14px;
 	  	font-weight: 500;
 	  	line-height: 48px;
+		opacity: .87;
 		&:hover {
 			background:transparent;
 		}
@@ -131,4 +146,66 @@
 	top:0px;
 	height:100%;
 	z-index:9999;
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.sidenav {
+		background: #242424;
+		color: #fafafa;
+		.divider {
+			border-bottom: 1px solid #323232!important;
+		}
+		li a:not(.active) {
+			color: rgba(255,255,255,.70);
+			i {
+				color: inherit;
+			}
+			&.subheader {
+				color: rgba(255,255,255,.54)!important;
+			}
+			&:not(.divider):hover {
+				background: rgba(255,255,255,.04);
+			}
+		}
+		li a.active {
+			background: fade(lighten(@primaryColor, @darkmodeColorDiff), 10%);
+			color: lighten(@primaryColor, @darkmodeColorDiff);
+			.waves-ripple {
+				background: fade(lighten(@primaryColor, @darkmodeColorDiff), 20%)!important;
+			}
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.sidenav {
+			background: #242424;
+			color: #fafafa;
+			.divider {
+				border-bottom: 1px solid #323232!important;
+			}
+			li a:not(.active) {
+				color: rgba(255,255,255,.70);
+				i {
+					color: inherit;
+				}
+				&.subheader {
+					color: rgba(255,255,255,.54)!important;
+				}
+				&:not(.divider):hover {
+					background: rgba(255,255,255,.04);
+				}
+			}
+			li a.active {
+				background: fade(lighten(@primaryColor, @darkmodeColorDiff), 10%);
+				color: lighten(@primaryColor, @darkmodeColorDiff);
+				.waves-ripple {
+					background: fade(lighten(@primaryColor, @darkmodeColorDiff), 20%)!important;
+				}
+			}
+		}
+	}
 }

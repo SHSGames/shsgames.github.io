@@ -2351,7 +2351,7 @@
 	color: transparent!important;
 }
 
-.primary {
+.primary:not(.checkbox):not(.radio-btn):not(.flat):not(.outlined):not(.slider-fild):not(.switch):not(.input-field) {
 	background: @primaryColor!important;
 	color: @primaryTextColor;
 }
@@ -2360,11 +2360,55 @@
 	color: @primaryColor!important;
 }
 
-.accent {
+.accent:not(.checkbox):not(.radio-btn):not(.flat):not(.outlined):not(.slider-fied):not(.switch):not(.input-field) {
 	background: @accentColor!important;
-	color: @primaryTextColor;
+	color: @accentTextColor;
 }
 
 .accent-text {
 	color: @accentColor!important;
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.primary:not(.no-contrast):not(.checkbox):not(.radio-btn):not(.flat):not(.outlined):not(.slider-fild):not(.switch):not(.input-field) {
+		background: lighten(@primaryColor, @darkmodeColorDiff)!important;
+		color: #000000b3!important;
+	}
+
+	.primary-text:not(.no-contrast) {
+		color: lighten(@primaryColor, @darkmodeColorDiff)!important;
+	}
+
+	.accent:not(.no-contrast):not(.checkbox):not(.radio-btn):not(.flat):not(.outlined):not(.slider-fild):not(.switch):not(.input-field) {
+		background: lighten(@accentColor, @darkmodeColorDiff)!important;
+		color: #000000b3!important;
+	}
+
+	.accent-text:not(.no-contrast) {
+		color: lighten(@accentColor, @darkmodeColorDiff)!important;
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.primary:not(.no-contrast):not(.checkbox):not(.radio-btn):not(.flat):not(.outlined):not(.slider-feld):not(.switch):not(.input-field) {
+			background: lighten(@primaryColor, @darkmodeColorDiff)!important;
+			color: #000000b3!important;
+		}
+
+		.primary-text:not(.no-contrast) {
+			color: lighten(@primaryColor, @darkmodeColorDiff)!important;
+		}
+
+		.accent:not(.no-contrast):not(.checkbox):not(.radio-btn):not(.flat):not(.outlined):not(.slider-fild):not(.switch):not(.input-field) {
+			background: lighten(@accentColor, @darkmodeColorDiff)!important;
+			color: #000000b3!important;
+		}
+
+		.accent-text:not(.no-contrast) {
+			color: lighten(@accentColor, @darkmodeColorDiff)!important;
+		}
+	}
 }

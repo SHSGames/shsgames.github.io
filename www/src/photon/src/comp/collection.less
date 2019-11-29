@@ -7,8 +7,8 @@
 		padding: 10px 20px;
 		margin: 0;
 		list-style: none;
-		border-bottom: 1px solid @dividerColor;
-		border-color: @dividerColor!important;
+		border-bottom: 1px solid #e5e5e5;
+		border-color: #e5e5e5!important;
 
 		span.badge {
 			margin-top: calc(0.75rem - 11px);
@@ -20,24 +20,18 @@
 
 		&.avatar {
 			min-height: 84px;
-			padding-left: 72px;
+			padding-left: 84px;
 			position: relative;
 
 			&:not(.circle-clipper) {
 				> .circle {
 					position: absolute;
-					position: absolute;
-					width: 42px;
-					width: 42px;
-					height: 42px;
-					height: 42px;
+					width: 56px;
+					height: 56px;
 					overflow: hidden;
-					overflow: hidden;
-					left: 15px;
+					border-radius: 50px;
 					left: 15px;
 					display: inline-block;
-					display: inline-block;
-					vertical-align: middle;
 					vertical-align: middle;
 				}
 			}
@@ -91,7 +85,7 @@
 	&.with-header {
 		.collection-header {
 			background-color: #fff;
-			border-bottom: 1px solid @dividerColor;
+			border-bottom: 1px solid #e5e5e5;
 			padding: 10px 20px;
 		}
 
@@ -112,12 +106,28 @@
 	}
 }
 
-body when (@photonDarkTheme = true) {
+.photon--darktheme,
+&.photon--darktheme {
 	.collection {
 		background: #303030!important;
+
 		.item {
 			background: #303030;
 			border-color: inherit;
+		}
+	}
+}
+
+.photon--systemtheme,
+&.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.collection {
+			background: #303030!important;
+
+			.item {
+				background: #303030;
+				border-color: inherit;
+			}
 		}
 	}
 }

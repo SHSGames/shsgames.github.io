@@ -54,13 +54,51 @@
 			top:20px;
 		}
 	}
+	&.outlined.dense {
+		&::after {
+			top: 14px;
+	    	right: 6px;
+		}
+		.options {
+			margin-top: -50px;
+		}
+	}
 }
 
-& when (@photonDarkTheme = true) {
-	.select .options {
-		background:#414141!important;
-		.option {
-			color:#fafafa;
+&.photon--darktheme,
+.photon--darktheme {
+	.select {
+		.options {
+			background:#414141!important;
+			.option {
+				color:#fafafa;
+			}
+		}
+		&:not(.no-contrast) {
+			.photon-input(lighten(@primaryColor, @darkmodeColorDiff));
+			input {
+				border-color: #525252;
+			}
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.select {
+			.options {
+				background:#414141!important;
+				.option {
+					color:#fafafa;
+				}
+			}
+			&:not(.no-contrast) {
+				.photon-input(lighten(@primaryColor, @darkmodeColorDiff));
+				input {
+					border-color: #525252;
+				}
+			}
 		}
 	}
 }

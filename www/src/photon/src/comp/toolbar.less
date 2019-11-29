@@ -5,7 +5,7 @@
 	width:100%;
 	height:64px;
 	background:@primaryColor;
-	color:@textPrimaryColor;
+	color:@primaryTextColor;
 	z-index:9000!important;
 	overflow-y:hidden;
 
@@ -30,6 +30,8 @@
 	.title {
 		font-weight:500;
 		z-index: 1;
+		width: 66%;
+		user-select: none;
 	}
 
 	.subtitle {
@@ -46,7 +48,7 @@
 		padding:12px;
 		border-radius:50%;
 		.waves-ripple {
-			background:fade(@textPrimaryColor,40%);
+			background:fade(@primaryTextColor,40%);
 		}
 	}
 	i ~ .title,
@@ -86,12 +88,12 @@
 			margin: 4px!important;
 		}
 	}
-	&:not(.flat),
-	&:not(.floating),
+
+	overflow:hidden;
+
 	&.raised {
 		box-shadow: 0 2px 5px rgba(0,0,0,.26);
 	}
-	overflow:hidden;
 
 	&.parallax {
 		height:260px;
@@ -124,14 +126,6 @@
 			background: rgba(0,0,0,0.2)!important;
 		}
 
-		& when (@photonDarkTheme = true) {
-			color:#fafafa;
-			background:#242424;
-
-			.waves-ripple {
-				background: rgba(255,255,255,0.2)!important;
-			}
-		}
 	}
 
 	.tabs {
@@ -139,4 +133,36 @@
 		height: 52px;
 	}
 
+	&.fixed {
+		position: fixed!important;
+		top: 0!important;
+		bottom: auto!important;
+	}
+
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.toolbar.paper,
+	.app-bar.paper {
+		color:#fafafa;
+		background:#242424;
+		.waves-ripple {
+			background: rgba(255,255,255,0.2)!important;
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.toolbar.paper,
+		.app-bar.paper {
+			color:#fafafa;
+			background:#242424;
+			.waves-ripple {
+				background: rgba(255,255,255,0.2)!important;
+			}
+		}
+	}
 }

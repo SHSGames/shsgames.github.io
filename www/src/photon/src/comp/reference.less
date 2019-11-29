@@ -1,0 +1,154 @@
+.reference,
+.autolink {
+	.card();
+	position: relative;
+	overflow: hidden;
+	transition-property: background, box-shadow;
+
+	&:hover {
+		background: #fcfcfc;
+	}
+	display: inline-block;
+	margin: 4px;
+	width: 240px;
+	height: 122px;
+	padding: 0;
+
+	.progress {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		width: 128px;
+		margin: 0;
+
+		&.offl {
+			background: fade(@red,16%);
+			position: relative;
+
+			.offline {
+				background: @red;
+			}
+		}
+	}
+
+	.http-error {
+		color: @red;
+		line-height: 128px;
+		text-align: center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		user-select: none;
+		font-size: 24px;
+		font-family: Roboto Mono;
+	}
+
+	.padding-layer {
+		padding: 16px 20px 12px;
+
+		.external-img {
+			width: 44px;
+			height: 44px;
+			border-radius: 50%;
+			float: left;
+			margin-bottom: 16px;
+			margin-right: 20px;
+			position: relative;
+
+			img {
+				position: absolute;
+				max-width: 36px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+			}
+		}
+
+		.title {
+			display: inline-block;
+			font-family: @fontFamily;
+			font-size: 15px;
+			color: #676767;
+			font-weight: 500;
+			overflow-x: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			max-width: 136px;
+		}
+
+		p {
+			display: block;
+			font-family: @fontFamily;
+			font-size: 14px;
+			color: #676767;
+			overflow: hidden;
+			height: 34px;
+			text-overflow: ellipsis;
+			max-width: 136px;
+			margin: 8px 0;
+		}
+
+		i {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			color: #676767!important;
+		}
+
+		.ref {
+			display: inline-block;
+			font-family: @fontFamily;
+			font-size: 13px;
+			font-weight: 500;
+			color: #676767;
+			overflow: hidden;
+			height: 34px;
+			text-overflow: ellipsis;
+			max-width: 128px;
+			margin: 8px 0;
+			transform: translateY(-8px);
+			left: 0;
+		}
+	}
+}
+
+.photon--darktheme,
+&.photon--darktheme {
+	.reference,
+	&.reference {
+		background: #303030;
+		&:hover {
+			background: #333333;
+		}
+		p,
+		.ref {
+			color: #9a9a9a!important;
+		}
+		.title {
+			color: #e0e0e0;
+		}
+	}
+}
+
+.photon--systemtheme,
+&.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.reference,
+		&.reference {
+			background: #303030;
+			&:hover {
+				background: #333333;
+			}
+			p,
+			.ref {
+				color: #9a9a9a!important;
+			}
+			.title {
+				color: #e0e0e0;
+			}
+		}
+	}
+}

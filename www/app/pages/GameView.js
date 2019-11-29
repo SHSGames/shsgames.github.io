@@ -50,7 +50,13 @@ class GameView extends React.Component {
 		if(this.state.error) return <ErrorDocument/>;
 		return (
 			<React.Fragment>
-				<Navbar/>
+				<Navbar>{this.state.game.name}<span className="subtitle">SHS Games/{{
+					"gba": "Gameboy Advance",
+					"flash": "Flash",
+					"nes": "Nintendo Entertainment System",
+					"snes": "Super Nintendo Entertainment System",
+					"unity": "Unity WebGL"
+				}[this.state.game.engine]}</span></Navbar>
 				<Body>
 					{ this.state.game && <GamePlayer game={this.state.game}/> }
 				</Body>

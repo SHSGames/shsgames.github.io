@@ -1,7 +1,8 @@
-.card {
-	padding:0!important;
-	overflow-x:auto;
+.card,
+.paper {
 	table {
+		overflow-x:auto;
+		margin: -24px!important;
 		width: -webkit-fill-available;
 		border-spacing: 0;
 	    border-collapse: collapse;
@@ -56,15 +57,36 @@
 			}
 		}
 	}
+}
 
-	& when (@photonDarkTheme = true) {
+&.photon--darktheme,
+.photon--darktheme {
+	.card table,
+	.paper table {
 		thead tr th {
 			color:rgba(255,255,255,.7)!important;
-			border-color:#363636!important;
+			border-color:#414141!important;
 		}
 		tbody tr td {
 			color:#fff!important;
-			border-color:#363636!important;
+			border-color:#414141!important;
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.card table,
+		.paper table {
+			thead tr th {
+				color:rgba(255,255,255,.7)!important;
+				border-color:#414141!important;
+			}
+			tbody tr td {
+				color:#fff!important;
+				border-color:#414141!important;
+			}
 		}
 	}
 }

@@ -127,3 +127,61 @@
 .tabs-swipeable {
 	display:none;
 }
+
+.photon--darktheme,
+&.photon--darktheme {
+	.tabs-primary,
+	&.tabs-primary {
+		.tab a {
+		  	color: lighten(@primaryColor, @darkmodeColorDiff);
+		}
+		.tab.disabled a {
+			color: fade(lighten(@primaryColor, @darkmodeColorDiff),70%)!important;
+		}
+		.indicator {
+  			background-color: lighten(@primaryColor, @darkmodeColorDiff);
+		}
+	}
+	.tabs-accent,
+	&.tabs-accent {
+		.tab a {
+		  	color: lighten(@accentColor, @darkmodeColorDiff);
+		}
+		.tab.disabled a {
+			color: fade(lighten(@accentColor, @darkmodeColorDiff),70%)!important;
+		}
+		.indicator {
+  			background-color: lighten(@accentColor, @darkmodeColorDiff);
+		}
+	}
+}
+
+.photon--systemtheme,
+&.photon--systemtheme {
+	@media(prefers-color-scheme: dark) {
+		.tabs-primary,
+		&.tabs-primary {
+			.tab a {
+			  	color: lighten(@primaryColor, @darkmodeColorDiff);
+			}
+			.tab.disabled a {
+				color: fade(lighten(@primaryColor, @darkmodeColorDiff),70%)!important;
+			}
+			.indicator {
+	  			background-color: lighten(@primaryColor, @darkmodeColorDiff);
+			}
+		}
+		.tabs-accent,
+		&.tabs-accent {
+			.tab a {
+			  	color: lighten(@accentColor, @darkmodeColorDiff);
+			}
+			.tab.disabled a {
+				color: fade(lighten(@accentColor, @darkmodeColorDiff),70%)!important;
+			}
+			.indicator {
+	  			background-color: lighten(@accentColor, @darkmodeColorDiff);
+			}
+		}
+	}
+}

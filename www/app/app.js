@@ -66,10 +66,10 @@ global.app = {
 
 	setDarkMode(mode) {
 		if(mode === true) {
-			$("body").addClass("theme-dark");
+			$("body").addClass("theme-dark photon--darktheme");
 			$("meta[name=\"theme-color\"]").attr("content", "#242424");
 		} else {
-			$("body").removeClass("theme-dark");
+			$("body").removeClass("theme-dark photon--darktheme");
 			$("meta[name=\"theme-color\"]").attr("content", "#ffffff");
 		}
 	},

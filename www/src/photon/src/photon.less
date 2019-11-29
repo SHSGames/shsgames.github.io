@@ -6,10 +6,10 @@
 @import "../../src/photon/fonts/Roboto_Slab/css.css";
 
 @mobile: ~"only screen and (max-width: 511px)";
-@tablet: ~"only screen and (min-width: 512px) and (max-width: 1199px)";
+@tablet: ~"only screen and (min-width: 512px) and (max-width: 1279px)";
 @tablet--and-up: ~"only screen and (min-width: 512px)";
-@desktop: ~"only screen and (min-width: 1200px)";
-@desktop-xl: ~"only screen and (min-width: 1440px)";
+@desktop: ~"only screen and (min-width: 1280px)";
+@desktop-xl: ~"only screen and (min-width: 1537px)";
 
 ::selection {
 	background: #bbd3fd;
@@ -47,6 +47,13 @@ body {
 	font-weight: 400;
 }
 
+code {
+	font-family: "Roboto Mono";
+	background: #f0f0f0;
+	padding: 2px 8px;
+	border-radius: 3px;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 400;
 	color:rgba(0,0,0,.78);
@@ -57,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
 	white-space: nowrap;
 }
 
-body when (@photonDarkTheme = true) {
+body.photon--darktheme {
 	background: #212121;
 	color: #fafafa;
 
@@ -89,6 +96,54 @@ body when (@photonDarkTheme = true) {
 	h1, h2, h3, h4, h5, h6 {
 		color:rgba(245,245,245,.78);
 	}
+	hr {
+		border-top: 1px solid #414141;
+	}
+	code {
+		background: #262626;
+	}
+}
+
+body.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		background: #212121;
+		color: #fafafa;
+
+		hr + .subheader {
+			color: #aaa!important;
+		}
+
+		hr {
+			border-color: fade(#545454,50%);
+		}
+
+		&::-webkit-scrollbar-track,
+		::-webkit-scrollbar-track,
+		&::-webkit-scrollbar-corner,
+		::-webkit-scrollbar-corner {
+			background: #262626;
+		}
+
+		&::-webkit-scrollbar-thumb,
+		::-webkit-scrollbar-thumb {
+			background: #545454;
+		}
+
+		&::-webkit-scrollbar-thumb:hover,
+		::-webkit-scrollbar-thumb:hover {
+			background: #767676;
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			color:rgba(245,245,245,.78);
+		}
+		hr {
+			border-top: 1px solid #414141;
+		}
+		code {
+			background: #262626;
+		}
+	}
 }
 
 br {
@@ -112,7 +167,7 @@ img {
 
 hr {
 	border: none;
-	border-top: 1px solid fade(@dividerColor,50%);
+	border-top: 1px solid #e5e5e5;
 	margin: 2rem 0;
 }
 
@@ -142,9 +197,13 @@ label {
 	}
 }
 
-a {
-	color: @accentColor;
+a[href] {
+	color: @darkPrimaryColor;
 	text-decoration: none;
+	&.ex-link:hover {
+		color: @primaryColor;
+		text-decoration: underline;
+	}
 }
 
 ul li {
@@ -165,15 +224,14 @@ video {
 
 @import "mixins";;
 
-@import "comp/autolink";
 @import "comp/badge";
 @import "comp/button";
 @import "comp/card";
 @import "comp/checkbox";
-@import "comp/collapsible";
 @import "comp/collection";
 @import "comp/color";
 @import "comp/dialog";
+@import "comp/expansion-panel";
 @import "comp/footer";
 @import "comp/grid";
 @import "comp/icon";
@@ -181,6 +239,7 @@ video {
 @import "comp/note";
 @import "comp/progress";
 @import "comp/radio";
+@import "comp/reference";
 @import "comp/scrollnav";
 @import "comp/select";
 @import "comp/sidenav";

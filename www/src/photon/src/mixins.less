@@ -1,7 +1,3 @@
-.photon-border(@mx:1, @ma:0) {
-	border-radius: ((extract(@cornerLevels,1) * @mx) + @ma) ((extract(@cornerLevels,2) * @mx) + @ma) ((extract(@cornerLevels,4) * @mx) + @ma) ((extract(@cornerLevels,3) * @mx) + @ma);
-}
-
 .photon-button-raised(@color,@text) {
 	color: @text!important;
 	background: @color!important;
@@ -11,11 +7,6 @@
 
 	.waves-ripple {
 		background: fade(@text,40%)!important;
-	}
-
-	.raised-2();
-	&:active {
-		.raised-6();
 	}
 }
 
@@ -48,51 +39,51 @@
 }
 
 .photon-checkbox(@color,@text) {
-	input[type="checkbox"]:not(.switch) {
+	input[type="checkbox"]:not(.switch):not(.disabled):not(:disabled) {
 		&:checked {
-			border-color: @color;
+			border-color: @color!important;
 		}
 		&::after {
-			color:@text;
+			color:@text!important;
 		}
 	}
 	input:checked ~ .ripple .waves-ripple {
-		background:fade(@color,40%);
+		background:fade(@color,40%)!important;
 	}
 }
 
 .photon-input(@color) {
 	.bar {
-		background: @color;
-		border-color: @color;
+		background: @color!important;
+		border-color: @color!important;
 	}
 	input:focus ~ label {
-		color: @color;
+		color: @color!important;
 	}
 	input {
-		caret-color: @color;
+		caret-color: @color!important;
 	}
 }
 
 .photon-note(@color,@icon,@title){
-	border-color: @color;
+	border-color: @color!important;
 	a {
-		color: @color;
+		color: @color!important;
 	}
 	code {
-		color: @color;
+		color: @color!important;
 		border-color: @color!important;
-		background: fade(@color,20%);
+		background: fade(@color,20%)!important;
 	}
 	.header {
-		border-color: fade(@color,20%);
-		background: fade(@color,10%);
+		border-color: fade(@color,20%)!important;
+		background: fade(@color,10%)!important;
 		&::before {
-			content: @icon;
-			color: @color;
+			content: @icon!important;
+			color: @color!important;
 		}
 		&::after {
-			content: @title;
+			content: @title!important;
 		}
 	}
 	hr {
@@ -103,26 +94,26 @@
 .photon-radio(@color) {
 	input[type="radio"]:not(.switch) {
 		&:checked {
-			border-color: @color;
+			border-color: @color!important;
 		}
 		&::after {
-			background:@color;
+			background: @color!important;
 		}
 	}
 	input:checked ~ .ripple .waves-ripple {
-		background:fade(@color,40%);
+		background:fade(@color, 40%)!important;
 	}
 }
 
 .photon-slider(@color) {
-	.slider {
+	.slider:not([value="0"]) {
 		.determinate,
 		.thumb {
 			background: @color!important;
 		}
-		.ripple .waves-ripple {
-			background: fade(@color, 40%)!important;
-		}
+	}
+	.slider .ripple .waves-ripple {
+		background: fade(@color, 40%)!important;
 	}
 }
 

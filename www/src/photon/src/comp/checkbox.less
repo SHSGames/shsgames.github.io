@@ -1,6 +1,6 @@
 .checkbox.primary {
 	background: transparent!important;
-	.photon-checkbox(@primaryColor, @textPrimaryColor);
+	.photon-checkbox(@primaryColor, @primaryTextColor);
 }
 
 .checkbox.accent {
@@ -35,22 +35,24 @@ input[type="checkbox"]:not(.switch) {
 		&:extend(.transition);
 		position: absolute;
 		content: "\E5CA";
-		color: @textPrimaryColor;
+		color: @primaryTextColor;
 		font-family: "material icons";
 		transform: scale(0);
 		font-size: 18px;
 		margin: -2px;
-		-moz-transform:translateY(-2px)!important;
+		-moz-transform: translateY(-2px)!important;
 	}
 
 	&.indeterminate {
 		border: 2px solid #6d6d6d;
+
 		&::after {
 			content: "\E15B";
-			color:#6d6d6d;
+			color: #6d6d6d;
 		}
+
 		&:checked::after {
-			margin:-2px;
+			margin: -2px;
 		}
 	}
 
@@ -74,16 +76,18 @@ input[type="checkbox"]:not(.switch) {
 }
 
 .checkbox {
-	position:relative;
+	position: relative;
 	padding-top: 5px;
+
 	.ripple {
 		position: absolute;
 		width: 48px;
 		height: 48px;
 		margin: -40px -11px;
-		z-index:-1;
-		pointer-events:none;
-		border-radius:50%;
+		z-index: -1;
+		pointer-events: none;
+		border-radius: 50%;
+
 		&::after {
 			opacity: 0;
 			pointer-events: none;
@@ -91,31 +95,127 @@ input[type="checkbox"]:not(.switch) {
 		}
 	}
 
-	input:checked ~ .ripple .waves-ripple {
-		background:fade(@primaryColor,40%);
+	input:checked:not(.indeterminate) ~ .ripple .waves-ripple {
+		background: fade(@primaryColor,40%);
 	}
 
 	input:disabled ~ .ripple {
-		display:none;
+		display: none;
 	}
 
 	&.held input {
-		transform:scale(0.888);
+		transform: scale(0.888);
 	}
-
 }
 
-.checkbox when (@photonDarkTheme = true) {
-	input[type="checkbox"]:not(.switch) {
-		&:not(:checked) {
-			border-color: #b5b5b5!important;
-		}
-		&:disabled {
-			border-color: #717171!important;
-		}
-		&.indeterminate {
-			border: 2px solid #b5b5b5;
+.checkbox-group {
+	.children {
+		padding-left: 2rem;
+	}
+}
 
+&.photon--darktheme,
+.photon--darktheme {
+	&.checkbox,
+	.checkbox {
+		input[type="checkbox"]:not(.switch) {
+			&:not(:checked) {
+				border-color: #b5b5b5!important;
+			}
+
+			&:disabled {
+				border-color: #717171!important;
+			}
+
+			&.indeterminate {
+				border: 2px solid #b5b5b5;
+			}
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		&.checkbox,
+		.checkbox {
+			input[type="checkbox"]:not(.switch) {
+				&:not(:checked) {
+					border-color: #b5b5b5!important;
+				}
+
+				&:disabled {
+					border-color: #717171!important;
+				}
+
+				&.indeterminate {
+					border: 2px solid #b5b5b5;
+				}
+			}
+		}
+	}
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.checkbox:not(.no-contrast),
+	&.checkbox:not(.no-contrast) {
+		input[type="checkbox"]:not(.switch) {
+			&:not(:checked),
+			&.indeterminate {
+				border-color: #616161!important;
+			}
+			&.indeterminate:checked::after {
+				color:#757575!important;
+			}
+			&:checked:not(.indeterminate) {
+				border-color: lighten(@primaryColor, @darkmodeColorDiff);
+			}
+			&::after {
+				color:negation(@primaryTextColor, #ffffff);
+			}
+		}
+		input:checked ~ .ripple .waves-ripple {
+			background:fade(lighten(@primaryColor, @darkmodeColorDiff), 40%)!important;
+		}
+		&.primary {
+			.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+		}
+		&.accent {
+			.photon-checkbox(lighten(@accentColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.checkbox:not(.no-contrast),
+		&.checkbox:not(.no-contrast) {
+			input[type="checkbox"]:not(.switch) {
+				&:not(:checked),
+				&.indeterminate {
+					border-color: #616161!important;
+				}
+				&.indeterminate:checked::after {
+					color:#757575!important;
+				}
+				&:checked:not(.indeterminate) {
+					border-color: lighten(@primaryColor, @darkmodeColorDiff);
+				}
+				&::after {
+					color:negation(@primaryTextColor, #ffffff);
+				}
+			}
+			input:checked ~ .ripple .waves-ripple {
+				background:fade(lighten(@primaryColor, @darkmodeColorDiff), 40%)!important;
+			}
+			&.primary {
+				.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+			}
+			&.accent {
+				.photon-checkbox(lighten(@accentColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+			}
 		}
 	}
 }

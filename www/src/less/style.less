@@ -7,7 +7,6 @@
 @import "overrides";
 @import "overrides-dark";
 
-
 body {
 	margin-top: 72px;
 }
@@ -18,8 +17,7 @@ body {
 	padding: 12px 0;
 	margin: 0;
 	margin-bottom: 4px;
-	border-bottom: 2px solid transparent;
-	border-image: linear-gradient(to right, @primaryColor, @accentColor);
+	border-bottom: 2px solid @primaryColor;
 	border-image-slice: 1;
 	text-transform: uppercase;
 	letter-spacing: 8px;
@@ -28,8 +26,7 @@ body {
 }
 
 footer h3 {
-	border-image: linear-gradient(to right, @primaryColor, @accentColor);
-	border-image-slice: 1;
+	border-bottom: 2px solid @primaryColor!important;
 }
 
 #jsnes-game {
@@ -104,7 +101,7 @@ footer h3 {
 				opacity: 0.54;
 			}
 			.settings-section {
-				border-top: 1px solid @dividerColor;
+				border-top: 1px solid #e5e5e5;
 				.settings-option {
 					.transition();
 					position: relative;
@@ -200,94 +197,4 @@ footer h3 {
 
 .note.important {
 	.photon-note(@deep-orange,"warning","Important");
-}
-
-.md-wrapper {
-	box-shadow: 0 1px 2px rgba(0,0,0,0.2)!important;
-	.md-header {
-		border-bottom: 1px solid #e1e1e1;
-		font-family: Roboto mono;
-		margin: -24px;
-		margin-bottom: 0;
-		padding: 8px 24px;
-	}
-}
-
-.card-panel.noraised {
-	box-shadow: 0 1px 2px rgba(0,0,0,0.2)!important;
-}
-
-.markdown {
-	h2 {
-	   	font-family: Roboto Mono;
-	   	display: inline-block;
-	   	padding: 12px 0;
-	   	margin: 0;
-	   	margin-bottom: 4px;
-	   	border-bottom: 2px solid @darkPrimaryColor;
-	   	text-transform: uppercase;
-	   	letter-spacing: 8px;
-	   	font-size: 18px;
-	   	font-weight: 500;
-		margin-right: 100%;
-   	}
-	h3 {
-	   	font-family: Roboto Mono;
-	   	display: inline-block;
-	   	padding: 12px 0;
-	   	margin: 0;
-	   	margin-bottom: 4px;
-	   	border-bottom: 2px solid @darkAccentColor;
-	   	font-size: 16px;
-	   	font-weight: 500;
-		margin-right: 100%;
-   	}
-   	:not(pre) code {
-		white-space: nowrap;
-   	}
-	pre, :not(pre) code {
-	   	background: rgba(127, 127, 127, 0.1);
-		font-family: roboto mono;
-		padding: 0 4px;
-		border-radius: 4px;
-		font-size: 15px;
-   	}
-	pre {
-		padding: 16px;
-	}
-	p {
-		margin: 2px 0;
-	}
-	a[href] {
-		color: @darkPrimaryColor;
-	}
-}
-
-.wikilink {
-	height: 56px;
-	width: calc(100% - 16px);
-	@media @mobile, @tablet {
-		width: 100%;
-	}
-	border-radius: 4px;
-	margin: 4px 0;
-	background: #f5f5f5;
-	.transition();
-	&:hover {
-		background: #f0f0f0;
-	}
-	i {
-		height: 56px;
-		width: 56px;
-		color: #676767;
-		text-align: center;
-		vertical-align: middle;
-		line-height: 56px;
-	}
-	span {
-		font-family: Roboto Mono;
-	    color: #424242;
-	    transform: translateY(2px);
-	    display: inline-block;
-	}
 }

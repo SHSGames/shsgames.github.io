@@ -2,7 +2,7 @@ footer {
 	display:block;
 	padding-top: 20px;
   	color: #212121;
-  	border-top: 1px solid @dividerColor;
+  	border-top: 1px solid #e5e5e5;
 	margin:-24px;
 	margin-top:1rem;
 	.footer-copyright {
@@ -38,13 +38,6 @@ footer {
 	    width: 100%;
 	}
 
-	& when (@photonDarkTheme = true) {
-		color: rgba(255, 255, 255, 0.8);
-		&.legacy {
-			background: #191919!important;
-		}
-	}
-
 	&.legacy {
 		border: none!important;
 		background: #f5f5f5!important;
@@ -55,6 +48,24 @@ footer {
 
 		&.dark {
 			background: #191919!important;
+		}
+	}
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	footer,
+	&footer {
+		border-top-color: #414141;
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		footer,
+		&footer {
+			border-top-color: #414141;
 		}
 	}
 }

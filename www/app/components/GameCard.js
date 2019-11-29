@@ -28,7 +28,7 @@ class GameCard extends React.Component {
 							<img data-src={`${app.service}/gcp/thumbs/${app.slug(this.props.game.name)}.jpg`} alt="" className="thumbnail"/>
 						</div>
 					</div>
-					<div className="card-action">
+					<div className="card-actions" style={{ textAlign: "right" }}>
 						<a className="btn flat waves-effect primary" onClick={ () => app.launch(this.props.game, this) }>play</a>
 					</div>
 				</div>

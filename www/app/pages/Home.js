@@ -72,16 +72,15 @@ export default class Home extends React.Component {
 									</a>
 								</RandomGame>
 							</div>
-						</div>
-						<div className="col s12">
 							<div className="note important">
 								<div className="header"></div>
 								<div className="content"><b>Dont forget: Unblocked versions can be found here</b></div><hr/>
 								{ this.state.alts.map((a,k) => location.origin !== a && <div className="content" key={k}><a href={a}>{a}</a></div>)}
 							</div>
-
+						</div>
+						<div className="col s12">
 							<Searchbar/>
-							{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <GameGroup key={key} group={group}/>) }
+							{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <GameGroup key={key} pkey={key} group={group}/>) }
 						</div>
 					</div>
 				</Body>
