@@ -1,6 +1,7 @@
 process.on("uncaughtException", e => console.error(e));
 
 const express = require("express");
+const https = require("https");
 const app = express();
 
 const fs = require("fs");
@@ -39,4 +40,8 @@ app.all("/*", (req,res) => {
 	res.sendFile(`${__dirname}/dist/index.html`);
 })
 
-app.listen(process.env.PORT || 80);
+app.listen(80)
+https.createServer({
+	key: fs.readFileSync("/etc/letsencrypt/live/shsg.biz.tm/privkey.pem"),
+  	cert: fs.readFileSync("/etc/letsencrypt/live/shsg.biz.tm/cert.pem")
+}, app).listen(443);

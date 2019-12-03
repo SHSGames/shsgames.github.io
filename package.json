@@ -7,7 +7,7 @@
         "serve": "node production.js",
         "less": "lessc -x ./www/src/less/style.less ./www/src/css/main.css",
         "dev": "concurrently --kill-others \"npm run sfrontend\" \"npm run sbackend\"",
-		"build": "sh updater.sh && rm -Rf dist/ && webpack --config webpack.production.js && cp -r www/ build/ && rm -Rf build/app && cp -r build/. dist/ && rm -Rf build/",
+        "build": "sh updater.sh && rm -Rf dist/ && webpack --config webpack.production.js && cp -r www/ build/ && rm -Rf build/app && cp -r build/. dist/ && rm -Rf build/",
         "photon": "npm run less && cd ./www/src/ && rm -rf photon/ && git clone https://github.com/PhotonCSS/Photon.git photon && rm -rf photon/.git && npm run less",
         "sfrontend": "webpack -d && cp www/index.html dist/index.html && webpack-dev-server --content-base www/ --inline --history-api-fallback",
         "sbackend": "nodemon backend.js"
@@ -24,6 +24,7 @@
         "express": "^4.16.4",
         "express-http-to-https": "^1.1.4",
         "formidable": "^1.2.1",
+        "https": "^1.0.0",
         "node-jsencrypt": "^1.0.0",
         "request": "^2.88.0",
         "request-promise": "^4.2.4"
