@@ -1864,5 +1864,3 @@ $(() => {
 	}());
 
 });
-
-module.exports = Photon;

@@ -1941,5 +1941,3 @@ $(() => {
 								});
 				})();
 });
-
-module.exports = Photon;
