@@ -3,4 +3,9 @@
     "command": "npm run less",
 	"showError": false,
 	"implementBusySignal": true
+}, {
+    "files": "**/photon.js",
+    "command": "cd www/ && babel ./src/photon/src/ -d ./src/photon/dist/ && cd src/photon/dist/ && uglifyjs -c -m -ecma 5 -o photon.min.js photon.js",
+	"showError":false,
+	"implementBusySignal":true
 }]

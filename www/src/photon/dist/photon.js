@@ -128,7 +128,7 @@
 				}) : "object" == typeof exports ? module.exports = e.call(t) : t.Waves = e.call(t);
 }(window);
 
-Photon = {
+const Photon = {
 				activeDialog: undefined,
 				autoready: true,
 				events: {},

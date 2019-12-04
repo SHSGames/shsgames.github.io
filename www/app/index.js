@@ -2,10 +2,16 @@ import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import "expose-loader?$!../src/js/jquery.min.js";
+import "expose-loader?Photon!../src/photon/dist/photon.min.js";
+import "../src/css/main.css";
+import "expose-loader?LazyLoad!../src/js/lazyload.min.js";
+
 import "./app";
 import ROUTES from "./router";
 import Mprogress from "../src/js/mprogress.min.js";
 import Sidenav from "./components/Sidenav";
+
 window.Mprogress = Mprogress;
 window.alert = message => console.warn(`Alert Halted: ${message}`);
 
