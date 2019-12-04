@@ -19,7 +19,7 @@ global.NAMESPACE = config.namespace;
 
 global.ns = text => require("uuid/v3")(text,MYSQLIKEY);
 
-const requests = 0;
+let requests = 0;
 app.use((req, res, next) => {
 	requests ++;
 	return next();
