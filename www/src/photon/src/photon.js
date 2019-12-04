@@ -1864,3 +1864,5 @@ $(() => {
 	}());
 
 });
+
+typeof module === "object" && (module.exports = Photon);

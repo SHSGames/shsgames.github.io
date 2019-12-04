@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">Photon CSS</h1>
 <h3 align="center">The next generation of web design.</h3>
-<h5 align="center" version>v4.0.15</h5>
+<h5 align="center" version>v5.0.0</h5>
 
 ```html
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/PhotonCSS/Photon/dist/photon.min.css">
