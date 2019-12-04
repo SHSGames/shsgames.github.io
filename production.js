@@ -1,11 +1,12 @@
 process.on("uncaughtException", e => console.error(e));
 
-const express = require("express");
-const https = require("https");
-const app = express();
-
 const fs = require("fs");
-const {redirectToHTTPS} = require("express-http-to-https")
+const https = require("https");
+const express = require("express");
+const compression = require("compression");
+const { redirectToHTTPS } = require("express-http-to-https")
+
+const app = express();
 
 global.PORT = { frontend: 80, backend: 80 }
 
@@ -19,10 +20,9 @@ global.NAMESPACE = config.namespace;
 
 global.ns = text => require("uuid/v3")(text,MYSQLIKEY);
 
+app.use(compression());
 app.use(redirectToHTTPS([/localhost/,/10.0.0.*/],[/\/http/], 301));
-app.use(express.static("dist",{
-    extensions: ["html"],
-}));
+app.use(express.static("dist", { extensions: [ "html" ] }));
 
 require("./routes.js")(app);
 
@@ -36,11 +36,7 @@ app.all("/service/*",function(req,res){
 	}
 })
 
-app.all("/*", (req,res) => {
-	res.sendFile(`${__dirname}/dist/index.html`);
-})
-
-app.listen(80)
+app.listen(80);
 https.createServer({
 	key: fs.readFileSync("/etc/letsencrypt/live/shsg.biz.tm/privkey.pem"),
   	cert: fs.readFileSync("/etc/letsencrypt/live/shsg.biz.tm/cert.pem")
