@@ -34,7 +34,11 @@ app.all("/service/*",function(req,res){
 		console.error(e);
 		res.sendStatus(503);
 	}
-})
+});
+
+app.all("/*", (req,res) => {
+	res.sendFile(`${__dirname}/dist/index.html`);
+});
 
 app.listen(80);
 https.createServer({
