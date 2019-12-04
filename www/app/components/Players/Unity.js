@@ -8,10 +8,11 @@ class UnityPlayer extends React.Component {
 		$("body").append(`<script src="/src/js/unity.min.js" class="router-reset"></script>`)
 		$("body").append(`<script src="/src/js/unity-loader.min.js" class="router-reset"></script>`)
 
+		this._progress = 0;
 		this._loader = new Photon.dialog({
-			type:"progress",
-			circular:true,
-			message:"Loading Unity player..."
+			type: "progress",
+			message: "Downloading game files...",
+			assets: 100,
 		});
 
 		this._loader.open();
@@ -21,10 +22,26 @@ class UnityPlayer extends React.Component {
 		let _this = this;
 		app.game = this.props.game;
 		this._unity = UnityLoader.instantiate("unity-player", `${app.service}/gcp/games/${this.props.game.params.unityImage}.json`, {
-      	    Module: { onRuntimeInitialized() {
-  	            _this._loader.resolved = true;
-  	            _this._loader.destroy();
-      	    } }
+			onProgress: (_, progress) => {
+				progress = Math.floor(progress * 100);
+				_this._loader.increment(progress - _this._progress)
+				_this._progress = progress;
+
+				if(progress === 100) {
+					_this._loader = new Photon.dialog({
+						type: "progress",
+						message: "Compiling game",
+						circular: true
+					});
+					_this._loader.open();
+				}
+			},
+      	    Module: {
+				onRuntimeInitialized() {
+	  	            _this._loader.resolved = true;
+	  	            _this._loader.destroy();
+      	    	}
+			}
       	});
 	}
 
