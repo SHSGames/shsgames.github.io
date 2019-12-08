@@ -15,7 +15,7 @@ export default class Home extends React.Component {
 		let _this = this;
 		let _cache = null;
 		this._mounted = false;
-		this.state = { games: [], num: 0, alts: [ "https://shsgames.herokuapp.com", "https://shs-games.herokuapp.com" ] };
+		this.state = { games: [], num: 0, alts: [ "https://shsgames.herokuapp.com", "https://shs-games.herokuapp.com", "https://shsg.biz.tm", "https://shs-gg.biz.tm", "https://shs-gg.my.to" ] };
 		(function listen(){
 			requestAnimationFrame(listen);
 			if(app.games !== _cache && _this._mounted) {
