@@ -21,7 +21,7 @@ class UnityPlayer extends React.Component {
 	componentDidMount() {
 		let _this = this;
 		app.game = this.props.game;
-		this._unity = UnityLoader.instantiate("unity-player", `${app.service}/gcp/games/${this.props.game.params.unityImage}.json`, {
+		this._unity = UnityLoader.instantiate("unity-player", `//cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/${this.props.game.params.unityImage}.json`, {
 			onProgress: (_, progress) => {
 				progress = Math.floor(progress * 100);
 				_this._loader.increment(progress - _this._progress)

@@ -8,7 +8,7 @@ class FlashPlayer extends React.Component {
 	render() {
 		return (
 			<object id="snes-player" data="/src/snes-player.swf" width="100%" height="100%" {...this.props.game.params.options}>
-				<param name="flashvars" value={`system=snes&url=${app.service}/gcp/games/${app.slug(this.props.game.name)}.smc`}/>
+				<param name="flashvars" value={`system=snes&url=//cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile//games/${app.slug(this.props.game.name)}.smc`}/>
 			</object>
 		);
 	}
