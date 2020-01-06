@@ -41,10 +41,22 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Bad Eggs 2",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Basketball Legends",
             engine: "flash",
             params: {
                 aspectRatio: 5 / 3,
+                options: {}
+            }
+        }, {
+            name: "Bejeweled",
+            engine: "flash",
+            params: {
                 options: {}
             }
         }, {
@@ -91,6 +103,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Bubble Trouble",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Burrito Bison Revenge",
             engine: "flash",
             params: {
@@ -110,7 +128,19 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Dad N Me",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Dead Zed 2",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Diggy",
             engine: "flash",
             params: {
                 options: {}
@@ -215,7 +245,19 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Gravity Guy",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Gunblood",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Gun Mayhem",
             engine: "flash",
             params: {
                 options: {}
@@ -228,6 +270,12 @@ module.exports = {
             }
         }, {
             name: "Happy Wheels",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Helicopter",
             engine: "flash",
             params: {
                 options: {}
@@ -291,6 +339,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Kill the Spartan",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Learn to Fly",
             engine: "flash",
             params: {
@@ -309,6 +363,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Learn to Fly Idle",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Line rider 1",
             engine: "flash",
             params: {
@@ -321,7 +381,19 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Minesweeper",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Mutilate a Doll 2",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "N",
             engine: "flash",
             params: {
                 options: {}
@@ -442,6 +514,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Pinch Hitter Game Day",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Pitch Hitter 2",
             engine: "flash",
             params: {
@@ -469,6 +547,24 @@ module.exports = {
             }
         }, {
             name: "Potty Racers 3",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Plants vs Zombies 2",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "QWOP",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Raft Wars",
             engine: "flash",
             params: {
                 options: {}
@@ -583,6 +679,12 @@ module.exports = {
             }
         }, {
             name: "Strike Force Heroes",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Strike Force Kitty League",
             engine: "flash",
             params: {
                 options: {}
@@ -714,6 +816,18 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "This is the Only Level Too",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Tron",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Truck Loader 4",
             engine: "flash",
             params: {
@@ -763,6 +877,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Advance Wars 2",
+            engine: "gba",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Castlevania - Aria of Sorrow",
             engine: "gba",
             params: {
@@ -782,6 +902,12 @@ module.exports = {
             }
         }, {
             name: "Mario Kart",
+            engine: "gba",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Mario Party Advance",
             engine: "gba",
             params: {
                 options: {}
@@ -898,6 +1024,14 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Clu Clu Land",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
             name: "Contra",
             engine: "nes",
             params: {
@@ -939,6 +1073,14 @@ module.exports = {
             }
         }, {
             name: "Earthbound Zero",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
+            name: "Excitebike",
             engine: "nes",
             params: {
                 aspectRatio: 16 / 15,
@@ -994,6 +1136,14 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Ice Hockey - Blue Ice Edition",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
             name: "Kid Icarus",
             engine: "nes",
             params: {
@@ -1034,6 +1184,14 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "NCAA Football 2020",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
             name: "NFL",
             engine: "nes",
             params: {
@@ -1066,6 +1224,14 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Super Mario Bros. 2",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
             name: "Super Mario Bros 3",
             engine: "nes",
             params: {
@@ -1091,6 +1257,14 @@ module.exports = {
             }
         }, {
             name: "Teenage Mutant Ninja Turtles",
+            engine: "nes",
+            params: {
+                aspectRatio: 16 / 15,
+                width: 640,
+                options: {}
+            }
+        }, {
+            name: "Tetris",
             engine: "nes",
             params: {
                 aspectRatio: 16 / 15,
@@ -1172,7 +1346,7 @@ module.exports = {
                 width: 1200,
                 options: {}
             }
-	}, {
+    	}, {
             name: "Subway Surfers",
             engine: "unity",
             params: {
