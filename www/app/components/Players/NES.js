@@ -11,7 +11,7 @@ class NESPlayer extends React.Component {
 
 	componentDidMount() {
 		app.game = this.props.game
-		nes_load_url("jsnes-game", `${app.service}/gcp/games/${app.slug(this.props.game.name)}.nes`);
+		nes_load_url("jsnes-game", `//cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/${app.slug(this.props.game.name)}.nes`);
 		(function resize(){
 			requestAnimationFrame(resize);
 			$("#jsnes-game").css("transform", `scale(${$("#nes-player").width()/$("#jsnes-game").width()})`);
