@@ -775,8 +775,7 @@ Photon.disableArrowKeyScrolling = false;
 
 			const guid = Photon.guid();
 			if(options.position.toLowerCase() == "bottom") {
-				let center = descriptor.offset().left
-				pos = [descriptor.offset().top,center];
+				let center = descriptor.offset().left;
 			}
 
 			$(this).mouseenter(function(){
@@ -1578,7 +1577,13 @@ Photon.disableArrowKeyScrolling = false;
 	};
 }());
 
-Photon.ready = Photon.reload = () => {
+Photon.lastReload = -500;
+Photon.ready = Photon.reload = (hard = false) => {
+	if(hard !== true) {
+		if(performance.now() - 500 > Photon.lastReload) {
+			Photon.lastReload = performance.now();
+		} else return false;
+	}
 
 	$(".material-tooltip").remove();
 
@@ -1784,7 +1789,7 @@ Photon.ready = Photon.reload = () => {
 		$(this).children("input").focus()
 	});
 
-}
+});
 
 $(() => {
 
