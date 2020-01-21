@@ -13,7 +13,7 @@ export default class Home extends React.Component {
 	constructor() {
 		super();
 		this._mounted = false;
-		this.state = { games: app.games, num: 0, alts: [ "https://shsgames.herokuapp.com", "https://shs-games.herokuapp.com", "https://shsg.biz.tm", "https://shs-gg.biz.tm", "https://shs-gg.my.to" ] };
+		this.state = { games: app.games, num: 0, alts: [ "https://shsgames.herokuapp.com", "https://shs-games.herokuapp.com" ] };
 
 		let num = 0;
 		for (let group of app.games.groups) num += group.games.length;
