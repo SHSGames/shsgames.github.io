@@ -133,6 +133,36 @@ global.app = {
 		dialog.open();
 	},
 
+	blockedui() {
+		const dialog = new Photon.dialog({
+			type: "alert",
+			transition: "grow",
+			force: true,
+			title: "Oh no",
+			message: renderToString(
+				<center>
+					<br/>
+					<i className="material-icons red-text" style={{ fontSize: 36 }}>warning</i>
+					<br/>
+					Looks like the network your on has blocked us.
+					<br/>
+					We have saved some data on your device so you should be able to continue playing for now. If the saved data ever gets deleted, you can open SHSGames on another network that its not blocked on and it will re-download itself.
+					<br/><br/>
+
+				</center>
+			),
+			actions: [{
+				name: "OK",
+				click() {
+					dialog.resolved = true;
+					dialog.destroy();
+				}
+			}]
+		});
+
+		dialog.open();
+	},
+
 	launch(game, redirector) {
 		const path = localStorage.getItem("epath") !== "true" ? app.slug(game.name) : app.hash(app.slug(game.name));
 
