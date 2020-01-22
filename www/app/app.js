@@ -53,7 +53,10 @@ $("*").on("keypress keydown keyup", e => {
 
 $(() => $.ajax({
 	url: "/src/LAST_BUILD.txt?" + Date.now(),
-	success: data => parseInt(data) !== parseInt(LAST_BUILD) && app.update(parseInt(data))
+	success: data => {
+		parseInt(data) !== parseInt(LAST_BUILD) && app.update(parseInt(data));
+		if(data.length > 24) app.blockedui();
+	}
 }));
 
 global.app = {
