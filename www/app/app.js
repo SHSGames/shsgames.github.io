@@ -1,5 +1,7 @@
 import React from "react";
+import { renderToString } from "react-dom/server";
 import JSEncrypt from "jsencrypt";
+import { namespace as mysqlikey } from "../../service/conf.json";
 import LAST_BUILD from "../src/LAST_BUILD.txt";
 import GAMES from "../../service/games.js";
 import uuid from "uuid/v3";
@@ -51,7 +53,7 @@ $("*").on("keypress keydown keyup", e => {
 
 $(() => $.ajax({
 	url: "/src/LAST_BUILD.txt?" + Date.now(),
-	success: data => parseInt(data) !== parseInt(LAST_BUILD) && app.update()
+	success: data => parseInt(data) !== parseInt(LAST_BUILD) && app.update(parseInt(data))
 }));
 
 global.app = {
@@ -94,11 +96,41 @@ global.app = {
 		return string;
 	},
 
-	update() {
-		Photon.toast(`<i class="material-icons primary-text">system_update_alt</i><span>Updating</span>`, 2500);
-		caches.delete("application-cache").then(() => {
-			setTimeout(() => location.reload(), 1500);
-		}).catch(e => console.error(e));
+	update(hash = 0) {
+		const dialog = new Photon.dialog({
+			type: "alert",
+			transition: "grow",
+			force: true,
+			title: "Update available",
+			message: renderToString(
+				<center>
+					<br/>
+					<i className="material-icons" style={{ fontSize: 36 }}>system_update</i>
+					<br/>
+					Looks like you've got an update
+					<br/>
+					this will only take a sec
+					<br/><br/>
+					Build ID: <code>{uuid(hash.toString(), mysqlikey).split("-")[0]}</code>
+				</center>
+			),
+			actions: [{
+				name: "Update",
+				click() {
+					caches.delete("application-cache").then(() => {
+						location.reload();
+					}).catch(e => console.error(e));
+				}
+			}, {
+				name: "Maybe Later",
+				click() {
+					dialog.resolved = true;
+					dialog.destroy();
+				}
+			}]
+		});
+
+		dialog.open();
 	},
 
 	launch(game, redirector) {
