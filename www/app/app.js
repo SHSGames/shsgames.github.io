@@ -141,15 +141,15 @@ global.app = {
 			type: "alert",
 			transition: "grow",
 			force: true,
-			title: "Oh no",
+			title: "Your network blocked us",
 			message: renderToString(
 				<center>
 					<br/>
 					<i className="material-icons red-text" style={{ fontSize: 36 }}>warning</i>
 					<br/>
-					Looks like the network your on has blocked us.
+					<b>Looks like the network your on has blocked us.</b>
 					<br/>
-					We have saved some data on your device so you should be able to continue playing for now. If the saved data ever gets deleted, you can open SHSGames on another network that its not blocked on and it will re-download itself.
+					Your favorite games should have saved to this device, so you should be able to continue playing.
 					<br/><br/>
 
 				</center>
@@ -186,15 +186,13 @@ global.app = {
 							dialog.destroy();
 						},250);
 					}
-				},
-				{
+				}, {
 					name: "proceed",
 					click() {
 						redirector instanceof React.Component ? redirector.setState({ redirect: `/g/${path}` }) : location.pathname = `/g/${path}`;
 						dialog.destroy();
 					}
-				},
-				{
+				}, {
 					name: "cancel",
 					click() {
 						dialog.destroy();
