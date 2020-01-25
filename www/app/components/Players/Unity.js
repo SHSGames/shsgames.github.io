@@ -5,8 +5,8 @@ class UnityPlayer extends React.Component {
 		super(props);
 
 		this._arguments = props.game.params.options;
-		$("body").append(`<script src="/src/js/unity.min.js" class="router-reset"></script>`)
-		$("body").append(`<script src="/src/js/unity-loader.min.js" class="router-reset"></script>`)
+		$("body").append(`<script src="https://cdn.jsdelivr.net/gh/SHSGames/SHSGames/www/src/js/unity.min.js" class="router-reset"></script>`)
+		$("body").append(`<script src="https://cdn.jsdelivr.net/gh/SHSGames/SHSGames/www/src/js/unity-loader.min.js" class="router-reset"></script>`)
 
 		this._progress = 0;
 		this._loader = new Photon.dialog({
@@ -19,30 +19,38 @@ class UnityPlayer extends React.Component {
 	}
 
 	componentDidMount() {
-		let _this = this;
+		const _this = this;
 		app.game = this.props.game;
-		this._unity = UnityLoader.instantiate("unity-player", `//cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/${this.props.game.params.unityImage}.json`, {
-			onProgress: (_, progress) => {
-				progress = Math.floor(progress * 100);
-				_this._loader.increment(progress - _this._progress)
-				_this._progress = progress;
 
-				if(progress === 100) {
-					_this._loader = new Photon.dialog({
-						type: "progress",
-						message: "Compiling game",
-						circular: true
-					});
-					_this._loader.open();
+		const load = () => {
+			_this._unity = UnityLoader.instantiate("unity-player", `//cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/${this.props.game.params.unityImage}.json`, {
+				onProgress: (_, progress) => {
+					progress = Math.floor(progress * 100);
+					_this._loader.increment(progress - _this._progress)
+					_this._progress = progress;
+
+					if(progress === 100) {
+						_this._loader = new Photon.dialog({
+							type: "progress",
+							message: "Compiling game",
+							circular: true
+						});
+						_this._loader.open();
+					}
+				},
+	      	    Module: {
+					onRuntimeInitialized() {
+		  	            _this._loader.resolved = true;
+		  	            _this._loader.destroy();
+	      	    	}
 				}
-			},
-      	    Module: {
-				onRuntimeInitialized() {
-	  	            _this._loader.resolved = true;
-	  	            _this._loader.destroy();
-      	    	}
-			}
-      	});
+	      	});
+		};
+
+		(function test(){
+			window.hasOwnProperty("UnityLoader") ? load() : setTimeout(test);
+		}())
+
 	}
 
 	render() {

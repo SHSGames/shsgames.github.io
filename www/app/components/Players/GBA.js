@@ -1,4 +1,5 @@
 import React from "react";
+import { renderToString } from "react-dom/server";
 
 class GBAPlayer extends React.Component {
 	constructor(props){

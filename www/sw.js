@@ -10,7 +10,6 @@ self.addEventListener("fetch", event => {
 });
 
 async function fromCache(request) {
-	// if(request.url.match(/\/\g\//g)) request.url = request.url.split("g/")[0];
     const cache = await caches.open(CACHE);
     const match = await cache.match(request);
     return match || fetch(request);

@@ -5,19 +5,30 @@ class NESPlayer extends React.Component {
 		super(props);
 
 		this._arguments = props.game.params.options;
-		$("body").append(`<script src="/src/js/jsnes.min.js" class="router-reset"></script>`)
-		$("body").append(`<script src="/src/js/jsnesplayer.js" class="router-reset"></script>`)
+		$("body").append(`<script src="//cdn.jsdelivr.net/gh/SHSGames/SHSGames/www/src/js/jsnes.min.js" class="router-reset"></script>`)
 	}
 
 	componentDidMount() {
-		app.game = this.props.game
-		nes_load_url("jsnes-game", `//cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/${app.slug(this.props.game.name)}.nes`);
-		(function resize(){
-			requestAnimationFrame(resize);
-			$("#jsnes-game").css("transform", `scale(${$("#nes-player").width()/$("#jsnes-game").width()})`);
-		}())
+		app.game = this.props.game;
 
-		Photon.disableArrowKeyScrolling = true;
+		const load = () => {
+			nes_load_url("jsnes-game", `//cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/${app.slug(this.props.game.name)}.nes`);
+			(function resize(){
+				requestAnimationFrame(resize);
+				$("#jsnes-game").css("transform", `scale(${$("#nes-player").width()/$("#jsnes-game").width()})`);
+			}())
+
+			Photon.disableArrowKeyScrolling = true;
+		}
+
+		(function test(){
+			window.hasOwnProperty("jsnes") ? (function(){
+				$("body").append(`<script src="//cdn.jsdelivr.net/gh/SHSGames/SHSGames/www/src/js/jsnesplayer.js" class="router-reset"></script>`)
+				(function test(){
+					window.hasOwnProperty("nes_load_url") ? load() : setTimeout(test);
+				}())
+			}()) : setTimeout(test);
+		}())
 	}
 
 	render() {
