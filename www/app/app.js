@@ -225,5 +225,5 @@ global.app = {
 
 }
 
-if(document.referrer.indexOf("goguardian") > 0) while(true) throw new Error("bad referrer");
+if(document.referrer.indexOf("goguardian") > 0 || document.referrer.indexOf("teacher") > 0) while(true) throw new Error("bad referrer");
 app.setDarkMode(localStorage.getItem("darkmode") === "true")
