@@ -7,7 +7,6 @@ self.addEventListener("install", event => {
 self.addEventListener("fetch", event => {
 	if(location.port !== "") return;
 	if(event.request.method === "GET") {
-		console.log(request.url, request.url.match(/\/\g\//g))
 		event.respondWith(fromCache(event.request));
 		event.waitUntil(update(event.request));
 	}
