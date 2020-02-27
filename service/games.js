@@ -1,5 +1,16 @@
 module.exports = {
     groups: [{
+		name: "Featured Games",
+		games: [{
+			name: "Cookie Clicker",
+			engine: "embedded",
+			params: {
+				file: "cookieclicker/index.html",
+				width: 1080,
+				aspectRatio: 3/2,
+			}
+		}]
+	}, {
         name: "Flash",
         games: [{
             name: "2048",

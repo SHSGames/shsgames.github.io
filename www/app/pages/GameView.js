@@ -51,6 +51,7 @@ class GameView extends React.Component {
 		return (
 			<React.Fragment>
 				<Navbar>{this.state.game.name}<span className="subtitle">SHS Games/{{
+					"embedded": "Game",
 					"gba": "Gameboy Advance",
 					"flash": "Flash",
 					"nes": "Nintendo Entertainment System",

@@ -42,6 +42,11 @@ class GameControls extends React.Component {
 				</div>
 			);
 		}
+		return (
+			<div className="game-controls">
+				<FrameCounter/>
+			</div>
+		);
 	}
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 
+import EmbeddedPlayer from "./Players/Embedded";
 import FlashPlayer from "./Players/Flash";
 import GBAPlayer from "./Players/GBA";
 import NESPlayer from "./Players/NES";
@@ -31,6 +32,7 @@ class GamePlayer extends React.Component {
 					</div>
 				)}
 				<div className="game">
+					{ this.props.game.engine === "embedded" && <EmbeddedPlayer game={this.props.game}/> }
 					{ this.props.game.engine === "flash" && <FlashPlayer game={this.props.game}/> }
 					{ this.props.game.engine === "unity" && <UnityPlayer game={this.props.game}/> }
 					{ this.props.game.engine === "nes" && <NESPlayer game={this.props.game}/> }
