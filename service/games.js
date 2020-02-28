@@ -2,6 +2,14 @@ module.exports = {
     groups: [{
 		name: "Featured Games",
 		games: [{
+			name: "Chrome Dino",
+			engine: "embedded",
+			params: {
+				file: "chromedino/index.html",
+				width: 600,
+				aspectRatio: 3,
+			}
+		}, {
 			name: "Cookie Clicker",
 			engine: "embedded",
 			params: {
