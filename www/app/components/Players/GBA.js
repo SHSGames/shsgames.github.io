@@ -1,5 +1,4 @@
 import React from "react";
-import { renderToString } from "react-dom/server";
 
 class GBAPlayer extends React.Component {
 	constructor(props){
@@ -9,7 +8,6 @@ class GBAPlayer extends React.Component {
 
 	componentDidMount() {
 		app.game = this.props.game;
-		setTimeout(this.componentProbablyRendered)
 		Photon.disableArrowKeyScrolling = true;
 
 		window.gbaloader = new Photon.dialog({
