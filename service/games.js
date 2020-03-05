@@ -1283,7 +1283,7 @@ module.exports = {
                 options: {}
             }
         }, {
-            name: "Tetris",
+            name: "Tetris NES",
             engine: "nes",
             params: {
                 aspectRatio: 16 / 15,
@@ -1321,15 +1321,6 @@ module.exports = {
     }, {
         name: "Unity",
         games: [{
-            name: "Drift Hunters",
-            engine: "unity",
-            params: {
-                unityImage: "ItchIO",
-                aspectRatio: 16 / 9,
-                width: 1200,
-                options: {}
-            }
-        }, {
             name: "Duck Life 4",
             engine: "unity",
             params: {
