@@ -37,7 +37,7 @@ class GameView extends React.Component {
 		this.found = false;
 		const games = app.getGames()
 		games.map(game => {
-			if(app.slug(game.name) == location.pathname.split("g/")[1] || app.hash(app.slug(game.name)) == location.pathname.split("g/")[1]) {
+			if(app.slug(game.name) === location.pathname.split("g/")[1] || app.hash(app.slug(game.name)) === location.pathname.split("g/")[1]) {
 				this.found = true;
 				this.setState({ game });
 				document.title = `${game.name} - ${app["NAME"]}`
