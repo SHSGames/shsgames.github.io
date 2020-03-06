@@ -20,13 +20,9 @@ module.exports = app => {
 		}
 
 		let resp = [];
-		for (let { name } of games) {
-			resp.push(slug(name));
-		}
 
-		for (let sm of resp) {
-			resp[resp.indexOf(sm)] = "https://shsgames.herokuapp.com/game/" + sm;
-		}
+		for (let { name } of games) resp.push(slug(name))
+		for (let sm of resp) resp[resp.indexOf(sm)] = "https://shsgames.herokuapp.com/g/" + sm;
 
 		resp = resp.sort();
 		resp = ["https://shsgames.herokuapp.com/","https://shsgames.herokuapp.com/request",...resp];
