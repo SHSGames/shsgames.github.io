@@ -17,6 +17,14 @@ module.exports = {
 				width: 1080,
 				aspectRatio: 3/2,
 			}
+		}, {
+			name: "CSGO Clicker",
+			engine: "embedded",
+			params: {
+				file: "csgoclicker/index.html",
+				width: 1280,
+				aspectRatio: 4/3,
+			}
 		}]
 	}, {
         name: "Flash",
