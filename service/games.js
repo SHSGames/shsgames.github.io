@@ -18,7 +18,7 @@ module.exports = {
 				aspectRatio: 3/2,
 			}
 		}, {
-			name: "CSGO Clicker",
+			name: "CSGOClicker",
 			engine: "embedded",
 			params: {
 				file: "csgoclicker/index.html",
