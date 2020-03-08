@@ -22,7 +22,7 @@ module.exports = {
 			engine: "embedded",
 			params: {
 				file: "csgoclicker/index.html",
-				width: 720,
+				width: 1080,
 				aspectRatio: 5/3,
 			}
 		}]
