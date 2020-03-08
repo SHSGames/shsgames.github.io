@@ -25,6 +25,14 @@ module.exports = {
 				width: 1080,
 				aspectRatio: 5/3,
 			}
+		}, {
+			name: "Takumi Raccoon",
+			engine: "embedded",
+			params: {
+				file: "takumiraccoon/index.html",
+				width: 800,
+				aspectRatio: 800/600,
+			}
 		}]
 	}, {
         name: "Flash",
