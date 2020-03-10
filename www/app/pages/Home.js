@@ -8,6 +8,7 @@ import Navbar from "../components/Navbar";
 import GameGroup from "../components/GameGroup";
 import Searchbar from "../components/Searchbar";
 import RandomGame from "../components/RandomGame";
+import WebInstaller from "../components/WebInstaller";
 
 export default class Home extends React.Component {
 	constructor() {
@@ -80,29 +81,42 @@ export default class Home extends React.Component {
 							</ul>
 						</div>
 						<div className="col s12">
-							<br/>
-							<RandomGame>
-								<a style={{ margin: 0, marginBottom: 8 }} className="autolink waves-effect">
+							<div style={{ margin: "0 -4px" }}>
+								<a style={{ margin: 4 }} className="autolink waves-effect" onClick={this.showLinks}>
 									<div className="padding-layer">
 										<div className="external-img invert">
-											<img src="/img/res/shuffle-24px.svg" alt=""/>
+											<img src="/img/res/link-24px.svg" alt=""/>
 										</div>
-										<div className="title">Random Game</div>
-										<p>Why not switch it up a bit?</p>
-										<div className="ref">From {this.state.num} games</div>
+										<div className="title">Backup Links</div>
+										<p>Just in case it got blocked.</p>
+										<div className="ref">Show {this.state.alts.length -1} other links</div>
 									</div>
 								</a>
-							</RandomGame>
-							<a style={{ margin: 0, marginBottom: 8, marginLeft: 8 }} className="autolink waves-effect" onClick={this.showLinks}>
-								<div className="padding-layer">
-									<div className="external-img invert">
-										<img src="/img/res/link-24px.svg" alt=""/>
-									</div>
-									<div className="title">Backup Links</div>
-									<p>Just in case it got blocked.</p>
-									<div className="ref">Show {this.state.alts.length -1} other links</div>
-								</div>
-							</a>
+								<RandomGame>
+									<a style={{ margin: 4 }} className="autolink waves-effect">
+										<div className="padding-layer">
+											<div className="external-img invert">
+												<img src="/img/res/shuffle-24px.svg" alt=""/>
+											</div>
+											<div className="title">Random Game</div>
+											<p>Why not switch it up a bit?</p>
+											<div className="ref">From {this.state.num} games</div>
+										</div>
+									</a>
+								</RandomGame>
+								<WebInstaller install>
+									<a style={{ margin: 4 }} className="autolink waves-effect">
+										<div className="padding-layer">
+											<div className="external-img invert">
+												<img src="/img/res/add_circle_outline-24px.svg" alt=""/>
+											</div>
+											<div className="title">Get the app</div>
+											<p>Add SHS Games to the homescreen.</p>
+											<div className="ref">Web app installer</div>
+										</div>
+									</a>
+								</WebInstaller>
+							</div>
 							<Searchbar/>
 							{ this.state.games.length !== 0 && this.state.games.groups.map((group, key) => <GameGroup key={key} pkey={key} group={group}/>) }
 						</div>
