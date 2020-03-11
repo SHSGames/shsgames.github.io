@@ -30,7 +30,7 @@ export default class Footer extends React.Component {
 
 	render() {
 		return (
-			<footer className="legacy dark">
+			<footer className="legacy dark" style={{ zIndex: 3 }}>
 				<div className="container">
 					<div className="row">
 						<div className="col s12 l8">
