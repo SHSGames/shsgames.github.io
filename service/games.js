@@ -26,12 +26,12 @@ module.exports = {
 				aspectRatio: 5/3,
 			}
 		}, {
-			name: "Takumi Raccoon",
+			name: "Tanuki Sunset",
 			engine: "embedded",
 			params: {
 				file: "takumiraccoon/index.html",
 				width: 800,
-				aspectRatio: 800/600,
+				aspectRatio: 800/660,
 			}
 		}]
 	}, {
