@@ -29,7 +29,7 @@ module.exports = {
 			name: "Super Smash Flash 2",
 			engine: "embedded",
 			params: {
-				file: "ssf2/ssf2.html",
+				file: "ssf2/index.html",
 				width: 800,
 				aspectRatio: 16/9,
 			}
