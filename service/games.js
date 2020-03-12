@@ -30,8 +30,8 @@ module.exports = {
 			engine: "embedded",
 			params: {
 				file: "ssf2/ssf2.html",
-				width: 1080,
-				aspectRatio: 5/3,
+				width: 800,
+				aspectRatio: 16/9,
 			}
 		}, {
 			name: "Tanuki Sunset",
