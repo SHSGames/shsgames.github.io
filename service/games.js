@@ -26,6 +26,14 @@ module.exports = {
 				aspectRatio: 5/3,
 			}
 		}, {
+			name: "Super Smash Flash 2",
+			engine: "embedded",
+			params: {
+				file: "ssf2/ssf2.html",
+				width: 1080,
+				aspectRatio: 5/3,
+			}
+		}, {
 			name: "Tanuki Sunset",
 			engine: "embedded",
 			params: {
