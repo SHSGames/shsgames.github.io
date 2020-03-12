@@ -19,7 +19,8 @@ export default class Footer extends React.Component {
 		  "Feel the wrath of the skinny man",
 		  "Who ratted",
 		  ".-...--.",
-		  "@dankglonk is a GOAT!"
+		  "@dankglonk is a GOAT!",
+		  "Is Bread Seasonal?"
 	  	];
 		this.state = { phrase: "" };
 	}
