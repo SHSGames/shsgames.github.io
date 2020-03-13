@@ -2,6 +2,14 @@ module.exports = {
     groups: [{
 		name: "Featured Games",
 		games: [{
+			name: "Baldi's Basic",
+			engine: "embedded",
+			params: {
+				file: "baldis-basics/index.html",
+				width: 800,
+				aspectRatio: 800/600,
+			}
+		}, {
 			name: "Chrome Dino",
 			engine: "embedded",
 			params: {
