@@ -1,0 +1,16 @@
+{
+"companyName": "Mystman12",
+"productName": "Baldi's Basics in Education and Learning",
+"productVersion": "1.4.3",
+"dataUrl": "https://cdn.glitch.com/bb74b7a3-d636-40fd-8ad9-c777b5ae5515%2Fbaldi.data.unityweb?v=1584033075597",
+"wasmCodeUrl": "https://cdn.glitch.com/bb74b7a3-d636-40fd-8ad9-c777b5ae5515%2Fbaldi.wasm.code.unityweb?v=1584033044601",
+"wasmFrameworkUrl": "https://cdn.glitch.com/bb74b7a3-d636-40fd-8ad9-c777b5ae5515%2Fbaldi.wasm.framework.unityweb?v=1584033041630",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#000000",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.2.20f1"
+}
