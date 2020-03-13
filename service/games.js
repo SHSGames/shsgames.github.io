@@ -31,7 +31,7 @@ module.exports = {
 			params: {
 				file: "ssf2/index.html",
 				width: 800,
-				aspectRatio: 16/9,
+				aspectRatio: 2,
 			}
 		}, {
 			name: "Tanuki Sunset",
