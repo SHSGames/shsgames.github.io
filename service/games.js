@@ -85,6 +85,14 @@ module.exports = {
                 }
             }
         }, {
+            name: "Apple Shooter",
+            engine: "flash",
+            params: {
+                options: {
+                    allowscriptaccess: "always"
+                }
+            }
+        }, {
             name: "B-Cubed",
             engine: "flash",
             params: {
@@ -106,6 +114,12 @@ module.exports = {
             }
         }, {
             name: "Bejeweled",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Bearbarians",
             engine: "flash",
             params: {
                 options: {}
@@ -173,10 +187,28 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Clicker Heroes",
+            engine: "flash",
+            params: {
+                options: {
+                    allowscriptaccess: "always"
+                }
+            }
+        }, {
             name: "Cubefield",
             engine: "flash",
             params: {
                 options: {}
+            }
+        }, {
+            name: "Cut the Rope",
+            engine: "flash",
+            params: {
+                options: {
+                    width: 800,
+                    aspectRatio: 5/2,
+                    allowscriptaccess: "always"
+                }
             }
         }, {
             name: "Dad N Me",
@@ -390,6 +422,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Jelly Truck",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Kill the Spartan",
             engine: "flash",
             params: {
@@ -438,6 +476,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Moto X3M",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Mutilate a Doll 2",
             engine: "flash",
             params: {
@@ -457,6 +501,12 @@ module.exports = {
             }
         }, {
             name: "Ninja Painter 2",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Number 1",
             engine: "flash",
             params: {
                 options: {}
@@ -571,6 +621,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Pirates of the Stupid Seas",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Pitch Hitter 2",
             engine: "flash",
             params: {
@@ -669,6 +725,12 @@ module.exports = {
                 options: {}
             }
         }, {
+            name: "Snail Bob",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
             name: "Sports Head Basketball",
             engine: "flash",
             params: {
@@ -730,6 +792,12 @@ module.exports = {
             }
         }, {
             name: "Strike Force Heroes",
+            engine: "flash",
+            params: {
+                options: {}
+            }
+        }, {
+            name: "Street Fighter 2",
             engine: "flash",
             params: {
                 options: {}
@@ -901,6 +969,15 @@ module.exports = {
             engine: "flash",
             params: {
                 options: {}
+            }
+        }, {
+            name: "Warfare 1917",
+            engine: "flash",
+            params: {
+                options: {
+                    width: 800,
+                    aspectRatio: 5/3
+                }
             }
         }, {
             name: "Worlds Hardest Game",
