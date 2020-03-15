@@ -818,7 +818,8 @@ module.exports = {
             name: "Super Mario 63",
             engine: "flash",
             params: {
-                aspectRatio: 1.5,
+                aspectRatio: 3/2,
+				width: 900,
                 options: {}
             }
         }, {
