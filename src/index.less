@@ -1,0 +1,13 @@
+@import "~photoncss/src/less/photon";
+
+#root {
+    display: flex;
+    flex-direction: column;
+	min-height: calc(100vh - 48px);
+	@media @sm {
+		min-height: calc(100vh - 16px);
+	}
+	main {
+		flex-grow: 1;
+	}
+}

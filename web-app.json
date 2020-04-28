@@ -1,0 +1,31 @@
+{
+	"logo": "./src/static/icon.png",
+	"output": "static/",
+	"prefix": "./static/",
+	"config": {
+
+		"appName": "Static SPA",
+		"version": "1.0.0",
+		"appDescription": null,
+		"developerName": "Josh Merlino",
+		"developerURL": "https://joshmerlino.github.io",
+		"background": "#fff",
+		"theme_color": "#fff",
+		"spa_root": "index.html",
+		"orientation": "portrait",
+		"start_url": "/",
+
+		"display": "standalone",
+		"logging": false,
+		"icons": {
+			"android": true,
+			"appleIcon": true,
+			"appleStartup": false,
+			"coast": false,
+			"favicons": true,
+			"firefox": false,
+			"windows": false,
+			"yandex": false
+		}
+	}
+}
