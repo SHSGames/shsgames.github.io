@@ -10,6 +10,13 @@ module.exports = merge(require("./webpack.conf.js"), {
         watchContentBase: true,
 		writeToDisk: true,
 		historyApiFallback: { index: "/" + require("./web-app.json").config.spa_root },
+		proxy: {
+        	"/api": {
+            	target: "http://localhost:3000",
+            	secure: false
+        	}
+    	},
+		hot: true,
 		stats: {
     		modules: false,
     		cached: false,

@@ -1,11 +1,12 @@
 {
-    "name": "static-spa",
+    "name": "photon-pwa",
     "version": "1.0.0",
-    "description": "WebpackApp",
+    "description": "Bundle Webpack, React and PhotonCSS into a Progressive Web App",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "webpack --config webpack.prod.js",
-        "dev": "webpack-dev-server -w --config webpack.dev.js"
+        "dev": "webpack-dev-server -w --config webpack.dev.js",
+        "prod": "env NODE_ENV=production node server"
     },
     "keywords": [],
     "author": "Josh Merlino",
@@ -26,7 +27,7 @@
         "less": "^3.11.1",
         "less-loader": "^5.0.0",
         "mini-css-extract-plugin": "^0.9.0",
-        "photoncss": "^10.3.40-beta",
+        "photoncss": "^10.3.47-beta",
         "raw-loader": "^4.0.0",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
@@ -37,5 +38,9 @@
         "webpack-dev-server": "^3.10.3",
         "webpack-merge": "^4.2.2",
         "workbox-webpack-plugin": "^5.1.2"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "express-http-to-https": "^1.1.4"
     }
 }
