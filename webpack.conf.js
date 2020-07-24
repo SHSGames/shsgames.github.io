@@ -1,10 +1,10 @@
 const path = require("path");
 const WorkboxPlugin = require("workbox-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const AppManifestWebpackPlugin = require("app-manifest-webpack-plugin");
 const HtmlWebpackPartialsPlugin = require("html-webpack-partials-plugin");
-const { EnvironmentPlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const manifest = require("./web-app.json");
@@ -19,7 +19,6 @@ module.exports = {
         rules: [
 			{
 	            test: /\.js$/,
-	            exclude: /(node_modules)/,
 	            use: {
 	                loader: "babel-loader",
 	                options: {
@@ -57,11 +56,17 @@ module.exports = {
     	new HtmlWebpackPlugin({
 			meta: {
 				"viewport": "width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0",
-				"theme-color": manifest.config.theme_color
+				"theme-color": manifest.config.theme_color,
+				"description": manifest.config.appDescription
 			},
+			lang: "en_US",
 			base: manifest.config.start_url,
 			title: manifest.config.appName,
-			filename: manifest.config.spa_root
+			filename: manifest.config.spa_root,
+			scriptLoading: "defer",
+			minify: true,
+			hash: true,
+			xhtml: true
 		}),
 		new HtmlWebpackPartialsPlugin({
 			path: path.join(__dirname, "./src/noscript.htm"),
@@ -71,8 +76,18 @@ module.exports = {
 		}),
 		new MiniCssExtractPlugin({ filename: "app.css" }),
 		new AppManifestWebpackPlugin(manifest),
-		new WorkboxPlugin.GenerateSW(),
-		new EnvironmentPlugin({ NODE_ENV: "development" })
+		new CopyWebpackPlugin({
+			patterns: [{ from: "src/robots.txt" }]
+		}),
+		new WorkboxPlugin.GenerateSW({
+	      	runtimeCaching: [{
+	        	urlPattern: /\.(?:png|jpg|jpeg|svg|ico|woff2)$/,
+	        	handler: "CacheFirst",
+	        	options: {
+	          		cacheName: "static",
+	        	}
+	      	}]
+	    })
   	],
 
 	resolve: {

@@ -1,12 +1,12 @@
 {
 	"logo": "./src/static/icon.png",
-	"output": "static/",
-	"prefix": "./static/",
+	"output": "/",
+	"prefix": "",
 	"config": {
 
 		"appName": "Static SPA",
 		"version": "1.0.0",
-		"appDescription": null,
+		"appDescription": "Create static singple page applications with ease",
 		"developerName": "Josh Merlino",
 		"developerURL": "https://joshmerlino.github.io",
 		"background": "#fff",
@@ -20,12 +20,12 @@
 		"icons": {
 			"android": true,
 			"appleIcon": true,
-			"appleStartup": false,
+			"appleStartup": true,
 			"coast": false,
 			"favicons": true,
-			"firefox": false,
-			"windows": false,
-			"yandex": false
+			"firefox": true,
+			"windows": true,
+			"yandex": true
 		}
 	}
 }

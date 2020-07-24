@@ -5,11 +5,10 @@ const compression = require("compression");
 const { redirectToHTTPS } = require("express-http-to-https")
 
 const env = process.env.NODE_ENV || "development";
-
 process.on("uncaughtException", console.error);
 
 app.use(compression());
-app.use(redirectToHTTPS([/localhost/, /10.0.0.*/], [/\/http/], 301));
+app.use(redirectToHTTPS([/localhost/, /10.0.0.*/, /192.168.1.*/], [/\/http/], 301));
 
 if(env === "production") {
 	app.use(express.static("public_html", { extensions: ["html"] }));

@@ -1,4 +1,6 @@
 const merge = require("webpack-merge");
+const TerserJSPlugin = require("terser-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = merge(require("./webpack.conf.js"), {
 	mode: "production",
@@ -20,5 +22,6 @@ module.exports = merge(require("./webpack.conf.js"), {
 	    noEmitOnErrors: true,
 	    checkWasmTypes: true,
 	    minimize: true,
+		minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
 	}
 });

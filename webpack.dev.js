@@ -8,7 +8,8 @@ module.exports = merge(require("./webpack.conf.js"), {
         contentBase: "./src",
 		index: require("./web-app.json").config.spa_root,
         watchContentBase: true,
-		writeToDisk: true,
+		writeToDisk: false,
+		devtool: "inline-source-map",
 		historyApiFallback: { index: "/" + require("./web-app.json").config.spa_root },
 		proxy: {
         	"/api": {
