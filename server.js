@@ -1,32 +1,60 @@
-const express = require("express");
-const app = express();
-
+const busboy = require("connect-busboy");
 const compression = require("compression");
-const { redirectToHTTPS } = require("express-http-to-https")
+const cors = require("cors");
+const express = require("express");
+const fs = require("fs").promises;
+const http = require("http");
+const path = require("path");
+const YAML = require("yaml");
 
-const env = process.env.NODE_ENV || "development";
-process.on("uncaughtException", console.error);
+// Log errors to console
+process.on("uncaughtException", err => console.error("[ERROR]", err));
 
-app.use(compression());
-app.use(redirectToHTTPS([/localhost/, /10.0.0.*/, /192.168.1.*/], [/\/http/], 301));
+// Start server
+(async function server(app) {
 
-if(env === "production") {
-	app.use(express.static("public_html", { extensions: ["html"] }));
-}
+	// Get config from config.yml
+	const config = YAML.parse(await fs.readFile("./config.yml", "utf8"));
 
-app.all("/api/*", function(req, res) {
-	const path = `${__dirname}${req.url}.js`;
-	try {
-		require(path)(req, res);
-	} catch({ error }) {
-		res.json({ status: 500, error });
-	}
-});
+	// Use gzip when serving files
+	app.use(compression());
 
-if(env === "production") {
-	app.all("/*", function(req, res) {
-		res.sendFile(`${__dirname}/public_html/index.html`);
+	// Use busboy to parse data from post requests
+	app.use(busboy());
+
+	// Redirect HTTP to HTTPS
+	app.all("*", ({ secure, hostname, url }, res, next) => {
+	  	if (config["ssl.use"] === false || config["ssl.redirect"] === false || secure) return next();
+	  	res.redirect(`https://${hostname}${url}`);
 	});
-}
 
-app.listen(env === "development" ? 3000 : 80);
+	// Server static files from the last built server
+	app.use(express.static("last_build", { extensions: ["html"] }));
+
+	// Listen and pass API calls to individual files
+	app.all("/api/*", cors(), (req, res) => {
+		try {
+			require(`${__dirname}${req.url}.js`)(req, res)
+		} catch({ error }) {
+			res.json({ status: 500, error });
+		}
+	});
+
+	// Catch 404's and send the index document - history-fallback-api
+	app.get("*", (_request, response) => response.sendFile(path.join(__dirname, "last_build/", require("./web-app.json").config["spa_root"])));
+
+	// Start HTTP server
+	http.createServer(app).listen(config["port"]);
+	console.log("[INFO]", `HTTP server running on :${config["port"]} (http).`);
+
+	// Start HTTPS server
+	if(config["ssl.use"] === true) {
+		(async function() {
+			const cert = await fs.readFile(`${config["ssl.cert-root"]}/cert.pem`, "utf8");
+			const key = await fs.readFile(`${config["ssl.cert-root"]}/privkey.pem`, "utf8");
+			https.createServer({ key, cert }, app).listen(config["ssl.port"]);
+			console.log("[INFO]", `SSL server running on :${config["ssl.port"]} (https).`);
+		}());
+	}
+
+}(express()));

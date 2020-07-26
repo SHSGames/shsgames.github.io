@@ -1,0 +1,20 @@
+# Used for hosting multiple sites with their own DNS name all on the same machine, which DNS name will this server bind to
+remote-address: ''
+
+# Port for the production server to listen on
+port: 80
+
+# SSL configuration
+ssl:
+
+  # Use SSL at all
+  enable: false
+
+  # Redirect HTTP to HTTPS
+  redirect: true
+
+  # Path to the certificate root folder
+  cert-root: ''
+
+  # Port for the HTTPS server to run on
+  port: 443
