@@ -2,6 +2,7 @@ const merge = require("webpack-merge");
 
 module.exports = merge(require("./webpack.conf.js"), {
 	mode: "development",
+	devtool: "inline-source-map",
 	devServer: {
         port: 8080,
 		host: "0.0.0.0",
@@ -9,7 +10,6 @@ module.exports = merge(require("./webpack.conf.js"), {
 		index: require("./web-app.json").config.spa_root,
         watchContentBase: true,
 		writeToDisk: false,
-		devtool: "inline-source-map",
 		historyApiFallback: { index: "/" + require("./web-app.json").config.spa_root },
 		proxy: {
         	"/api": {
