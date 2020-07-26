@@ -12,7 +12,8 @@ import "script-loader!jquery";
 import "photoncss";
 
 // Register a static asset caching service-worker
-(location.protocol === "https:" || location.hostname === "localhost") && "serviceWorker" in navigator && navigator.serviceWorker.register("/service-worker.js");
+if((location.protocol === "https:" || location.hostname === "localhost") && location.port === "" && "serviceWorker" in navigator)
+  navigator.serviceWorker.register("/service-worker.js");
 
 // Import root component
 import Root from "components/Root";
