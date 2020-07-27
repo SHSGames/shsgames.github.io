@@ -1,16 +1,23 @@
 {
-    "name": "photon-pwa",
+    "name": "static-spa",
     "version": "1.0.0",
-    "description": "Bundle Webpack, React and PhotonCSS into a Progressive Web App",
+    "description": "Bundle Webpack, React and PhotonCSS into a Progressive Web App with modular backend API's",
+    "entry": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "webpack --config webpack.prod.js",
-        "dev": "webpack-dev-server -w --config webpack.dev.js",
-        "prod": "env NODE_ENV=production node server"
+        "build": "webpack --config webpack.prod.js && cp public_html/. last_build -r",
+		"dev-api": "env NODE_ENV=dev nodemon .",
+		"dev-webpack": "webpack-dev-server -w --config webpack.dev.js",
+        "dev": "concurrently -p \"[{name}]\" -n \"WEB,API\" -c \"bgCyan.bold,bgGreen.bold\" \"npm:dev-webpack\" \"npm:dev-api\"",
+        "serve": "node ."
     },
     "keywords": [],
     "author": "Josh Merlino",
     "license": "ISC",
+    "nodemonConfig": {
+        "ignore": [
+            "src/*"
+        ]
+    },
     "devDependencies": {
         "@babel/core": "^7.9.0",
         "@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -29,6 +36,7 @@
         "less": "^3.11.1",
         "less-loader": "^5.0.0",
         "mini-css-extract-plugin": "^0.9.0",
+        "nodemon": "^2.0.4",
         "optimize-css-assets-webpack-plugin": "^5.0.3",
         "photoncss": "^10.4.49-beta",
         "raw-loader": "^4.0.0",
@@ -46,8 +54,8 @@
     "dependencies": {
         "compression": "^1.7.4",
         "connect-busboy": "0.0.2",
+        "cors": "^2.8.5",
         "express": "^4.17.1",
-        "express-http-to-https": "^1.1.4",
         "http": "0.0.1-security",
         "https": "^1.0.0",
         "yaml": "^1.10.0"

@@ -7,10 +7,40 @@ const http = require("http");
 const path = require("path");
 const YAML = require("yaml");
 
-// Log errors to console
+// Log errors to console instead of killing the application
 process.on("uncaughtException", err => console.error("[ERROR]", err));
 
-// Start server
+// If the application is running in development mode
+if (process.env.NODE_ENV === "dev") {
+
+	// Start development server
+	(async function server(app) {
+
+		// Use busboy to parse data from post requests
+		app.use(busboy());
+
+		// Listen and pass API calls to individual files
+		app.all("/api/*", cors(), (req, res) => {
+			try {
+				require(`${__dirname}${req.url}.js`)(req, res)
+			} catch({ error }) {
+				console.error("[ERROR]", req.url, error);
+				res.json({ status: 500, error });
+			}
+		});
+
+		// Start HTTO server
+		http.createServer(app).listen(3000);
+		console.log("[INFO]", `Development server running on :3000 (http).`);
+
+	}(express()));
+
+	// Prevent production server from starting aswell
+	return;
+
+}
+
+// Start production server
 (async function server(app) {
 
 	// Get config from config.yml
@@ -24,8 +54,8 @@ process.on("uncaughtException", err => console.error("[ERROR]", err));
 
 	// Redirect HTTP to HTTPS
 	app.all("*", ({ secure, hostname, url }, res, next) => {
-	  	if (config["ssl.use"] === false || config["ssl.redirect"] === false || secure) return next();
-	  	res.redirect(`https://${hostname}${url}`);
+	  	if (config.ssl.use === false || config.ssl.redirect === false || secure) return next();
+	  	else res.redirect(`https://${hostname}${url}`);
 	});
 
 	// Server static files from the last built server
@@ -50,10 +80,10 @@ process.on("uncaughtException", err => console.error("[ERROR]", err));
 	// Start HTTPS server
 	if(config["ssl.use"] === true) {
 		(async function() {
-			const cert = await fs.readFile(`${config["ssl.cert-root"]}/cert.pem`, "utf8");
-			const key = await fs.readFile(`${config["ssl.cert-root"]}/privkey.pem`, "utf8");
-			https.createServer({ key, cert }, app).listen(config["ssl.port"]);
-			console.log("[INFO]", `SSL server running on :${config["ssl.port"]} (https).`);
+			const cert = await fs.readFile(`${config.ssl["cert-root"]}/cert.pem`, "utf8");
+			const key = await fs.readFile(`${config.ssl["cert-root"]}/privkey.pem`, "utf8");
+			https.createServer({ key, cert }, app).listen(config.ssl.port);
+			console.log("[INFO]", `SSL server running on :${config.ssl.port} (https).`);
 		}());
 	}
 
