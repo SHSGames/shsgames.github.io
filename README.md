@@ -24,6 +24,7 @@ npm run dev
 
 ### Build production version
 ```bash
-npm run Build
+npm run build
 ```
-build output is in `public_html/`
+build output is in `public_html/` 
+however, you should serve your app from `last_build/`
