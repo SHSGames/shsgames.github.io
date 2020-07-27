@@ -2,8 +2,11 @@
 
 All you really need to do is
 ```bash
-npm install
-npm install --save-dev photoncss
+# Install node modules
+$ npm install
+
+# Update PhotonCSS to the latest version
+$ npm update photoncss
 ```
 
 Add custom themes to `src/index.less` after Photon is imported,
@@ -19,12 +22,12 @@ Example: if you have `src/static/image1.png`, you would resolve that as
 
 ### Run dev server
 ```bash
-npm run dev
+$ npm run dev
 ```
 
 ### Build production version
 ```bash
-npm run build
+$ npm run build
 ```
 build output is in `public_html/` 
-however, you should serve your app from `last_build/`
+however, you should serve your app from `last_build/` to avoid serving development version if a dev server is active.
