@@ -1,4 +1,4 @@
-# static-spa: Create single page applications using PhotonCSS
+# Create single page applications using PhotonCSS
 
 All you really need to do is
 ```bash
