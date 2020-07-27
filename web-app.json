@@ -4,9 +4,9 @@
 	"prefix": "",
 	"config": {
 
-		"appName": "Static SPA",
+		"appName": "Photon PWA",
 		"version": "1.0.0",
-		"appDescription": "Create static singple page applications with ease",
+		"appDescription": "Create single page applications using PhotonCSS",
 		"developerName": "Josh Merlino",
 		"developerURL": "https://joshmerlino.github.io",
 		"background": "#fff",

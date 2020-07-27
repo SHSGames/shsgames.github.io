@@ -1,7 +1,7 @@
 {
-    "name": "static-spa",
+    "name": "photon-pwa",
     "version": "1.0.0",
-    "description": "Bundle Webpack, React and PhotonCSS into a Progressive Web App with modular backend API's",
+    "description": "Create single page applications using PhotonCSS",
     "entry": "index.js",
     "scripts": {
         "build": "webpack --config webpack.prod.js && cp public_html/. last_build -r",
