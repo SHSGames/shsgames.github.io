@@ -1,11 +1,12 @@
-import React from "react";
-
-// Import components
-import { Button } from "@photoncss/Button";
+import React, { Fragment } from "react";
 
 // Render view
 function View() {
-	return <Button variant="raised" color="primary">Button</Button>
+	return (
+		<Fragment>
+			get started by editing `src/views/Index.js`
+		</Fragment>
+	)
 }
 
 // Export View and route
