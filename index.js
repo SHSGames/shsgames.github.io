@@ -30,8 +30,8 @@ if (process.env.NODE_ENV === "dev") {
 		});
 
 		// Start HTTO server
-		http.createServer(app).listen(3000);
-		console.log("[INFO]", `Development server running on :3000 (http).`);
+		http.createServer(app).listen(4000);
+		console.log("[INFO]", `Development server running on :4000 (http).`);
 
 	}(express()));
 
