@@ -5,8 +5,8 @@
     "entry": "index.js",
     "scripts": {
         "build": "webpack --config webpack.prod.js && cp public_html/. last_build -r",
-		"dev-api": "env NODE_ENV=dev nodemon .",
-		"dev-webpack": "webpack-dev-server -w --config webpack.dev.js",
+        "dev-api": "env NODE_ENV=dev nodemon .",
+        "dev-webpack": "webpack-dev-server -w --config webpack.dev.js",
         "dev": "concurrently -p \"[{name}]\" -n \"WEB,API\" -c \"bgCyan.bold,bgGreen.bold\" \"npm:dev-webpack\" \"npm:dev-api\"",
         "serve": "node ."
     },
@@ -26,6 +26,7 @@
         "app-manifest-webpack-plugin": "^1.2.0",
         "babel-loader": "^8.1.0",
         "clean-webpack-plugin": "^3.0.0",
+        "concurrently": "^5.2.0",
         "copy-webpack-plugin": "^6.0.3",
         "css-loader": "^3.4.2",
         "file-loader": "^6.0.0",
