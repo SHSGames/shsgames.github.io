@@ -81,7 +81,7 @@ if (process.env.NODE_ENV === "dev") {
 	console.log("[INFO]", `HTTP server running on :${config["port"]} (http).`);
 
 	// Start HTTPS server
-	if(config["ssl.use"] === true) {
+	if(config.ssl.use === true) {
 		(async function() {
 			const cert = await fs.readFile(`${config.ssl["cert-root"]}/cert.pem`, "utf8");
 			const key = await fs.readFile(`${config.ssl["cert-root"]}/privkey.pem`, "utf8");
