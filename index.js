@@ -1,4 +1,4 @@
-const busboy = require("connect-busboy");
+const bodyParser = require("body-parser");
 const compression = require("compression");
 const cors = require("cors");
 const express = require("express");
@@ -16,8 +16,8 @@ if (process.env.NODE_ENV === "dev") {
 	// Start development server
 	(async function server(app) {
 
-		// Use busboy to parse data from post requests
-		app.use(busboy());
+		// Use body parser to parse fields
+		app.use(bodyParser.json());
 
 		// Listen and pass API calls to individual files
 		app.all("/api/*", cors(), (req, res) => {
@@ -49,8 +49,8 @@ if (process.env.NODE_ENV === "dev") {
 	// Use gzip when serving files
 	app.use(compression());
 
-	// Use busboy to parse data from post requests
-	app.use(busboy());
+	// Use body parser to parse fields
+	app.use(bodyParser.json());
 
 	// Redirect HTTP to HTTPS
 	app.all("*", ({ secure, hostname, url }, res, next) => {
