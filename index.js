@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === "dev") {
 	});
 
 	// Server static files from the last built server
-	app.use(express.static("last_build", { extensions: ["html"] }));
+	app.use(express.static("public_html", { extensions: ["html"] }));
 
 	// Listen and pass API calls to individual files
 	app.post("/api/*", cors(), (req, res) => {
@@ -74,7 +74,7 @@ if (process.env.NODE_ENV === "dev") {
 	});
 
 	// Catch 404's and send the index document - history-fallback-api
-	app.get("*", (_request, response) => response.sendFile(path.join(__dirname, "last_build/", require("./web-app.json").config["spa_root"])));
+	app.get("*", (_request, response) => response.sendFile(path.join(__dirname, "public_html/", require("./web-app.json").config["spa_root"])));
 
 	// Start HTTP server
 	http.createServer(app).listen(config["port"]);

@@ -29,5 +29,4 @@ $ npm run dev
 ```bash
 $ npm run build
 ```
-build output is in `public_html/` 
-however, you should serve your app from `last_build/` to avoid serving development version if a dev server is active.
+build output is served from `public_html/`
