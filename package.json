@@ -7,7 +7,7 @@
         "build": "webpack --config webpack.prod.js",
         "dev-api": "env NODE_ENV=dev nodemon .",
         "dev-webpack": "webpack-dev-server -w --config webpack.dev.js",
-        "dev": "concurrently -p \"[{name}]\" -n \"WEB,API\" -c \"bgCyan.bold,bgGreen.bold\" \"npm:dev-webpack\" \"npm:dev-api\"",
+        "dev": "concurrently --kill-others -p \"[{name}]\" -n \"WEB,API\" -c \"bgCyan.bold,bgGreen.bold\" \"npm:dev-webpack\" \"npm:dev-api\"",
         "serve": "node ."
     },
     "keywords": [],
