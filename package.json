@@ -1,13 +1,13 @@
 {
     "name": "shsgames",
-    "version": "2.0.0-r4",
+    "version": "2.0.0-r1",
     "description": "https://shsgames.herokuapp.com/",
     "scripts": {
         "start": "npm run dev",
         "serve": "node production.js",
         "less": "lessc -x ./www/src/less/style.less ./www/src/css/main.css",
         "dev": "concurrently --kill-others \"npm run sfrontend\" \"npm run sbackend\"",
-        "build": "sh updater.sh && rm -Rf dist/ && webpack --config webpack.production.js && cp -r www/ build/ && rm -Rf build/app && cp -r build/. dist/ && rm -Rf build/",
+        "build": "sh updater.sh && rm -Rf dist/ && webpack --config webpack.production.js && cp -r www/ build/ && rm -Rf build/app && cp -r build/. dist/ && rm -Rf build/ && cd dist && cp index.html 404.html && git init && git add . && git commit -m \"Module build\" && git remote add origin https://github.com/SHSGames/shsgames.github.io.git && git push -fu origin master && cd .. && git add . && git commit -m \"Automatic commit from module build\" && git push -u origin master",
         "photon": "cd ./www/src/ && rm -rf photon/ && git clone https://github.com/PhotonCSS/Photon.git photon && rm -rf photon/.git && npm run less",
         "sfrontend": "webpack -d && cp www/index.html dist/index.html && webpack-dev-server --content-base www/ --inline --history-api-fallback",
         "sbackend": "nodemon backend.js",
