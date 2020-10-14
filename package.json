@@ -1,6 +1,6 @@
 {
     "name": "shsgames",
-    "version": "2.0.0-r1",
+    "version": "2.0.0-rc2",
     "description": "https://shsgames.herokuapp.com/",
     "scripts": {
         "start": "npm run dev",
