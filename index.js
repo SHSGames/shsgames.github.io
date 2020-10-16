@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === "dev") {
 		app.use(bodyParser.json());
 
 		// Listen and pass API calls to individual files
-		app.post("/api/*", cors(), (req, res) => {
+		app.all("/api/*", cors(), (req, res) => {
 			try {
 				require(`${__dirname}${req.url}.js`)(req, res)
 				console.error("[INFO]", "Responded to API call", req.url);
@@ -63,7 +63,7 @@ if (process.env.NODE_ENV === "dev") {
 	app.use(express.static("public_html", { extensions: ["html"] }));
 
 	// Listen and pass API calls to individual files
-	app.post("/api/*", cors(), (req, res) => {
+	app.all("/api/*", cors(), (req, res) => {
 		try {
 			require(`${__dirname}${req.url}.js`)(req, res)
 			console.error("[INFO]", "Responded to API call", req.url);
