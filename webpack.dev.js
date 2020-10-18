@@ -13,7 +13,7 @@ module.exports = merge(require("./webpack.conf.js"), {
 		historyApiFallback: { index: "/" + require("./web-app.json").config.spa_root },
 		proxy: {
         	"/api": {
-            	target: "http://localhost:4000",
+            	target: "http://localhost:4000/",
             	secure: false
         	}
     	},
