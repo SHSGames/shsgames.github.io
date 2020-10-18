@@ -10,7 +10,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const manifest = require("./web-app.json");
 
 module.exports = {
-	entry: "./src/index.js",
+	entry: [ "@babel/polyfill", "./src/index.js" ],
 	output: {
 		path: __dirname + "/public_html",
 		filename: "app.js"
