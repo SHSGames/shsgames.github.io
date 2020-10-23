@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "dev") {
 		// Listen and pass API calls to individual files
 		app.all("/api/*", cors(), (req, res) => {
 			try {
-				require(`${__dirname}${req.url.split("?")[0] || req.url}.js`)({ ...req, query: qs.parse(req.url) }, res)
+				require(`${__dirname}${req.url.split("?")[0]}.js`)(req, res)
 				console.error("[INFO]", "Responded to API call", req.url);
 			} catch({ error }) {
 				console.error("[ERROR]", req.url, error);
@@ -66,7 +66,7 @@ if (process.env.NODE_ENV === "dev") {
 	// Listen and pass API calls to individual files
 	app.all("/api/*", cors(), (req, res) => {
 		try {
-			require(`${__dirname}${req.url.split("?")[0]}.js`)({ ...req, query: req.url.split("?")[0] === undefined ? {} : qs.parse(req.url.split("?")[0]) }, res)
+			require(`${__dirname}${req.url.split("?")[0]}.js`)(req, res)
 			console.error("[INFO]", "Responded to API call", req.url);
 		} catch({ error }) {
 			console.error("[ERROR]", req.url, error);
