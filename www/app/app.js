@@ -227,3 +227,25 @@ global.app = {
 
 if(document.referrer.indexOf("goguardian") > 0 || document.referrer.indexOf("teacher") > 0) while(true) throw new Error("bad referrer");
 app.setDarkMode(localStorage.getItem("darkmode") === "true")
+
+setTimeout(function() {
+
+	if(localStorage.getItem("notice-0-shown") != "true") {
+		let dialog = new Photon.dialog({
+			type: "alert",
+			title: "💖 Message from the SHS Games Team 💖",
+			transition: "grow",
+			message: "Hey everyone!\n\nWe wanted to remind you that <b>you matter</b>. The world would be very different without you. You are the reason someone in your life wakes up in the morning. Suicide is never the answer. <b>\"Suicide doesn’t end the chances of life getting worse, it eliminates the possibility of it ever getting any better.\"</b>",
+			actions: [{
+				name: "OK",
+				click() {
+					localStorage.setItem("notice-0-shown", "true")
+					dialog.destroy();
+				}
+			}]
+		});
+
+		dialog.open();
+	}
+
+}, 5000);
