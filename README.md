@@ -6,7 +6,7 @@ All you really need to do is
 $ npm install
 
 # Update PhotonCSS to the latest version
-$ npm update photoncss
+$ npm install photoncss@latest -D
 ```
 
 Add custom themes to `src/index.less` after Photon is imported,

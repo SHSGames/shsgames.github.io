@@ -2,6 +2,7 @@ const path = require("path");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const PreloadWebpackPlugin = require("preload-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const AppManifestWebpackPlugin = require("app-manifest-webpack-plugin");
 const HtmlWebpackPartialsPlugin = require("html-webpack-partials-plugin");
@@ -13,53 +14,54 @@ module.exports = {
 	entry: [ "@babel/polyfill", "./src/index.js" ],
 	output: {
 		path: __dirname + "/public_html",
-		filename: "app.js"
+		filename: "[contenthash].js"
 	},
     module: {
-        rules: [
-			{
-	            test: /\.js$/,
-	            use: {
-	                loader: "babel-loader",
-	                options: {
-	                    presets: [ "@babel/preset-react", "@babel/preset-env" ],
-						plugins: [ "@babel/plugin-proposal-class-properties" ]
-	                }
-	            }
-	        }, {
-				test: /\.css/i,
-				use: [ MiniCssExtractPlugin.loader, "css-loader" ]
-	        }, {
-				test: /\.less/i,
-				use: [ MiniCssExtractPlugin.loader, "css-loader", "less-loader" ]
-			}, {
-				test: /\.(woff|woff2|eot|ttf|otf)$/,
-				use: [{
-					loader: "file-loader",
-					options: { name: "static/[contenthash].[ext]" }
-				}]
-			}, {
-				include: path.join(__dirname, "src/static"),
-				use: [{
-					loader: "file-loader",
-					options: { name: "static/[contenthash].[ext]" }
-				}]
-			}, {
-				test: /\.(txt|md|pem|raw)$/,
-				use: [ "raw-loader" ]
-			}
-		]
+        rules: [{
+            test: /\.js$/,
+			exclude: /(node_modules)/,
+            use: {
+                loader: "babel-loader",
+                options: {
+					compact: true,
+                    presets: [ "@babel/preset-react", "@babel/preset-env" ],
+					plugins: [ "@babel/plugin-proposal-class-properties" ]
+                }
+            }
+        }, {
+			test: /\.css/i,
+			use: [ MiniCssExtractPlugin.loader, "css-loader" ]
+        }, {
+			test: /\.less/i,
+			use: [ MiniCssExtractPlugin.loader, "css-loader", "less-loader" ]
+		}, {
+			test: /\.(woff|woff2|eot|ttf|otf)$/,
+			use: [{
+				loader: "file-loader",
+				options: { name: "static/[contenthash].[ext]" }
+			}]
+		}, {
+			include: path.join(__dirname, "src/static"),
+			use: [{
+				loader: "file-loader",
+				options: { name: "static/[contenthash].[ext]" }
+			}]
+		}, {
+			test: /\.(txt|md|pem|raw)$/,
+			use: [ "raw-loader" ]
+		}]
     },
 
   	plugins: [
 		new CleanWebpackPlugin(),
     	new HtmlWebpackPlugin({
 			meta: {
-				"viewport": "width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0",
+				"viewport": "width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no",
+				"mobile-web-app-capable": "yes",
+				"msapplication-tap-highlight": "yes",
 				"theme-color": manifest.config.theme_color,
-				"description": manifest.config.appDescription
+				"description": manifest.config.appDescription,
 			},
-			lang: "en_US",
 			base: manifest.config.start_url,
 			title: manifest.config.appName,
 			filename: manifest.config.spa_root,
@@ -68,20 +70,31 @@ module.exports = {
 			hash: true,
 			xhtml: true
 		}),
+		new PreloadWebpackPlugin({
+			rel: "preload",
+    		as: "allAssets"
+		}),
 		new HtmlWebpackPartialsPlugin({
 			path: path.join(__dirname, "./src/noscript.htm"),
 			location: "body",
 			priority: "high",
 			template_filename: manifest.config.spa_root
 		}),
-		new MiniCssExtractPlugin({ filename: "app.css" }),
+		new MiniCssExtractPlugin({ filename: "[contenthash].css" }),
 		new AppManifestWebpackPlugin(manifest),
 		new CopyWebpackPlugin({
-			patterns: [{ from: "src/robots.txt" }]
+			patterns: [
+				// { from: "src/ads.txt" },
+				{ from: "src/robots.txt" },
+				// { from: "src/sellers.json" },
+				{ from: "src/serviceworker.js" }
+			]
 		}),
 		new WorkboxPlugin.GenerateSW({
+			importScripts: ["/serviceworker.js"],
+			maximumFileSizeToCacheInBytes: 104857600,
 	      	runtimeCaching: [{
-	        	urlPattern: /\.(?:png|jpg|jpeg|svg|ico|woff2)$/,
+	        	urlPattern: /\.(?:png|jpg|jpeg|svg|ico|woff2|js|css)$/,
 	        	handler: "CacheFirst",
 	        	options: {
 	          		cacheName: "static",

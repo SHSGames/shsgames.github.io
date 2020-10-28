@@ -1,7 +1,7 @@
 {
 	"logo": "./src/static/icon.png",
-	"output": "/",
-	"prefix": "",
+	"output": "static/",
+	"prefix": "/static/",
 	"config": {
 
 		"appName": "Photon PWA",
@@ -20,12 +20,9 @@
 		"icons": {
 			"android": true,
 			"appleIcon": true,
-			"appleStartup": true,
-			"coast": false,
 			"favicons": true,
 			"firefox": true,
-			"windows": true,
-			"yandex": true
+			"windows": true
 		}
 	}
 }

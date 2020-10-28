@@ -6,7 +6,6 @@ const fs = require("fs").promises;
 const http = require("http");
 const path = require("path");
 const YAML = require("yaml");
-const qs = require("qs");
 
 // Log errors to console instead of killing the application
 process.on("uncaughtException", err => console.error("[ERROR]", err));
@@ -31,7 +30,7 @@ if (process.env.NODE_ENV === "dev") {
 			}
 		});
 
-		// Start HTTO server
+		// Start HTTP server
 		http.createServer(app).listen(4000);
 		console.log("[INFO]", `Development server running on :4000 (http).`);
 
