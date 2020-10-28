@@ -14,7 +14,7 @@ module.exports = {
 	entry: [ "@babel/polyfill", "./src/index.js" ],
 	output: {
 		path: __dirname + "/public_html",
-		filename: "[contenthash].js"
+		filename: "[hash].js"
 	},
     module: {
         rules: [{
@@ -37,13 +37,13 @@ module.exports = {
 			test: /\.(woff|woff2|eot|ttf|otf)$/,
 			use: [{
 				loader: "file-loader",
-				options: { name: "static/[contenthash].[ext]" }
+				options: { name: "static/[hash].[ext]" }
 			}]
 		}, {
 			include: path.join(__dirname, "src/static"),
 			use: [{
 				loader: "file-loader",
-				options: { name: "static/[contenthash].[ext]" }
+				options: { name: "static/[hash].[ext]" }
 			}]
 		}, {
 			test: /\.(txt|md|pem|raw)$/,
@@ -79,7 +79,7 @@ module.exports = {
 			priority: "high",
 			template_filename: manifest.config.spa_root
 		}),
-		new MiniCssExtractPlugin({ filename: "[contenthash].css" }),
+		new MiniCssExtractPlugin({ filename: "[hash].css" }),
 		new AppManifestWebpackPlugin(manifest),
 		new CopyWebpackPlugin({
 			patterns: [
