@@ -26,3 +26,13 @@ ssl:
   cert-root: ''
   # Port for the HTTPS server to run on
   port: 443
+
+# MySQL configuration
+mysql:
+  # Use MySQL at all
+  use: true
+  # MySQL connection credentials
+  host: localhost
+  user: root
+  password: ''
+  database: my_database

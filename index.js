@@ -9,6 +9,8 @@ import YAML from "yaml";
 import chalk from "chalk";
 import url from "url";
 import rateLimit from "express-rate-limit";
+import mysql from "mysql2";
+import mysqlPromise from "mysql-promise";
 
 // Log errors to console instead of killing the application
 process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err));
@@ -17,8 +19,26 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 (async function server(app) {
 
 	// Get config from config.yml
-	const config = YAML.parse(await fs.readFile("./config.yml", "utf8"));
+	global.config = YAML.parse(await fs.readFile("./config.yml", "utf8"));
 	console.info(chalk.blue("[INFO]"), "Parsed configuration from", chalk.cyan("config.yml"));
+
+	if(config.mysql.use) {
+
+		const conf = config.mysql;
+		delete conf.use;
+		const db = mysqlPromise();
+
+		try {
+			db.configure(conf, mysql);
+			global.mysql = db;
+			await db.query(`show tables`)
+			console.info(chalk.blue("[INFO]"), "Logged into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
+		} catch (error) {
+			console.error(chalk.red("[ERROR]"), "Could not log into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
+			console.error(error);
+		}
+
+	}
 
 	// Configure rate limiting
 	const limiter = rateLimit({
@@ -103,7 +123,7 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 	}
 
 	// If the application is running in production mode
-	else if (process.env.NODE_ENV !== "dev") {
+	else {
 
 		// Use gzip when serving files
 		app.use(compression());

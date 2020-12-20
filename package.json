@@ -66,6 +66,8 @@
         "express-rate-limit": "^5.2.3",
         "http": "0.0.1-security",
         "https": "^1.0.0",
+        "mysql-promise": "^5.0.0",
+        "mysql2": "^2.2.5",
         "yaml": "^1.10.0"
     }
 }
