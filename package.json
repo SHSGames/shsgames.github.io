@@ -10,6 +10,7 @@
         "dev": "concurrently --kill-others -p \"[{name}]\" -n \"WEBPACK,EXPRESS\" -c \"blue,magenta\" \"npm:dev-webpack\" \"npm:dev-api\"",
         "serve": "node ."
     },
+    "type": "module",
     "keywords": [],
     "author": "Josh Merlino",
     "license": "ISC",
@@ -62,6 +63,7 @@
         "compression": "^1.7.4",
         "cors": "^2.8.5",
         "express": "^4.17.1",
+        "express-rate-limit": "^5.2.3",
         "http": "0.0.1-security",
         "https": "^1.0.0",
         "yaml": "^1.10.0"

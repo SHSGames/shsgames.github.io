@@ -30,3 +30,22 @@ $ npm run dev
 $ npm run build
 ```
 build output is served from `public_html/`
+
+### Making API's
+1. Make an `api` folder in the projects root.
+2. Add API endpoints in subdirectory's there.
+
+`~/api/v1/myapi.js`
+```js
+export default (req, res) => new Promise(async function(resolve, reject) {
+	resolve({ data: "hello world!" });
+});
+```
+
+`GET` `/api/v1/myapi` =>
+```json
+{
+    "success": true,
+    "data": "hello world!"
+}
+```
