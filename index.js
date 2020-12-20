@@ -26,8 +26,6 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
   		max: config["rate-limit"]["max-requests"]
 	});
 
-	if(config["rate-limit"].use) app.use(limiter);
-
 	// API parser middleware
 	async function apiParser(req, res) {
 
@@ -88,6 +86,9 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 
 	// Use body parser to parse fields
 	app.use(bodyParser.json());
+
+	// Enable rate limiting on API
+	if(config["rate-limit"].use) app.use("/api/**", limiter);
 
 	// Listen and pass API calls
 	app.all("/api/**", cors(), apiParser);
