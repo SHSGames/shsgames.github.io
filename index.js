@@ -63,7 +63,7 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 			if(!res.headersSent) {
 				res.status(408);
 				res.header("Content-Type", 'application/json');
-        		res.send(JSON.stringify({ success: false, status: `408 Request Timeout (${config["timeout-time"]}s)` }, null, 4));
+        		res.send(JSON.stringify({ success: false, status: `Request Timeout (${config["timeout-time"]}s)` }, null, 4));
 				console.error(chalk.red("[ERROR]"), "API request to", chalk.cyan(pathname), "timed out after", chalk.cyan(`${Date.now() - time}ms`));
 			}
 		}, config["timeout-time"] * 1000)
@@ -75,7 +75,7 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 
 			endpoint.then(response => {
 				console.info(chalk.blue("[INFO]"), "API request to", chalk.cyan(pathname), "responded in", chalk.cyan(`${Date.now() - time}ms`));
-				res.status(200),
+				res.status(res.statusCode || 200);
 				res.header("Content-Type", 'application/json');
         		res.send(JSON.stringify({
 					success: true,
@@ -83,9 +83,9 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 				}, null, 4));
 			}).catch(error => {
 				console.info(chalk.blue("[INFO]"), "API request to", chalk.cyan(pathname), "responded in", chalk.cyan(`${Date.now() - time}ms`));
-				res.status(400);
+				res.status(res.statusCode || 400);
 				res.header("Content-Type", 'application/json');
-        		res.send(JSON.stringify({ success: false, status: "400 Request Rejected", error }, null, 4));
+        		res.send(JSON.stringify({ success: false, status: "Request Rejected", error }, null, 4));
 			})
 
 		} catch(error) {
@@ -94,12 +94,12 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 				// Send 404 error
 				res.status(404);
 				res.header("Content-Type", 'application/json');
-        		res.send(JSON.stringify({ success: false, status: "404 Not Found" }, null, 4));
+        		res.send(JSON.stringify({ success: false, status: "Not Found" }, null, 4));
 			} else {
 				// Send 500 error
 				res.status(500);
 				res.header("Content-Type", 'application/json');
-        		res.send(JSON.stringify({ success: false, status: "500 Internal Server Error" }, null, 4));
+        		res.send(JSON.stringify({ success: false, status: "Internal Server Error" }, null, 4));
 			}
 
 			// Log error to console
