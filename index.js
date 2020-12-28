@@ -123,7 +123,7 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 
 		// Start HTTP server
 		http.createServer(app).listen(4000);
-		console.info(chalk.blue("[INFO]"), "Development server running on", chalk.cyan(":4000 (http)"));
+		console.info(chalk.blue("[INFO]"), "Development server running on", chalk.cyan(`:4000 (http)`));
 
 	}
 
@@ -143,7 +143,8 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 		app.use(express.static("public_html", { extensions: ["html"] }));
 
 		// Catch 404's and send the index document - history-fallback-api
-		app.get("*", (_request, response) => response.sendFile(path.join(__dirname, "public_html/", require("./web-app.json").config["spa_root"])));
+		const { spa_root } = JSON.parse(await fs.readFile("./web-app.json", "utf8")).config;
+		app.get("*", (_request, response) => response.sendFile(path.join(__dirname, "public_html/", spa_root)));
 
 		// Start HTTP server
 		http.createServer(app).listen(config["port"]);
