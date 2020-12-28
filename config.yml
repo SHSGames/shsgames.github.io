@@ -30,7 +30,7 @@ ssl:
 # MySQL configuration
 mysql:
   # Use MySQL at all
-  use: true
+  use: false
   # MySQL connection credentials
   host: localhost
   user: root
