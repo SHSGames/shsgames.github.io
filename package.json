@@ -4,7 +4,7 @@
     "description": "Create single page applications using PhotonCSS",
     "entry": "index.js",
     "scripts": {
-        "build": "webpack --config webpack.prod.cjs",
+        "build": "uuid > hash && webpack --config webpack.prod.cjs && mv hash public_html/",
         "dev-api": "env NODE_ENV=dev nodemon .",
         "dev-webpack": "webpack-dev-server --config webpack.dev.cjs",
         "dev": "concurrently --kill-others -p \"[{name}]\" -n \"WEBPACK,EXPRESS\" -c \"blue,magenta\" \"npm:dev-webpack\" \"npm:dev-api\"",

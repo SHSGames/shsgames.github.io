@@ -55,3 +55,12 @@ app.api = (path, data = {}) => new Promise(function(resolve, reject) {
 	.then(resp => resp.json())
 	.then(resolve).catch(reject);
 });
+
+import client from "raw-loader!../hash";
+fetch(`/hash`).then(resp => resp.text()).then(async server => {
+	if(server.match(/([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}/gmi)) {
+		if(server !== client) {
+			await (await caches.keys()).map(async a => await caches.delete(a));
+		}
+	}
+}).catch(e => console.error("Offline", e));

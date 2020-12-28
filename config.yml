@@ -1,7 +1,7 @@
 # Used for hosting multiple sites with their own DNS name all on the same machine, which DNS name will this server bind to
 remote-address: ''
 # Port for the production server to listen on
-port: 80
+port: 8080
 # Maximum duration in seconds that an API call can take before timing out
 timeout-time: 60
 
