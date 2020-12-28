@@ -1,7 +1,7 @@
 const { HotModuleReplacementPlugin } = require("webpack");
 const merge = require("webpack-merge");
 
-module.exports = merge(require("./webpack.conf.js"), {
+module.exports = merge(require("./webpack.conf.cjs"), {
 	mode: "development",
 	plugins: [ new HotModuleReplacementPlugin() ],
 	devServer: {

@@ -2,7 +2,7 @@ const merge = require("webpack-merge");
 const TerserJSPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-module.exports = merge(require("./webpack.conf.js"), {
+module.exports = merge(require("./webpack.conf.cjs"), {
     mode: "production",
     optimization: {
         namedModules: false,
