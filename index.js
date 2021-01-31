@@ -12,30 +12,55 @@ import rateLimit from "express-rate-limit";
 import mysql from "mysql2";
 import mysqlPromise from "mysql-promise";
 
+// Add methods to console
+console.info = function(){ console.log(chalk.blue("[INFO]"), ...arguments) };
+console.error = function(){ console.log(chalk.red("[ERROR]"), ...arguments) };
+console.warn = function(){ console.log(chalk.yellow("[WARN]"), ...arguments) };
+console.success = function(){ console.log(chalk.green("[SUCCESS]"), ...arguments) };
+
 // Log errors to console instead of killing the application
-process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err));
+process.on("uncaughtException", err => console.error(err));
+
+// `require` Helper function
+global.require = async path_to_module => (await import(path_to_module)).default;
+
+// Get API function for internal use
+global.api = async (endpoint, query = {}) => await (await import(`./api/${endpoint}.js`)).default({ query });
+
+// Add back `__dirname` constant
+global.__dirname = path.resolve(".");
 
 // Start server
 (async function server(app) {
 
 	// Get config from config.yml
 	global.config = YAML.parse(await fs.readFile("./config.yml", "utf8"));
-	console.info(chalk.blue("[INFO]"), "Parsed configuration from", chalk.cyan("config.yml"));
+	console.info("Parsed configuration from", chalk.cyan("config.yml"));
 
+	// If MySQL is used
 	if(config.mysql.use) {
 
+		// Get MySQL config
 		const conf = config.mysql;
 		delete conf.use;
 		const db = mysqlPromise();
 
 		try {
+
+			// Try and log in
 			db.configure(conf, mysql);
 			global.mysql = db;
+
+			// Test connection
 			await db.query(`show tables`)
-			console.info(chalk.blue("[INFO]"), "Logged into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
+			console.info("Logged into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
+
 		} catch (error) {
-			console.error(chalk.red("[ERROR]"), "Could not log into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
+
+			// Clean up
+			console.error("Could not log into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
 			console.error(error);
+
 		}
 
 	}
@@ -56,54 +81,78 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 		const time = Date.now();
 
 		// Log API request
-		console.info(chalk.blue("[INFO]"), "Received API request", chalk.cyan(pathname));
+		console.info("Received API request", chalk.cyan(pathname));
 
 		// Set timer to make request time out
 		setTimeout(function() {
+
+			// Make sure that nothing was sent
 			if(!res.headersSent) {
+
+				// Respond with timeout code
 				res.status(408);
 				res.header("Content-Type", 'application/json');
+
         		res.send(JSON.stringify({ success: false, status: `Request Timeout (${config["timeout-time"]}s)` }, null, 4));
-				console.error(chalk.red("[ERROR]"), "API request to", chalk.cyan(pathname), "timed out after", chalk.cyan(`${Date.now() - time}ms`));
+				console.warn("API request to", chalk.cyan(pathname), "timed out after", chalk.cyan(`${Date.now() - time}ms`));
+
 			}
-		}, config["timeout-time"] * 1000)
+
+		}, config["timeout-time"] * 1000);
 
 		// Attempt to respond
 		try {
 
-			const endpoint = (await import(`.${pathname}.js`)).default(req, res);
+			// Import endpoint
+			const endpoint = (await require(`.${pathname}.js`))(req, res);
 
+			// Execute endpoint in context of request
 			endpoint.then(response => {
-				console.info(chalk.blue("[INFO]"), "API request to", chalk.cyan(pathname), "responded in", chalk.cyan(`${Date.now() - time}ms`));
+
+				// Send OK status
 				res.status(res.statusCode || 200);
 				res.header("Content-Type", 'application/json');
-        		res.send(JSON.stringify({
-					success: true,
-					...response
-				}, null, 4));
+
+				// Respond to request
+        		res.send(JSON.stringify({ success: true, ...response }, null, 4));
+
 			}).catch(error => {
-				console.info(chalk.blue("[INFO]"), "API request to", chalk.cyan(pathname), "responded in", chalk.cyan(`${Date.now() - time}ms`));
+
+				// Send error status
 				res.status(res.statusCode || 400);
 				res.header("Content-Type", 'application/json');
+
+				// Send error message
         		res.send(JSON.stringify({ success: false, status: "Request Rejected", error }, null, 4));
-			})
+
+			}).finally(function() {
+
+				// Log timings to console for debug
+				console.info("API request to", chalk.cyan(pathname), "responded in", chalk.cyan(`${Date.now() - time}ms`));
+
+			});
 
 		} catch(error) {
 
-			if(error.code === "ERR_MODULE_NOT_FOUND") {
+			// If module not found
+			if(error.code === "ERR_MODULE_NOT_FOUND" && error.toString().includes(`Cannot find module '${__dirname}${pathname}.js'`)) {
+
 				// Send 404 error
 				res.status(404);
 				res.header("Content-Type", 'application/json');
         		res.send(JSON.stringify({ success: false, status: "Not Found" }, null, 4));
+
 			} else {
+
 				// Send 500 error
 				res.status(500);
 				res.header("Content-Type", 'application/json');
         		res.send(JSON.stringify({ success: false, status: "Internal Server Error" }, null, 4));
+
 			}
 
 			// Log error to console
-			console.error(chalk.red("[ERROR]"), "API request to", chalk.cyan(pathname), "failed in", chalk.cyan(`${Date.now() - time}ms`));
+			console.error("API request to", chalk.cyan(pathname), "failed in", chalk.cyan(`${Date.now() - time}ms`));
 			console.error(error);
 
 		}
@@ -123,7 +172,7 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 
 		// Start HTTP server
 		http.createServer(app).listen(4000);
-		console.info(chalk.blue("[INFO]"), "Development server running on", chalk.cyan(`:4000 (http)`));
+		console.info("Development server running on", chalk.cyan(`:4000 (http)`));
 
 	}
 
@@ -148,15 +197,20 @@ process.on("uncaughtException", err => console.error(chalk.red("[ERROR]"), err))
 
 		// Start HTTP server
 		http.createServer(app).listen(config["port"]);
-		console.info(chalk.blue("[INFO]"), "Production server running on", chalk.cyan(`:${config["port"]} (http)`));
+		console.info("Production server running on", chalk.cyan(`:${config["port"]} (http)`));
 
 		// Start HTTPS server
 		if(config.ssl.use === true) {
 			(async function() {
+
+				// Get certificates
 				const cert = await fs.readFile(`${config.ssl["cert-root"]}/cert.pem`, "utf8");
 				const key = await fs.readFile(`${config.ssl["cert-root"]}/privkey.pem`, "utf8");
+
+				// Initialize HTTPS server
 				https.createServer({ key, cert }, app).listen(config.ssl.port);
-				console.info(chalk.blue("[INFO]"), "SSL server running on", chalk.cyan(`:${config.ssl.port} (https)`));
+				console.info("SSL server running on", chalk.cyan(`:${config.ssl.port} (https)`));
+
 			}());
 		}
 
