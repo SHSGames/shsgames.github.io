@@ -49,6 +49,7 @@
         "json-loader": "^0.5.7",
         "less": "^3.10.3",
         "less-loader": "^4.1.0",
+        "nodemon": "^2.0.7",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-router-dom": "^5.0.0",

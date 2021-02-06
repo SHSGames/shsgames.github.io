@@ -1,6 +1,5 @@
 ﻿import React from "react";
-
-import IMG_RES_DISCORD_PNG from "../../img/res/discord.png";
+import DiscordInvite from "./DiscordInvite";
 
 import "./Footer.less";
 
@@ -39,16 +38,7 @@ export default class Footer extends React.Component {
 							<p className="grey-text">Unblocked games • {this.state.phrase}.</p>
 						</div>
 						<div className="col s12 l4">
-							<a href="https://discord.gg/VkXcRAD" target="_blank" className="reference waves-effect photon--darktheme">
-								<div className="padding-layer">
-									<div className="external-img">
-										<img src={IMG_RES_DISCORD_PNG} alt=""/>
-									</div>
-									<div className="title">SHSGames · Discord</div>
-									<p>Join SHSGames on Discord</p>
-									<div className="ref">Our Discord Server</div>
-								</div>
-							</a>
+							<DiscordInvite inviteCode="584437072618717209"/>
 						</div>
 					</div>
 				</div>
