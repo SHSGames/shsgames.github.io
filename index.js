@@ -25,7 +25,7 @@ process.on("uncaughtException", err => console.error(err));
 global.require = async path_to_module => (await import(path_to_module)).default;
 
 // Get API function for internal use
-global.api = async (endpoint, query = {}) => await (await import(`./api/${endpoint}.js`)).default({ query });
+global.api = async (endpoint, query = {}) => await (await require(`./api/${endpoint}.js`))({ query });
 
 // Add back `__dirname` constant
 global.__dirname = path.resolve(".");
