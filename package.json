@@ -4,10 +4,10 @@
     "description": "Create single page applications using PhotonCSS",
     "entry": "index.js",
     "scripts": {
-        "build": "uuid > hash && webpack --config webpack.prod.cjs && mv hash public_html/",
+        "build": "./node_modules/.bin/uuid > hash && ./node_modules/.bin/webpack --config webpack.prod.cjs && mv hash public_html/",
         "dev-api": "env NODE_ENV=dev nodemon .",
-        "dev-webpack": "webpack-dev-server --config webpack.dev.cjs",
-        "dev": "concurrently --kill-others -p \"[{name}]\" -n \"WEBPACK,EXPRESS\" -c \"blue,magenta\" \"npm:dev-webpack\" \"npm:dev-api\"",
+        "dev-webpack": "./node_modules/.bin/uuid > hash && ./node_modules/.bin/webpack-dev-server --config webpack.dev.cjs",
+        "dev": "./node_modules/.bin/concurrently --kill-others -p \"[{name}]\" -n \"WEBPACK,EXPRESS\" -c \"blue,magenta\" \"npm:dev-webpack\" \"npm:dev-api\"",
         "serve": "node ."
     },
     "type": "module",
