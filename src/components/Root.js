@@ -6,7 +6,7 @@ import { BrowserRouter, HashRouter, Route } from "react-router-dom";
 const Router = location.protocol === "file:" ? HashRouter : BrowserRouter;
 
 let ROUTES = [];
-const importAll = a => a.keys().forEach(k => ROUTES.push(a(k).default));
+const importAll = a => a.keys().forEach(k => ROUTES.push(a(k)));
 importAll(require.context("../views", true, /\.js$/));
 
 // Create root component
