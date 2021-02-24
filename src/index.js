@@ -1,22 +1,48 @@
-// Import React
-import React from "react";
+import React, { useEffect } from "react";
 import { render } from "react-dom";
-
-// Import app stylesheet
-import "./index.less";
-
-// Import jQuery
+import { BrowserRouter, HashRouter, Route } from "react-router-dom";
+import "./styles/main.less";
 import "script-loader!jquery";
-
-// Import PhotonCSS
 import "photoncss";
+import "./app";
 
 // Register a static asset caching service-worker
-if((location.protocol === "https:" || location.hostname === "localhost") && location.port === "" && "serviceWorker" in navigator)
-  navigator.serviceWorker.register("/service-worker.js");
+if((location.protocol === "https:" || location.hostname === "localhost") && location.port === "" && "serviceWorker" in navigator) {
+	navigator.serviceWorker.register("/service-worker.js");
+}
 
-// Import root component
-import Root from "components/Root";
+// Get right router type for app
+const Router = location.protocol === "file:" ? HashRouter : BrowserRouter;
+
+// Import all views
+const views = [];
+const importAll = a => a.keys().forEach(k => views.push(a(k)));
+importAll(require.context("./views", true, /\.js$/));
+
+// Root component
+function Root() {
+
+	useEffect(function() {
+		let route = app.getRoute();
+		(function loop() {
+			requestAnimationFrame(loop);
+			if(route !== app.getRoute()) {
+				route = app.getRoute();
+				$(window).scrollTop(0);
+				Photon.reload();
+			}
+		}());
+	});
+
+	return (
+		<Router>
+			<main>
+				{ views.map(({ route, View, default: def }, key) => <Route key={key} path={route} exact={true} component={def || View}/> ) }
+			</main>
+		</Router>
+  	);
+
+}
 
 // Wait for the DOM to load before rendering
 document.addEventListener("DOMContentLoaded", function() {
@@ -29,31 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	// Render root component into react-root container
 	render(<Root/>, document.getElementById("root"));
 
-});
-
-// Create global `app` definition
-global.app = {};
-
-// Resolve assets from the static folder
-app.static = asset => require(`./static/${asset}`).default;
-
-// Get current route
-app.getRoute = () => location.protocol === "file:" ? (location.href.split("#")[1] || "/") : location.pathname;
-
-// Add API request system
-app.api = (path, data = {}) => new Promise(function(resolve, reject) {
-	fetch(`/api/${path}`, {
-		method: "POST",
-		mode: "cors",
-	    cache: "no-cache",
-	    credentials: "same-origin",
-	    headers: { "Content-Type": "application/json" },
-	    redirect: "follow",
-	    referrerPolicy: "no-referrer",
-		body: JSON.stringify(data)
-	})
-	.then(resp => resp.json())
-	.then(resolve).catch(reject);
 });
 
 if(location.hostname !== "localhost") {

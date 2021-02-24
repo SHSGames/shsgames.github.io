@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 export const route = "/";
 
 // Export view
-export function View() {
+export default function() {
 	return (
 		<Fragment>
 			get started by editing `src/views/Index.js::View`
