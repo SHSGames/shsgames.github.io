@@ -38,20 +38,7 @@ npm install
 npm install photoncss@latest -D
 ```
 ### Configure your app
-Change the information in `~/my-app/web-app.json` to reflect your app's brand
-```javascript
-{
-	"appName": "Photon PWA",
-	"version": "1.0.0",
-	"appDescription": "Create single page applications using PhotonCSS",
-	"developerName": "Josh Merlino",
-	"developerURL": "https://joshmerlino.github.io",
-	"background": "#fff",
-	"theme_color": "#004ba0",
-	"spa_root": "index.html", // If your deploying to github pages set this to "404.html"
-	"orientation": "portrait",
-}
-```
+Change the information in `~/my-app/src/manifest.json` to reflect your app's PWA manifest
 
 ## Developing
 
@@ -103,7 +90,7 @@ import React, { Fragment } from "react";
 export const route = "/";
 
 // Export view
-export function View() {
+export default function() {
 	return (
 		<Fragment>
 			get started by editing `~/my-app/src/views/Index.js::View`

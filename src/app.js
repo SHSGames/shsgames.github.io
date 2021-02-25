@@ -22,3 +22,18 @@ app.api = (path, data = {}) => new Promise(function(resolve, reject) {
 	  .then(resolve)
 	  .catch(reject);
 });
+
+// Add method to clear cache and update
+app.update = async hash => {
+	Photon.Snackbar({
+		content: `An update is available. Build ID: <code>${hash}</code>`,
+		action: {
+			name: "update",
+			async click() {
+				await (await caches.keys()).map(async a => await caches.delete(a));
+				location.reload();
+			}
+		},
+		duration: 1e10
+	});
+}

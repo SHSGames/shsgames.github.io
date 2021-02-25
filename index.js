@@ -192,8 +192,7 @@ global.__dirname = path.resolve(".");
 		app.use(express.static("public_html", { extensions: ["html"] }));
 
 		// Catch 404's and send the index document - history-fallback-api
-		const { spa_root } = JSON.parse(await fs.readFile("./web-app.json", "utf8")).config;
-		app.get("*", (_request, response) => response.sendFile(path.resolve("public_html/", spa_root)));
+		app.get("*", (_request, response) => response.sendFile(path.resolve("public_html/index.html")));
 
 		// Start HTTP server
 		http.createServer(app).listen(config["port"]);

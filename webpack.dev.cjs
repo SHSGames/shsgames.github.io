@@ -1,17 +1,22 @@
-const { HotModuleReplacementPlugin } = require("webpack");
+const { HotModuleReplacementPlugin, DefinePlugin } = require("webpack");
 const merge = require("webpack-merge");
 
 module.exports = merge(require("./webpack.conf.cjs"), {
 	mode: "development",
-	plugins: [ new HotModuleReplacementPlugin() ],
+	plugins: [
+		new HotModuleReplacementPlugin(),
+		new DefinePlugin({
+  			PRODUCTION: JSON.stringify(false),
+		})
+	],
 	devServer: {
         port: 8080,
         contentBase: "./src",
-		index: require("./web-app.json").config.spa_root,
+		index: "index.html",
         watchContentBase: true,
 		writeToDisk: false,
 		historyApiFallback: {
-			index: "/" + require("./web-app.json").config.spa_root,
+			index: "/index.html",
 			disableDotRule: true
 		},
 		proxy: {
@@ -24,6 +29,5 @@ module.exports = merge(require("./webpack.conf.cjs"), {
 		inline: true,
 		open: true,
 		host: "localhost",
-		stats: "minimal"
     }
 });

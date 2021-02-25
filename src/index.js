@@ -1,15 +1,11 @@
 import React, { useEffect } from "react";
 import { render } from "react-dom";
 import { BrowserRouter, HashRouter, Route } from "react-router-dom";
+import * as OfflinePluginRuntime from "offline-plugin/runtime";
 import "./styles/main.less";
 import "script-loader!jquery";
 import "photoncss";
 import "./app";
-
-// Register a static asset caching service-worker
-if((location.protocol === "https:" || location.hostname === "localhost") && location.port === "" && "serviceWorker" in navigator) {
-	navigator.serviceWorker.register("/service-worker.js");
-}
 
 // Get right router type for app
 const Router = location.protocol === "file:" ? HashRouter : BrowserRouter;
@@ -57,13 +53,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-if(location.hostname !== "localhost") {
-	const client = require("raw-loader!../hash");
+// If is running in production
+if(PRODUCTION) {
+
+	// Register a static asset caching service-worker
+	OfflinePluginRuntime.install();
+
+	// Get client version
+	const client = require("raw-loader!../hash").default;
+
+	// Get server version
 	fetch(`/hash`).then(resp => resp.text()).then(async server => {
+
+		console.log({client, server})
+
+		// Make sure client recieved a hash
 		if(server.match(/([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}/gmi)) {
-			if(server !== client) {
-				await (await caches.keys()).map(async a => await caches.delete(a));
-			}
+
+			// Update the client
+			if(server !== client) app.update(server);
+
 		}
-	}).catch(e => console.error("Offline", e));
+
+	})
+
 }
