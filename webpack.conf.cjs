@@ -59,7 +59,7 @@ module.exports = {
 
   	plugins: [
 		new CleanWebpackPlugin(),
-		new HtmlWebpackPlugin({ title: manifest.name, template: "src/index.html", favicon: "src/static/icon.png", }),
+		new HtmlWebpackPlugin({ title: manifest.name, template: "src/index.html", favicon: "src/static/icon.png", base: "/" }),
 		new MiniCssExtractPlugin({ filename: "static/[hash].css" }),
 		new WebpackPwaManifest({ filename: "manifest.json", ...manifest }),
 		new OfflinePlugin(),
