@@ -3,6 +3,7 @@ const manifest = require("./src/manifest.json");
 const OfflinePlugin = require("offline-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
@@ -10,7 +11,7 @@ module.exports = {
 	entry: [ "@babel/polyfill", "./src/index.js" ],
 	output: {
 		path: __dirname + "/public_html",
-		filename: "static/[hash].js"
+		filename: "app/[name].[contenthash].js"
 	},
     module: {
         rules: [{
@@ -33,13 +34,13 @@ module.exports = {
 			test: /\.(woff|woff2|eot|ttf|otf)$/,
 			use: [{
 				loader: "file-loader",
-				options: { name: "static/[hash].[ext]" }
+				options: { name: "static/[contenthash].[ext]" }
 			}]
 		}, {
 			include: path.join(__dirname, "src/static"),
 			use: [{
 				loader: "file-loader",
-				options: { name: "static/[hash].[ext]" }
+				options: { name: "static/[contenthash].[ext]" }
 			}]
 		}, {
 			test: /\.(txt|md|pem|raw)$/,
@@ -49,9 +50,27 @@ module.exports = {
 
   	plugins: [
 		new CleanWebpackPlugin(),
-		new HtmlWebpackPlugin({ title: manifest.name, template: "src/index.html", favicon: "src/static/icon.png", base: "/" }),
-		new MiniCssExtractPlugin({ filename: "static/[hash].css" }),
-		new WebpackPwaManifest({ filename: "manifest.json", ...manifest }),
+		new HtmlWebpackPlugin({
+			template: "src/index.html",
+			favicon: "src/static/icon.png",
+			base: "/",
+			templateParameters: {
+				title: manifest.name,
+				description: manifest.description
+			}
+		}),
+		new MiniCssExtractPlugin({
+			filename: "app/[name].[contenthash].css"
+		}),
+		new WebpackPwaManifest({
+			filename: "manifest.json",
+			...manifest
+		}),
+		new CopyWebpackPlugin({
+      		patterns: [
+        		{ from: "src/robots.txt", to: "." },
+      		],
+    	}),
 		new OfflinePlugin(),
   	],
 

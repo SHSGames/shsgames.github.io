@@ -16,12 +16,16 @@ module.exports = merge(require("./webpack.conf.cjs"), {
         concatenateModules: true,
         splitChunks: {
             chunks: "all",
-            minSize: 20000,
             maxSize: 0,
-            minChunks: 6,
-            maxAsyncRequests: 30,
-            maxInitialRequests: 30,
-            enforceSizeThreshold: 50000,
+            minChunks: 1,
+			cacheGroups: {
+	        	vendor: {
+					test: /[\\/]node_modules[\\/]/,
+                	name: "lib",
+                	enforce: true,
+                	chunks: "all",
+	        	}
+	      	}
         },
         noEmitOnErrors: true,
         checkWasmTypes: true,
@@ -29,11 +33,12 @@ module.exports = merge(require("./webpack.conf.cjs"), {
         minimizer: [
 			new TerserJSPlugin({}),
 			new OptimizeCSSAssetsPlugin({})
-		]
+		],
+		runtimeChunk: {
+      		name: "runtime",
+    	}
     },
 	plugins: [
-		new DefinePlugin({
-  			PRODUCTION: JSON.stringify(true),
-		})
+		new DefinePlugin({ PRODUCTION: JSON.stringify(true) })
 	]
 });
