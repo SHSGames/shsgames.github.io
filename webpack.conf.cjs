@@ -25,20 +25,10 @@ module.exports = {
             }
         }, {
 			test: /\.css/i,
-			use: [{
-			    loader: MiniCssExtractPlugin.loader,
-			    options: {
-			         publicPath: "../"
-			    }
-			}, "css-loader" ]
+			use: [{ loader: MiniCssExtractPlugin.loader, options: { publicPath: "../" }}, "css-loader" ]
         }, {
 			test: /\.less/i,
-			use: [{
-			    loader: MiniCssExtractPlugin.loader,
-			    options: {
-			         publicPath: "../"
-			    }
-			}, "css-loader", "less-loader" ]
+			use: [{ loader: MiniCssExtractPlugin.loader, options: { publicPath: "../" }}, "css-loader", "less-loader" ]
 		}, {
 			test: /\.(woff|woff2|eot|ttf|otf)$/,
 			use: [{
