@@ -3,6 +3,9 @@ const merge = require("webpack-merge");
 
 module.exports = merge(require("./webpack.conf.cjs"), {
 	mode: "development",
+	output: {
+		filename: "app/[name].dev.js"
+	},
 	plugins: [
 		new HotModuleReplacementPlugin(),
 		new DefinePlugin({ PRODUCTION: JSON.stringify(false) })
