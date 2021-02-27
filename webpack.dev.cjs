@@ -5,10 +5,9 @@ module.exports = merge(require("./webpack.conf.cjs"), {
 	mode: "development",
 	plugins: [
 		new HotModuleReplacementPlugin(),
-		new DefinePlugin({
-  			PRODUCTION: JSON.stringify(false),
-		})
+		new DefinePlugin({ PRODUCTION: JSON.stringify(false) })
 	],
+	devtool: "eval-source-map",
 	devServer: {
         port: 8080,
         contentBase: "./src",
