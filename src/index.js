@@ -39,10 +39,10 @@ function Root() {
 				Photon.reload();
 
 				// Get view
-				const view = views.filter(({ route }) => route === app.getRoute())[0];
+				const view = views.filter(({ route }) => new RegExp(route.replace(/\:\w.*/g, "\\w.*"), "g").test(app.getRoute()))[0];
 
 				// Get title from route
-				const title = view.hasOwnProperty("title") ? view.title : APP_MANIFEST.name;
+				const title = view.hasOwnProperty("title") ? `${view.title} • ${APP_MANIFEST.name}` : APP_MANIFEST.name;
 
 				// Set new title
 				document.title = title;
