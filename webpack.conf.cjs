@@ -1,5 +1,6 @@
 const path = require("path");
 const manifest = require("./src/manifest.json");
+const { DefinePlugin } = require("webpack");
 const OfflinePlugin = require("offline-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
@@ -71,6 +72,7 @@ module.exports = {
         		{ from: "src/robots.txt", to: "." },
       		],
     	}),
+		new DefinePlugin({ APP_MANIFEST: JSON.stringify(manifest) }),
 		new OfflinePlugin(),
   	],
 

@@ -87,6 +87,9 @@ export default function MyComponent() {
 ```js
 import React, { Fragment } from "react";
 
+// Export the title of the tab
+export const title = "My Page";
+
 // Export the path of the page to render
 export const route = "/";
 

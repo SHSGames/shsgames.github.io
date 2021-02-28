@@ -18,18 +18,40 @@ importAll(require.context("./views", true, /\.js$/));
 // Root component
 function Root() {
 
+	// On mount
 	useEffect(function() {
-		let route = app.getRoute();
+
+		// Initialize route
+		let route = "";
 		(function loop() {
+
+			// Run again on next fraome
 			requestAnimationFrame(loop);
+
+			// If route/page was changed
 			if(route !== app.getRoute()) {
+
+				// Change route cache
 				route = app.getRoute();
+
+				// Reset scroll and reload Photon
 				$(window).scrollTop(0);
 				Photon.reload();
+
+				// Get view
+				const view = views.filter(({ route }) => route === app.getRoute())[0];
+
+				// Get title from route
+				const title = view.hasOwnProperty("title") ? view.title : APP_MANIFEST.name;
+
+				// Set new title
+				document.title = title;
+
 			}
 		}());
 	});
 
+	// Render router
 	return (
 		<Router>
 			<main>
