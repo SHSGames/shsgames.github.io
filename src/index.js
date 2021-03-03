@@ -86,18 +86,23 @@ if(PRODUCTION) {
 	const client = require("raw-loader!../hash").default;
 
 	// Get server version
-	fetch(`/hash`).then(resp => resp.text()).then(async server => {
+	(function update(){
 
-		console.log({client, server})
+		fetch(`/hash?${Date.now()}`).then(resp => resp.text()).then(async server => {
 
-		// Make sure client recieved a hash
-		if(server.match(/([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}/gmi)) {
+			// Make sure client recieved a hash
+			if(server.match(/([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}/gmi)) {
 
-			// Update the client
-			if(server !== client) app.update(server);
+				// Update the client
+				if(server !== client) app.update(server);
 
-		}
+				// If there is no update available, retry in 60s
+				else setTimeout(update, 60000);
 
-	})
+			}
+
+		})
+
+	}())
 
 }
