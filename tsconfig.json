@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "lib": ["es2020"],
+        "module": "commonjs",
+        "target": "es5",
+		"baseUrl": "src",
+        "types": ["node"],
+		"outDir": "lib",
+		"removeComments": true,
+        "sourceMap": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+		"noUnusedParameters": true,
+		"allowUnreachableCode": false,
+		"preserveConstEnums": false,
+		"resolveJsonModule": true
+    }
+}
