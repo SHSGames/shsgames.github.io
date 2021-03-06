@@ -48,8 +48,10 @@ Change the information in `~/my-app/src/manifest.json` to reflect your app's PWA
 2. Add API endpoints in subdirectory's there.
 
 `~/my-app/api/v1/myapi.js`
-```js
-export default (req, res) => new Promise(async function(resolve, reject) {
+```typescript
+import { Request, Response } from "express";
+
+export default (req: Request, res: Response) => new Promise(async function(resolve, reject) {
 	resolve({ data: "hello world!" });
 });
 ```

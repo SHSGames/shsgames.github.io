@@ -1,40 +1,35 @@
 import bodyParser from "body-parser";
+import chalk from "chalk";
 import compression from "compression";
 import cors from "cors";
-import express from "express";
+import express, { Request, Response } from "express";
+import rateLimit from "express-rate-limit";
 import { promises as fs } from "fs";
 import http from "http";
-import path from "path";
-import YAML from "yaml";
-import chalk from "chalk";
-import url from "url";
-import rateLimit from "express-rate-limit";
-import mysql from "mysql2";
+import https from "https";
 import mysqlPromise from "mysql-promise";
+import mysql from "mysql2";
+import path from "path";
+import url from "url";
+import YAML from "yaml";
 
 // Add methods to console
-console.info = function(){ console.log(chalk.blue("[INFO]"), ...arguments) };
-console.error = function(){ console.log(chalk.red("[ERROR]"), ...arguments) };
-console.warn = function(){ console.log(chalk.yellow("[WARN]"), ...arguments) };
-console.success = function(){ console.log(chalk.green("[SUCCESS]"), ...arguments) };
+console.info = (...args) : void => { console.log(chalk.blue("[INFO]"), ...args) };
+console.error = (...args) : void => { console.log(chalk.red("[ERROR]"), ...args) };
+console.warn = (...args) : void => { console.log(chalk.yellow("[WARN]"), ...args) };
+console.success = (...args) : void => { console.log(chalk.green("[SUCCESS]"), ...args) };
 
 // Log errors to console instead of killing the application
 process.on("uncaughtException", err => console.error(err));
 
-// `require` Helper function
-global.require = async path_to_module => (await import(path_to_module)).default;
-
 // Get API function for internal use
-global.api = async (endpoint, query = {}) => await (await require(`./api/${endpoint}.js`))({ query });
-
-// Add back `__dirname` constant
-global.__dirname = path.resolve(".");
+const api = async (endpoint: string, query: object = {}) : Promise<object> => await (await require(`./api/${endpoint}.js`))({ query });
 
 // Start server
 (async function server(app) {
 
 	// Get config from config.yml
-	global.config = YAML.parse(await fs.readFile("./config.yml", "utf8"));
+	const config: any = YAML.parse(await fs.readFile("./config.yml", "utf8"));
 	console.info("Parsed configuration from", chalk.cyan("config.yml"));
 
 	// If MySQL is used
@@ -49,7 +44,7 @@ global.__dirname = path.resolve(".");
 
 			// Try and log in
 			db.configure(conf, mysql);
-			global.mysql = db;
+			(global as any).mysql = db;
 
 			// Test connection
 			await db.query(`show tables`)
@@ -72,7 +67,7 @@ global.__dirname = path.resolve(".");
 	});
 
 	// API parser middleware
-	async function apiParser(req, res) {
+	async function apiParser(req: Request, res: Response) {
 
 		// Deconstruct request URL
 		const { pathname } = url.parse(req.url);
@@ -104,10 +99,10 @@ global.__dirname = path.resolve(".");
 		try {
 
 			// Import endpoint
-			const endpoint = (await require(`.${pathname}.js`))(req, res);
+			const endpoint: Promise<object> = require(`.${pathname}.js`).default(req, res);
 
 			// Execute endpoint in context of request
-			endpoint.then(response => {
+			endpoint.then((response: object) => {
 
 				// Send OK status
 				res.status(res.statusCode || 200);
@@ -116,7 +111,7 @@ global.__dirname = path.resolve(".");
 				// Respond to request
         		res.send(JSON.stringify({ success: true, ...response }, null, 4));
 
-			}).catch(error => {
+			}).catch((error: any) => {
 
 				// Send error status
 				res.status(res.statusCode || 400);
