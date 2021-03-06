@@ -47,7 +47,7 @@ Change the information in `~/my-app/src/manifest.json` to reflect your app's PWA
 1. Make an `api` folder in the projects root.
 2. Add API endpoints in subdirectory's there.
 
-`~/my-app/api/v1/myapi.js`
+`~/my-app/api/v1/myapi.ts`
 ```typescript
 import { Request, Response } from "express";
 
