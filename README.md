@@ -50,10 +50,13 @@ Change the information in `~/my-app/src/manifest.json` to reflect your app's PWA
 `~/my-app/api/v1/myapi.ts`
 ```typescript
 import { Request, Response } from "express";
+const { config, mysql } = global;
 
-export default (req: Request, res: Response) => new Promise(async function(resolve, reject) {
-	resolve({ data: "hello world!" });
-});
+export default function(req: Request, res: Response) {
+    return new Promise(async function(resolve) {
+        resolve({ data: "hello world!" });
+    });
+};
 ```
 
 `HTTP 1.1` `GET` http://localhost:4000/api/v1/myapi

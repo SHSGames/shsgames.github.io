@@ -5,16 +5,6 @@ port: 8000
 # Maximum duration in seconds that an API call can take before timing out
 timeout-time: 60
 
-# Rate limiting
-rate-limit:
-  # Use rate limiting at all
-  # NOTE: if you're behind a proxy you should leave this disabled
-  use: false
-  # Time in seconds for the rate limit window
-  window-time: 60
-  # Maximum amount of requests before rate limiting is implemented
-  max-requests: 250
-
 # SSL configuration
 ssl:
   # Use SSL at all

@@ -1,16 +1,13 @@
-import bodyParser from "body-parser";
 import chalk from "chalk";
 import compression from "compression";
 import cors from "cors";
-import express, { Request, Response } from "express";
-import rateLimit from "express-rate-limit";
+import express, { Request, Response, Express } from "express";
 import { promises as fs } from "fs";
 import http from "http";
 import https from "https";
-import mysqlPromise from "mysql-promise";
-import mysql from "mysql2";
+import mysqlPromise, { Connection } from "promise-mysql";
 import path from "path";
-import url from "url";
+import url, { URL } from "url";
 import YAML from "yaml";
 
 // Add methods to console
@@ -23,36 +20,40 @@ console.success = (...args) : void => { console.log(chalk.green("[SUCCESS]"), ..
 process.on("uncaughtException", err => console.error(err));
 
 // Get API function for internal use
-const api = async (endpoint: string, query: object = {}) : Promise<object> => await (await require(`./api/${endpoint}.js`))({ query });
+(global as any).api = async function(endpoint: string, query: object = {}) : Promise<object> {
+	return await (await require(`./api/${endpoint}.js`))({ query });
+};
 
 // Start server
-(async function server(app) {
+(async function server(app: Express) {
 
 	// Get config from config.yml
 	const config: any = YAML.parse(await fs.readFile("./config.yml", "utf8"));
 	console.info("Parsed configuration from", chalk.cyan("config.yml"));
 
+	// Load config into global scope
+	(global as any).config = config;
+
 	// If MySQL is used
 	if(config.mysql.use) {
 
 		// Get MySQL config
-		const conf = config.mysql;
-		delete conf.use;
-		const db = mysqlPromise();
+		const { host, user, password, database } = config.mysql;
 
+		// Attempt to log in
 		try {
 
 			// Try and log in
-			db.configure(conf, mysql);
+			const db: Connection = await mysqlPromise.createConnection({ host, user, password, database });
 			(global as any).mysql = db;
 
 			// Test connection
-			await db.query(`show tables`)
+			await db.query(`show tables`);
 			console.info("Logged into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
 
 		} catch (error) {
 
-			// Clean up
+			// Log errors
 			console.error("Could not log into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
 			console.error(error);
 
@@ -60,20 +61,14 @@ const api = async (endpoint: string, query: object = {}) : Promise<object> => aw
 
 	}
 
-	// Configure rate limiting
-	const limiter = rateLimit({
-  		windowMs: config["rate-limit"]["window-time"] * 1000,
-  		max: config["rate-limit"]["max-requests"]
-	});
-
 	// API parser middleware
-	async function apiParser(req: Request, res: Response) {
+	async function apiParser(req: Request, res: Response): Promise<void> {
 
 		// Deconstruct request URL
-		const { pathname } = url.parse(req.url);
+		const pathname = req.originalUrl;
 
 		// Start timer
-		const time = Date.now();
+		const time: number = Date.now();
 
 		// Log API request
 		console.info("Received API request", chalk.cyan(pathname));
@@ -153,14 +148,14 @@ const api = async (endpoint: string, query: object = {}) : Promise<object> => aw
 		}
 	}
 
-	// Use body parser to parse fields
-	app.use(bodyParser.json());
+	// Allow requests from any origin
+	app.use(cors());
 
-	// Enable rate limiting on API
-	if(config["rate-limit"].use) app.use("/api/**", limiter);
+	// Use body parser to parse fields
+	app.use(express.json());
 
 	// Listen and pass API calls
-	app.all("/api/**", cors(), apiParser);
+	app.use("/api/**", apiParser);
 
 	// If the application is running in development mode
 	if (process.env.NODE_ENV === "dev") {
@@ -178,7 +173,7 @@ const api = async (endpoint: string, query: object = {}) : Promise<object> => aw
 		app.use(compression());
 
 		// Redirect HTTP to HTTPS
-		app.all("*", ({ secure, hostname, url }, res, next) => {
+		app.all("*", ({ secure, hostname, url }, res: Response, next) => {
 		  	if (config.ssl.use === false || config.ssl.redirect === false || secure) return next();
 		  	else res.redirect(`https://${hostname}${url}`);
 		});
@@ -187,7 +182,7 @@ const api = async (endpoint: string, query: object = {}) : Promise<object> => aw
 		app.use(express.static("public_html", { extensions: ["html"] }));
 
 		// Catch 404's and send the index document - history-fallback-api
-		app.get("*", (_request, response) => response.sendFile(path.resolve("public_html/index.html")));
+		app.get("*", (_request, response: Response) => response.sendFile(path.resolve("public_html/index.html")));
 
 		// Start HTTP server
 		http.createServer(app).listen(config["port"]);
@@ -210,4 +205,4 @@ const api = async (endpoint: string, query: object = {}) : Promise<object> => aw
 
 	}
 
-}(express()))
+}(express()));
