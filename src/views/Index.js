@@ -7,5 +7,5 @@ export default function() {
 		<Fragment>
 			get started by editing `~/my-app/src/views/Index.js::View`
 		</Fragment>
-	)
+	);
 }
