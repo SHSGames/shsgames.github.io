@@ -6,7 +6,8 @@ import { promises as fs } from "fs";
 import http from "http";
 import https from "https";
 import path from "path";
-import mysqlPromise, { Connection } from "promise-mysql";
+import mysqlPromise from "mysql-promise";
+import mysql from "mysql2";
 import YAML from "yaml";
 
 // Add methods to console
@@ -37,22 +38,23 @@ process.on("uncaughtException", err => console.error(err));
 	if(config.mysql.use) {
 
 		// Get MySQL config
-		const { host, user, password, database } = config.mysql;
+		const conf = config.mysql;
+		delete conf.use;
+		const db = mysqlPromise();
 
-		// Attempt to log in
 		try {
 
 			// Try and log in
-			const db: Connection = await mysqlPromise.createConnection({ host, user, password, database });
+			db.configure(conf, mysql);
 			(global as any).mysql = db;
 
 			// Test connection
-			await db.query("show tables");
+			await db.query(`show tables`)
 			console.info("Logged into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
 
 		} catch (error) {
 
-			// Log errors
+			// Clean up
 			console.error("Could not log into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
 			console.error(error);
 
