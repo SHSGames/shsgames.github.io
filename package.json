@@ -9,6 +9,7 @@
         "watch-api": "env NODE_ENV=dev ./node_modules/.bin/nodemon .",
         "watch-webpack": "./node_modules/.bin/uuid > hash && ./node_modules/.bin/webpack-dev-server --config webpack.dev.cjs",
         "dev": "./node_modules/.bin/concurrently \"npm:watch-*\"",
+        "dev-api": "./node_modules/.bin/concurrently \"npm:watch-js\" \"npm:watch-ts\"",
         "serve": "node ."
     },
     "keywords": [],
