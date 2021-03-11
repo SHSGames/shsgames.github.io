@@ -10,10 +10,10 @@ import mysqlPromise, { Connection } from "promise-mysql";
 import YAML from "yaml";
 
 // Add methods to console
-console.info = (...args) : void => { console.log(chalk.blue("[INFO]"), ...args) };
-console.error = (...args) : void => { console.log(chalk.red("[ERROR]"), ...args) };
-console.warn = (...args) : void => { console.log(chalk.yellow("[WARN]"), ...args) };
-console.success = (...args) : void => { console.log(chalk.green("[SUCCESS]"), ...args) };
+console.info = (...args) : void => { console.log(chalk.blue("[INFO]"), ...args); };
+console.error = (...args) : void => { console.log(chalk.red("[ERROR]"), ...args); };
+console.warn = (...args) : void => { console.log(chalk.yellow("[WARN]"), ...args); };
+console.success = (...args) : void => { console.log(chalk.green("[SUCCESS]"), ...args); };
 
 // Log errors to console instead of killing the application
 process.on("uncaughtException", err => console.error(err));
@@ -47,7 +47,7 @@ process.on("uncaughtException", err => console.error(err));
 			(global as any).mysql = db;
 
 			// Test connection
-			await db.query(`show tables`);
+			await db.query("show tables");
 			console.info("Logged into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
 
 		} catch (error) {
@@ -80,7 +80,7 @@ process.on("uncaughtException", err => console.error(err));
 
 				// Respond with timeout code
 				res.status(408);
-				res.header("Content-Type", 'application/json');
+				res.header("Content-Type", "application/json");
 
         		res.send(JSON.stringify({ success: false, status: `Request Timeout (${config["timeout-time"]}s)` }, null, 4));
 				console.warn("API request to", chalk.cyan(pathname), "timed out after", chalk.cyan(`${Date.now() - time}ms`));
@@ -100,7 +100,7 @@ process.on("uncaughtException", err => console.error(err));
 
 				// Send OK status
 				res.status(res.statusCode || 200);
-				res.header("Content-Type", 'application/json');
+				res.header("Content-Type", "application/json");
 
 				// Respond to request
         		res.send(JSON.stringify({ success: true, ...response }, null, 4));
@@ -109,7 +109,7 @@ process.on("uncaughtException", err => console.error(err));
 
 				// Send error status
 				res.status(res.statusCode || 400);
-				res.header("Content-Type", 'application/json');
+				res.header("Content-Type", "application/json");
 
 				// Send error message
         		res.send(JSON.stringify({ success: false, status: "Request Rejected", error }, null, 4));
@@ -128,14 +128,14 @@ process.on("uncaughtException", err => console.error(err));
 
 				// Send 404 error
 				res.status(404);
-				res.header("Content-Type", 'application/json');
+				res.header("Content-Type", "application/json");
         		res.send(JSON.stringify({ success: false, status: "Not Found" }, null, 4));
 
 			} else {
 
 				// Send 500 error
 				res.status(500);
-				res.header("Content-Type", 'application/json');
+				res.header("Content-Type", "application/json");
         		res.send(JSON.stringify({ success: false, status: "Internal Server Error" }, null, 4));
 
 			}
@@ -161,7 +161,7 @@ process.on("uncaughtException", err => console.error(err));
 
 		// Start HTTP server
 		http.createServer(app).listen(4000);
-		console.info("Development server running on", chalk.cyan(`:4000 (http)`));
+		console.info("Development server running on", chalk.cyan(":4000 (http)"));
 
 	}
 
