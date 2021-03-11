@@ -1,13 +1,12 @@
 import chalk from "chalk";
 import compression from "compression";
 import cors from "cors";
-import express, { Request, Response, Express } from "express";
+import express, { Express, Request, Response } from "express";
 import { promises as fs } from "fs";
 import http from "http";
 import https from "https";
-import mysqlPromise, { Connection } from "promise-mysql";
 import path from "path";
-import url, { URL } from "url";
+import mysqlPromise, { Connection } from "promise-mysql";
 import YAML from "yaml";
 
 // Add methods to console

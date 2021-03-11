@@ -30,7 +30,8 @@ app.update = async hash => {
 		action: {
 			name: "update",
 			async click() {
-				await (await caches.keys()).map(async a => await caches.delete(a));
+				const keys = await caches.keys()
+				keys.map(async a => await caches.delete(a));
 				location.reload();
 			}
 		},
