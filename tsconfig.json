@@ -6,7 +6,6 @@
 		"baseUrl": "src",
         "types": ["node"],
 		"outDir": "lib",
-		"removeComments": true,
         "sourceMap": true,
         "strict": true,
         "esModuleInterop": true,
