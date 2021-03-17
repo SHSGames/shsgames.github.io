@@ -1,20 +1,23 @@
 import chalk from "chalk";
 import compression from "compression";
 import cors from "cors";
-import express, { Express, Request, Response } from "express";
-import { promises as fs } from "fs";
+import express, { Request, Response } from "express";
+import fs from "fs/promises";
 import http from "http";
 import https from "https";
 import path from "path";
 import mysqlPromise from "mysql-promise";
 import mysql from "mysql2";
 import YAML from "yaml";
+import dotenv from "dotenv";
+
+// Configure environment variables
+dotenv.config();
 
 // Add methods to console
-console.info = (...args) : void => { console.log(chalk.blue("[INFO]"), ...args); };
-console.error = (...args) : void => { console.log(chalk.red("[ERROR]"), ...args); };
-console.warn = (...args) : void => { console.log(chalk.yellow("[WARN]"), ...args); };
-console.success = (...args) : void => { console.log(chalk.green("[SUCCESS]"), ...args); };
+console.info = (...args) : void => { console.log(chalk.blue("[ INFO ] "), ...args); };
+console.error = (...args) : void => { console.log(chalk.red("[ ERROR ]"), ...args); };
+console.warn = (...args) : void => { console.log(chalk.yellow("[ WARN ] "), ...args); };
 
 // Log errors to console instead of killing the application
 process.on("uncaughtException", err => console.error(err));
@@ -25,7 +28,7 @@ process.on("uncaughtException", err => console.error(err));
 };
 
 // Start server
-(async function server(app: Express) {
+(async function server(app) {
 
 	// Get config from config.yml
 	const config: any = YAML.parse(await fs.readFile("./config.yml", "utf8"));
@@ -49,7 +52,7 @@ process.on("uncaughtException", err => console.error(err));
 			(global as any).mysql = db;
 
 			// Test connection
-			await db.query(`show tables`)
+			await db.query(`show tables`);
 			console.info("Logged into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
 
 		} catch (error) {
@@ -66,13 +69,13 @@ process.on("uncaughtException", err => console.error(err));
 	async function apiParser(req: Request, res: Response): Promise<void> {
 
 		// Deconstruct request URL
-		const pathname = req.originalUrl;
+		const pathname: string = req.originalUrl.split("?")[0];
 
 		// Start timer
 		const time: number = Date.now();
 
 		// Log API request
-		console.info("Received API request", chalk.cyan(pathname));
+		console.info("Received API request", chalk.yellow(req.method), chalk.cyan(pathname));
 
 		// Set timer to make request time out
 		setTimeout(function() {
@@ -95,7 +98,7 @@ process.on("uncaughtException", err => console.error(err));
 		try {
 
 			// Import endpoint
-			const endpoint: Promise<object> = require(`.${pathname}.js`).default(req, res);
+			const endpoint: Promise<object> = require(`./lib${pathname}.js`).default(req, res);
 
 			// Execute endpoint in context of request
 			endpoint.then((response: object) => {
@@ -126,7 +129,7 @@ process.on("uncaughtException", err => console.error(err));
 		} catch(error) {
 
 			// If module not found
-			if(error.code === "ERR_MODULE_NOT_FOUND" && error.toString().includes(`Cannot find module '${__dirname}${pathname}.js'`)) {
+			if(error.toString().includes(pathname)) {
 
 				// Send 404 error
 				res.status(404);
@@ -155,7 +158,7 @@ process.on("uncaughtException", err => console.error(err));
 	// Use body parser to parse fields
 	app.use(express.json());
 
-	// Listen and pass API calls
+	// Listen and pass api
 	app.use("/api/**", apiParser);
 
 	// If the application is running in development mode
@@ -174,7 +177,7 @@ process.on("uncaughtException", err => console.error(err));
 		app.use(compression());
 
 		// Redirect HTTP to HTTPS
-		app.all("*", ({ secure, hostname, url }, res: Response, next) => {
+		app.all("*", ({ secure, hostname, url }, res, next) => {
 		  	if (config.ssl.use === false || config.ssl.redirect === false || secure) return next();
 		  	else res.redirect(`https://${hostname}${url}`);
 		});
@@ -183,7 +186,7 @@ process.on("uncaughtException", err => console.error(err));
 		app.use(express.static("public_html", { extensions: ["html"] }));
 
 		// Catch 404's and send the index document - history-fallback-api
-		app.get("*", (_request, response: Response) => response.sendFile(path.resolve("public_html/index.html")));
+		app.get("*", (_request, response) => response.sendFile(path.resolve("public_html/index.html")));
 
 		// Start HTTP server
 		http.createServer(app).listen(config["port"]);

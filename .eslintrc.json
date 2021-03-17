@@ -1,0 +1,60 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "commonjs": true,
+        "shared-node-browser": true
+    },
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "globals": {
+        "Photon": "writable",
+        "app": "writable",
+        "APP_MANIFEST": "writable",
+        "PRODUCTION": "writable",
+        "$": "writable"
+    },
+    "plugins": ["react", "@typescript-eslint"],
+    "rules": {
+        "indent": ["error", "tab"],
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "double"],
+        "semi": ["error"],
+        "no-eval": ["error"],
+        "no-eq-null": ["error"],
+        "spaced-comment": ["error"],
+        "space-unary-ops": ["error"],
+        "comma-dangle": ["error"],
+        "no-extra-parens": ["error"],
+        "no-loss-of-precision": ["error"],
+        "no-template-curly-in-string": ["error"],
+        "no-unreachable-loop": ["error"],
+        "no-unsafe-optional-chaining": ["error"],
+        "no-useless-backreference": ["error"],
+        "require-atomic-updates": ["error"],
+        "default-case": ["error"],
+        "default-case-last": ["error"],
+        "default-param-last": ["error"],
+        "eqeqeq": ["error"],
+        "object-curly-spacing": ["error", "always"],
+        "array-bracket-spacing": ["error", "always"],
+        "curly": ["error", "multi-or-nest"]
+    },
+    "overrides": [{
+        "files": ["src/**/*.js"],
+        "rules": {
+            "react/display-name": ["off"],
+            "no-prototype-builtins": ["off"],
+            "@typescript-eslint/no-var-requires": ["off"],
+            "@typescript-eslint/explicit-module-boundary-types": ["off"]
+        }
+    }]
+}

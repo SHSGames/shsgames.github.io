@@ -6,7 +6,7 @@
     "scripts": {
         "build": "tsc; ./node_modules/.bin/uuid > hash && ./node_modules/.bin/webpack --config webpack.prod.cjs && mv hash public_html/ && cp public_html/index.html public_html/404.html",
         "watch-ts": "tsc -w --preserveWatchOutput",
-        "watch-api": "env NODE_ENV=dev ./node_modules/.bin/nodemon .",
+        "watch-js": "env NODE_ENV=dev ./node_modules/.bin/nodemon .",
         "watch-webpack": "./node_modules/.bin/uuid > hash && ./node_modules/.bin/webpack-dev-server --config webpack.dev.cjs",
         "dev": "./node_modules/.bin/concurrently \"npm:watch-*\"",
         "dev-api": "./node_modules/.bin/concurrently \"npm:watch-js\" \"npm:watch-ts\"",
@@ -82,6 +82,7 @@
         "chalk": "^4.1.0",
         "compression": "^1.7.4",
         "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "express-rate-limit": "^5.2.3",
         "http": "0.0.1-security",
