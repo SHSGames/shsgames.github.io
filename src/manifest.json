@@ -14,5 +14,9 @@
 	  	"sizes": [96, 128, 192, 256, 384, 512],
 		"purpose": "maskable",
 		"destination": "static/"
+	}, {
+	  	"src": "src/static/icon.png",
+	  	"sizes": [96, 128, 192, 256, 384, 512],
+		"destination": "static/"
 	}]
 }
