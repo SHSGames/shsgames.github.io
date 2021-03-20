@@ -189,8 +189,8 @@ process.on("uncaughtException", err => console.error(err));
 		app.get("*", (_request, response) => response.sendFile(path.resolve("public_html/index.html")));
 
 		// Start HTTP server
-		http.createServer(app).listen(config["port"]);
-		console.info("Production server running on", chalk.cyan(`:${config["port"]} (http)`));
+		http.createServer(app).listen(process.env.PORT || config["port"]);
+		console.info("Production server running on", chalk.cyan(`:${process.env.PORT || config["port"]} (http)`));
 
 		// Start HTTPS server
 		if(config.ssl.use === true) {

@@ -27,22 +27,22 @@ module.exports = {
             }
         }, {
 			test: /\.css/i,
-			use: [{ loader: MiniCssExtractPlugin.loader, options: { publicPath: "../" }}, "css-loader" ]
+			use: [ { loader: MiniCssExtractPlugin.loader, options: { publicPath: "../" } }, "css-loader" ]
         }, {
 			test: /\.less/i,
-			use: [{ loader: MiniCssExtractPlugin.loader, options: { publicPath: "../" }}, "css-loader", "less-loader" ]
+			use: [ { loader: MiniCssExtractPlugin.loader, options: { publicPath: "../" } }, "css-loader", { loader: "less-loader", options: { lessOptions: { rewriteUrls: "local" } } } ]
 		}, {
 			test: /\.(woff|woff2|eot|ttf|otf)$/,
-			use: [{
+			use: [ {
 				loader: "file-loader",
 				options: { name: "static/[contenthash].[ext]" }
-			}]
+			} ]
 		}, {
 			include: path.join(__dirname, "src/static"),
 			use: [{
 				loader: "file-loader",
 				options: { name: "static/[contenthash].[ext]" }
-			}]
+			} ]
 		}, {
 			test: /\.(txt|md|pem|raw)$/,
 			use: [ "raw-loader" ]
