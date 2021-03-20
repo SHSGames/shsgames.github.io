@@ -1,6 +1,6 @@
 # react-app
 Create single page applications using PhotonCSS that are fast as sh!t
-![100% Score in Lighthouse](https://i.ibb.co/Rg6gmVn/Screenshot-2021-02-26-205111.png)
+![100% Score in Lighthouse](https://i.ibb.co/tctcbvR/ezgif-3-9a5c3774d3c5.gif)
 
 ## Initial set-up
 The following software is installed:
