@@ -2,3 +2,4 @@ public_html/
 node_modules/
 lib/
 hash
+src/js/
