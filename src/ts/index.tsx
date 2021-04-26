@@ -2,17 +2,19 @@ import React, { useEffect } from "react";
 import { render } from "react-dom";
 import { BrowserRouter, HashRouter, Route } from "react-router-dom";
 import * as OfflinePluginRuntime from "offline-plugin/runtime";
-import "./styles/main.less";
+import "../styles/main.less";
 import "script-loader!jquery";
-import "photoncss";
-import "./app";
+import { ThemeProvider } from "photoncss/react";    // Import Photon in to the project
+import "photoncss/dist/photon.css";                 // Import the Photon stylesheet
+import app from "./app";
+import $ from "jquery";
 
 // Get right router type for app
 const Router = location.protocol === "file:" ? HashRouter : BrowserRouter;
 
 // Import all views
-const views = [];
-const importAll = a => a.keys().forEach(k => views.push(a(k)));
+const views: { route: string, View: JSX.Element, title?: string, default: JSX.Element }[] = [];
+const importAll = (a: __WebpackModuleApi.RequireContext) => a.keys().forEach((k: string) => views.push(a(k)));
 importAll(require.context("./views", true, /\.js$/));
 
 // Root component
@@ -34,16 +36,15 @@ function Root() {
 				// Change route cache
 				route = app.getRoute();
 
-				// Reset scroll and reload Photon
+				// Reset scroll
 				$(window).scrollTop(0);
-				Photon.reload();
 
 				// Get view
-				let view = views.filter(({ route }) => new RegExp(route.replace(/:\w.*/g, "\\w.*"), "g").test(app.getRoute()));
-				view = view.length > 1 ? view[view[0].route === "/" ? 1:0] : view[0];
+				const _view = views.filter(({ route }) => new RegExp(route.replace(/:\w.*/g, "\\w.*"), "g").test(app.getRoute()));
+				const view = _view.length > 1 ? _view[_view[0].route === "/" ? 1:0] : _view[0];
 
 				// Get title from route
-				const title = view.hasOwnProperty("title") ? `${view.title} • ${APP_MANIFEST.name}` : APP_MANIFEST.name;
+				const title = view?.title !== undefined ? `${view.title} • ${APP_MANIFEST.name}` : APP_MANIFEST.name;
 
 				// Set new title
 				document.title = title;
@@ -54,11 +55,13 @@ function Root() {
 
 	// Render router
 	return (
-		<Router>
-			<main>
-				{ views.map(({ route, View, default: def }, key) => <Route key={key} path={route} exact={true} component={def || View}/> ) }
-			</main>
-		</Router>
+		<ThemeProvider global>
+			<Router>
+				<main>
+					{ views.map(({ route, View, default: def }, key) => <Route key={key} path={route} exact={true} component={def || View}/> ) }
+				</main>
+			</Router>
+		</ThemeProvider>
 	);
 
 }
@@ -83,6 +86,7 @@ if(PRODUCTION) {
 	OfflinePluginRuntime.install();
 
 	// Get client version
+	/* eslint @typescript-eslint/no-var-requires: 0 */
 	const client = require("raw-loader!../hash").default;
 
 	// Get server version

@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-	entry: [ "@babel/polyfill", "./src/index.js" ],
+	entry: [ "@babel/polyfill", "./src/js/index.js" ],
 	output: {
 		path: __dirname + "/public_html",
 		filename: "app/[name].[contenthash].js"
