@@ -71,26 +71,22 @@ export default function(req: Request, res: Response) {
 1. Create a file in the `components` folder
 2. Import components using `import MyComponent from "components/MyComponent";`
 
-`~/my-app/src/components/MyComponent.js`
+`~/my-app/src/ts/components/MyComponent.tsx`
 ```js
 import React from "react";
 
 // Export the component
 export default function MyComponent() {
-	return (
-		<div>
-			My Component
-		</div>
-	)
+	return <>My Component</>;
 }
 ```
 
 ### Creating views (pages)
 1. Create a file in the `views` folder
 
-`~/my-app/src/views/Index.js`
+`~/my-app/src/ts/views/Index.tsx`
 ```js
-import React, { Fragment } from "react";
+import React from "react";
 
 // Export the title of the tab
 export const title = "My Page";
@@ -100,11 +96,7 @@ export const route = "/";
 
 // Export view
 export default function() {
-	return (
-		<Fragment>
-			get started by editing `~/my-app/src/views/Index.js::View`
-		</Fragment>
-	)
+	return <>get started by editing `~/my-app/src/ts/views/Index.tsx::View`</>
 }
 ```
 
