@@ -28,6 +28,10 @@ interface Config {
 	mysql: MySQLConfig;
 }
 
+declare function api(path: string, params?: object): Promise<object>;
+declare const config: Config;
+declare const mysql: MySQL;
+
 interface GlobalBackend extends NodeJS.Global {
 
 	api(path: string, params?: object): Promise<object>;

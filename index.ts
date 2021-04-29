@@ -188,8 +188,11 @@ global.api = async function(endpoint: string, query: object = {}): Promise<objec
 		// Serve static files from the last built server
 		app.use(express.static("public_html", { extensions: [ "html" ] }));
 
+		// Cache index
+		const indexHTML = await fs.readFile(path.resolve("public_html/index.html"), "utf8");
+
 		// Catch 404's and send the index document - history-fallback-api
-		app.get("*", (_request, response) => response.sendFile(path.resolve("public_html/index.html")));
+		app.get("*", (_request, response) => response.header("content-type", "text/html").send(indexHTML));
 
 		// Start HTTP server
 		http.createServer(app).listen(process.env.PORT || config["port"]);

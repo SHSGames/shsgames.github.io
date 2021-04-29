@@ -87,7 +87,7 @@ if(PRODUCTION) {
 
 	// Get client version
 	/* eslint @typescript-eslint/no-var-requires: 0 */
-	const client = require("raw-loader!../../hash").default;
+	const client: string = require("raw-loader!../../hash").default;
 
 	// Get server version
 	(function update(): void {

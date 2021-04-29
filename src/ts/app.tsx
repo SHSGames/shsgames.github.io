@@ -1,16 +1,12 @@
+
+import React from "react";
 import Photon from "photoncss";
+import { Button, Snackbar } from "photoncss/react";
 
-// Initialize app
-const app = {
-
-	// Resolve assets from the static folder
+const app: App = {
 	/* eslint @typescript-eslint/no-var-requires: 0 */
 	static: (asset: string): string => require(`../static/${asset}`).default,
-
-	// Get current route
 	getRoute: (): string => location.protocol === "file:" ? location.href.split("#")[1] || "/" : location.pathname,
-
-	// Add API request system
 	api: (path: string, data = {}): Promise<unknown> => new Promise(function(resolve, reject) {
 		fetch(`/api/${path}`, {
 			method: "POST",
@@ -23,21 +19,19 @@ const app = {
 			body: JSON.stringify(data)
 		}).then(resp => resp.json()).then(resolve).catch(reject) ;
 	}),
+	update: (hash: string): void => {
+		async function click(): Promise<void> {
+			const keys = await caches.keys();
+			keys.map(async a => await caches.delete(a));
+			location.reload();
+		}
 
-	// Add method to clear cache and update
-	update: async (hash: string): Promise<void> => {
-		Photon.Snackbar({
-			content: `An update is available. Build ID: <code>${hash}</code>`,
-			action: {
-				name: "update",
-				async click(): Promise<void> {
-					const keys = await caches.keys();
-					keys.map(async a => await caches.delete(a));
-					location.reload();
-				}
-			},
-			duration: 1e10
-		});
+		Photon.Snackbar(
+			<Snackbar>
+				<p>An update is available. Build ID: <code>{hash}</code></p>
+				<Button variant="flat" color="secondary" onClick={click}>update</Button>
+			</Snackbar>
+		);
 	}
 
 };

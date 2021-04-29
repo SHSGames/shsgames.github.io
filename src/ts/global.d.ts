@@ -4,7 +4,6 @@ declare module "photoncss/react";
 declare module "react-dom";
 declare module "react-router-dom";
 
-
 declare const PRODUCTION: boolean;
 
 interface AppManifest {
@@ -27,3 +26,10 @@ interface AppManifest {
 }
 
 declare const APP_MANIFEST: AppManifest;
+
+interface App {
+	static: (asset: string) => string;
+	getRoute: () => string;
+	api: (path: string, data = {}) => Promise<unknown>;
+	update: (hash: string) => void;
+}
