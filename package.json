@@ -9,7 +9,7 @@
         "build-ts": "./node_modules/.bin/tsc",
         "watch-ts": "./node_modules/.bin/tsc -w --preserveWatchOutput",
         "build-tsx": "cd src; ../node_modules/.bin/tsc",
-        "watch-tsx": "cd src; ./node_modules/.bin/tsc -w --preserveWatchOutput",
+        "watch-tsx": "cd src; ../node_modules/.bin/tsc -w --preserveWatchOutput",
         "watch-js": "env NODE_ENV=dev ./node_modules/.bin/nodemon .",
         "build-webpack": "./node_modules/.bin/uuid > hash; ./node_modules/.bin/webpack --config webpack.prod.cjs; mv hash public_html/; cp public_html/index.html public_html/404.html",
         "watch-webpack": "./node_modules/.bin/uuid > hash; ./node_modules/.bin/webpack-dev-server --config webpack.dev.cjs",
