@@ -1,4 +1,5 @@
 # react-app
+[![Rebuild CI](https://github.com/JoshMerlino/react-app/actions/workflows/rebuild.yml/badge.svg?branch=master)](https://github.com/JoshMerlino/react-app/actions/workflows/rebuild.yml)
 Create single page applications using PhotonCSS that are fast as sh!t
 ![100% Score in Lighthouse](https://i.ibb.co/tctcbvR/ezgif-3-9a5c3774d3c5.gif)
 
