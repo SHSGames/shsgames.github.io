@@ -1,6 +1,13 @@
+declare module "photoncss";
+declare module "photoncss/react";
+
+declare module "react-dom";
+declare module "react-router-dom";
+
+
 declare const PRODUCTION: boolean;
 
-declare const APP_MANIFEST: {
+interface AppManifest {
 	name: string;
     short_name: string;
 	version: string;
@@ -17,4 +24,6 @@ declare const APP_MANIFEST: {
 		purpose?: string;
 		destination: string;
 	}[];
-};
+}
+
+declare const APP_MANIFEST: AppManifest;
