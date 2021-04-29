@@ -18,9 +18,9 @@ declare const global: GlobalBackend;
 dotenv.config();
 
 // Add methods to console
-console.info = (...args): void => { console.log(chalk.blue("[ INFO ] "), ...args); };
-console.error = (...args): void => { console.log(chalk.red("[ ERROR ]"), ...args); };
-console.warn = (...args): void => { console.log(chalk.yellow("[ WARN ] "), ...args); };
+console.info = (...args): void => console.log(chalk.blue("[ INFO ] "), ...args);
+console.error = (...args): void => console.log(chalk.red("[ ERROR ]"), ...args);
+console.warn = (...args): void => console.log(chalk.yellow("[ WARN ] "), ...args);
 
 // Log errors to console instead of killing the application
 process.on("uncaughtException", err => console.error(err));
@@ -41,7 +41,7 @@ global.api = async function(endpoint: string, query: object = {}): Promise<objec
 	global.config = config;
 
 	// If MySQL is used
-	if(config.mysql.use) {
+	if (config.mysql.use) {
 
 		// Get MySQL config
 		const conf = config.mysql;
@@ -69,7 +69,7 @@ global.api = async function(endpoint: string, query: object = {}): Promise<objec
 	}
 
 	// API parser middleware
-	async function apiParser(req: Request, res: Response): Promise<void> {
+	function apiParser(req: Request, res: Response): void {
 
 		// Deconstruct request URL
 		const pathname: string = req.originalUrl.split("?")[0];
@@ -84,7 +84,7 @@ global.api = async function(endpoint: string, query: object = {}): Promise<objec
 		setTimeout(function() {
 
 			// Make sure that nothing was sent
-			if(!res.headersSent) {
+			if (!res.headersSent) {
 
 				// Respond with timeout code
 				res.status(408);
@@ -122,17 +122,18 @@ global.api = async function(endpoint: string, query: object = {}): Promise<objec
 				// Send error message
 				res.send(JSON.stringify({ success: false, status: "Request Rejected", error }, null, 4));
 
-			}).finally(function() {
+			})
+				.finally(function() {
 
-				// Log timings to console for debug
-				console.info("API request to", chalk.cyan(pathname), "responded in", chalk.cyan(`${Date.now() - time}ms`));
+					// Log timings to console for debug
+					console.info("API request to", chalk.cyan(pathname), "responded in", chalk.cyan(`${Date.now() - time}ms`));
 
-			});
+				});
 
-		} catch(error) {
+		} catch (error) {
 
 			// If module not found
-			if(error.toString().includes(pathname)) {
+			if (error.toString().includes(pathname)) {
 
 				// Send 404 error
 				res.status(404);
@@ -171,10 +172,8 @@ global.api = async function(endpoint: string, query: object = {}): Promise<objec
 		http.createServer(app).listen(4000);
 		console.info("Development server running on", chalk.cyan(":4000 (http)"));
 
-	}
-
 	// If the application is running in production mode
-	else {
+	} else {
 
 		// Use gzip when serving files
 		app.use(compression());
@@ -182,7 +181,8 @@ global.api = async function(endpoint: string, query: object = {}): Promise<objec
 		// Redirect HTTP to HTTPS
 		app.all("*", ({ secure, hostname, url }, res, next) => {
 			if (config.ssl.use === false || config.ssl.redirect === false || secure) return next();
-			else res.redirect(`https://${hostname}${url}`);
+			res.redirect(`https://${hostname}${url}`);
+			return next();
 		});
 
 		// Serve static files from the last built server
@@ -195,11 +195,11 @@ global.api = async function(endpoint: string, query: object = {}): Promise<objec
 		app.get("*", (_request, response) => response.header("Content-Type", "text/html").send(indexHTML));
 
 		// Start HTTP server
-		http.createServer(app).listen(process.env.PORT || config["port"]);
-		console.info("Production server running on", chalk.cyan(`:${process.env.PORT || config["port"]} (http)`));
+		http.createServer(app).listen(process.env.PORT || config.port);
+		console.info("Production server running on", chalk.cyan(`:${process.env.PORT || config.port} (http)`));
 
 		// Start HTTPS server
-		if(config.ssl.use === true) {
+		if (config.ssl.use === true) {
 			(async function(): Promise<void> {
 
 				// Get certificates

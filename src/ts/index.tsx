@@ -4,8 +4,8 @@ import { BrowserRouter, HashRouter, Route } from "react-router-dom";
 import * as OfflinePluginRuntime from "offline-plugin/runtime";
 import "../styles/main.less";
 import "script-loader!jquery";
-import { ThemeProvider } from "photoncss/react";    // Import Photon in to the project
-import "photoncss/dist/photon.css";                 // Import the Photon stylesheet
+import { ThemeProvider } from "photoncss/react";
+import "photoncss/dist/photon.css";
 import app from "./app";
 import $ from "jquery";
 
@@ -13,7 +13,7 @@ import $ from "jquery";
 const Router = location.protocol === "file:" ? HashRouter : BrowserRouter;
 
 // Import all views
-const views: { route: string; View: JSX.Element; title?: string; default: JSX.Element }[] = [];
+const views: View[] = [];
 const importAll = (a: __WebpackModuleApi.RequireContext): void => a.keys().forEach((k: string) => views.push(a(k)));
 importAll(require.context("./views", true, /\.js$/));
 
@@ -31,7 +31,7 @@ function Root(): JSX.Element {
 			requestAnimationFrame(loop);
 
 			// If route/page was changed
-			if(route !== app.getRoute()) {
+			if (route !== app.getRoute()) {
 
 				// Change route cache
 				route = app.getRoute();
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // If is running in production
-if(PRODUCTION) {
+if (PRODUCTION) {
 
 	// Register a static asset caching service-worker
 	OfflinePluginRuntime.install();
@@ -92,20 +92,22 @@ if(PRODUCTION) {
 	// Get server version
 	(function update(): void {
 
-		fetch(`/hash?${Date.now()}`).then(resp => resp.text()).then(async server => {
+		fetch(`/hash?${Date.now()}`)
+			.then(resp => resp.text())
+			.then(server => {
 
-			// Make sure client recieved a hash
-			if(server.match(/([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}/gmi)) {
+				// Make sure client recieved a hash
+				if (server.match(/([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}/gmi)) {
 
-				// Update the client
-				if(server !== client) app.update(server.substr(0, 8));
+					// Update the client
+					if (server !== client) app.update(server.substr(0, 8));
 
-				// If there is no update available, retry in 60s
-				else setTimeout(update, 60000);
+					// If there is no update available, retry in 60s
+					else setTimeout(update, 60000);
 
-			}
+				}
 
-		});
+			});
 
 	}());
 

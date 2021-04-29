@@ -14,21 +14,21 @@ module.exports = {
 		path: __dirname + "/public_html",
 		filename: "app/[name].[contenthash].js"
 	},
-    module: {
-        rules: [{
-            test: /\.js$/,
-            use: {
-                loader: "babel-loader",
-                options: {
+	module: {
+		rules: [ {
+			test: /\.js$/,
+			use: {
+				loader: "babel-loader",
+				options: {
 					compact: true,
-                    presets: [ "@babel/preset-react", "@babel/preset-env" ],
+					presets: [ "@babel/preset-react", "@babel/preset-env" ],
 					plugins: [ "@babel/plugin-proposal-class-properties" ]
-                }
-            }
-        }, {
+				}
+			}
+		}, {
 			test: /\.css/i,
 			use: [ { loader: MiniCssExtractPlugin.loader, options: { publicPath: "../" } }, "css-loader" ]
-        }, {
+		}, {
 			test: /\.less/i,
 			use: [ { loader: MiniCssExtractPlugin.loader, options: { publicPath: "../" } }, "css-loader", { loader: "less-loader", options: { lessOptions: { rewriteUrls: "local" } } } ]
 		}, {
@@ -39,18 +39,18 @@ module.exports = {
 			} ]
 		}, {
 			include: path.join(__dirname, "src/static"),
-			use: [{
+			use: [ {
 				loader: "file-loader",
 				options: { name: "static/[contenthash].[ext]" }
 			} ]
 		}, {
 			test: /\.(txt|md|pem|raw)$/,
 			use: [ "raw-loader" ]
-		}]
-    },
+		} ]
+	},
 
   	plugins: [
-		new CleanWebpackPlugin(),
+		new CleanWebpackPlugin,
 		new HtmlWebpackPlugin({
 			template: "src/index.html",
 			favicon: "src/static/icon.png",
@@ -69,18 +69,18 @@ module.exports = {
 		}),
 		new CopyWebpackPlugin({
       		patterns: [
-        		{ from: "src/robots.txt", to: "." },
-      		],
+        		{ from: "src/robots.txt", to: "." }
+      		]
     	}),
 		new DefinePlugin({ APP_MANIFEST: JSON.stringify(manifest) }),
-		new OfflinePlugin(),
+		new OfflinePlugin
   	],
 
 	resolve: {
-		extensions: [".js"],
-        alias: {
-            "@photoncss": path.join(__dirname, "./node_modules/photoncss/modules"),
+		extensions: [ ".js" ],
+		alias: {
+			"@photoncss": path.join(__dirname, "./node_modules/photoncss/modules"),
 			"static": path.join(__dirname, "./src/static")
-        }
-    }
+		}
+	}
 };

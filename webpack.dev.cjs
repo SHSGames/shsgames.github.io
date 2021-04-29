@@ -7,15 +7,15 @@ module.exports = merge(require("./webpack.conf.cjs"), {
 		filename: "app/[name].dev.js"
 	},
 	plugins: [
-		new HotModuleReplacementPlugin(),
+		new HotModuleReplacementPlugin,
 		new DefinePlugin({ PRODUCTION: JSON.stringify(false) })
 	],
 	devtool: "eval-source-map",
 	devServer: {
-        port: 8080,
-        contentBase: "./src",
+		port: 8080,
+		contentBase: "./src",
 		index: "index.html",
-        watchContentBase: true,
+		watchContentBase: true,
 		writeToDisk: false,
 		historyApiFallback: {
 			index: "/index.html",
@@ -30,6 +30,6 @@ module.exports = merge(require("./webpack.conf.cjs"), {
 		hot: true,
 		inline: true,
 		open: true,
-		host: "localhost",
-    }
+		host: "localhost"
+	}
 });

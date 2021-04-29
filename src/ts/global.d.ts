@@ -1,3 +1,4 @@
+/* eslint camelcase: off */
 declare module "photoncss";
 declare module "photoncss/react";
 
@@ -5,6 +6,13 @@ declare module "react-dom";
 declare module "react-router-dom";
 
 declare const PRODUCTION: boolean;
+
+interface View {
+	route: string;
+	View: JSX.Element;
+	default: JSX.Element;
+	title?: string;
+}
 
 interface AppManifest {
 	name: string;
