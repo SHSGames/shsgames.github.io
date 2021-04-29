@@ -1,12 +1,13 @@
 {
-    "name": "photon-pwa",
+    "name": "react-app",
     "version": "1.0.0",
-    "description": "Create single page applications using PhotonCSS",
+    "description": "Create react apps using typescript and photoncss",
+	"author": "Josh Merlino",
     "main": "./lib/index.js",
     "scripts": {
-        "build": "tsc; ./node_modules/.bin/uuid > hash && ./node_modules/.bin/webpack --config webpack.prod.cjs && mv hash public_html/ && cp public_html/index.html public_html/404.html",
-        "watch-ts": "tsc -w --preserveWatchOutput",
-        "watch-tsx": "cd src && tsc -w --preserveWatchOutput",
+        "build": "./node_modules/.bin/tsc; ./node_modules/.bin/uuid > hash && ./node_modules/.bin/webpack --config webpack.prod.cjs && mv hash public_html/ && cp public_html/index.html public_html/404.html",
+        "watch-ts": "./node_modules/.bin/tsc -w --preserveWatchOutput",
+        "watch-tsx": "cd src && ./node_modules/.bin/tsc -w --preserveWatchOutput",
         "watch-js": "env NODE_ENV=dev ./node_modules/.bin/nodemon .",
         "watch-webpack": "./node_modules/.bin/uuid > hash && ./node_modules/.bin/webpack-dev-server --config webpack.dev.cjs",
         "dev": "./node_modules/.bin/concurrently \"npm:watch-*\"",
@@ -14,7 +15,6 @@
         "serve": "node ."
     },
     "keywords": [],
-    "author": "Josh Merlino",
     "license": "ISC",
     "nodemonConfig": {
         "ignore": [
