@@ -16,5 +16,5 @@ declare const APP_MANIFEST: {
 		sizes: number[];
 		purpose?: string;
 		destination: string;
-	}[]
+	}[];
 };

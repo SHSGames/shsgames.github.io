@@ -13,19 +13,19 @@ import $ from "jquery";
 const Router = location.protocol === "file:" ? HashRouter : BrowserRouter;
 
 // Import all views
-const views: { route: string, View: JSX.Element, title?: string, default: JSX.Element }[] = [];
-const importAll = (a: __WebpackModuleApi.RequireContext) => a.keys().forEach((k: string) => views.push(a(k)));
+const views: { route: string; View: JSX.Element; title?: string; default: JSX.Element }[] = [];
+const importAll = (a: __WebpackModuleApi.RequireContext): void => a.keys().forEach((k: string) => views.push(a(k)));
 importAll(require.context("./views", true, /\.js$/));
 
 // Root component
-function Root() {
+function Root(): JSX.Element {
 
 	// On mount
 	useEffect(function() {
 
 		// Initialize route
 		let route = "";
-		(function loop() {
+		(function loop(): void {
 
 			// Run again on next fraome
 			requestAnimationFrame(loop);
@@ -90,7 +90,7 @@ if(PRODUCTION) {
 	const client = require("raw-loader!../hash").default;
 
 	// Get server version
-	(function update(){
+	(function update(): void {
 
 		fetch(`/hash?${Date.now()}`).then(resp => resp.text()).then(async server => {
 

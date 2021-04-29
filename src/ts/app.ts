@@ -30,7 +30,7 @@ const app = {
 			content: `An update is available. Build ID: <code>${hash}</code>`,
 			action: {
 				name: "update",
-				async click() {
+				async click(): Promise<void> {
 					const keys = await caches.keys();
 					keys.map(async a => await caches.delete(a));
 					location.reload();
