@@ -192,7 +192,7 @@ global.api = async function(endpoint: string, query: object = {}): Promise<objec
 		const indexHTML = await fs.readFile(path.resolve("public_html/index.html"), "utf8");
 
 		// Catch 404's and send the index document - history-fallback-api
-		app.get("*", (_request, response) => response.header("content-type", "text/html").send(indexHTML));
+		app.get("*", (_request, response) => response.header("Content-Type", "text/html").send(indexHTML));
 
 		// Start HTTP server
 		http.createServer(app).listen(process.env.PORT || config["port"]);
