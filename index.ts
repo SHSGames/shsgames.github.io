@@ -11,31 +11,34 @@ import mysql from "mysql2";
 import YAML from "yaml";
 import dotenv from "dotenv";
 
+// Configure global
+declare const global: GlobalBackend;
+
 // Configure environment variables
 dotenv.config();
 
 // Add methods to console
-console.info = (...args) : void => { console.log(chalk.blue("[ INFO ] "), ...args); };
-console.error = (...args) : void => { console.log(chalk.red("[ ERROR ]"), ...args); };
-console.warn = (...args) : void => { console.log(chalk.yellow("[ WARN ] "), ...args); };
+console.info = (...args): void => { console.log(chalk.blue("[ INFO ] "), ...args); };
+console.error = (...args): void => { console.log(chalk.red("[ ERROR ]"), ...args); };
+console.warn = (...args): void => { console.log(chalk.yellow("[ WARN ] "), ...args); };
 
 // Log errors to console instead of killing the application
 process.on("uncaughtException", err => console.error(err));
 
 // Get API function for internal use
-(global as any).api = async function(endpoint: string, query: object = {}) : Promise<object> {
+global.api = async function(endpoint: string, query: object = {}): Promise<object> {
 	return await (await require(`./api/${endpoint}.js`))({ query });
 };
 
 // Start server
-(async function server(app) {
+(async function server(app): Promise<void> {
 
 	// Get config from config.yml
-	const config: any = YAML.parse(await fs.readFile("./config.yml", "utf8"));
+	const config: Config = YAML.parse(await fs.readFile("./config.yml", "utf8"));
 	console.info("Parsed configuration from", chalk.cyan("config.yml"));
 
 	// Load config into global scope
-	(global as any).config = config;
+	global.config = config;
 
 	// If MySQL is used
 	if(config.mysql.use) {
@@ -49,10 +52,10 @@ process.on("uncaughtException", err => console.error(err));
 
 			// Try and log in
 			db.configure(conf, mysql);
-			(global as any).mysql = db;
+			global.mysql = db;
 
 			// Test connection
-			await db.query(`show tables`);
+			await db.query("show tables");
 			console.info("Logged into MySQL as", chalk.cyan(`${config.mysql.user}@${config.mysql.host}`));
 
 		} catch (error) {
@@ -87,7 +90,7 @@ process.on("uncaughtException", err => console.error(err));
 				res.status(408);
 				res.header("Content-Type", "application/json");
 
-        		res.send(JSON.stringify({ success: false, status: `Request Timeout (${config["timeout-time"]}s)` }, null, 4));
+				res.send(JSON.stringify({ success: false, status: `Request Timeout (${config["timeout-time"]}s)` }, null, 4));
 				console.warn("API request to", chalk.cyan(pathname), "timed out after", chalk.cyan(`${Date.now() - time}ms`));
 
 			}
@@ -108,16 +111,16 @@ process.on("uncaughtException", err => console.error(err));
 				res.header("Content-Type", "application/json");
 
 				// Respond to request
-        		res.send(JSON.stringify({ success: true, ...response }, null, 4));
+				res.send(JSON.stringify({ success: true, ...response }, null, 4));
 
-			}).catch((error: any) => {
+			}).catch((error: object) => {
 
 				// Send error status
 				res.status(res.statusCode || 400);
 				res.header("Content-Type", "application/json");
 
 				// Send error message
-        		res.send(JSON.stringify({ success: false, status: "Request Rejected", error }, null, 4));
+				res.send(JSON.stringify({ success: false, status: "Request Rejected", error }, null, 4));
 
 			}).finally(function() {
 
@@ -134,14 +137,14 @@ process.on("uncaughtException", err => console.error(err));
 				// Send 404 error
 				res.status(404);
 				res.header("Content-Type", "application/json");
-        		res.send(JSON.stringify({ success: false, status: "Not Found" }, null, 4));
+				res.send(JSON.stringify({ success: false, status: "Not Found" }, null, 4));
 
 			} else {
 
 				// Send 500 error
 				res.status(500);
 				res.header("Content-Type", "application/json");
-        		res.send(JSON.stringify({ success: false, status: "Internal Server Error" }, null, 4));
+				res.send(JSON.stringify({ success: false, status: "Internal Server Error" }, null, 4));
 
 			}
 
@@ -178,12 +181,12 @@ process.on("uncaughtException", err => console.error(err));
 
 		// Redirect HTTP to HTTPS
 		app.all("*", ({ secure, hostname, url }, res, next) => {
-		  	if (config.ssl.use === false || config.ssl.redirect === false || secure) return next();
-		  	else res.redirect(`https://${hostname}${url}`);
+			if (config.ssl.use === false || config.ssl.redirect === false || secure) return next();
+			else res.redirect(`https://${hostname}${url}`);
 		});
 
 		// Serve static files from the last built server
-		app.use(express.static("public_html", { extensions: ["html"] }));
+		app.use(express.static("public_html", { extensions: [ "html" ] }));
 
 		// Catch 404's and send the index document - history-fallback-api
 		app.get("*", (_request, response) => response.sendFile(path.resolve("public_html/index.html")));
@@ -194,7 +197,7 @@ process.on("uncaughtException", err => console.error(err));
 
 		// Start HTTPS server
 		if(config.ssl.use === true) {
-			(async function() {
+			(async function(): Promise<void> {
 
 				// Get certificates
 				const cert = await fs.readFile(`${config.ssl["cert-root"]}/cert.pem`, "utf8");
