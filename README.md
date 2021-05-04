@@ -1,21 +1,36 @@
 # ts-package
-Easily create Typescript node.js packages from this boilerplate
+[![Rebuild CI](https://github.com/JoshMerlino/ts-package/actions/workflows/rebuild.yml/badge.svg?branch=master)](https://github.com/JoshMerlino/ts-package/actions/workflows/rebuild.yml)
 
-### Getting Started
-1. Make sure you have node.js `v12+` installed on your system. I'm using node `v14.15.4`.
-2. Install dependencies with `npm install`
+## Initial set-up
+The following software is installed:
+* ubuntu-20.04.1lts
+* git-2.25.1
+* node-14.15.4
+* npm-6.14.10
 
-### Running in development mode
+### Cloning the source code
 ```bash
-npm run dev
+# Clone the repo
+git clone https://github.com/JoshMerlino/ts-package -o upstream my-package
+
+# Move into working directory
+cd my-package
 ```
 
-### Running in production
+### Updating the base and merging into existing code
 ```bash
-npm start
+# Fetch
+git fetch
+
+# Pull upstream and rebase into master
+git pull upstream --set-upstream master
 ```
 
-### Publishing to npm
+### Install modules
 ```bash
-npm publish
+# Install node build tools
+sudo apt-get install build-essential -y
+
+# Install node modules
+npm install
 ```
