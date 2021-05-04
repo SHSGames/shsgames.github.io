@@ -1,1 +1,1 @@
-interface Global extends NodeJS.Global {}
+type Global = NodeJS.Global
