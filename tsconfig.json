@@ -2,17 +2,21 @@
     "compilerOptions": {
         "lib": ["es2020"],
         "module": "commonjs",
-        "target": "es5",
-		"baseUrl": "src",
+        "target": "es2020",
         "types": ["node"],
-		"outDir": "lib",
+        "outDir": "lib",
+        "jsx": "react",
+        "removeComments": true,
         "sourceMap": true,
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-		"noUnusedParameters": true,
-		"allowUnreachableCode": false,
-		"preserveConstEnums": false,
-		"resolveJsonModule": true
-    }
+        "noUnusedParameters": true,
+        "allowUnreachableCode": false,
+        "preserveConstEnums": false,
+        "resolveJsonModule": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
 }
