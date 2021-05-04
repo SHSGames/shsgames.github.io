@@ -1,5 +1,6 @@
 # ts-package
-[![Rebuild CI](https://github.com/JoshMerlino/ts-package/actions/workflows/rebuild.yml/badge.svg?branch=master)](https://github.com/JoshMerlino/ts-package/actions/workflows/rebuild.yml)
+[![Test CI](https://github.com/JoshMerlino/ts-package/actions/workflows/test.yml/badge.svg)](https://github.com/JoshMerlino/ts-package/actions/workflows/test.yml)
+[![CodeQL](https://github.com/JoshMerlino/ts-package/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/JoshMerlino/ts-package/actions/workflows/codeql-analysis.yml)
 
 ## Initial set-up
 The following software is installed:
