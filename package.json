@@ -20,7 +20,7 @@
         "eslint": "^7.21.0",
         "eslint-react": "0.0.4",
         "nodemon": "^2.0.7",
-        "typescript": "^4.2.2",
+        "typescript": "^4.2.4",
         "typescript-eslint": "0.0.1-alpha.0"
     },
     "dependencies": {
