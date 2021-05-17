@@ -6,5 +6,5 @@ export const path = [
 ];
 
 export default function api(req: Request, res: Response): void {
-	res.json({ a: true });
+	res.json({ data: "hello world" });
 }
