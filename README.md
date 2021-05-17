@@ -1,6 +1,6 @@
 # ts-package
-[![Test CI](https://github.com/JoshMerlino/ts-package/actions/workflows/test.yml/badge.svg)](https://github.com/JoshMerlino/ts-package/actions/workflows/test.yml)
-[![CodeQL](https://github.com/JoshMerlino/ts-package/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/JoshMerlino/ts-package/actions/workflows/codeql-analysis.yml)
+[![Test CI](https://github.com/JoshMerlino/ts-server/actions/workflows/test.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/test.yml)
+[![CodeQL](https://github.com/JoshMerlino/ts-server/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/codeql-analysis.yml)
 
 ## Initial set-up
 The following software is installed:
@@ -12,10 +12,10 @@ The following software is installed:
 ### Cloning the source code
 ```bash
 # Clone the repo
-git clone https://github.com/JoshMerlino/ts-package -o upstream my-package
+git clone https://github.com/JoshMerlino/ts-package -o upstream my-server
 
 # Move into working directory
-cd my-package
+cd my-server
 ```
 
 ### Updating the base and merging into existing code
