@@ -1,4 +1,4 @@
-# ts-package
+# ts-server
 [![Test CI](https://github.com/JoshMerlino/ts-server/actions/workflows/test.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/test.yml)
 [![CodeQL](https://github.com/JoshMerlino/ts-server/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/codeql-analysis.yml)
 
@@ -12,7 +12,7 @@ The following software is installed:
 ### Cloning the source code
 ```bash
 # Clone the repo
-git clone https://github.com/JoshMerlino/ts-package -o upstream my-server
+git clone https://github.com/JoshMerlino/ts-server -o upstream my-server
 
 # Move into working directory
 cd my-server
