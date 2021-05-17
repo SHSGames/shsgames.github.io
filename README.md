@@ -35,3 +35,18 @@ sudo apt-get install build-essential -y
 # Install node modules
 npm install
 ```
+
+## Creating API Endpoints
+Create a `.ts` file in the `~/api` directory
+```typescript
+import { Request, Response } from "express";
+
+export const path = [
+	"v1/test",
+	"v1/test/**"
+];
+
+export default function api(req: Request, res: Response): void {
+	res.json({ a: true });
+}
+```
