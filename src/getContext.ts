@@ -5,7 +5,7 @@ export interface Context {
 	name: string;
 	path: string;
 	module: {
-		path: string | string[];
+		route: string | string[];
 		default(): void;
 	};
 	parents: string[];

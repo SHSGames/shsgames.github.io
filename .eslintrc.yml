@@ -51,7 +51,6 @@ rules:
   no-unsafe-negation: error
   use-isnan: error
   valid-typeof: error
-  array-callback-return: error
   block-scoped-var: warn
   consistent-return: error
   default-case: warn
