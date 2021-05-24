@@ -24,6 +24,6 @@
         "typescript-eslint": "0.0.1-alpha.0"
     },
     "dependencies": {
-        "dotenv": "^9.0.2"
+        "dotenv": "^10.0.0"
     }
 }
