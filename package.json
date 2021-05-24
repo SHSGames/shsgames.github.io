@@ -31,7 +31,7 @@
         "chalk": "^4.1.1",
         "compression": "^1.7.4",
         "cors": "^2.8.5",
-        "dotenv": "^9.0.2",
+        "dotenv": "^10.0.0",
         "express": "^4.17.1",
         "require-context": "^1.1.0",
         "yaml": "^1.10.2"
