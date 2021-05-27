@@ -36,11 +36,11 @@ export default async function server(app: Express): Promise<void> {
 				// Log request on hit
 				console.info("Received API request", chalk.magenta(`(${req.method})`), chalk.cyan(`/api/${route}`));
 
-				// Modify Response.json to pretty print
+				// Modify Response.json to pretty print if requested
 				res.json = function(body) {
 					res.header("Content-Type", "application/json; charset=utf-8");
 					if (typeof body === "object") {
-						const pretty = req.query.hasOwnProperty("pretty");
+						const pretty = req.query.hasOwnProperty("pretty") || req.header("pretty") === "true";
 						return res.json(JSON.stringify(body, pretty ? null:undefined, pretty ? 4:undefined));
 					}
 					return res.send(body);
