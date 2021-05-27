@@ -31,7 +31,45 @@ export default async function server(app: Express): Promise<void> {
 		paths.map(route => {
 
 			// Register API context
-			app.all(`/api/${route}`, context.module.default);
+			app.all(`/api/${route}`, (req, res) => {
+
+				// Log request on hit
+				console.info("Received API request", chalk.magenta(`(${req.method})`), chalk.cyan(`/api/${route}`));
+
+				// Modify Response.json to pretty print
+				res.json = function(body) {
+					res.header("Content-Type", "application/json; charset=utf-8");
+					if (typeof body === "object") {
+						const pretty = req.query.hasOwnProperty("pretty");
+						return res.json(JSON.stringify(body, pretty ? null:undefined, pretty ? 4:undefined));
+					}
+					return res.send(body);
+				};
+
+				// Queue request timeout in case the endpoint dosn't respond in time
+				setTimeout(function() {
+
+					// Make sure it didn;t respond
+					if (res.headersSent) return;
+
+					// Log timeout
+					console.warn("API request timed out", chalk.magenta(`(${req.method})`), chalk.cyan(`/api/${route}`));
+
+					// Send error message
+					res.status(408).json({
+						error: true,
+						code: 408,
+						message: "Request timed out."
+					});
+
+				}, parseInt(process.env.TIMEOUT || "30000"));
+
+				// Return endpoint module for execution
+				return context.module.default(req, res);
+
+			});
+
+			// Log successful registration
 			console.info("Added API context", chalk.cyan(route));
 
 		});

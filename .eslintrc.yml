@@ -129,7 +129,7 @@ rules:
   no-inline-comments: warn
   no-lonely-if: warn
   no-multi-assign: warn
-  no-multiple-empty-lines: warn
+  no-multiple-empty-lines: [warn, { max: 1, maxEOF: 0 }]
   no-new-object: warn
   no-trailing-spaces: warn
   no-unneeded-ternary: warn

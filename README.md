@@ -41,12 +41,12 @@ Create a `.ts` file in the `~/api` directory
 ```typescript
 import { Request, Response } from "express";
 
-export const path = [
+export const route = [
 	"v1/test",
 	"v1/test/**"
 ];
 
 export default function api(req: Request, res: Response): void {
-	res.json({ a: true });
+	res.json({});
 }
 ```

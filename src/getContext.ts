@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { readdir, lstat } from "fs/promises";
 import { resolve } from "path";
 
@@ -6,7 +7,7 @@ export interface Context {
 	path: string;
 	module: {
 		route: string | string[];
-		default(): void;
+		default(req: Request, res: Response): void;
 	};
 	parents: string[];
 }
