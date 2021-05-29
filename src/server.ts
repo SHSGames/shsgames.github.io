@@ -5,10 +5,11 @@ import express, { Express } from "express";
 import { readFile } from "fs/promises";
 import http from "http";
 import { resolve } from "path";
+import { v1 as uuid } from "uuid";
 import { parse } from "yaml";
 import getContext from "./getContext";
-import { v1 as uuid } from "uuid";
 import responseJson from "./responseJson";
+import statTracker from "./statTracker";
 
 // Run API server
 export default async function server(app: Express): Promise<void> {
@@ -21,6 +22,8 @@ export default async function server(app: Express): Promise<void> {
 
 	// Use gzip when serving files
 	app.use(compression());
+
+	app.use("/api", statTracker);
 
 	// Get all API endpoints and add them to the app context.
 	const contexts = await getContext("./lib/api");
@@ -35,53 +38,8 @@ export default async function server(app: Express): Promise<void> {
 			// Register API context
 			app.all(`/api/${route}`, (req, res) => {
 
-				// Generate a unique ID for this request
-				const requestId = uuid();
-				res.header("RequestID", requestId);
-
-				const timestamp = Date.now();
-
-				// Log request on hit
-				console.info("<-", chalk.cyan(`/api/${route}`), chalk.magenta(`(${req.method})`));
-
 				// Modify Response.json to pretty print if requested
 				res.json = responseJson(req, res);
-
-				// Monitor endpoint for a response
-				const completionCheck = setInterval(function() {
-
-					// If the endpoint has not responded, cancel iteration
-					if (!res.headersSent) return;
-
-					// Calculate the total time the endpoint took to respond
-					const duration = Date.now() - timestamp;
-
-					// Log response to console
-					console.info("->", chalk.cyan(`/api/${route}`), chalk.magenta(`(${req.method})`), chalk.greenBright(res.statusCode), chalk.yellowBright(`${duration}ms`));
-
-					// Stop loop
-					clearInterval(completionCheck);
-
-				});
-
-				// Queue request timeout in case the endpoint dosn't respond in time
-				setTimeout(function() {
-
-					// Make sure it didn;t respond
-					if (res.headersSent) return;
-
-					// Log timeout
-					console.warn("API request timed out", chalk.magenta(`(${req.method})`), chalk.cyan(`/api/${route}`));
-
-					// Send error message
-					res.status(408).json({
-						error: true,
-						code: 408,
-						requestId,
-						message: "Request timed out."
-					});
-
-				}, parseInt(process.env.TIMEOUT || "30") * 1000);
 
 				// Return endpoint module for execution
 				return context.module.default(req, res);
@@ -100,13 +58,13 @@ export default async function server(app: Express): Promise<void> {
 
 		// Generate a unique ID for this request
 		const requestId = uuid();
-		res.header("RequestID", requestId);
+		res.header("Request-ID", requestId);
 
 		// Modify Response.json to pretty print if requested
 		res.json = responseJson(req, res);
 
 		// Send error code
-		res.json({
+		res.status(404).json({
 			error: true,
 			code: 404,
 			requestId,
