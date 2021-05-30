@@ -20,8 +20,6 @@ export default async function server(app: Express): Promise<void> {
 	// Use gzip when serving files
 	app.use(compression());
 
-	// ; app.use("/api", statTracker);
-
 	// Get all API endpoints and add them to the app context.
 	const contexts = await getContext("./lib/api");
 	contexts.map(function(context) {
