@@ -2,14 +2,11 @@ import chalk from "chalk";
 import compression from "compression";
 import cors from "cors";
 import express, { Express } from "express";
-import { readFile } from "fs/promises";
 import http from "http";
 import { resolve } from "path";
 import { v1 as uuid } from "uuid";
-import { parse } from "yaml";
 import getContext from "./getContext";
 import responseJson from "./responseJson";
-import statTracker from "./statTracker";
 
 // Run API server
 export default async function server(app: Express): Promise<void> {
@@ -23,7 +20,7 @@ export default async function server(app: Express): Promise<void> {
 	// Use gzip when serving files
 	app.use(compression());
 
-	app.use("/api", statTracker);
+	// ; app.use("/api", statTracker);
 
 	// Get all API endpoints and add them to the app context.
 	const contexts = await getContext("./lib/api");
@@ -74,7 +71,7 @@ export default async function server(app: Express): Promise<void> {
 	});
 
 	// Add docs
-	app.use("/insomnia.json", async (_req, res) => res.json(parse(await readFile(resolve("insomnia.yaml"), "utf8"))));
+	app.use("/insomnia.json", (_req, res) => res.sendFile(resolve("insomnia.json")));
 	app.use("/docs", express.static("docs"));
 
 	// Start HTTP server

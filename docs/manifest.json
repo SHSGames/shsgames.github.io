@@ -1,0 +1,81 @@
+{
+  "icons": [
+    {
+      "src": "static/icon_512x512.0d2b86c356cdbd9354db181eb2eae9d1.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "static/icon_384x384.43367aee58f550460f93444354c26663.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "static/icon_256x256.fc92b544fa480820f8214fa3ca3da568.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "static/icon_192x192.d0d3dd26a0a00239e9f78d387374b001.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "static/icon_128x128.b7b3bd2e8fb0f265e43c219718a68cb1.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "static/icon_96x96.69a4d2960d69ed8217af328394d2cd9a.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "static/icon_512x512.0d2b86c356cdbd9354db181eb2eae9d1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "static/icon_384x384.43367aee58f550460f93444354c26663.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "static/icon_256x256.fc92b544fa480820f8214fa3ca3da568.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "static/icon_192x192.d0d3dd26a0a00239e9f78d387374b001.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "static/icon_128x128.b7b3bd2e8fb0f265e43c219718a68cb1.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "static/icon_96x96.69a4d2960d69ed8217af328394d2cd9a.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "name": "Insomnia Viewer",
+  "short_name": "Insomnia",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "version": "1.0.0",
+  "description": "View API documentation.",
+  "developerName": "Josh Merlino",
+  "developerURL": "https://joshmerlino.github.io",
+  "background_color": "#212121",
+  "theme_color": "#191919"
+}
