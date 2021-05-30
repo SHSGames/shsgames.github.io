@@ -71,6 +71,7 @@ export default async function server(app: Express): Promise<void> {
 	// Add docs
 	app.use("/insomnia.json", (_req, res) => res.sendFile(resolve("insomnia.json")));
 	app.use("/docs", express.static("docs"));
+	app.use("/docs/**", (_req, res) => res.sendFile(resolve("docs/index.html")));
 
 	// Start HTTP server
 	http.createServer(app).listen(parseInt(process.env.PORT || "4000"));
