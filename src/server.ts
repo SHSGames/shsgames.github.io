@@ -1,12 +1,18 @@
 import chalk from "chalk";
 import compression from "compression";
 import cors from "cors";
-import express, { Express } from "express";
+import express, { Express, Request, Response } from "express";
 import http from "http";
 import { resolve } from "path";
 import { v1 as uuid } from "uuid";
+import APILogger from "./APILogger";
 import getContext from "./getContext";
-import responseJson from "./responseJson";
+import PrettyJSON from "./PrettyJSON";
+
+export interface APIEndpoint {
+	route: string | string[];
+	default(req: Request, res: Response): unknown;
+}
 
 // Run API server
 export default async function server(app: Express): Promise<void> {
@@ -20,8 +26,11 @@ export default async function server(app: Express): Promise<void> {
 	// Use gzip when serving files
 	app.use(compression());
 
+	// Enable logger and autotimeout
+	app.use("/api", APILogger);
+
 	// Get all API endpoints and add them to the app context.
-	const contexts = await getContext("./lib/api");
+	const contexts = await getContext<APIEndpoint>("./lib/api");
 	contexts.map(function(context) {
 
 		// Get route('s) from context
@@ -34,7 +43,7 @@ export default async function server(app: Express): Promise<void> {
 			app.all(`/api/${route}`, (req, res) => {
 
 				// Modify Response.json to pretty print if requested
-				res.json = responseJson(req, res);
+				res.json = PrettyJSON(req, res);
 
 				// Return endpoint module for execution
 				return context.module.default(req, res);
@@ -56,7 +65,7 @@ export default async function server(app: Express): Promise<void> {
 		res.header("Request-ID", requestId);
 
 		// Modify Response.json to pretty print if requested
-		res.json = responseJson(req, res);
+		res.json = PrettyJSON(req, res);
 
 		// Send error code
 		res.status(404).json({

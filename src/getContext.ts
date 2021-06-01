@@ -1,33 +1,31 @@
-import { Request, Response } from "express";
-import { readdir, lstat } from "fs/promises";
+/* eslint no-undef: off */
+/* eslint @typescript-eslint/no-var-requires: off */
+import { lstat, readdir } from "fs/promises";
 import { resolve } from "path";
 
-export interface Context {
+export interface Context<T> {
 	name: string;
 	path: string;
-	module: {
-		route: string | string[];
-		default(req: Request, res: Response): void;
-	};
+	module: T;
 	parents: string[];
 }
 
 // Function to get a context of every API in the folder.
-export default async function getContext(dir: string): Promise<Context[]> {
+export default async function getContext<T = NodeModule>(dir: string): Promise<Context<T>[]> {
 
 	// Scan directory.
 	let items = await readdir(dir);
 	items = items.filter(item => !item.includes(".js.map"));
 
-	let files: Context[] = [];
+	let files: Context<T>[] = [];
 	for (const name of items) {
 
 		const path = `${dir}/${name}`;
 
 		if ((await lstat(`${dir}/${name}`)).isDirectory()) {
-			files = [ ...files, ...await getContext(`${dir}/${name}`) ];
+			files = [ ...files, ...await getContext<T>(`${dir}/${name}`) ];
 		} else {
-			files.push({ name, path, module: require(resolve(path)), parents: dir.split("/") });
+			files.push({ name, path, module: require(resolve(path)) as T, parents: dir.split("/") });
 		}
 
 	}

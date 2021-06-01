@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-explicit-any: off */
 import { Request, Response } from "express";
 
-export default function responseJson(req: Request, res: Response) {
+export default function PrettyJSON(req: Request, res: Response) {
 	return function(body: unknown[] | Record<string, unknown>): Response<any, Record<string, any>> {
 		res.header("Content-Type", "application/json; charset=utf-8");
 		if (typeof body === "object") {

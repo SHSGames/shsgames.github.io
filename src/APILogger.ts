@@ -40,7 +40,7 @@ export default function APILogger(req: Request, res: Response, next: NextFunctio
 		if (res.headersSent) return;
 
 		// Log timeout
-		console.warn("API request trey is a bitch", chalk.magenta(req.method), chalk.cyan(route));
+		console.warn("API request timed out", chalk.magenta(req.method), chalk.cyan(route));
 
 		// Send error message
 		res.status(408).json({
