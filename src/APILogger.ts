@@ -44,8 +44,8 @@ export default function APILogger(req: Request, res: Response, next: NextFunctio
 
 		// Send error message
 		res.status(408).json({
-			error: true,
-			code: 408,
+			success: false,
+			error: "408 Request Timedout",
 			message: "Request timed out."
 		});
 
