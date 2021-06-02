@@ -6,8 +6,8 @@ import http from "http";
 import { resolve } from "path";
 import { v1 as uuid } from "uuid";
 import APILogger from "./APILogger";
-import getContext from "./getContext";
-import PrettyJSON from "./PrettyJSON";
+import asyncRequireContext from "async-require-context";
+import prettyJSON from "./prettyJSON";
 
 export interface APIEndpoint {
 	route: string | string[];
@@ -15,7 +15,7 @@ export interface APIEndpoint {
 }
 
 // Run API server
-export default async function server(app: Express): Promise<void> {
+export default async function HTTPServer(app: Express): Promise<void> {
 
 	// Allow requests from any origin
 	app.use(cors());
@@ -30,7 +30,7 @@ export default async function server(app: Express): Promise<void> {
 	app.use("/api", APILogger);
 
 	// Get all API endpoints and add them to the app context.
-	const contexts = await getContext<APIEndpoint>("./lib/api");
+	const contexts = await asyncRequireContext<APIEndpoint>("./lib/api");
 	contexts.map(function(context) {
 
 		// Get route('s) from context
@@ -43,7 +43,7 @@ export default async function server(app: Express): Promise<void> {
 			app.all(`/api/${route}`, (req, res) => {
 
 				// Modify Response.json to pretty print if requested
-				res.json = PrettyJSON(req, res);
+				res.json = prettyJSON(req, res);
 
 				// Return endpoint module for execution
 				return context.module.default(req, res);
@@ -65,13 +65,12 @@ export default async function server(app: Express): Promise<void> {
 		res.header("Request-ID", requestId);
 
 		// Modify Response.json to pretty print if requested
-		res.json = PrettyJSON(req, res);
+		res.json = prettyJSON(req, res);
 
 		// Send error code
 		res.status(404).json({
 			error: true,
 			code: 404,
-			requestId,
 			message: "Endpoint not found."
 		});
 
