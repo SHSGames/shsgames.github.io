@@ -5,12 +5,14 @@ import { v1 as uuid } from "uuid";
 // Export middleware
 export default function APILogger(req: Request, res: Response, next: NextFunction): void {
 
-	const [ route ] = req.originalUrl.split("?");
+	// Get route root
+	const route = req.originalUrl.split("?")[0].split("#")[0];
 
 	// Generate a unique ID for this request
 	const requestId = uuid();
 	res.header("Request-ID", requestId);
 
+	// Get current timestamp
 	const timestamp = Date.now();
 
 	// Log request on hit
