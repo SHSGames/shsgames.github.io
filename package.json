@@ -1,7 +1,7 @@
 {
-    "name": "ts-package",
-    "version": "1.0.38",
-    "description": "Easily create Typescript node.js packages from this boilerplate",
+    "name": "ts-server",
+    "version": "1.0.0",
+    "description": "Easily create back end servers with powerful api's using TypeScript and Express.",
     "main": "lib/index.js",
     "author": "Josh Merlino",
     "license": "ISC",
