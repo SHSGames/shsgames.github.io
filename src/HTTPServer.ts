@@ -71,7 +71,7 @@ export default async function HTTPServer(app: Express): Promise<void> {
 		res.status(404).json({
 			success: false,
 			error: "404 Not Found",
-			message: "Endpoint not found."
+			message: `Endpoint '${req.url}' was not found on this server.`
 		});
 
 	});
