@@ -1,6 +1,6 @@
 {
     "name": "ts-package",
-    "version": "1.0.7",
+    "version": "1.0.29",
     "description": "Easily create Typescript node.js packages from this boilerplate",
     "main": "lib/",
 	"types": "lib/",
@@ -14,17 +14,17 @@
         "build": "tsc"
     },
     "devDependencies": {
-        "@types/node": "^15.0.2",
-        "@typescript-eslint/eslint-plugin": "^4.22.1",
-        "@typescript-eslint/parser": "^4.17.0",
-        "concurrently": "^6.0.2",
-        "eslint": "^7.25.0",
+        "@types/node": "^15.6.1",
+        "@typescript-eslint/eslint-plugin": "^4.26.0",
+        "@typescript-eslint/parser": "^4.26.0",
+        "eslint": "^7.27.0",
+        "concurrently": "^6.2.0",
         "eslint-react": "0.0.4",
         "nodemon": "^2.0.7",
-        "typescript": "^4.2.4",
+        "typescript": "^4.3.2",
         "typescript-eslint": "0.0.1-alpha.0"
     },
     "dependencies": {
-        "dotenv": "^9.0.0"
+        "dotenv": "^10.0.0"
     }
 }
