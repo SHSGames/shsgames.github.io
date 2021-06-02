@@ -30,7 +30,7 @@
         "typescript-eslint": "0.0.1-alpha.0"
     },
     "dependencies": {
-        "async-require-context": "^1.0.1",
+        "async-require-context": "^1.0.3",
         "chalk": "^4.1.1",
         "compression": "^1.7.4",
         "cors": "^2.8.5",
