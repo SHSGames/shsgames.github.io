@@ -1,7 +1,7 @@
 {
     "name": "ts-package",
-    "version": "1.0.30",
-    "description": "Easily create Typescript node.js packages from this boilerplate",
+    "version": "1.0.0",
+    "description": "Easily create Typescript node.js packages from this boilerplate.",
     "main": "lib/",
     "types": "lib/",
     "author": "Josh Merlino",
