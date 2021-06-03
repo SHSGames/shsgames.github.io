@@ -6,7 +6,6 @@
         "types": ["node"],
         "outDir": "lib",
         "jsx": "react",
-		"declaration": true,
         "removeComments": true,
         "sourceMap": true,
         "strict": true,
@@ -15,11 +14,9 @@
         "noUnusedParameters": true,
         "allowUnreachableCode": false,
         "preserveConstEnums": false,
-        "resolveJsonModule": true,
-        "declaration": true
+        "resolveJsonModule": true
     },
     "exclude": [
-        "node_modules",
-		"lib"
+        "node_modules"
     ]
 }
