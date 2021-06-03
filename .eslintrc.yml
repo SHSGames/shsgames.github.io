@@ -30,7 +30,6 @@ rules:
   for-direction: error
   getter-return: error
   no-compare-neg-zero: error
-  no-undef: warn
   no-cond-assign: error
   no-constant-condition: warn
   no-control-regex: error
@@ -101,7 +100,6 @@ rules:
   wrap-iife: error
   yoda: warn
   strict: error
-  no-use-before-define: error
   array-bracket-spacing: [warn, always]
   brace-style: warn
   camelcase: warn
