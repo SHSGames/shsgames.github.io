@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { v1 as uuid } from "uuid";
 
 // Export middleware
-export default function APILogger(req: Request, res: Response, next: NextFunction): void {
+export default function apiLogger(req: Request, res: Response, next: NextFunction): void {
 
 	// Get route root
 	const route = req.originalUrl.split("?")[0].split("#")[0];

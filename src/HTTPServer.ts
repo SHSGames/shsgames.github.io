@@ -1,33 +1,28 @@
 import chalk from "chalk";
 import compression from "compression";
 import cors from "cors";
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import http from "http";
 import { resolve } from "path";
 import { v1 as uuid } from "uuid";
-import APILogger from "./APILogger";
+import apiLogger from "./apiLogger";
 import asyncRequireContext from "async-require-context";
 import prettyJSON from "./prettyJSON";
 
-export interface APIEndpoint {
-	route: string | string[];
-	default(req: Request, res: Response): unknown;
-}
-
 // Run API server
-export default async function HTTPServer(app: Express): Promise<void> {
+export default async function httpServer(app: Express): Promise<void> {
 
 	// Allow requests from any origin
 	app.use(cors());
 
 	// Use body parser to parse fields
-	app.use(express.json());
+	app.use(express.json);
 
 	// Use gzip when serving files
 	app.use(compression());
 
 	// Enable logger and autotimeout
-	app.use("/api", APILogger);
+	app.use("/api", apiLogger);
 
 	// Get all API endpoints and add them to the app context.
 	const contexts = await asyncRequireContext<APIEndpoint>("./lib/api");
