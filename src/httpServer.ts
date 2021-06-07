@@ -16,7 +16,7 @@ export default async function httpServer(app: Express): Promise<void> {
 	app.use(cors());
 
 	// Use body parser to parse fields
-	app.use(express.json);
+	app.use(<() => void>express.json());
 
 	// Use gzip when serving files
 	app.use(compression());
