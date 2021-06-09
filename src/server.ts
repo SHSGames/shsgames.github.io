@@ -1,7 +1,10 @@
 import asyncRequireContext from "async-require-context";
 import chalk from "chalk";
 import { Express } from "express";
+import { readFile, readdir } from "fs/promises";
 import http from "http";
+import https from "https";
+import { extname, resolve } from "path";
 import { webserver } from "../package.json";
 
 export default async function server(app: Express): Promise<void> {
@@ -30,9 +33,28 @@ export default async function server(app: Express): Promise<void> {
 
 	// Get port to listen on (HTTP)
 	const PORT = process.env.PORT || webserver.http.port;
+	const SSL_PORT = process.env.SSL_PORT || webserver.https.port;
 
 	// Start HTTP server
 	http.createServer(app).listen(PORT);
 	console.info(chalk.redBright("SRV"), "HTTP server running on", chalk.cyan(`:${PORT} (http)`));
+
+	// Start HTTPS server
+	if (webserver.https.enabled) {
+
+		let files = await readdir(resolve(webserver.https.certs));
+		files = files.map(file => resolve(webserver.https.certs, file));
+
+		const key = files.filter(file => extname(file) === ".key")[0];
+		const cert = files.filter(file => extname(file) === ".cert")[0];
+
+		// Initialize HTTPS server
+		https.createServer({
+			key: await readFile(key, "utf8"),
+			cert: await readFile(cert, "utf8")
+		}, app).listen(SSL_PORT);
+		console.info(chalk.redBright("SRV"), "SSL server running on", chalk.cyan(`:${SSL_PORT} (https)`));
+
+	}
 
 }
