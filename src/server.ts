@@ -2,7 +2,7 @@ import asyncRequireContext from "async-require-context";
 import chalk from "chalk";
 import { Express } from "express";
 import http from "http";
-import config from "../app.config.json";
+import { webserver } from "../package.json";
 
 export default async function server(app: Express): Promise<void> {
 
@@ -13,7 +13,7 @@ export default async function server(app: Express): Promise<void> {
 		console.info(chalk.magenta("MDW"), "Added middleware from", chalk.cyan(middleware.path));
 	});
 
-	// Apply all middlewares
+	// Apply all runtimes
 	const runtimes = await asyncRequireContext<Runtime>("./lib/src/runtime");
 	runtimes.map(runtime => {
 		runtime.module.default(app);
@@ -21,7 +21,7 @@ export default async function server(app: Express): Promise<void> {
 	});
 
 	// Get all API endpoints and add them to the app context.
-	const endpoints = await asyncRequireContext<APIEndpoint>("./lib/api");
+	const endpoints = await asyncRequireContext<Endpoint>("./lib/api");
 	endpoints.map(function(endpoint) {
 		const routes = typeof endpoint.module.route === "string" ? [ endpoint.module.route ] : endpoint.module.route;
 		routes.map(route => app.all(`/api/${route}`, endpoint.module.default));
@@ -29,7 +29,7 @@ export default async function server(app: Express): Promise<void> {
 	});
 
 	// Get port to listen on (HTTP)
-	const PORT = process.env.PORT || config.http.port;
+	const PORT = process.env.PORT || webserver.http.port;
 
 	// Start HTTP server
 	http.createServer(app).listen(PORT);

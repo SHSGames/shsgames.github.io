@@ -1,6 +1,6 @@
 declare type APIResponse = Record<string, unknown>;
 
-declare interface APIEndpoint {
+declare interface Endpoint {
 	route: string | string[];
 	default(req: Request, res: Response): unknown;
 }

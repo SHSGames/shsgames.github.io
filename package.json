@@ -6,6 +6,17 @@
     "types": "lib/",
     "author": "Josh Merlino",
     "license": "ISC",
+	"webserver": {
+		"http": {
+			"port": 80,
+			"timeout": 10
+		},
+		"https": {
+			"enabled": true,
+			"port": 443,
+			"certs": "./ssl"
+		}
+	},
     "scripts": {
         "watch-ts": "tsc -w",
         "watch-js": "nodemon .",
