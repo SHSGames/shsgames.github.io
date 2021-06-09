@@ -1,0 +1,7 @@
+{
+    "ignore": [
+		"cache/",
+		"docs/",
+		"src/"
+	]
+}

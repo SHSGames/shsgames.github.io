@@ -1,10 +1,11 @@
-import dotenv from "dotenv";
-import express from "express";
+// Add additional methods to console
 import "./src/console";
-import httpServer from "./src/httpServer";
 
-// Configure variables in environment file (.env)
+// Configure environment file (.env)
+import dotenv from "dotenv";
 dotenv.config();
 
-// Start server with new instance of express
-httpServer(express());
+// Start server
+import express from "express";
+import server from "./src/server";
+server(express());
