@@ -1,13 +1,17 @@
 import express, { Express } from "express";
 import extract from "extract-zip";
+import { existsSync } from "fs";
 import { writeFile } from "fs/promises";
 import fetch from "node-fetch";
 import { resolve } from "path";
 
-export default async function middleware(app: Express): Promise<void> {
+export default async function runtime(app: Express): Promise<void> {
 
 	// Get insomnia path
 	const insomnia = resolve("insomnia.json");
+
+	// Before binding to app make sure insomnia.json exists
+	if (!existsSync(insomnia)) return;
 
 	// Get insomnia-viewer path
 	const binary = resolve("lib/insomnia-viewer.zip");
