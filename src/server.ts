@@ -10,21 +10,21 @@ import { webserver } from "../package.json";
 export default async function server(app: Express): Promise<void> {
 
 	// Apply all middlewares
-	const middlewares = await asyncRequireContext<Middleware>("./lib/src/middleware");
+	const middlewares = await asyncRequireContext<Middleware>("./lib/src/middleware").catch(() => []);
 	middlewares.map(middleware => {
 		app.use(middleware.module.default);
 		console.info(chalk.magenta("MDW"), "Added middleware from", chalk.cyan(middleware.path));
 	});
 
 	// Apply all runtimes
-	const runtimes = await asyncRequireContext<Runtime>("./lib/src/runtime");
+	const runtimes = await asyncRequireContext<Runtime>("./lib/src/runtime").catch(() => []);
 	runtimes.map(runtime => {
 		runtime.module.default(app);
 		console.info(chalk.yellow("RNT"), "Added runtime from", chalk.cyan(runtime.path));
 	});
 
 	// Get all API endpoints and add them to the app context.
-	const endpoints = await asyncRequireContext<Endpoint>("./lib/api");
+	const endpoints = await asyncRequireContext<Endpoint>("./lib/api").catch(() => []);
 	endpoints.map(function(endpoint) {
 		const routes = typeof endpoint.module.route === "string" ? [ endpoint.module.route ] : endpoint.module.route;
 		routes.map(route => app.all(`/api/${route}`, endpoint.module.default));
