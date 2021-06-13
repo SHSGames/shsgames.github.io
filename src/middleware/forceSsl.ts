@@ -10,6 +10,6 @@ export default function middleware(req: Request, res: Response, next: NextFuncti
 	if (req.secure) return next();
 
 	// Redirect
-	res.redirect(`https://${req.hostname}${req.url}`);
+	return res.redirect(307, `https://${req.hostname}${req.url}`);
 
 }

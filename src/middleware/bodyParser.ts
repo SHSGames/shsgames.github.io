@@ -1,10 +1,4 @@
-import { json, NextFunction, Request, Response } from "express";
-import { ServerResponse } from "http";
+import { json } from "express";
 
 // Export middleware
-export default function middleware(req: Request, res: Response, next: NextFunction): void {
-
-	// Return compression middleware
-	return json()(req, <ServerResponse>res, next);
-
-}
+export default json();
