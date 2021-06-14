@@ -4,7 +4,7 @@ import { Express } from "express";
 import { readFile, readdir } from "fs/promises";
 import http from "http";
 import https from "https";
-import { extname, resolve } from "path";
+import { resolve } from "path";
 import { webserver } from "../package.json";
 
 export default async function server(app: Express): Promise<void> {
@@ -45,8 +45,8 @@ export default async function server(app: Express): Promise<void> {
 		let files = await readdir(resolve(webserver.https.certs));
 		files = files.map(file => resolve(webserver.https.certs, file));
 
-		const key = files.filter(file => extname(file) === ".key")[0];
-		const cert = files.filter(file => extname(file) === ".cert")[0];
+		const key = files.filter(file => file.includes("key"))[0];
+		const cert = files.filter(file => file.includes("cert"))[0];
 
 		// Initialize HTTPS server
 		https.createServer({
