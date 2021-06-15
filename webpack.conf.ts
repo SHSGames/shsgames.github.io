@@ -12,7 +12,7 @@ import manifest from "./web/manifest";
 export = <Configuration>{
 	entry: [ "@babel/polyfill", "./web/__compile_cache/ts/index.js" ],
 	output: {
-		path: path.resolve("/public_html"),
+		path: path.resolve("public_html/"),
 		filename: "app/[name].[contenthash].js"
 	},
 	module: {

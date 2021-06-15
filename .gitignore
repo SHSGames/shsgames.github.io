@@ -1,7 +1,6 @@
 node_modules/
 lib/
 .env
-stats.json
-public_html/
 hash
+public_html/
 web/__compile_cache/

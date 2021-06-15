@@ -24,8 +24,8 @@
 		"build-tsx": "cd web; tsc",
 		"watch-tsx": "cd web; tsc -w --preserveWatchOutput",
 		"watch-js": "env NODE_ENV=dev nodemon .",
-		"build-webpack": "tsc; uuid > hash; webpack --config lib/webpack.prod.js; mv hash public_html/; cp public_html/index.html public_html/404.html",
-		"watch-webpack": "tsc; uuid > hash; webpack-dev-server --config lib/webpack.dev.js",
+		"build-webpack": "tsc; uuid > hash; webpack --config lib/webpack.prod.js --progress --stats errors-warnings; mv hash public_html/; cp public_html/index.html public_html/404.html",
+		"watch-webpack": "tsc; uuid > hash; webpack serve --config lib/webpack.dev.js --progress --stats errors-warnings",
 		"dev": "concurrently \"npm:watch-*\"",
 		"dev-api": "concurrently \"npm:watch-js\" \"npm:watch-ts\"",
 		"serve": "node ."
@@ -92,6 +92,7 @@
 		"react-router-dom": "^5.1.2",
 		"resolve-from": "^5.0.0",
 		"script-loader": "^0.7.2",
+		"terser-webpack-plugin": "^4.2.3",
 		"typescript": "^4.3.2",
 		"typescript-eslint": "0.0.1-alpha.0",
 		"uuid": "^8.3.2",
