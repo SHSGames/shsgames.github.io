@@ -7,14 +7,14 @@ declare module "react-router-dom";
 
 declare const PRODUCTION: boolean;
 
-interface View {
+declare interface View {
 	route: string;
 	View: JSX.Element;
 	default: JSX.Element;
 	title?: string;
 }
 
-interface AppManifest {
+declare interface AppManifest {
 	name: string;
     short_name: string;
 	version: string;
@@ -35,9 +35,9 @@ interface AppManifest {
 
 declare const APP_MANIFEST: AppManifest;
 
-interface App {
+declare interface App {
 	static: (asset: string) => string;
 	getRoute: () => string;
-	api: (path: string, data = {}) => Promise<unknown>;
+	api: (path: string, data: unknown) => Promise<unknown>;
 	update: (hash: string) => void;
 }

@@ -1,9 +1,10 @@
-const merge = require("webpack-merge");
-const { DefinePlugin } = require("webpack");
-const TerserJSPlugin = require("terser-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+import merge from "webpack-merge";
+import { Configuration, DefinePlugin } from "webpack";
+import TerserJSPlugin from "terser-webpack-plugin";
+import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
+import config from "./webpack.conf";
 
-module.exports = merge(require("./webpack.conf.cjs"), {
+module.exports = merge(config, <Configuration>{
 	mode: "production",
 	optimization: {
 		namedModules: false,

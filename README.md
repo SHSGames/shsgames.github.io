@@ -57,8 +57,8 @@ export const route = [
 
 export default function api(req: Request, res: Response): void {
 	res.json({});
-```
 }
+```
 
 ### Creating views (pages)
 1. Create a file in the `views` folder

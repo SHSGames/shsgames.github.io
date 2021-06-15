@@ -1,10 +1,11 @@
+/* eslint @typescript-eslint/no-var-requires: off */
 import React from "react";
 import Photon from "photoncss";
 import { Button, Snackbar } from "photoncss/react";
 
 const app: App = {
 
-	static: (asset: string): string => require(`../static/${asset}`).default,
+	static: (asset: string): string => require(`../../static/${asset}`).default,
 	getRoute: (): string => location.protocol === "file:" ? location.href.split("#")[1] || "/" : location.pathname,
 
 	api(path: string, data = {}): Promise<unknown> {

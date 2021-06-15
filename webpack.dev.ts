@@ -1,7 +1,9 @@
-const { HotModuleReplacementPlugin, DefinePlugin } = require("webpack");
-const merge = require("webpack-merge");
+import path from "path";
+import { HotModuleReplacementPlugin, DefinePlugin, Configuration } from "webpack";
+import merge from "webpack-merge";
+import config from "./webpack.conf";
 
-module.exports = merge(require("./webpack.conf.cjs"), {
+export = merge(config, <Configuration>{
 	mode: "development",
 	output: {
 		filename: "app/[name].dev.js"
@@ -13,7 +15,7 @@ module.exports = merge(require("./webpack.conf.cjs"), {
 	devtool: "eval-source-map",
 	devServer: {
 		port: 8080,
-		contentBase: "./src",
+		contentBase: path.resolve("web"),
 		index: "index.html",
 		watchContentBase: true,
 		writeToDisk: false,
@@ -23,7 +25,7 @@ module.exports = merge(require("./webpack.conf.cjs"), {
 		},
 		proxy: {
         	"/api": {
-            	target: "http://localhost:4000/",
+            	target: "http://localhost/",
             	secure: false
         	}
     	},

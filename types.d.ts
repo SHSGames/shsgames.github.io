@@ -1,3 +1,9 @@
+declare module "offline-plugin";
+declare module "photoncss";
+declare module "photoncss/react";
+declare module "react-dom";
+declare module "react-router-dom";
+
 declare type APIResponse = Record<string, unknown>;
 
 declare interface Endpoint {

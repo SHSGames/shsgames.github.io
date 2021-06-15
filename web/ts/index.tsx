@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { render } from "react-dom";
 import { BrowserRouter, HashRouter, Route } from "react-router-dom";
 import * as OfflinePluginRuntime from "offline-plugin/runtime";
-import "../styles/main.less";
+import "../../styles/main.less";
 import "script-loader!jquery";
 import { ThemeProvider } from "photoncss/react";
 import "photoncss/dist/photon.css";
