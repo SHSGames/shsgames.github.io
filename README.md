@@ -14,7 +14,7 @@ The following software is installed:
 ### Cloning the source code
 ```bash
 # Clone the repo
-git clone https://github.com/PhotonCSS/react-app -o upstream my-app
+git clone https://github.com/JoshMerlino/react-app -o upstream my-app
 
 # Move into working directory
 cd my-app
@@ -45,43 +45,20 @@ Change the information in `~/my-app/src/manifest.json` to reflect your app's PWA
 
 ## Developing
 
-### Creating API endpoints
-1. Make an `api` folder in the projects root.
-2. Add API endpoints in subdirectory's there.
-
-`~/my-app/api/v1/myapi.ts`
+### Creating API Endpoints
+Create a `.ts` file in the `~/api` directory
 ```typescript
 import { Request, Response } from "express";
-const { config, mysql } = global;
 
-export default function(req: Request, res: Response) {
-    return new Promise(async function(resolve) {
-        resolve({ data: "hello world!" });
-    });
-};
+export const route = [
+	"v1/test",
+	"v1/test/**"
+];
+
+export default function api(req: Request, res: Response): void {
+	res.json({});
 ```
-
-`HTTP 1.1` `GET` http://localhost:4000/api/v1/myapi
-```json
-{
-    "success": true,
-    "data": "hello world!"
 }
-```
-
-### Creating components
-1. Create a file in the `components` folder
-2. Import components using `import MyComponent from "components/MyComponent";`
-
-`~/my-app/src/ts/components/MyComponent.tsx`
-```js
-import React from "react";
-
-// Export the component
-export default function MyComponent() {
-	return <>My Component</>;
-}
-```
 
 ### Creating views (pages)
 1. Create a file in the `views` folder

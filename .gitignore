@@ -1,5 +1,7 @@
-public_html/
 node_modules/
 lib/
+.env
+stats.json
+public_html/
 hash
-src/js/
+web/__compile_cache/

@@ -1,41 +1,14 @@
-interface MySQL {
-	configure(conf: MySQLConfig, mysql: module): void;
-	query(query: string): Promise<object[]>;
+declare type APIResponse = Record<string, unknown>;
+
+declare interface Endpoint {
+	route: string | string[];
+	default(req: Request, res: Response): unknown;
 }
 
-declare module "mysql-promise" {
-	export default function(): MySQL;
+declare interface Middleware {
+	default(req: Request, res: Response, next: NextFunction): void | Promise<void>;
 }
 
-interface MySQLConfig {
-	use?: boolean;
-	host: string;
-	user: string;
-	password: string;
-	database: string;
-}
-
-interface Config {
-	"remote-address": string;
-	"timeout-time": number;
-	port: number;
-	ssl: {
-		"cert-root": string;
-		use: boolean;
-		redirect: boolean;
-		port: number;
-	};
-	mysql: MySQLConfig;
-}
-
-declare function api(path: string, params?: object): Promise<object>;
-declare const config: Config;
-declare const mysql: MySQL;
-
-interface GlobalBackend extends NodeJS.Global {
-
-	api(path: string, params?: object): Promise<object>;
-    config: Config;
-	mysql: MySQL;
-
+declare interface Runtime {
+	default(app: Express): void | Promise<void>;
 }

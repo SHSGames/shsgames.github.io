@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "react-app",
     "version": "1.0.0",
@@ -100,3 +101,68 @@
         "yaml": "^1.10.0"
     }
 }
+=======
+{
+    "name": "ts-server",
+    "version": "1.0.0",
+    "description": "Easily create back end servers with powerful api's using TypeScript and Express.",
+    "main": "lib/",
+    "types": "lib/",
+    "author": "Josh Merlino",
+    "license": "ISC",
+    "webserver": {
+        "http": {
+            "port": 80,
+            "timeout": 10
+        },
+        "https": {
+            "enabled": true,
+            "port": 443,
+            "certs": "./ssl"
+        }
+    },
+    "scripts": {
+        "watch-ts": "tsc -w",
+        "watch-js": "nodemon .",
+        "dev": "concurrently \"npm:watch-*\"",
+        "start": "node .",
+        "update-docs": "rm -rf docs; git clone -b site --single-branch https://github.com/JoshMerlino/insomnia-viewer.git docs",
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "@types/chalk": "^2.2.0",
+        "@types/compression": "^1.7.0",
+        "@types/cookie-parser": "^1.4.2",
+        "@types/cors": "^2.8.10",
+        "@types/express": "^4.17.12",
+        "@types/mkdirp": "^1.0.1",
+        "@types/node": "^15.12.2",
+        "@types/node-fetch": "^2.5.10",
+        "@types/uuid": "^8.3.0",
+        "@types/webpack-env": "^1.16.0",
+        "@typescript-eslint/eslint-plugin": "^4.26.1",
+        "@typescript-eslint/parser": "^4.26.1",
+        "concurrently": "^6.2.0",
+        "eslint": "^7.28.0",
+        "eslint-react": "0.0.4",
+        "nodemon": "^2.0.7",
+        "typescript": "^4.3.2",
+        "typescript-eslint": "0.0.1-alpha.0"
+    },
+    "dependencies": {
+        "async-require-context": "^1.0.3",
+        "chalk": "^4.1.1",
+        "compression": "^1.7.4",
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "extract-zip": "^2.0.1",
+        "filestore-json": "^1.0.11",
+        "mkdirp": "^1.0.4",
+        "node-fetch": "^2.6.1",
+        "uuid": "^8.3.2",
+        "yaml": "^1.10.2"
+    }
+}
+>>>>>>> 2f4a317bf809897a3dd49984e42e04223e2d0130
