@@ -82,7 +82,7 @@
 		"nodemon": "^2.0.7",
 		"offline-plugin": "^5.0.7",
 		"optimize-css-assets-webpack-plugin": "^6.0.0",
-		"photoncss": "^12.16.1",
+		"photoncss": "^12.18.14",
 		"preload-webpack-plugin": "^3.0.0-beta.3",
 		"purgecss-webpack-plugin": "^4.0.2",
 		"query-string": "^7.0.0",
