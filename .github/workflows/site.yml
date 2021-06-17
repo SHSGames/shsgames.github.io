@@ -41,7 +41,7 @@ jobs:
           hub init -b site
           hub add .
           hub commit -m "Build site [Github actions]"
-          echo hub remote add output https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
-          hub remote add output https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
+          echo hub remote add output https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
+          hub remote add output https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
           hub push -fu output site
           
