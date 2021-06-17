@@ -41,6 +41,5 @@ jobs:
           hub init -b site
           hub add .
           hub commit -m "Build site [Github actions]"
-          hub remote add origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
-          hub push -fu origin site
+          hub push -f
           
