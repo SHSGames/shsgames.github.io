@@ -5,8 +5,8 @@ import { ManifestOptions } from "webpack-pwa-manifest";
 const packageJSON = require(path.resolve("package.json"));
 
 export default <ManifestOptions>{
-	name: packageJSON.name,
-	short_name: packageJSON.name,
+	name: packageJSON["display-name"] || packageJSON.name,
+	short_name: packageJSON["display-name"] || packageJSON.name,
 	version: packageJSON.version,
 	description: packageJSON.description,
 	developerName: packageJSON.author,
