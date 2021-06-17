@@ -41,5 +41,6 @@ jobs:
           hub init -b site
           hub add .
           hub commit -m "Build site [Github actions]"
-          hub push -f
+          hub remote add output ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git
+          hub push -fu output site
           
