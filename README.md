@@ -87,3 +87,7 @@ export default function() {
 ```js
 <img src={app.static("image1.png")} />
 ```
+
+## Bundles
+Branches with the `bundle-` prefix contain additional prebuild features such a theme toggle or a persistant shell.
+In your project, merge that bundle into master to add those features.
