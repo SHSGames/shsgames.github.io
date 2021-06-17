@@ -32,7 +32,7 @@ jobs:
         
       - name: Configure git user
         run: |
-          hub config --global user.name "Build Site [bot]"
+          hub config --global user.name "github-actions[bot]"
           hub config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         
       - name: Push
