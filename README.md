@@ -1,6 +1,7 @@
 # react-app
 [![Test CI](https://github.com/JoshMerlino/react-app/actions/workflows/test.yml/badge.svg)](https://github.com/JoshMerlino/react-app/actions/workflows/test.yml)
 [![CodeQL](https://github.com/JoshMerlino/react-app/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/JoshMerlino/react-app/actions/workflows/codeql-analysis.yml)
+[![Build Site](https://github.com/JoshMerlino/react-app/actions/workflows/site.yml/badge.svg)](https://github.com/JoshMerlino/react-app/actions/workflows/site.yml)
 
 Create single page applications using PhotonCSS that are fast as sh!t
 ![100% Score in Lighthouse](https://i.ibb.co/tctcbvR/ezgif-3-9a5c3774d3c5.gif)
