@@ -32,15 +32,15 @@ jobs:
         
       - name: Configure git user
         run: |
-          git config --global user.name "Build Site [bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          hub config --global user.name "Build Site [bot]"
+          hub config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         
       - name: Push
         run: |
           cd public_html
-          git init -b site
-          git add .
-          git commit -m "Build site [Github actions]"
-          git remote add origin ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git
-          git push -fu origin site
+          hub init -b site
+          hub add .
+          hub commit -m "Build site [Github actions]"
+          hub remote add origin ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git
+          hub push -fu origin site
           
