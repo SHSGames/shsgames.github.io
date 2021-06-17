@@ -38,8 +38,7 @@ jobs:
       - name: Push
         run: |
           cd public_html
-          git init
-          git branch -b site
+          git init -b site
           git add .
           git commit -m "Build site [Github actions]"
           git remote add origin ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git
