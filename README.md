@@ -1,7 +1,4 @@
 # ts-server
-[![Test CI](https://github.com/JoshMerlino/ts-server/actions/workflows/test.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/test.yml)
-[![CodeQL](https://github.com/JoshMerlino/ts-server/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/codeql-analysis.yml)
-
 ### Checks
 * [![Build](https://github.com/JoshMerlino/ts-server/actions/workflows/build.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/build.yml)
 * [![Code Quality Analysis](https://github.com/JoshMerlino/ts-server/actions/workflows/code-quality-analysis.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/code-quality-analysis.yml)
