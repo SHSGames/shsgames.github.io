@@ -1,8 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build Site
+name: Public HTML
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
@@ -19,7 +19,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Use Node.js 14
         uses: actions/setup-node@v2
         with:
@@ -29,19 +29,19 @@ jobs:
         run: |
           npm ci
           npm run build
-        
+
       - name: Configure git user
         run: |
           hub config --global user.name "github-actions[bot]"
           hub config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        
+
       - name: Push
         run: |
           cd public_html
-          hub init -b site
+          hub init -b public_html
           hub add .
-          hub commit -m "Build site [Github actions]"
+          hub commit -m "Build public_html [Github actions]"
           echo hub remote add output https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
           hub remote add output https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
-          hub push -fu output site
-          
+          hub push -fu output public_html
+
