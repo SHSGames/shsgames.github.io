@@ -16,13 +16,10 @@
 ```bash
 # Clone the repo
 git clone https://github.com/JoshMerlino/ts-package -b master --single-branch -o upstream my-package
-
-# Move into working directory
-cd my-package
 ```
 
-Change your working directory to the new `my-package` directory.
-
+Move into your new working directory.
+ 
 ```bash
 # Install node build tools
 sudo apt-get install build-essential -y
