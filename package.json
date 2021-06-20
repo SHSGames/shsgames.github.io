@@ -22,7 +22,6 @@
         "watch-js": "nodemon .",
         "dev": "concurrently \"npm:watch-*\"",
         "start": "node .",
-        "update-docs": "rm -rf docs; git clone -b site --single-branch https://github.com/JoshMerlino/insomnia-viewer.git docs",
         "build": "tsc"
     },
     "devDependencies": {
