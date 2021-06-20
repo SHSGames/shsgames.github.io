@@ -1,4 +1,2 @@
-node_modules/
 lib/
-.env
-stats.json
+node_modules/

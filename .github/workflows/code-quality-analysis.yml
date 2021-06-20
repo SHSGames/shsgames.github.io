@@ -9,16 +9,13 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
-name: "CodeQL"
+name: "Code Quality Analysis"
 
 on:
   push:
     branches: '**'
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: '**'
-  schedule:
-    - cron: '0 20 * * *'
 
 jobs:
   analyze:
