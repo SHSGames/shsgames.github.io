@@ -26,7 +26,6 @@
         "build": "tsc"
     },
     "devDependencies": {
-        "@types/chalk": "^2.2.0",
         "@types/compression": "^1.7.0",
         "@types/cookie-parser": "^1.4.2",
         "@types/cors": "^2.8.10",
