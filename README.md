@@ -1,6 +1,6 @@
 # ts-package
-[![Test CI](https://github.com/JoshMerlino/ts-package/actions/workflows/test.yml/badge.svg)](https://github.com/JoshMerlino/ts-package/actions/workflows/test.yml)
-[![CodeQL](https://github.com/JoshMerlino/ts-package/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/JoshMerlino/ts-package/actions/workflows/codeql-analysis.yml)
+[![Test CI](./actions/workflows/test.yml/badge.svg)](./actions/workflows/test.yml)
+[![Code Quality Analysis](./actions/workflows/codeql-analysis.yml/badge.svg)](./actions/workflows/codeql-analysis.yml)
 
 ## Initial set-up
 The following software is installed:

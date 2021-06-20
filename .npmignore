@@ -1,5 +1,10 @@
-node_modules/
-.git*/
-src/
-.env
 *.map$
+*.md$
+.env
+.eslint*
+.git*
+.npmignore
+node_modules/
+package-lock.json
+src/
+tsconfig.js

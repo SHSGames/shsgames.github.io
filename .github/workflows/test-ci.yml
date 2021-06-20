@@ -3,6 +3,7 @@
 
 name: Test CI
 
+# Run on basicly every change to the tree
 on:
   push:
     branches: '**'
@@ -10,21 +11,34 @@ on:
     branches: '**'
 
 jobs:
-  build:
 
+  # Initialize
+  initialize:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 15.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [ 12.x, 14.x, 15.x ]
 
+  # Checkout the repository in its current state
+  checkout:
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm run test --if-present
+
+  # Install all node modules
+  install:
+    steps:
+      - run: npm ci
+
+  # Build package
+  build:
+    steps:
+      - run: npm run build --if-present
+
+  # Run tests
+  test:
+    steps:
+      - run: npm run test --if-present
