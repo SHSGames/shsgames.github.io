@@ -1,3 +1,3 @@
 // Configure variables in environment file (.env)
-import dotenv from "dotenv";
-dotenv.config();
+import dot_env from "dotenv";
+dot_env.config();

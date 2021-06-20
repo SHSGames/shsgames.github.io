@@ -6,24 +6,16 @@ env:
   shared-node-browser: true
 
 plugins:
-- react
 - "@typescript-eslint"
 
 parser: "@typescript-eslint/parser"
 
 parserOptions:
-  ecmaFeatures:
-    jsx: true
-    react: 999.999.999
   ecmaVersion: 12
   sourceType: module
 
-settings:
-  react:
-    version: detect
 
 extends:
-  - plugin:react/recommended
   - plugin:@typescript-eslint/recommended
 
 rules:
