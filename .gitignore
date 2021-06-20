@@ -1,6 +1,5 @@
-node_modules/
 lib/
-.env
+node_modules/
 hash
 public_html/
 web/__compile_cache/

@@ -1,37 +1,24 @@
-# react-app
-[![Test CI](https://github.com/JoshMerlino/react-app/actions/workflows/test.yml/badge.svg)](https://github.com/JoshMerlino/react-app/actions/workflows/test.yml)
-[![CodeQL](https://github.com/JoshMerlino/react-app/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/JoshMerlino/react-app/actions/workflows/codeql-analysis.yml)
-[![Build Site](https://github.com/JoshMerlino/react-app/actions/workflows/site.yml/badge.svg)](https://github.com/JoshMerlino/react-app/actions/workflows/site.yml)
+# ts-server
+### Checks
+* [![Build](https://github.com/JoshMerlino/ts-server/actions/workflows/build.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/build.yml)
+* [![Code Quality Analysis](https://github.com/JoshMerlino/ts-server/actions/workflows/code-quality-analysis.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/code-quality-analysis.yml)
+* [![Code Style Analysis](https://github.com/JoshMerlino/ts-server/actions/workflows/code-style-analysis.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/code-style-analysis.yml)
+* [![Test CI](https://github.com/JoshMerlino/ts-server/actions/workflows/test-ci.yml/badge.svg)](https://github.com/JoshMerlino/ts-server/actions/workflows/test-ci.yml)
 
-Create single page applications using PhotonCSS that are fast as sh!t
-![100% Score in Lighthouse](https://i.ibb.co/tctcbvR/ezgif-3-9a5c3774d3c5.gif)
-
-## Initial set-up
-The following software is installed:
+### Software
 * ubuntu-20.04.1lts
 * git-2.25.1
-* node-14.15.4
-* npm-6.14.10
+* node-14.16.0
+* npm-6.14.11
 
-### Cloning the source code
+## Getting Started
 ```bash
 # Clone the repo
-git clone https://github.com/JoshMerlino/react-app -o upstream my-app
-
-# Move into working directory
-cd my-app
+git clone https://github.com/JoshMerlino/tsx-app -b master --single-branch -o upstream my-server
 ```
 
-### Updating the base and merging into existing code
-```bash
-# Fetch
-git fetch
+Move into your new working directory.
 
-# Pull upstream and rebase into master
-git pull upstream --set-upstream master
-```
-
-### Install modules
 ```bash
 # Install node build tools
 sudo apt-get install build-essential -y

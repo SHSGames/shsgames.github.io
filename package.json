@@ -1,7 +1,7 @@
 {
-	"name": "ts-server",
+	"name": "tsx-app",
 	"version": "1.0.0",
-	"description": "Easily create back end servers with powerful api's using TypeScript and Express.",
+	"description": "Create fast single-page progressive-web-apps using PhotonCSS 12, React and TypeScript.",
 	"main": "lib/",
 	"types": "lib/",
 	"author": "Josh Merlino",
@@ -39,7 +39,6 @@
 		"@babel/preset-react": "^7.9.4",
 		"@babel/preset-typescript": "^7.13.0",
 		"@types/body-parser": "^1.19.0",
-		"@types/chalk": "^2.2.0",
 		"@types/compression": "^1.7.0",
 		"@types/cookie-parser": "^1.4.2",
 		"@types/copy-webpack-plugin": "^8.0.0",
