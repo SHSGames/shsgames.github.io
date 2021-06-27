@@ -1,11 +1,13 @@
 import asyncRequireContext from "async-require-context";
 import chalk from "chalk";
 import { Express } from "express";
+import { readFileSync } from "fs";
 import { readFile, readdir } from "fs/promises";
 import http from "http";
 import https from "https";
 import { resolve } from "path";
-import { webserver } from "../package.json";
+
+const { webserver } = JSON.parse(readFileSync(resolve("./package.json"), "utf8"));
 
 export default async function server(app: Express): Promise<void> {
 
