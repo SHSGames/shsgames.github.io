@@ -76,7 +76,7 @@
 		"jquery": "^3.5.0",
 		"less": "^4.1.1",
 		"less-loader": "^7.0.2",
-		"mini-css-extract-plugin": "^1.6.1",
+		"mini-css-extract-plugin": "^1.6.2",
 		"module-mapping-webpack-plugin": "^1.1.1",
 		"nodemon": "^2.0.7",
 		"offline-plugin": "^5.0.7",
