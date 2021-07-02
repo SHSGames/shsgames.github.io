@@ -110,7 +110,7 @@
 		"cors": "^2.8.5",
 		"dotenv": "^10.0.0",
 		"express": "^4.17.1",
-		"express-rate-limit": "^5.2.3",
+		"express-rate-limit": "^5.3.0",
 		"extract-zip": "^2.0.1",
 		"filestore-json": "^1.0.11",
 		"http": "0.0.1-security",
