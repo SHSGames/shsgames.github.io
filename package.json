@@ -16,7 +16,7 @@
     "devDependencies": {
         "@types/node": "^15.14.0",
         "@typescript-eslint/parser": "^4.28.1",
-        "@typescript-eslint/eslint-plugin": "^4.28.1",
+        "@typescript-eslint/eslint-plugin": "^4.28.2",
         "eslint": "^7.30.0",
         "concurrently": "^6.2.0",
         "nodemon": "^2.0.9",
