@@ -2,8 +2,8 @@
 	"name": "tsx-app",
 	"version": "1.0.0",
 	"description": "Create fast single-page progressive-web-apps using PhotonCSS 12, React and TypeScript.",
-	"main": "lib/",
-	"types": "lib/",
+	"main": "lib/src",
+	"types": "lib/src",
 	"author": "Josh Merlino",
 	"license": "ISC",
 	"webserver": {
