@@ -25,7 +25,7 @@
         "build": "tsc"
     },
     "devDependencies": {
-        "@types/compression": "^1.7.0",
+        "@types/compression": "^1.7.1",
         "@types/cookie-parser": "^1.4.2",
         "@types/cors": "^2.8.11",
         "@types/express": "^4.17.12",
