@@ -51,7 +51,7 @@
 		"@types/node": "^16.0.1",
 		"@types/node-fetch": "^2.5.11",
 		"@types/optimize-css-assets-webpack-plugin": "^5.0.4",
-		"@types/react": "^17.0.13",
+		"@types/react": "^17.0.14",
 		"@types/terser-webpack-plugin": "^5.0.4",
 		"@types/uuid": "^8.3.1",
 		"@types/webpack": "^5.28.0",
