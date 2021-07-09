@@ -1,6 +1,7 @@
 /* eslint camelcase: off */
-declare module "photoncss";
-declare module "photoncss/react";
+declare module "photoncss/react" {
+	export * from "photoncss/src/ts/react";
+}
 
 declare module "react-dom";
 declare module "react-router-dom";
