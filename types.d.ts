@@ -1,5 +1,4 @@
 declare module "offline-plugin";
-declare module "react-router-dom";
 
 declare type APIResponse = Record<string, unknown>;
 

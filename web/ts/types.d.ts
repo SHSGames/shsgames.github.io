@@ -3,9 +3,6 @@ declare module "photoncss/react" {
 	export * from "photoncss/src/ts/react";
 }
 
-declare module "react-dom";
-declare module "react-router-dom";
-
 declare const PRODUCTION: boolean;
 
 declare interface View {
