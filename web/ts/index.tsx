@@ -4,7 +4,7 @@ import { BrowserRouter, HashRouter, Route } from "react-router-dom";
 import * as OfflinePluginRuntime from "offline-plugin/runtime";
 import "../../styles/main.less";
 import "script-loader!jquery";
-import { ThemeProvider } from "photoncss/react";
+import { ThemeProvider } from "photoncss/lib/react";
 import "photoncss/dist/photon.css";
 import app from "./app";
 import $ from "jquery";

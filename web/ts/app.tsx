@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-var-requires: off */
 import React from "react";
 import Photon from "photoncss";
-import { Button, Snackbar } from "photoncss/react";
+import { Button, Snackbar } from "photoncss/lib/react";
 
 const app: App = {
 

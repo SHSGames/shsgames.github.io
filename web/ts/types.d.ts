@@ -1,8 +1,4 @@
 /* eslint camelcase: off */
-declare module "photoncss/react" {
-	export * from "photoncss/src/ts/react";
-}
-
 declare const PRODUCTION: boolean;
 
 declare interface View {
