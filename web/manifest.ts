@@ -12,7 +12,7 @@ export default <ManifestOptions>{
 	developerName: packageJSON.author,
 	developerURL: "https://joshmerlino.github.io",
 	background_color: "#ffffff",
-	theme_color: "#004ba0",
+	theme_color: "#ffffff",
 	orientation: "portrait",
 	crossorigin: "use-credentials",
 	icons: [ {

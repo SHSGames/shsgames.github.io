@@ -106,6 +106,10 @@ export = <Configuration>{
 
 	resolve: {
 		extensions: [ ".js" ],
+		roots: [
+			__dirname,
+			path.resolve("./web/__compile_cache/ts")
+		],
 		alias: {
 			"static": path.resolve("./web/static"),
 			"views": path.resolve("./web/__compile_cache/ts/views"),

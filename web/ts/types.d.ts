@@ -3,8 +3,7 @@ declare const PRODUCTION: boolean;
 
 declare interface View {
 	route: string;
-	View: JSX.Element;
-	default: JSX.Element;
+	default: React.ComponentType;
 	title?: string;
 }
 
@@ -28,10 +27,3 @@ declare interface AppManifest {
 }
 
 declare const APP_MANIFEST: AppManifest;
-
-declare interface App {
-	static: (asset: string) => string;
-	getRoute: () => string;
-	api: (path: string, data: unknown) => Promise<unknown>;
-	update: (hash: string) => void;
-}
