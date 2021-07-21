@@ -31,7 +31,7 @@ module.exports = merge(config, <Configuration>{
 		noEmitOnErrors: true,
 		checkWasmTypes: true,
 		minimize: true,
-		minimizer: [
+		minimizer: <unknown[]>[
 			new TerserJSPlugin({}),
 			new OptimizeCSSAssetsPlugin({})
 		],
