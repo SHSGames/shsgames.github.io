@@ -230,7 +230,8 @@ app.setDarkMode(localStorage.getItem("darkmode") === "true")
 
 setTimeout(function() {
 
-	if(localStorage.getItem("notice-0-shown") != "true") {
+	if(false) {
+	// if(localStorage.getItem("notice-0-shown") != "true") {
 		let dialog = new Photon.dialog({
 			type: "alert",
 			title: "💖 Message from the SHS Games Team 💖",
