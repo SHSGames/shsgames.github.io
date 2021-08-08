@@ -1,7 +1,8 @@
 {
-    "name": "ts-package",
-    "version": "1.0.0",
-    "description": "Easily create Typescript node.js packages from this boilerplate.",
+    "name": "anvil",
+	"display-name": "Anvil",
+	"version": "1.0.0",
+	"description": "A cPanel to spin up Minecraft servers on the web!",
     "main": "lib/",
     "types": "lib/",
     "author": "Josh Merlino",
