@@ -1,29 +1,21 @@
-# ts-package
-
+# anvil
 ### Checks
-* [![Build](https://github.com/JoshMerlino/ts-package/actions/workflows/build.yml/badge.svg)](https://github.com/JoshMerlino/ts-package/actions/workflows/build.yml)
-* [![Code Quality Analysis](https://github.com/JoshMerlino/ts-package/actions/workflows/code-quality-analysis.yml/badge.svg)](https://github.com/JoshMerlino/ts-package/actions/workflows/code-quality-analysis.yml)
-* [![Code Style Analysis](https://github.com/JoshMerlino/ts-package/actions/workflows/code-style-analysis.yml/badge.svg)](https://github.com/JoshMerlino/ts-package/actions/workflows/code-style-analysis.yml)
-* [![Test CI](https://github.com/JoshMerlino/ts-package/actions/workflows/test-ci.yml/badge.svg)](https://github.com/JoshMerlino/ts-package/actions/workflows/test-ci.yml)
+* [![Build](https://github.com/JoshMerlino/anvil/actions/workflows/build.yml/badge.svg)](https://github.com/JoshMerlino/anvil/actions/workflows/build.yml)
+* [![Code Quality Analysis](https://github.com/JoshMerlino/anvil/actions/workflows/code-quality-analysis.yml/badge.svg)](https://github.com/JoshMerlino/anvil/actions/workflows/code-quality-analysis.yml)
+* [![Code Style Analysis](https://github.com/JoshMerlino/anvil/actions/workflows/code-style-analysis.yml/badge.svg)](https://github.com/JoshMerlino/anvil/actions/workflows/code-style-analysis.yml)
+* [![public_html](https://github.com/JoshMerlino/anvil/actions/workflows/public-html.yml/badge.svg)](https://github.com/JoshMerlino/anvil/actions/workflows/public-html.yml)
+* [![Test CI](https://github.com/JoshMerlino/anvil/actions/workflows/test-ci.yml/badge.svg)](https://github.com/JoshMerlino/anvil/actions/workflows/test-ci.yml)
 
-### Software
-* ubuntu-20.04.1lts
-* git-2.25.1
-* node-14.16.0
-* npm-6.14.11
-
-## Getting Started
+## Environment Variables
 ```bash
-# Clone the repo
-git clone https://github.com/JoshMerlino/ts-package -b master --single-branch -o upstream my-package
+SMTP_USER = ...
+SMTP_PASS = ...
+
+MYSQL_HOST = ...
+MYSQL_USER = ...
+MYSQL_PASS = ...
+MYSQL_DATA = ...
 ```
 
-Move into your new working directory.
- 
-```bash
-# Install node build tools
-sudo apt-get install build-essential -y
-
-# Install node modules
-npm install
-```
+## MySQL Database
+Make sure you import the [MySQL template](https://github.com/JoshMerlino/anvil/blob/master/template.sql) to your database.
