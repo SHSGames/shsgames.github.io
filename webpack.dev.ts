@@ -17,7 +17,6 @@ export = merge(config, <Configuration>{
 		port: 8080,
 		contentBase: path.resolve("web"),
 		index: "index.html",
-		watchContentBase: true,
 		historyApiFallback: {
 			index: "/index.html",
 			disableDotRule: true
