@@ -15,8 +15,6 @@ export = merge(config, <Configuration>{
 	devtool: "eval-source-map",
 	devServer: {
 		port: 8080,
-		contentBase: path.resolve("web"),
-		index: "index.html",
 		historyApiFallback: {
 			index: "/index.html",
 			disableDotRule: true
