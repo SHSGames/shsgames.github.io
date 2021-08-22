@@ -18,14 +18,14 @@
 		}
 	},
 	"scripts": {
-		"build": "concurrently \"npm:build-ts\" \"npm:build-tsx\"; npm run build-webpack",
+		"build": "npm run build-ts && npm run build-tsx && npm run build-webpack",
 		"build-ts": "tsc",
 		"watch-ts": "tsc -w --preserveWatchOutput",
-		"build-tsx": "cd web; tsc",
-		"watch-tsx": "cd web; tsc -w --preserveWatchOutput",
+		"build-tsx": "cd web && tsc",
+		"watch-tsx": "cd web && tsc -w --preserveWatchOutput",
 		"watch-js": "env NODE_ENV=dev nodemon .",
-		"build-webpack": "tsc; uuid > hash; webpack --config lib/webpack.prod.js --progress --stats errors-warnings; mv hash public_html/; cp public_html/index.html public_html/404.html",
-		"watch-webpack": "tsc; uuid > hash; webpack serve --config lib/webpack.dev.js --progress --stats errors-warnings",
+		"build-webpack": "tsc && uuid > hash && webpack --config lib/webpack.prod.js --progress --stats errors-warnings && mv hash public_html/ && cp public_html/index.html public_html/404.html",
+		"watch-webpack": "tsc && uuid > hash && webpack serve --config lib/webpack.dev.js --progress --stats errors-warnings",
 		"dev": "concurrently \"npm:watch-*\"",
 		"dev-api": "concurrently \"npm:watch-js\" \"npm:watch-ts\"",
 		"serve": "node ."
