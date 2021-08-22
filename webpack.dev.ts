@@ -24,13 +24,12 @@ export = merge(config, <Configuration>{
 			disableDotRule: true
 		},
 		proxy: {
-        	"/api": {
-            	target: "http://localhost/",
-            	secure: false
-        	}
-    	},
+			"/api": {
+				target: "http://localhost/",
+				secure: false
+			}
+		},
 		hot: true,
-		inline: true,
 		open: true,
 		host: "localhost"
 	}
