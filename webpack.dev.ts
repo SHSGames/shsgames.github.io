@@ -18,7 +18,6 @@ export = merge(config, <Configuration>{
 		contentBase: path.resolve("web"),
 		index: "index.html",
 		watchContentBase: true,
-		writeToDisk: false,
 		historyApiFallback: {
 			index: "/index.html",
 			disableDotRule: true
