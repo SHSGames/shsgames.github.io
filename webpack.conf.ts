@@ -10,7 +10,7 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import manifest from "./web/manifest";
 
 export = <Configuration>{
-	entry: [ "@babel/polyfill", "./web/__compile_cache/ts/index.js" ],
+	entry: [ "./web/__compile_cache/ts/index.js" ],
 	output: {
 		path: path.resolve("public_html/"),
 		filename: "app/[name].[contenthash].js"

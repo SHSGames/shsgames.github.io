@@ -1,3 +1,4 @@
+/* eslint camelcase: off */
 import merge from "webpack-merge";
 import { Configuration, DefinePlugin } from "webpack";
 import TerserJSPlugin from "terser-webpack-plugin";
@@ -22,7 +23,7 @@ module.exports = merge(config, <Configuration>{
 			cacheGroups: {
 	        	vendor: {
 					test: /[\\/]node_modules[\\/]/,
-                	name: "lib",
+                	name: "node",
                 	enforce: true,
                 	chunks: "all"
 	        	}
@@ -32,11 +33,18 @@ module.exports = merge(config, <Configuration>{
 		checkWasmTypes: true,
 		minimize: true,
 		minimizer: <unknown[]>[
-			new TerserJSPlugin({}),
+			new TerserJSPlugin({
+				extractComments: false,
+				terserOptions: {
+					format: {
+						comments: false
+					}
+				}
+			}),
 			new OptimizeCSSAssetsPlugin({})
 		],
 		runtimeChunk: {
-      		name: "runtime"
+      		name: "webpack"
     	}
 	},
 	plugins: [
