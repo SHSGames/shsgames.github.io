@@ -43,7 +43,7 @@
         "typescript-eslint": "0.0.1-alpha.0"
     },
     "dependencies": {
-        "async-require-context": "^1.8.10",
+        "async-require-context": "^1.8.11",
         "chalk": "^4.1.2",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.5",
