@@ -8,7 +8,7 @@ declare interface Endpoint {
 }
 
 declare interface Middleware {
-	default(req: Request, res: Response, next: NextFunction): void | Promise<void>;
+	default(req: Request, res: Response, next: NextFunction): unknown;
 }
 
 declare interface Runtime {
