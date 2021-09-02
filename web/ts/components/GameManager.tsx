@@ -12,7 +12,7 @@ export default function GameManager(): JSX.Element {
 				cursor: "pointer",
 				userSelect: "none"
 			}}
-			onClick={ () => $(".game-renderer")[0].requestFullscreen() }>Fullscreen</p>
+			onClick={ () => $("#game-renderer")[0].requestFullscreen() }>Fullscreen</p>
 		</div>
 	);
 }

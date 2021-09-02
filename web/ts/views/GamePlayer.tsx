@@ -15,7 +15,7 @@ export default function View(): JSX.Element {
 	console.log(game);
 
 	return (
-		<Container style={{ maxWidth: game.width || 800 }}>
+		<Container style={{ maxWidth: game.width || 800 }} id="game-player">
 
 			<br/>
 			<div className="title">
