@@ -59,13 +59,6 @@ export default <Game[]>[
 		width: 1080,
 		aspectRatio: 5 / 3
 	}, {
-		name: "Super Smash Flash 2",
-		runner: "IFRAME",
-		game: "/built-games/ssf2/index.html",
-		thumbnail: "https://cdn.jsdelivr.net/gh/joshmerlino/shsg-pfile/thumbs/super-smash-flash-2.jpg",
-		width: 800,
-		aspectRatio: 2
-	}, {
 		name: "Tanuki Sunset",
 		runner: "IFRAME",
 		game: "/built-games/takumiraccoon/index.html",
