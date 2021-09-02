@@ -18,7 +18,7 @@ export default function GameRenderer({ game }: Props): JSX.Element {
 		if (game.runner === "EMULATOR_GBA") gameboy(game);
 		if (game.runner === "IFRAME") iframe(game);
 		if (game.runner === "EMULATOR_NES") nes(game);
-	}, []);
+	}, [ game.name ]);
 
 	return (
 		<div id="game-renderer" style={{ height }}>
