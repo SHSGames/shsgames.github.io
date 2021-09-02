@@ -16,7 +16,7 @@ export default <ManifestOptions>{
 	orientation: "portrait",
 	crossorigin: "use-credentials",
 	icons: [ {
-	  	src: "web/static/icon.png",
+	  	src: "web/static/icon-maskable.png",
 	  	sizes: [ 96, 128, 192, 256, 384, 512 ],
 		purpose: "maskable",
 		destination: "static/"

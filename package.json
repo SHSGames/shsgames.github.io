@@ -1,7 +1,8 @@
 {
-	"name": "tsx-app",
-	"version": "1.0.0",
-	"description": "Create fast single-page progressive-web-apps using PhotonCSS 12, React and TypeScript.",
+	"name": "shsgames",
+	"display-name": "SHS Games",
+	"version": "3.0.0",
+	"description": "Unblocked games • part of an inside job.",
 	"main": "lib/src",
 	"types": "lib/src",
 	"author": "Josh Merlino",
