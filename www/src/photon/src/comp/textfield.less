@@ -1,0 +1,355 @@
+.input-field.accent {
+	.photon-input(@accentColor);
+	background: transparent!important;
+}
+
+.input-field {
+	display: block;
+	position: relative;
+	padding: 14px 0!important;
+	height: 60px!important;
+	border-radius: 4px 4px 0 0;
+
+	&:not(.select).inline {
+		display: inline-block;
+		overflow: hidden;
+		padding-top: 12px;
+		margin-bottom: -42px;
+	}
+
+	input,
+	select {
+		padding: 16px 0 8px;
+		background: transparent;
+		border: none;
+		outline: 0;
+		font-size: 16px;
+		color: #212121;
+		border-bottom: 1px solid #e5e5e5;
+		caret-color: @primaryColor;
+		font-family: @fontFamily;
+		display: block;
+		width: 100%;
+		width: -webkit-fill-available;
+		width: -moz-available;
+		.transition();
+		transition-property: box-shadow;
+		position: relative;
+	}
+
+	label {
+		color: #c1c1c1;
+		position: relative;
+		top: -28px;
+		user-select: none;
+		&:extend(.transition);
+		display: block;
+	}
+
+	input.containscontent + label,
+	input:focus + label,
+	input[placeholder] + label {
+		font-size: 12px;
+		top: -56px!important;
+		line-height: 20px;
+		vertical-align: bottom;
+		transform: translateY(4px);
+	}
+
+	input:focus ~ label {
+		color: @primaryColor;
+	}
+
+	input::placeholder {
+		color: #cacaca;
+		user-select: none;
+	}
+
+	.message {
+		&:extend(.transition);
+		font-size: 12px;
+		padding-top: 8px;
+	}
+
+	input:disabled {
+		border-bottom-style: dashed;
+		color: rgba(127,127,127,.6);
+	}
+
+	&.col {
+		padding: 4px;
+	}
+
+	.bar {
+		background: @primaryColor;
+		position: absolute;
+		height: 2px;
+		width: 0;
+		left: 50%;
+		max-width: 100%;
+	}
+
+	&.contained {
+		background: #f0f0f0!important;
+		padding: 0!important;
+
+		&:not(.select) {
+			margin-bottom: 0!important;
+		}
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		height: 48px!important;
+		transform: translateY(10px);
+
+		input,
+		label {
+			padding-left: 1rem;
+			padding-right: 1rem;
+			transform: translateY(4px);
+			border-bottom-width: 2px;
+		}
+
+		label {
+			top: -35px!important;
+		}
+
+		.bar {
+			margin-bottom: -29px;
+		}
+
+		label {
+			top: -40px;
+		}
+
+		input.containscontent + label,
+		input:focus + label,
+		input[placeholder] + label {
+			top: -48px!important;
+		}
+	}
+
+	&.outlined {
+		padding: 0!important;
+
+		&:not(.select) {
+			margin-bottom: 0!important;
+		}
+		border-radius: 4px;
+
+		input,
+		label {
+			padding-left: 1rem;
+			padding-right: 1rem;
+			transform: translateY(8px);
+			border-bottom-width: 0;
+		}
+
+		label {
+			display: inline-block;
+			background: #fafafa;
+			padding: 0;
+			margin: 0 8px;
+			padding: 0 4px;
+		}
+
+		.bar {
+			margin-bottom: -29px;
+			height: calc(100% - 11px);
+			border: 2px solid @primaryColor;
+			background: #fafafa!important;
+			border-radius: 4px;
+			z-index: -1;
+		}
+
+		&::before {
+			position: absolute;
+			content: "";
+			top: 7px;
+			left: 1px;
+			right: 1px;
+			bottom: 1px;
+			border: 1px solid #e0e0e0;
+			border-radius: 4px;
+			z-index: -2;
+		}
+
+		label {
+			top: -28px;
+		}
+
+		input.containscontent + label,
+		input:focus + label,
+		input[placeholder] + label {
+			top: -48px!important;
+		}
+	}
+}
+
+.col .input-field {
+	padding: 0 2px;
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.input-field.contained {
+		background: #363636!important;
+	}
+
+	input,
+	select {
+		color: #fafafa!important;
+		border-bottom-color: #757575;
+	}
+
+	.photon-dialog input {
+		color: #f0f0f0!important;
+
+		.photon-dialog input {
+			color: #f0f0f0!important;
+		}
+	}
+
+	.input-field.outlined {
+		.bar,
+		label {
+			background: #212121!important;
+		}
+
+		&::before {
+			border: 1px solid #424242;
+		}
+	}
+
+	.input-field:not(.no-contrast) {
+		.bar {
+			background: lighten(@primaryColor, @darkmodeColorDiff);
+			border-color: lighten(@primaryColor, @darkmodeColorDiff);
+		}
+		input:focus ~ label {
+			color: lighten(@primaryColor, @darkmodeColorDiff);
+		}
+		input {
+			caret-color: lighten(@primaryColor, @darkmodeColorDiff);
+		}
+	}
+	.input-field.accent:not(.no-contrast) {
+		.photon-input(lighten(@accentColor, @darkmodeColorDiff));
+	}
+
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.input-field.contained {
+			background: #363636!important;
+		}
+
+		input,
+		select {
+			color: #fafafa!important;
+			border-bottom-color: #757575;
+		}
+
+		.photon-dialog input {
+			color: #f0f0f0!important;
+
+			.photon-dialog input {
+				color: #f0f0f0!important;
+			}
+		}
+
+		.input-field.outlined {
+			.bar,
+			label {
+				background: #212121!important;
+			}
+
+			&::before {
+				border: 1px solid #424242;
+			}
+		}
+
+		.input-field:not(.no-contrast) {
+			.bar {
+				background: lighten(@primaryColor, @darkmodeColorDiff);
+				border-color: lighten(@primaryColor, @darkmodeColorDiff);
+			}
+			input:focus ~ label {
+				color: lighten(@primaryColor, @darkmodeColorDiff);
+			}
+			input {
+				caret-color: lighten(@primaryColor, @darkmodeColorDiff);
+			}
+		}
+		.input-field.accent:not(.no-contrast) {
+			.photon-input(lighten(@accentColor, @darkmodeColorDiff));
+		}
+
+	}
+}
+
+.input-field .bar {
+	bottom: 29px;
+}
+
+.col .input-field {
+	.bar {
+		bottom: 1px;
+	}
+
+	&.inline .bar {
+		bottom: 29px!important;
+	}
+}
+
+.input-field.outlined.dense {
+	height: 42px!important;
+
+	input {
+		padding-top: 6px;
+		padding-bottom: 6px;
+	}
+
+	label {
+		top: -25px!important;
+	}
+
+	input.containscontent+label,
+	input:focus+label,
+	input[placeholder]+label {
+		top: -38px!important;
+	}
+}
+
+.card {
+	.input-field {
+		margin: 4px;
+
+		label {
+			background: #fff!important;
+		}
+	}
+
+	.input-field.outlined {
+		margin: 4px;
+
+		.bar,
+		label {
+			background: #fff!important;
+		}
+	}
+}
+
+.row .col.input-field .bar {
+	bottom: 1px!important;
+}
+
+.row .col.input-field.inline .bar,
+.row .col.input-field.outlined .bar {
+	bottom: 29px!important;
+}
+
+.row .col.input-field.contained .bar {
+	bottom: 28px!important;
+}

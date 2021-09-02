@@ -1,0 +1,48 @@
+.scrollnav {
+	border-left: 2px solid @primaryColor;
+	padding: 0 0 0 20px;
+
+	h1 {
+		font-size: 15px;
+		line-height: 16px;
+		padding-bottom: 12px;
+		font-weight: 400;
+		color: #757575;
+		margin: 0;
+		font-family: Roboto!important;
+	}
+
+	li {
+		cursor: pointer;
+
+		a {
+			font-size: 20px;
+			line-height: 40px;
+			color: #525252;
+		}
+
+		&:last-child {
+			padding-top: 6px;
+
+			a {
+				line-height: normal;
+			}
+		}
+	}
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.scrollnav a {
+		color: #d1d1d1;
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.scrollnav a {
+			color: #d1d1d1;
+		}
+	}
+}

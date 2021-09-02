@@ -1,0 +1,751 @@
+.photon-dialog {
+	position: fixed;
+	display: grid;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.5);
+	z-index: 5000000;
+	opacity: 0;
+	.transition();
+
+	.dialog {
+		background: #fff;
+		margin: auto;
+		height: 200px;
+		width: 500px;
+		box-shadow: 0 11px 15px -7px rgba(0,0,0,0.2), 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12);
+		border-radius: 4px;
+		.transition();
+		transition-property: transform;
+		overflow: hidden;
+
+		&.enlarge {
+			transform: scale(1.03)!important;
+		}
+	}
+
+	.dialog {
+		&.transition-slide {
+			transform: translateY(100%);
+		}
+
+		&.transition-grow {
+			transform: scale(0.8);
+		}
+
+		&.transition-zoom {
+			transform: scale(0);
+		}
+	}
+
+	&.active {
+		opacity: 1;
+
+		.dialog {
+			transform: translateY(0) scale(1);
+		}
+	}
+
+	.dialog {
+		height: auto;
+		width: calc(~"100% - 32px");
+
+		&.size-auto {
+			max-width: 600px;
+			max-height: 440px;
+		}
+
+		&.size-choice,
+		&.size-medium {
+			max-width: 360px;
+			max-height: 440px;
+		}
+
+		&.size-dense {
+			max-width: 268px;
+			max-height: 440px;
+		}
+
+		&.size-progress {
+			max-width: 268px;
+			padding-top: 24px;
+			padding-bottom: 12px;
+
+			.progress {
+				margin-bottom: 0;
+			}
+
+			.assets {
+				font-size: 14px;
+				text-align: right;
+				margin-bottom: -16px;
+			}
+		}
+
+		&.size-spinner {
+			max-width: 268px;
+			position: relative;
+
+			.body {
+				padding: 34px 16px 30px 112px;
+
+				.spinner {
+					position: absolute;
+					top: -8px;
+					left: 0;
+				}
+			}
+		}
+
+		&.size-picker {
+			max-width: 328px;
+			min-height: 480px;
+			max-height: 480px;
+		}
+	}
+
+	.dialog {
+		.title {
+			color: rgba(0, 0, 0, 0.87);
+			font-size: 1.25rem;
+			font-family: @fontFamily;
+			font-weight: 500;
+			line-height: 1.6;
+			letter-spacing: 0.0075em;
+			margin: 24px;
+		}
+
+		.body {
+			padding: 0 24px 24px;
+			line-height: 1.5;
+			color: rgba(0, 0, 0, 0.54);
+			font-size: 1rem;
+			font-family: @fontFamily;
+			font-weight: 400;
+			letter-spacing: 0.00938em;
+			margin-top: -4px;
+
+			p {
+				margin: 0 0 12px;
+			}
+
+			.input-field {
+				margin-top: -12px;
+				margin-bottom: -32px;
+
+				&.outlined {
+					.bar,
+					label {
+						background: #fff!important;
+					}
+
+					label {
+						transform: translateY(6px);
+					}
+
+					input.containscontent + label,
+					input:focus + label,
+					input[placeholder] + label {
+						transform: translateY(0);
+					}
+				}
+
+				&.box:not(:last-child),
+				&.outlined:not(:last-child) {
+					margin-bottom: 16px!important;
+				}
+			}
+		}
+
+		.actions {
+			direction: rtl;
+			padding: 4px 4px 0;
+			position: relative;
+
+			.btn {
+				margin: 4px;
+				padding: 0 8px;
+				.photon-button-flat(@primaryColor);
+			}
+		}
+
+		.options {
+			max-height: 300px;
+			overflow-y: auto;
+			margin: 0 -24px;
+			padding: 0 24px;
+			margin-bottom: -24px;
+			padding-top: 6px;
+
+			.checkbox,
+			.radio-btn {
+				padding-top: 8px;
+				padding-bottom: 8px;
+
+				label {
+					color: #303030;
+				}
+
+				.ripple {
+					z-index: 2000000;
+					transform: translateY(-3px);
+				}
+			}
+
+			.checkbox {
+				.photon-checkbox(@primaryColor,@primaryTextColor);
+			}
+
+			.radio {
+				.photon-radio(@primaryColor);
+			}
+		}
+
+		.users {
+			.user {
+				height: 56px;
+				padding: 0 8px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+
+				&:hover {
+					background: #fafafa;
+				}
+
+				img {
+					display: inline-block;
+					width: 40px;
+					height: 40px;
+					padding: 8px;
+				}
+
+				.desc {
+					color: rgba(0, 0, 0, 0.87);
+					font-size: 1rem;
+					font-family: @fontFamily;
+					font-weight: 400;
+					line-height: 56px;
+					letter-spacing: 0.00938em;
+					vertical-align: top;
+					padding-left: 1rem;
+				}
+
+				&:last-child {
+					margin-bottom: 8px;
+				}
+			}
+
+			hr {
+				margin: 4px 0;
+				border-color: #e5e5e5;
+			}
+		}
+	}
+
+	.dialog.photon-datepicker {
+		.bar {
+			background: @primaryColor;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 56px;
+			padding: 20px 24px;
+
+			.date,
+			.year {
+				user-select: none;
+				cursor: pointer;
+				font-weight: 500;
+				color: rgba(255,255,255,.73);
+				.transition();
+
+				&.active {
+					color: #fff;
+				}
+
+				&.date {
+					font-size: 32px;
+					margin-top: 4px;
+				}
+			}
+		}
+
+		.body {
+			position: absolute;
+			top: 100px;
+			left: 0;
+			right: 0;
+			opacity: 0;
+			pointer-events: none;
+			.transition();
+
+			&.active {
+				pointer-events: all;
+				opacity: 1;
+			}
+
+			&.years {
+				height: 332px;
+				overflow-y: scroll;
+				overflow-x: hidden;
+				padding: 0;
+				border-bottom: 1px solid #e5e5e5;
+
+				.yearsel {
+					text-align: center;
+					font-size: 18px;
+					font-weight: 500;
+					color: #212121;
+					line-height: 48px;
+
+					&.selected {
+						color: @primaryColor;
+					}
+				}
+			}
+
+			&.calendar {
+				.calnav {
+					user-select: none;
+					height: 56px;
+					margin: 0 -24px;
+					position: relative;
+					border-left: 32px solid #fff;
+					border-right: 32px solid #fff;
+
+					i {
+						position: absolute;
+						background: #fff;
+						top: -4px;
+
+						&.right {
+							right: -32px;
+						}
+
+						&:not(.right) {
+							left: -32px;
+						}
+					}
+
+					.monthyear {
+						font-weight: 500;
+						color: #303030;
+						font-size: 1rem;
+						line-height: 56px;
+						text-align: center;
+						position: absolute;
+						width: 100%;
+						z-index: -1;
+
+						&.animating {
+							.transition();
+							transition-duration: 350ms!important;
+						}
+					}
+				}
+
+				.cal-slider {
+					position: absolute;
+					top: 56px;
+					left: 0;
+					right: 0;
+					padding: 0 24px;
+
+					&.animating {
+						.transition();
+						transition-duration: 350ms!important;
+					}
+
+					.headers {
+						line-height: 36px;
+						margin: 0 -14px;
+
+						.header {
+							width: 14.28%;
+							display: inline-block;
+							font-size: 12px;
+							color: #525252;
+							font-weight: 500;
+							text-align: center;
+						}
+					}
+
+					.cal {
+						line-height: 36px;
+						margin: 0 -14px;
+
+						.datecell {
+							width: 14.28%;
+							display: inline-block;
+							font-size: 12px;
+							font-weight: 500;
+							text-align: center;
+
+							.date {
+								cursor: pointer;
+								margin: 0 4px;
+								border-radius: 50%;
+								color: #303030;
+
+								&:hover {
+									background: #f5f5f5;
+								}
+
+								&.today {
+									color: @accentColor;
+								}
+
+								&.selected {
+									color: @accentTextColor;
+									background: @accentColor;
+								}
+
+								&.disabled {
+									pointer-events: none;
+									opacity: 0.38;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.actions {
+			bottom: 0;
+			right: 0;
+			position: absolute;
+		}
+	}
+
+	.dialog.photon-timepicker {
+		.bar {
+			background: @primaryColor;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 56px;
+			padding: 20px 24px;
+		}
+
+		.clock {
+			position: absolute;
+			width: 300px;
+			height: 300px;
+			background: #f5f5f5;
+			border-radius: 50%;
+			top: 96px;
+			margin: 14px;
+
+			.timecell {
+				position: absolute;
+				height: 36px;
+				width: 36px;
+				border-radius: 50%;
+				text-align: center;
+				line-height: 36px;
+
+				&.dc-pos-0 {
+					top: 32px;
+					left: 150px;
+					transform: translate(-50%,-50%);
+				}
+
+				&.dc-pos-6 {
+					bottom: 32px;
+					left: 150px;
+					transform: translate(-50%,50%);
+				}
+
+				&.dc-pos-3 {
+					right: 32px;
+					top: 150px;
+					transform: translate(50%,-50%);
+				}
+
+				&.dc-pos-9 {
+					left: 32px;
+					top: 150px;
+					transform: translate(-50%,-50%);
+				}
+			}
+		}
+
+		.actions {
+			bottom: 0;
+			right: 0;
+			position: absolute;
+		}
+	}
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.dialog {
+		background: #414141;
+
+		.title {
+			color: #fff;
+		}
+
+		.users .user {
+			&:hover {
+				background: #464646;
+			}
+
+			.desc {
+				color: rgba(255,255,255,.7);
+			}
+		}
+
+		.input-field.outlined {
+			.bar,
+			label {
+				background: #414141!important;
+			}
+
+			&::before {
+				border-color: #525252!important;
+			}
+		}
+
+		&.photon-datepicker .bar,
+		&.photon-timepicker .bar {
+			background: #555555!important;
+		}
+
+		.body {
+			color: rgba(255,255,255,.7);
+
+			input::after {
+				border-color: #414141!important;
+				color: #414141;
+			}
+
+			.checkbox label,
+			.radio-btn label {
+				color: rgba(255,255,255,.7)!important;
+			}
+
+			.yearsel:not(.selected) {
+				color: #f0f0f0!important;
+			}
+
+			.calnav {
+				border-color: #414141!important;
+
+				i {
+					background: #414141!important;
+					color: #d1d1d1;
+
+					.waves-ripple {
+						background: rgba(255,255,255,.2);
+					}
+				}
+
+				.monthyear {
+					color: #f0f0f0!important;
+				}
+			}
+
+			.cal-slider {
+				.headers .header {
+					color: #c1c1c1!important;
+				}
+
+				.cal .datecell .date {
+					color: #f5f5f5!important;
+
+					&:not(.selected):hover {
+						background: #505050!important;
+					}
+
+					&.today:not(.selected) {
+						color: lighten(@accentColor, @darkmodeColorDiff)!important;
+					}
+				}
+			}
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.dialog {
+			background: #414141;
+
+			.title {
+				color: #fff;
+			}
+
+			.users .user {
+				&:hover {
+					background: #464646;
+				}
+
+				.desc {
+					color: rgba(255,255,255,.7);
+				}
+			}
+
+			.input-field.outlined {
+				.bar,
+				label {
+					background: #414141!important;
+				}
+
+				&::before {
+					border-color: #525252!important;
+				}
+			}
+
+			&.photon-datepicker .bar,
+			&.photon-timepicker .bar {
+				background: #555555!important;
+			}
+
+			.body {
+				color: rgba(255,255,255,.7);
+
+				input::after {
+					border-color: #414141!important;
+					color: #414141;
+				}
+
+				.checkbox label,
+				.radio-btn label {
+					color: rgba(255,255,255,.7)!important;
+				}
+
+				.yearsel:not(.selected) {
+					color: #f0f0f0!important;
+				}
+
+				.calnav {
+					border-color: #414141!important;
+
+					i {
+						background: #414141!important;
+						color: #d1d1d1;
+
+						.waves-ripple {
+							background: rgba(255,255,255,.2);
+						}
+					}
+
+					.monthyear {
+						color: #f0f0f0!important;
+					}
+				}
+
+				.cal-slider {
+					.headers .header {
+						color: #c1c1c1!important;
+					}
+
+					.cal .datecell .date {
+						color: #f5f5f5!important;
+
+						&:not(.selected):hover {
+							background: #505050!important;
+						}
+
+						&.today:not(.selected) {
+							color: lighten(@accentColor, @darkmodeColorDiff)!important;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.dialog .actions .btn {
+		.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
+	}
+	.dialog .body .options .checkbox {
+		.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), #414141);
+	}
+	.dialog .body {
+		border-bottom-color: #616161!important;
+		&.calendar .cal-slider .cal .datecell .selected {
+			background: lighten(@accentColor, @darkmodeColorDiff)!important;
+			color: #414141!important;
+		}
+		&.years .yearsel.selected {
+			color: lighten(@primaryColor, @darkmodeColorDiff)!important;
+		}
+	}
+	.photon-dialog .dialog .body .input-field,
+	.photon-dialog .dialog .body .input-field {
+		.photon-input(lighten(@primaryColor, @darkmodeColorDiff));
+		label, .bar {
+			background: #414141!important;
+		}
+	}
+	.photon-dialog .dialog .body .progress {
+		background: fade(lighten(@primaryColor, @darkmodeColorDiff), 20%)!important;
+		.determinate {
+			background: lighten(@primaryColor, @darkmodeColorDiff)!important;
+		}
+	}
+	.photon-dialog .dialog .body svg circle {
+		stroke: lighten(@primaryColor, @darkmodeColorDiff)!important;
+	}
+}
+
+.photon-dialog .dialog .body .progress {
+	background: fade(@primaryColor, 20%)!important;
+	.determinate {
+		background: @primaryColor!important;
+	}
+}
+.photon-dialog .dialog .body svg circle {
+	stroke: @primaryColor!important;
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.dialog .actions .btn {
+			.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
+		}
+		.dialog .body .options .checkbox {
+			.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), #414141);
+		}
+		.dialog .body {
+			border-bottom-color: #616161!important;
+			&.calendar .cal-slider .cal .datecell .selected {
+				background: lighten(@accentColor, @darkmodeColorDiff)!important;
+				color: #414141!important;
+			}
+			&.years .yearsel.selected {
+				color: lighten(@primaryColor, @darkmodeColorDiff)!important;
+			}
+		}
+		.photon-dialog .dialog .body .input-field,
+		.photon-dialog .dialog .body .input-field {
+			.photon-input(lighten(@primaryColor, @darkmodeColorDiff));
+			label, .bar {
+				background: #414141!important;
+			}
+		}
+		.photon-dialog .dialog .body .progress {
+			background: fade(lighten(@primaryColor, @darkmodeColorDiff), 20%)!important;
+			.determinate {
+				background: lighten(@primaryColor, @darkmodeColorDiff)!important;
+			}
+		}
+		.photon-dialog .dialog .body svg circle {
+			stroke: lighten(@primaryColor, @darkmodeColorDiff)!important;
+		}
+	}
+}

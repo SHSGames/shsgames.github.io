@@ -1,0 +1,42 @@
+{
+    "name": "SHS Games",
+    "short_name": "SHSGames",
+	"description": "Unblocked games - part of an inside job.",
+
+    "start_url": "/",
+    "display": "standalone",
+	"orientation": "portrait-primary",
+
+    "theme_color": "#ffffff",
+    "background_color": "#fafafa",
+
+	"related_applications": [{
+    	"platform": "web"
+	}],
+
+    "icons": [{
+        "src": "/img/icon/res/mipmap-mdpi/ic_launcher.png",
+        "sizes": "48x48",
+        "type": "image/png"
+    },{
+        "src": "/img/icon/res/mipmap-hdpi/ic_launcher.png",
+        "sizes": "72x72",
+        "type": "image/png"
+    },{
+        "src": "/img/icon/res/mipmap-xhdpi/ic_launcher.png",
+        "sizes": "96x96",
+        "type": "image/png"
+    },{
+        "src": "/img/icon/res/mipmap-xxhdpi/ic_launcher.png",
+        "sizes": "144x144",
+        "type": "image/png"
+    },{
+        "src": "/img/icon/res/mipmap-xxxhdpi/ic_launcher.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },{
+        "src": "/img/icon/web_hi_res_512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }]
+}

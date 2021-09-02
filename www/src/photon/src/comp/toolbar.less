@@ -1,0 +1,168 @@
+.toolbar, .app-bar {
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:64px;
+	background:@primaryColor;
+	color:@primaryTextColor;
+	z-index:9000!important;
+	overflow-y:hidden;
+
+	.transition();
+	transition-property: box-shadow, border-color;
+
+	.title,
+	.subtitle {
+		font-size:18px;
+		color:inherit;
+		position:absolute;
+		line-height:64px;
+		top:0px;
+		left:24px;
+		max-width:66%;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+		font-family:@secondaryFont;
+	}
+
+	.title {
+		font-weight:500;
+		z-index: 1;
+		width: 66%;
+		user-select: none;
+	}
+
+	.subtitle {
+		font-size:14px;
+		margin-left: -24px;
+		margin-top: 20px;
+		max-width: 100%;
+		z-index: -1;
+	}
+
+	i {
+		color:inherit;
+		margin:8px;
+		padding:12px;
+		border-radius:50%;
+		.waves-ripple {
+			background:fade(@primaryTextColor,40%);
+		}
+	}
+	i ~ .title,
+	i ~ .subtitle {
+		left:64px;
+	}
+	.actions {
+		text-align:right;
+		position:absolute;
+		top:0px;
+		right:0px;
+		max-height:64px;
+		i {
+			position:relative;
+			&:not(:last-child){
+				margin:8px 0;
+			}
+			&:last-child {
+				margin-left:0;
+			}
+		}
+	}
+	&.tall {
+		height:112px;
+		.tabs  {
+			position:absolute;
+			top: 64px;
+		}
+	}
+	&.dense {
+		height:56px;
+		.title {
+			font-size:14px;
+			line-height:56px;
+		}
+		i {
+			margin: 4px!important;
+		}
+	}
+
+	overflow:hidden;
+
+	&.raised {
+		box-shadow: 0 2px 5px rgba(0,0,0,.26);
+	}
+
+	&.parallax {
+		height:260px;
+		min-height:64px;
+		img {
+			position:absolute;
+			top: 50%;
+		    left: 0;
+		    right: 0;
+		    transform: translateY(-50%);
+		}
+		.toolbar, .app-bar {
+			position: relative;
+			bottom:0;
+			left:0;
+			right:0;
+			background:transparent!important;
+			box-shadow:none!important;
+		}
+	}
+
+	&.paper {
+		color:#212121;
+		background:#fff;
+
+		&:not(.raised) {
+			box-shadow: 0 1px 0 0 rgba(0,0,0,0.1);
+		}
+		.waves-ripple {
+			background: rgba(0,0,0,0.2)!important;
+		}
+
+	}
+
+	.tabs {
+		overflow-x: scroll;
+		height: 52px;
+	}
+
+	&.fixed {
+		position: fixed!important;
+		top: 0!important;
+		bottom: auto!important;
+	}
+
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.toolbar.paper,
+	.app-bar.paper {
+		color:#fafafa;
+		background:#242424;
+		.waves-ripple {
+			background: rgba(255,255,255,0.2)!important;
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.toolbar.paper,
+		.app-bar.paper {
+			color:#fafafa;
+			background:#242424;
+			.waves-ripple {
+				background: rgba(255,255,255,0.2)!important;
+			}
+		}
+	}
+}

@@ -1,0 +1,201 @@
+@import "theme";
+@import "../photon/src/photon";
+
+@import "mprogress";
+@import "highlightjs";
+
+@import "overrides";
+@import "overrides-dark";
+
+body {
+	margin-top: 72px;
+}
+
+.title h2 {
+	font-family: Roboto Mono;
+	display: inline-block;
+	padding: 12px 0;
+	margin: 0;
+	margin-bottom: 4px;
+	border-bottom: 2px solid @primaryColor;
+	border-image-slice: 1;
+	text-transform: uppercase;
+	letter-spacing: 8px;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+footer h3 {
+	border-bottom: 2px solid @primaryColor!important;
+}
+
+#jsnes-game {
+	transform-origin: top left;
+	image-rendering: pixelated;
+}
+
+.adview {
+	padding: 0!important;
+	overflow: hidden;
+}
+
+.og-vh-center {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.settings-view-wrapper {
+
+	.vh-center-wrapper();
+	.transition();
+
+	z-index: 20000;
+	background: #00000021;
+	pointer-events: none;
+	opacity: 0;
+
+	.settings-view {
+
+		.raised-8();
+		.vh-center();
+		.transition();
+
+		max-width: 720px;
+		width: 100%;
+		max-height: 374px;
+		height: 100%;
+		background: #fff;
+		border-radius: 10px;
+		position: relative;
+		overflow: hidden;
+
+		@media @desktop {
+			transform: scale(.8);
+		}
+
+		@media @mobile,@tablet {
+			margin-bottom: 0;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			transform: translateY(8rem);
+		}
+
+		.toolbar {
+			position: absolute;
+		}
+
+		.content {
+			position: absolute;
+			top: 64px;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			overflow-x: hidden;
+			overflow-y: auto;
+
+			.settings-header {
+				padding: 12px 24px;
+				font-weight: 500;
+				opacity: 0.54;
+			}
+			.settings-section {
+				border-top: 1px solid #e5e5e5;
+				.settings-option {
+					.transition();
+					position: relative;
+					&.disabled {
+						pointer-events: none;
+						filter: grayscale(1);
+					}
+					.error-wrapper {
+						.settings-name,
+						.error {
+							transform: translateY(-16px);
+						}
+					}
+					.error {
+					    position: absolute;
+					    top: 48px;
+					    left: 80px;
+					    color: #8e8c8c;
+					}
+					&:hover {
+						background: #00000005;
+					}
+					.settings-icon {
+						color: @primaryColor;
+						width: 32px;
+						height: 32px;
+						padding: 12px 24px;
+						line-height: 32px;
+					}
+					.settings-name {
+						display: inline-block;
+						line-height: 32px;
+						font-weight: 500;
+						transform: translateY(-6px);
+						user-select: none;
+					}
+					.settings-checkbox {
+						position: absolute;
+						top: 12px;
+						right: 24px;
+						pointer-events: none;
+					}
+				}
+			}
+		}
+	}
+
+	&.active {
+		opacity: 1;
+		pointer-events: all;
+		.settings-view {
+			transform: scale(1) translateY(0);
+		}
+	}
+}
+
+.hidden {
+	display: none;
+}
+
+.search-wrapper {
+	margin-top: 4px;
+	height: 56px;
+	display: block;
+	border-radius: 4px;
+	background: #fff;
+	.raised-1();
+	margin-bottom: 8px;
+	overflow: hidden;
+	i.material-icons {
+		height: 56px;
+		width: 56px;
+		border-right: 1px solid #e1e1e1;
+		display: inline-block;
+		color: #000000bd;
+	    text-align: center;
+	    line-height: 56px;
+		background: #fbfbfb
+	}
+	input {
+		background: #0000;
+	    font-size: 18px;
+	    padding: 1rem;
+	    border: none;
+	    transform: translateY(-6px);
+	    width: calc(100% - 56px - 2rem - 1px);
+		font-family: Roboto;
+	}
+}
+
+.note.partners {
+	.photon-note(@primaryColor,"announcement","Partners");
+}
+
+.note.important {
+	.photon-note(@deep-orange,"warning","Important");
+}

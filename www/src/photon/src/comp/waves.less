@@ -1,0 +1,1105 @@
+@bex:.1,1,.1,.75;
+@gex:0,.8,.5,1;
+
+.waves-transition (@transition) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -o-transition: @transition;
+    transition: @transition;
+}
+
+.waves-transform(@string) {
+    -webkit-transform: @string;
+    -moz-transform: @string;
+    -ms-transform: @string;
+    -o-transform: @string;
+    transform: @string;
+}
+
+.waves-box-shadow(@shadow) {
+    -webkit-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
+
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    .waves-ripple {
+        position: absolute;
+        border-radius: 9999px;
+        width: 100px;
+        height: 100px;
+        margin-top:-50px;
+        margin-left:-50px;
+        opacity: .6;
+        background: rgba(127,127,127,0.2);
+        .waves-transition(all 750ms cubic-bezier(@bex));
+        -webkit-transition-property: -webkit-transform, opacity;
+        -moz-transition-property: -moz-transform, opacity;
+        -o-transition-property: -o-transform, opacity;
+        transition-property: transform, opacity;
+        .waves-transform(scale(0) translate(0,0));
+        pointer-events: none;
+    }
+
+    &.waves-light .waves-ripple,
+	&.waves-classic.waves-light .waves-ripple {
+        background: rgba(255,255,255,0.4);
+    }
+
+	&.waves-classic .waves-ripple {
+        background: rgba(0,0,0,0.2);
+    }
+
+	&.waves-ink .waves-ripple {
+		.waves-transition(all 400ms cubic-bezier(@gex))!important;
+	}
+
+	&.waves-ink:hover {
+		background:rgba(0,0,0,.06);
+	}
+
+}
+
+.waves-effect.waves-primaryDark .waves-ripple {
+	background:fade(@darkPrimaryColor,40%)!important;
+}
+.waves-effect.waves-primary .waves-ripple {
+	background:fade(@primaryColor,40%)!important;
+}
+.waves-effect.waves-primaryLight .waves-ripple {
+	background:fade(@lightPrimaryColor,40%)!important;
+}
+
+.waves-effect.waves-accentDark .waves-ripple {
+	background:fade(@darkAccentColor,40%)!important;
+}
+.waves-effect.waves-accent .waves-ripple {
+	background:fade(@accentColor,40%)!important;
+}
+.waves-effect.waves-accentLight .waves-ripple {
+	background:fade(@lightAccentColor,40%)!important;
+}
+
+.waves-effect.waves-red.waves-lighten-5 .waves-ripple {
+	background:rgba(255,235,238,.6)!important;
+}
+
+.waves-effect.waves-red.waves-lighten-4 .waves-ripple {
+	background:rgba(255,205,210,.6)!important;
+}
+
+.waves-effect.waves-red.waves-lighten-3 .waves-ripple {
+	background:rgba(239,154,154,.6)!important;
+}
+
+.waves-effect.waves-red.waves-lighten-2 .waves-ripple {
+	background:rgba(229,115,115,.6)!important;
+}
+
+.waves-effect.waves-red.waves-lighten-1 .waves-ripple {
+	background:rgba(239,83,80,.6)!important;
+}
+
+.waves-effect.waves-red .waves-ripple {
+	background:rgba(244,67,54,.6)!important;
+}
+
+.waves-effect.waves-red.waves-darken-1 .waves-ripple {
+	background:rgba(229,57,53,.6)!important;
+}
+
+.waves-effect.waves-red.waves-darken-2 .waves-ripple {
+	background:rgba(211,47,47,.6)!important;
+}
+
+.waves-effect.waves-red.waves-darken-3 .waves-ripple {
+	background:rgba(198,40,40,.6)!important;
+}
+
+.waves-effect.waves-red.waves-darken-4 .waves-ripple {
+	background:rgba(183,28,28,.6)!important;
+}
+
+.waves-effect.waves-red.waves-accent-1 .waves-ripple {
+	background:rgba(255,138,128,.6)!important;
+}
+
+.waves-effect.waves-red.waves-accent-2 .waves-ripple {
+	background:rgba(255,82,82,.6)!important;
+}
+
+.waves-effect.waves-red.waves-accent-3 .waves-ripple {
+	background:rgba(255,23,68,.6)!important;
+}
+
+.waves-effect.waves-red.waves-accent-4 .waves-ripple {
+	background:rgba(213,0,0,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-lighten-5 .waves-ripple {
+	background:rgba(252,228,236,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-lighten-4 .waves-ripple {
+	background:rgba(248,187,208,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-lighten-3 .waves-ripple {
+	background:rgba(244,143,177,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-lighten-2 .waves-ripple {
+	background:rgba(240,98,146,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-lighten-1 .waves-ripple {
+	background:rgba(236,64,122,.6)!important;
+}
+
+.waves-effect.waves-pink .waves-ripple {
+	background:rgba(233,30,99,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-darken-1 .waves-ripple {
+	background:rgba(216,27,96,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-darken-2 .waves-ripple {
+	background:rgba(194,24,91,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-darken-3 .waves-ripple {
+	background:rgba(173,20,87,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-darken-4 .waves-ripple {
+	background:rgba(136,14,79,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-accent-1 .waves-ripple {
+	background:rgba(255,128,171,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-accent-2 .waves-ripple {
+	background:rgba(255,64,129,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-accent-3 .waves-ripple {
+	background:rgba(245,0,87,.6)!important;
+}
+
+.waves-effect.waves-pink.waves-accent-4 .waves-ripple {
+	background:rgba(197,17,98,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-lighten-5 .waves-ripple {
+	background:rgba(243,229,245,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-lighten-4 .waves-ripple {
+	background:rgba(225,190,231,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-lighten-3 .waves-ripple {
+	background:rgba(206,147,216,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-lighten-2 .waves-ripple {
+	background:rgba(186,104,200,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-lighten-1 .waves-ripple {
+	background:rgba(171,71,188,.6)!important;
+}
+
+.waves-effect.waves-purple .waves-ripple {
+	background:rgba(156,39,176,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-darken-1 .waves-ripple {
+	background:rgba(142,36,170,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-darken-2 .waves-ripple {
+	background:rgba(123,31,162,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-darken-3 .waves-ripple {
+	background:rgba(106,27,154,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-darken-4 .waves-ripple {
+	background:rgba(74,20,140,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-accent-1 .waves-ripple {
+	background:rgba(234,128,252,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-accent-2 .waves-ripple {
+	background:rgba(224,64,251,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-accent-3 .waves-ripple {
+	background:rgba(213,0,249,.6)!important;
+}
+
+.waves-effect.waves-purple.waves-accent-4 .waves-ripple {
+	background:rgba(170,0,255,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-lighten-5 .waves-ripple {
+	background:rgba(237,231,246,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-lighten-4 .waves-ripple {
+	background:rgba(209,196,233,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-lighten-3 .waves-ripple {
+	background:rgba(179,157,219,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-lighten-2 .waves-ripple {
+	background:rgba(149,117,205,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-lighten-1 .waves-ripple {
+	background:rgba(126,87,194,.6)!important;
+}
+
+.waves-effect.waves-deep-purple .waves-ripple {
+	background:rgba(103,58,183,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-darken-1 .waves-ripple {
+	background:rgba(94,53,177,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-darken-2 .waves-ripple {
+	background:rgba(81,45,168,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-darken-3 .waves-ripple {
+	background:rgba(69,39,160,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-darken-4 .waves-ripple {
+	background:rgba(49,27,146,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-accent-1 .waves-ripple {
+	background:rgba(179,136,255,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-accent-2 .waves-ripple {
+	background:rgba(124,77,255,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-accent-3 .waves-ripple {
+	background:rgba(101,31,255,.6)!important;
+}
+
+.waves-effect.waves-deep-purple.waves-accent-4 .waves-ripple {
+	background:rgba(98,0,234,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-lighten-5 .waves-ripple {
+	background:rgba(232,234,246,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-lighten-4 .waves-ripple {
+	background:rgba(197,202,233,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-lighten-3 .waves-ripple {
+	background:rgba(159,168,218,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-lighten-2 .waves-ripple {
+	background:rgba(121,134,203,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-lighten-1 .waves-ripple {
+	background:rgba(92,107,192,.6)!important;
+}
+
+.waves-effect.waves-indigo .waves-ripple {
+	background:rgba(63,81,181,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-darken-1 .waves-ripple {
+	background:rgba(57,73,171,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-darken-2 .waves-ripple {
+	background:rgba(48,63,159,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-darken-3 .waves-ripple {
+	background:rgba(40,53,147,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-darken-4 .waves-ripple {
+	background:rgba(26,35,126,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-accent-1 .waves-ripple {
+	background:rgba(140,158,255,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-accent-2 .waves-ripple {
+	background:rgba(83,109,254,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-accent-3 .waves-ripple {
+	background:rgba(61,90,254,.6)!important;
+}
+
+.waves-effect.waves-indigo.waves-accent-4 .waves-ripple {
+	background:rgba(48,79,254,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-lighten-5 .waves-ripple {
+	background:rgba(227,242,253,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-lighten-4 .waves-ripple {
+	background:rgba(187,222,251,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-lighten-3 .waves-ripple {
+	background:rgba(144,202,249,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-lighten-2 .waves-ripple {
+	background:rgba(100,181,246,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-lighten-1 .waves-ripple {
+	background:rgba(66,165,245,.6)!important;
+}
+
+.waves-effect.waves-blue .waves-ripple {
+	background:rgba(33,150,243,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-darken-1 .waves-ripple {
+	background:rgba(30,136,229,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-darken-2 .waves-ripple {
+	background:rgba(25,118,210,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-darken-3 .waves-ripple {
+	background:rgba(21,101,192,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-darken-4 .waves-ripple {
+	background:rgba(13,71,161,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-accent-1 .waves-ripple {
+	background:rgba(130,177,255,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-accent-2 .waves-ripple {
+	background:rgba(68,138,255,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-accent-3 .waves-ripple {
+	background:rgba(41,121,255,.6)!important;
+}
+
+.waves-effect.waves-blue.waves-accent-4 .waves-ripple {
+	background:rgba(41,98,255,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-lighten-5 .waves-ripple {
+	background:rgba(225,245,254,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-lighten-4 .waves-ripple {
+	background:rgba(179,229,252,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-lighten-3 .waves-ripple {
+	background:rgba(129,212,250,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-lighten-2 .waves-ripple {
+	background:rgba(79,195,247,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-lighten-1 .waves-ripple {
+	background:rgba(41,182,246,.6)!important;
+}
+
+.waves-effect.waves-light-blue .waves-ripple {
+	background:rgba(3,169,244,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-darken-1 .waves-ripple {
+	background:rgba(3,155,229,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-darken-2 .waves-ripple {
+	background:rgba(2,136,209,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-darken-3 .waves-ripple {
+	background:rgba(2,119,189,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-darken-4 .waves-ripple {
+	background:rgba(1,87,155,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-accent-1 .waves-ripple {
+	background:rgba(128,216,255,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-accent-2 .waves-ripple {
+	background:rgba(64,196,255,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-accent-3 .waves-ripple {
+	background:rgba(0,176,255,.6)!important;
+}
+
+.waves-effect.waves-light-blue.waves-accent-4 .waves-ripple {
+	background:rgba(0,145,234,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-lighten-5 .waves-ripple {
+	background:rgba(224,247,250,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-lighten-4 .waves-ripple {
+	background:rgba(178,235,242,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-lighten-3 .waves-ripple {
+	background:rgba(128,222,234,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-lighten-2 .waves-ripple {
+	background:rgba(77,208,225,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-lighten-1 .waves-ripple {
+	background:rgba(38,198,218,.6)!important;
+}
+
+.waves-effect.waves-cyan .waves-ripple {
+	background:rgba(0,188,212,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-darken-1 .waves-ripple {
+	background:rgba(0,172,193,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-darken-2 .waves-ripple {
+	background:rgba(0,151,167,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-darken-3 .waves-ripple {
+	background:rgba(0,131,143,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-darken-4 .waves-ripple {
+	background:rgba(0,96,100,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-accent-1 .waves-ripple {
+	background:rgba(132,255,255,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-accent-2 .waves-ripple {
+	background:rgba(24,255,255,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-accent-3 .waves-ripple {
+	background:rgba(0,229,255,.6)!important;
+}
+
+.waves-effect.waves-cyan.waves-accent-4 .waves-ripple {
+	background:rgba(0,184,212,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-lighten-5 .waves-ripple {
+	background:rgba(224,242,241,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-lighten-4 .waves-ripple {
+	background:rgba(178,223,219,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-lighten-3 .waves-ripple {
+	background:rgba(128,203,196,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-lighten-2 .waves-ripple {
+	background:rgba(77,182,172,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-lighten-1 .waves-ripple {
+	background:rgba(38,166,154,.6)!important;
+}
+
+.waves-effect.waves-teal .waves-ripple {
+	background:rgba(0,150,136,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-darken-1 .waves-ripple {
+	background:rgba(0,137,123,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-darken-2 .waves-ripple {
+	background:rgba(0,121,107,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-darken-3 .waves-ripple {
+	background:rgba(0,105,92,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-darken-4 .waves-ripple {
+	background:rgba(0,77,64,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-accent-1 .waves-ripple {
+	background:rgba(167,255,235,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-accent-2 .waves-ripple {
+	background:rgba(100,255,218,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-accent-3 .waves-ripple {
+	background:rgba(29,233,182,.6)!important;
+}
+
+.waves-effect.waves-teal.waves-accent-4 .waves-ripple {
+	background:rgba(0,191,165,.6)!important;
+}
+
+.waves-effect.waves-green.waves-lighten-5 .waves-ripple {
+	background:rgba(232,245,233,.6)!important;
+}
+
+.waves-effect.waves-green.waves-lighten-4 .waves-ripple {
+	background:rgba(200,230,201,.6)!important;
+}
+
+.waves-effect.waves-green.waves-lighten-3 .waves-ripple {
+	background:rgba(165,214,167,.6)!important;
+}
+
+.waves-effect.waves-green.waves-lighten-2 .waves-ripple {
+	background:rgba(129,199,132,.6)!important;
+}
+
+.waves-effect.waves-green.waves-lighten-1 .waves-ripple {
+	background:rgba(102,187,106,.6)!important;
+}
+
+.waves-effect.waves-green .waves-ripple {
+	background:rgba(76,175,80,.6)!important;
+}
+
+.waves-effect.waves-green.waves-darken-1 .waves-ripple {
+	background:rgba(67,160,71,.6)!important;
+}
+
+.waves-effect.waves-green.waves-darken-2 .waves-ripple {
+	background:rgba(56,142,60,.6)!important;
+}
+
+.waves-effect.waves-green.waves-darken-3 .waves-ripple {
+	background:rgba(46,125,50,.6)!important;
+}
+
+.waves-effect.waves-green.waves-darken-4 .waves-ripple {
+	background:rgba(27,94,32,.6)!important;
+}
+
+.waves-effect.waves-green.waves-accent-1 .waves-ripple {
+	background:rgba(185,246,202,.6)!important;
+}
+
+.waves-effect.waves-green.waves-accent-2 .waves-ripple {
+	background:rgba(105,240,174,.6)!important;
+}
+
+.waves-effect.waves-green.waves-accent-3 .waves-ripple {
+	background:rgba(0,230,118,.6)!important;
+}
+
+.waves-effect.waves-green.waves-accent-4 .waves-ripple {
+	background:rgba(0,200,83,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-lighten-5 .waves-ripple {
+	background:rgba(241,248,233,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-lighten-4 .waves-ripple {
+	background:rgba(220,237,200,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-lighten-3 .waves-ripple {
+	background:rgba(197,225,165,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-lighten-2 .waves-ripple {
+	background:rgba(174,213,129,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-lighten-1 .waves-ripple {
+	background:rgba(156,204,101,.6)!important;
+}
+
+.waves-effect.waves-light-green .waves-ripple {
+	background:rgba(139,195,74,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-darken-1 .waves-ripple {
+	background:rgba(124,179,66,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-darken-2 .waves-ripple {
+	background:rgba(104,159,56,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-darken-3 .waves-ripple {
+	background:rgba(85,139,47,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-darken-4 .waves-ripple {
+	background:rgba(51,105,30,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-accent-1 .waves-ripple {
+	background:rgba(204,255,144,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-accent-2 .waves-ripple {
+	background:rgba(178,255,89,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-accent-3 .waves-ripple {
+	background:rgba(118,255,3,.6)!important;
+}
+
+.waves-effect.waves-light-green.waves-accent-4 .waves-ripple {
+	background:rgba(100,221,23,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-lighten-5 .waves-ripple {
+	background:rgba(249,251,231,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-lighten-4 .waves-ripple {
+	background:rgba(240,244,195,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-lighten-3 .waves-ripple {
+	background:rgba(230,238,156,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-lighten-2 .waves-ripple {
+	background:rgba(220,231,117,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-lighten-1 .waves-ripple {
+	background:rgba(212,225,87,.6)!important;
+}
+
+.waves-effect.waves-lime .waves-ripple {
+	background:rgba(205,220,57,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-darken-1 .waves-ripple {
+	background:rgba(192,202,51,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-darken-2 .waves-ripple {
+	background:rgba(175,180,43,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-darken-3 .waves-ripple {
+	background:rgba(158,157,36,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-darken-4 .waves-ripple {
+	background:rgba(130,119,23,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-accent-1 .waves-ripple {
+	background:rgba(244,255,129,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-accent-2 .waves-ripple {
+	background:rgba(238,255,65,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-accent-3 .waves-ripple {
+	background:rgba(198,255,0,.6)!important;
+}
+
+.waves-effect.waves-lime.waves-accent-4 .waves-ripple {
+	background:rgba(174,234,0,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-lighten-5 .waves-ripple {
+	background:rgba(255,253,231,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-lighten-4 .waves-ripple {
+	background:rgba(255,249,196,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-lighten-3 .waves-ripple {
+	background:rgba(255,245,157,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-lighten-2 .waves-ripple {
+	background:rgba(255,241,118,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-lighten-1 .waves-ripple {
+	background:rgba(255,238,88,.6)!important;
+}
+
+.waves-effect.waves-yellow .waves-ripple {
+	background:rgba(255,235,59,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-darken-1 .waves-ripple {
+	background:rgba(253,216,53,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-darken-2 .waves-ripple {
+	background:rgba(251,192,45,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-darken-3 .waves-ripple {
+	background:rgba(249,168,37,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-darken-4 .waves-ripple {
+	background:rgba(245,127,23,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-accent-1 .waves-ripple {
+	background:rgba(255,255,141,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-accent-2 .waves-ripple {
+	background:rgba(255,255,0,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-accent-3 .waves-ripple {
+	background:rgba(255,234,0,.6)!important;
+}
+
+.waves-effect.waves-yellow.waves-accent-4 .waves-ripple {
+	background:rgba(255,214,0,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-lighten-5 .waves-ripple {
+	background:rgba(255,248,225,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-lighten-4 .waves-ripple {
+	background:rgba(255,236,179,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-lighten-3 .waves-ripple {
+	background:rgba(255,224,130,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-lighten-2 .waves-ripple {
+	background:rgba(255,213,79,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-lighten-1 .waves-ripple {
+	background:rgba(255,202,40,.6)!important;
+}
+
+.waves-effect.waves-amber .waves-ripple {
+	background:rgba(255,193,7,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-darken-1 .waves-ripple {
+	background:rgba(255,179,0,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-darken-2 .waves-ripple {
+	background:rgba(255,160,0,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-darken-3 .waves-ripple {
+	background:rgba(255,143,0,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-darken-4 .waves-ripple {
+	background:rgba(255,111,0,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-accent-1 .waves-ripple {
+	background:rgba(255,229,127,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-accent-2 .waves-ripple {
+	background:rgba(255,215,64,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-accent-3 .waves-ripple {
+	background:rgba(255,196,0,.6)!important;
+}
+
+.waves-effect.waves-amber.waves-accent-4 .waves-ripple {
+	background:rgba(255,171,0,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-lighten-5 .waves-ripple {
+	background:rgba(255,243,224,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-lighten-4 .waves-ripple {
+	background:rgba(255,224,178,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-lighten-3 .waves-ripple {
+	background:rgba(255,204,128,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-lighten-2 .waves-ripple {
+	background:rgba(255,183,77,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-lighten-1 .waves-ripple {
+	background:rgba(255,167,38,.6)!important;
+}
+
+.waves-effect.waves-orange .waves-ripple {
+	background:rgba(255,152,0,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-darken-1 .waves-ripple {
+	background:rgba(251,140,0,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-darken-2 .waves-ripple {
+	background:rgba(245,124,0,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-darken-3 .waves-ripple {
+	background:rgba(239,108,0,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-darken-4 .waves-ripple {
+	background:rgba(230,81,0,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-accent-1 .waves-ripple {
+	background:rgba(255,209,128,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-accent-2 .waves-ripple {
+	background:rgba(255,171,64,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-accent-3 .waves-ripple {
+	background:rgba(255,145,0,.6)!important;
+}
+
+.waves-effect.waves-orange.waves-accent-4 .waves-ripple {
+	background:rgba(255,109,0,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-lighten-5 .waves-ripple {
+	background:rgba(251,233,231,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-lighten-4 .waves-ripple {
+	background:rgba(255,204,188,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-lighten-3 .waves-ripple {
+	background:rgba(255,171,145,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-lighten-2 .waves-ripple {
+	background:rgba(255,138,101,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-lighten-1 .waves-ripple {
+	background:rgba(255,112,67,.6)!important;
+}
+
+.waves-effect.waves-deep-orange .waves-ripple {
+	background:rgba(255,87,34,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-darken-1 .waves-ripple {
+	background:rgba(244,81,30,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-darken-2 .waves-ripple {
+	background:rgba(230,74,25,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-darken-3 .waves-ripple {
+	background:rgba(216,67,21,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-darken-4 .waves-ripple {
+	background:rgba(191,54,12,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-accent-1 .waves-ripple {
+	background:rgba(255,158,128,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-accent-2 .waves-ripple {
+	background:rgba(255,110,64,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-accent-3 .waves-ripple {
+	background:rgba(255,61,0,.6)!important;
+}
+
+.waves-effect.waves-deep-orange.waves-accent-4 .waves-ripple {
+	background:rgba(221,44,0,.6)!important;
+}
+
+.waves-effect.waves-brown.waves-lighten-5 .waves-ripple {
+	background:rgba(239,235,233,.6)!important;
+}
+
+.waves-effect.waves-brown.waves-lighten-4 .waves-ripple {
+	background:rgba(215,204,200,.6)!important;
+}
+
+.waves-effect.waves-brown.waves-lighten-3 .waves-ripple {
+	background:rgba(188,170,164,.6)!important;
+}
+
+.waves-effect.waves-brown.waves-lighten-2 .waves-ripple {
+	background:rgba(161,136,127,.6)!important;
+}
+
+.waves-effect.waves-brown.waves-lighten-1 .waves-ripple {
+	background:rgba(141,110,99,.6)!important;
+}
+
+.waves-effect.waves-brown .waves-ripple {
+	background:rgba(121,85,72,.6)!important;
+}
+
+.waves-effect.waves-brown.waves-darken-1 .waves-ripple {
+	background:rgba(109,76,65,.6)!important;
+}
+
+.waves-effect.waves-brown.waves-darken-2 .waves-ripple {
+	background:rgba(93,64,55,.6)!important;
+}
+
+.waves-effect.waves-brown.waves-darken-3 .waves-ripple {
+	background:rgba(78,52,46,.6)!important;
+}
+
+.waves-effect.waves-brown.waves-darken-4 .waves-ripple {
+	background:rgba(62,39,35,.6)!important;
+}
+
+.waves-effect.waves-grey.waves-lighten-5 .waves-ripple {
+	background:rgba(250,250,250,.6)!important;
+}
+
+.waves-effect.waves-grey.waves-lighten-4 .waves-ripple {
+	background:rgba(245,245,245,.6)!important;
+}
+
+.waves-effect.waves-grey.waves-lighten-3 .waves-ripple {
+	background:rgba(238,238,238,.6)!important;
+}
+
+.waves-effect.waves-grey.waves-lighten-2 .waves-ripple {
+	background:rgba(224,224,224,.6)!important;
+}
+
+.waves-effect.waves-grey.waves-lighten-1 .waves-ripple {
+	background:rgba(189,189,189,.6)!important;
+}
+
+.waves-effect.waves-grey .waves-ripple {
+	background:rgba(158,158,158,.6)!important;
+}
+
+.waves-effect.waves-grey.waves-darken-1 .waves-ripple {
+	background:rgba(117,117,117,.6)!important;
+}
+
+.waves-effect.waves-grey.waves-darken-2 .waves-ripple {
+	background:rgba(97,97,97,.6)!important;
+}
+
+.waves-effect.waves-grey.waves-darken-3 .waves-ripple {
+	background:rgba(66,66,66,.6)!important;
+}
+
+.waves-effect.waves-grey.waves-darken-4 .waves-ripple {
+	background:rgba(33,33,33,.6)!important;
+}
+
+.waves-effect.waves-blue-grey.waves-lighten-5 .waves-ripple {
+	background:rgba(236,239,241,.6)!important;
+}
+
+.waves-effect.waves-blue-grey.waves-lighten-4 .waves-ripple {
+	background:rgba(207,216,220,.6)!important;
+}
+
+.waves-effect.waves-blue-grey.waves-lighten-3 .waves-ripple {
+	background:rgba(176,190,197,.6)!important;
+}
+
+.waves-effect.waves-blue-grey.waves-lighten-2 .waves-ripple {
+	background:rgba(144,164,174,.6)!important;
+}
+
+.waves-effect.waves-blue-grey.waves-lighten-1 .waves-ripple {
+	background:rgba(120,144,156,.6)!important;
+}
+
+.waves-effect.waves-blue-grey .waves-ripple {
+	background:rgba(96,125,139,.6)!important;
+}
+
+.waves-effect.waves-blue-grey.waves-darken-1 .waves-ripple {
+	background:rgba(84,110,122,.6)!important;
+}
+
+.waves-effect.waves-blue-grey.waves-darken-2 .waves-ripple {
+	background:rgba(69,90,100,.6)!important;
+}
+
+.waves-effect.waves-blue-grey.waves-darken-3 .waves-ripple {
+	background:rgba(55,71,79,.6)!important;
+}
+
+.waves-effect.waves-blue-grey.waves-darken-4 .waves-ripple {
+	background:rgba(38,50,56,.6)!important;
+}

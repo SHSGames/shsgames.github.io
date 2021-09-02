@@ -1,0 +1,46 @@
+#dialog-spinner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #fffa;
+	opacity: 0;
+	border-radius: 4px;
+	transition: all 350ms cubic-bezier(.25,.8,.25,1);
+
+	&.active {
+		opacity: 1;
+	}
+
+	.spinner-wrapper {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform:translate(-50%,-50%);
+	}
+}
+
+
+.dark-primary-text {
+	color: @darkPrimaryColor;
+}
+
+.divider {
+	border-color: #e1e1e1bd!important;
+}
+
+.note.controls {
+	.photon-note(@accentColor,"keyboard","Game Controls");
+}
+
+.flat {
+	box-shadow: none!important;
+}
+
+.only-on-large {
+	display: none;
+	@media @desktop {
+		display: block;
+	}
+}

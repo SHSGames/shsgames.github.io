@@ -1,0 +1,166 @@
+.note {
+	.card();
+	border-left: 5px solid #aaa;
+
+	.header {
+		padding: 16px;
+		background: fade(#aaa,10%);
+		border-bottom: 1px solid fade(#aaa,20%);
+		font-family:@secondaryFont;
+
+		&::before {
+			font-family: "material icons";
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 6px 12px;
+			font-size: 20px;
+		}
+
+		&::after {
+			position: absolute;
+			top: 0;
+			left: 32px;
+			padding: 8px;
+			font-size: 14px;
+			font-weight: 500;
+		}
+	}
+
+	.content {
+		font-size: 14px;
+		padding: 1em;
+	}
+
+	hr {
+		margin: -2px 0;
+	}
+
+	border-color: @blue;
+	a {
+		color: @blue;
+	}
+	code {
+		color: @blue;
+		border-color: @blue;
+		background: fade(@blue,20%);
+	}
+	.header {
+		border-color: fade(@blue,20%);
+		background: fade(@blue,10%);
+		&::before {
+			content: "editor";
+			color: @blue;
+		}
+		&::after {
+			content: "Note";
+		}
+	}
+	hr {
+		border-color: lighten(@blue, @darkmodeColorDiff);
+	}
+	&.summary {.photon-note(@light-blue,"format_align_left","Summary")}
+	&.info {.photon-note(@cyan,"info","Info")}
+	&.tip {.photon-note(@teal,"whatshot","Tip")}
+	&.success {.photon-note(@green-accent4,"check","Success")}
+	&.warning {.photon-note(@orange,"warning","Warning")}
+	&.failure {.photon-note(@deep-orange,"error_outline","Failure")}
+	&.danger {.photon-note(@red,"error","Danger")}
+	&.error {.photon-note(@red,"error","Error")}
+	&.bug {.photon-note(@red,"bug_report","Bug")}
+	&.example {.photon-note(@indigo,"slideshow","Example")}
+	&.quote {.photon-note(@grey,"format_quote","Quote")}
+	&.question {.photon-note(@grey,"help","Question")}
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.note,
+	&.note {
+		background: #303030;
+		&:not(.no-contrast) {
+			border-color: lighten(@blue, @darkmodeColorDiff);
+			a {
+				color: lighten(@blue, @darkmodeColorDiff);
+			}
+			code {
+				color: lighten(@blue, @darkmodeColorDiff);
+				border-color: lighten(@blue, @darkmodeColorDiff);
+				background: fade(lighten(@blue, @darkmodeColorDiff),20%);
+			}
+			.header {
+				border-color: fade(lighten(@blue, @darkmodeColorDiff),20%);
+				background: fade(lighten(@blue, @darkmodeColorDiff),10%);
+				&::before {
+					content: "editor";
+					color: lighten(@blue, @darkmodeColorDiff);
+				}
+				&::after {
+					content: "Note";
+				}
+			}
+			hr {
+				border-color: lighten(@blue, @darkmodeColorDiff);
+			}
+			&.summary {.photon-note(lighten(@light-blue, @darkmodeColorDiff),"format_align_left","Summary")}
+			&.info {.photon-note(lighten(@cyan, @darkmodeColorDiff),"info","Info")}
+			&.tip {.photon-note(lighten(@teal, @darkmodeColorDiff),"whatshot","Tip")}
+			&.success {.photon-note(lighten(@green-accent4, @darkmodeColorDiff),"check","Success")}
+			&.warning {.photon-note(lighten(@orange, @darkmodeColorDiff),"warning","Warning")}
+			&.failure {.photon-note(lighten(@deep-orange, @darkmodeColorDiff),"error_outline","Failure")}
+			&.danger {.photon-note(lighten(@red, @darkmodeColorDiff),"error","Danger")}
+			&.error {.photon-note(lighten(@red, @darkmodeColorDiff),"error","Error")}
+			&.bug {.photon-note(lighten(@red, @darkmodeColorDiff),"bug_report","Bug")}
+			&.example {.photon-note(lighten(@indigo, @darkmodeColorDiff),"slideshow","Example")}
+			&.quote {.photon-note(lighten(@grey, @darkmodeColorDiff),"format_quote","Quote")}
+			&.question {.photon-note(lighten(@grey, @darkmodeColorDiff),"help","Question")}
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.note,
+		&.note {
+			background: #303030;
+			&:not(.no-contrast) {
+				border-color: lighten(@blue, @darkmodeColorDiff);
+				a {
+					color: lighten(@blue, @darkmodeColorDiff);
+				}
+				code {
+					color: lighten(@blue, @darkmodeColorDiff);
+					border-color: lighten(@blue, @darkmodeColorDiff);
+					background: fade(lighten(@blue, @darkmodeColorDiff),20%);
+				}
+				.header {
+					border-color: fade(lighten(@blue, @darkmodeColorDiff),20%);
+					background: fade(lighten(@blue, @darkmodeColorDiff),10%);
+					&::before {
+						content: "editor";
+						color: lighten(@blue, @darkmodeColorDiff);
+					}
+					&::after {
+						content: "Note";
+					}
+				}
+				hr {
+					border-color: lighten(@blue, @darkmodeColorDiff);
+				}
+				&.summary {.photon-note(lighten(@light-blue, @darkmodeColorDiff),"format_align_left","Summary")}
+				&.info {.photon-note(lighten(@cyan, @darkmodeColorDiff),"info","Info")}
+				&.tip {.photon-note(lighten(@teal, @darkmodeColorDiff),"whatshot","Tip")}
+				&.success {.photon-note(lighten(@green-accent4, @darkmodeColorDiff),"check","Success")}
+				&.warning {.photon-note(lighten(@orange, @darkmodeColorDiff),"warning","Warning")}
+				&.failure {.photon-note(lighten(@deep-orange, @darkmodeColorDiff),"error_outline","Failure")}
+				&.danger {.photon-note(lighten(@red, @darkmodeColorDiff),"error","Danger")}
+				&.error {.photon-note(lighten(@red, @darkmodeColorDiff),"error","Error")}
+				&.bug {.photon-note(lighten(@red, @darkmodeColorDiff),"bug_report","Bug")}
+				&.example {.photon-note(lighten(@indigo, @darkmodeColorDiff),"slideshow","Example")}
+				&.quote {.photon-note(lighten(@grey, @darkmodeColorDiff),"format_quote","Quote")}
+				&.question {.photon-note(lighten(@grey, @darkmodeColorDiff),"help","Question")}
+			}
+		}
+	}
+}

@@ -1,0 +1,108 @@
+.toasts {
+	display: block;
+	position: fixed;
+	z-index: 10000000;
+
+	@media @mobile {
+		min-width: 100%;
+		bottom: 0;
+		left: 0;
+
+		.toast .toast-action:last-child {
+			margin-right: 32px;
+		}
+	}
+	@media @tablet {
+		left: 5%;
+		bottom: 7%;
+		max-width: 90%;
+	}
+	@media @desktop {
+		top: 10%;
+		right: 7%;
+		max-width: 86%;
+	}
+
+	.toast {
+		border-radius: 4px;
+		.transition();
+		.raised-6();
+
+		background-color:#464646;
+		color:rgba(255,255,255,0.87);
+
+		margin:4px;
+		padding: 12px 16px;
+		font-size:16px;
+
+		user-select:none;
+
+		opacity:0;
+		transition-property:opacity,margin;
+
+		.btn {
+			margin: -6px -12px -11px 8px;
+			float: right;
+			.photon-button-flat(@primaryColor);
+		}
+
+		&.rounded {
+			border-radius:48px;
+		}
+
+		i.material-icons,
+		i.svg-icon {
+			margin-right: 12px;
+		    transform: translateY(6px);
+		    margin-top: -8px;
+		}
+
+		&.active {
+			opacity: 1;
+		}
+
+		&.oeff {
+			opacity: 0!important;
+		}
+
+		@media @desktop {
+			margin-top:24px;
+			&.active {
+				margin-top: 4px;
+			}
+			&.oeff {
+				margin-top:-42px;
+			}
+		}
+
+		@media @tablet {
+			margin-bottom:-24px;
+			&.active {
+				margin-bottom: 4px;
+			}
+			&.oeff {
+				margin-bottom:12px;
+			}
+		}
+
+		@media @mobile {
+			margin-bottom:-24px;
+			&.active {
+				margin-bottom: 4px;
+			}
+			&.oeff {
+				margin-bottom:12px;
+			}
+		}
+
+		&.ta {
+			transition-property: all;
+		}
+
+	}
+
+}
+
+.toast .note {
+	margin: -12px -16px;
+}

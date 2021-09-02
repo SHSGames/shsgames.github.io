@@ -1,0 +1,228 @@
+.btn {
+	.transition();
+	font-family: @secondaryFont;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: 500;
+	margin: 8px;
+	letter-spacing: 0.02857em;
+	box-sizing: border-box;
+	display: inline-block;
+	min-width: 64px;
+	user-select: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 0.875rem;
+	min-height: 36px;
+	line-height: 36px;
+	padding: 0 16px;
+	color: #212121;
+	background: #e0e0e0;
+
+	&:hover {
+		background: darken(#e0e0e0,6%);
+	}
+
+	&.dense {
+		padding: 0 8px;
+		font-size: 0.8125rem;
+		min-height: 32px;
+		line-height: 32px;
+	}
+
+	&.large {
+		padding: 0 24px;
+		font-size: 0.9375rem;
+		min-height: 42px;
+		line-height: 42px;
+	}
+
+	&.disabled,
+	&:disabled {
+		pointer-events: none;
+		opacity: 0.54;
+	}
+
+	i {
+		vertical-align: middle;
+		font-size: 20px;
+		padding: 8px;
+	}
+
+	&.raised {
+		.photon-button-raised(#e0e0e0, #212121);
+
+		&.primary {
+			.photon-button-raised(@primaryColor, @primaryTextColor)
+		}
+
+		&.accent {
+			.photon-button-raised(@accentColor, @primaryTextColor)
+		}
+
+		&.disabled,
+		&:disabled {
+			box-shadow: none!important;
+			background: fade(#e0e0e0,21%)!important;
+			color: #818181!important;
+		}
+
+		.raised-2();
+		&:active {
+			.raised-6();
+		}
+	}
+
+	&.flat {
+		.photon-button-flat(#757575);
+
+		&.primary {
+			.photon-button-flat(@primaryColor)
+		}
+
+		&.accent {
+			.photon-button-flat(@accentColor)
+		}
+
+		&.disabled,
+		&:disabled {
+			color: #818181!important;
+		}
+	}
+
+	&.outlined {
+		.photon-button-outlined(#757575);
+
+		&.primary {
+			.photon-button-outlined(@primaryColor)
+		}
+
+		&.accent {
+			.photon-button-outlined(@accentColor)
+		}
+
+		&.disabled,
+		&:disabled {
+			color: #818181!important;
+			box-shadow: inset 0 0 0 1px fade(#818181,54%);
+		}
+	}
+
+	&.fab {
+		line-height: 0;
+		padding: 8px;
+		min-width: 0;
+		border-radius: 56px;
+		.raised-2();
+
+		&:active {
+			.raised-6();
+		}
+
+		i {
+			font-size: 24px;
+		}
+
+		&.extended {
+			padding: 8px 12px;
+
+			label {
+				margin: 0 8px;
+				display: inline-block;
+				font-size: 0.875rem;
+			}
+		}
+
+		&.dense {
+			padding: 4px;
+
+			&.extended {
+				padding: 5px 8px;
+
+				label {
+					font-size: 0.8125rem;
+				}
+			}
+		}
+
+		&.large {
+			padding: 12px;
+
+			&.extended {
+				padding: 12px 16px;
+
+				label {
+					font-size: 0.9375rem;
+				}
+			}
+		}
+	}
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.btn:not(.no-contrast) {
+		.waves-ripple {
+			background: fade(#000, 40%);
+		}
+	}
+	.btn.raised:not(.no-contrast) {
+		&.primary {
+			.photon-button-raised(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+		}
+		&.accent {
+			.photon-button-raised(lighten(@accentColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+		}
+	}
+	.btn.flat:not(.no-contrast) {
+		&.primary {
+			.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
+		}
+		&.accent {
+			.photon-button-flat(lighten(@accentColor, @darkmodeColorDiff));
+		}
+	}
+	.btn.outlined:not(.no-contrast) {
+		&.primary {
+			.photon-button-outlined(lighten(@primaryColor, @darkmodeColorDiff));
+		}
+		&.accent {
+			.photon-button-outlined(lighten(@accentColor, @darkmodeColorDiff));
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.btn:not(.no-contrast) {
+			.waves-ripple {
+				background: fade(#000, 40%);
+			}
+		}
+		.btn.raised:not(.no-contrast) {
+			&.primary {
+				.photon-button-raised(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+			}
+			&.accent {
+				.photon-button-raised(lighten(@accentColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+			}
+		}
+		.btn.flat:not(.no-contrast) {
+			&.primary {
+				.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
+			}
+			&.accent {
+				.photon-button-flat(lighten(@accentColor, @darkmodeColorDiff));
+			}
+		}
+		.btn.outlined:not(.no-contrast) {
+			&.primary {
+				.photon-button-outlined(lighten(@primaryColor, @darkmodeColorDiff));
+			}
+			&.accent {
+				.photon-button-outlined(lighten(@accentColor, @darkmodeColorDiff));
+			}
+		}
+	}
+}

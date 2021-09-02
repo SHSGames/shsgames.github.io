@@ -1,0 +1,211 @@
+.sidenav {
+	&::-webkit-scrollbar {
+		width:0px;
+	}
+	&:extend(.transition);
+	transition-property:opacity,box-shadow,transform;
+	box-shadow:
+		0 0 38px rgba(0,0,0,0.30),
+		0 0 12px rgba(0,0,0,0.22),
+		0px 0px 0px 9999px rgba(0,0,0,0.28);
+	position:fixed;
+	top:0px;
+	left:0px;
+	height:100%;
+	width:300px;
+	background:#fff;
+	z-index:10000;
+	transform:translateX(-300px);
+	opacity:0;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	&.active {
+		opacity:1;
+	}
+	.image {
+		display:block;
+		margin:2rem 33.33%;
+		width:33.33%
+	}
+	li {
+  		float: none;
+  		line-height: 48px;
+		list-style:none;
+		&.active {
+  			background-color: rgba(0, 0, 0, 0.05);
+		}
+		a {
+		  	color: rgba(0, 0, 0, 0.70);
+		 	display: block;
+			font-size: 14px;
+			font-weight: 500;
+			height: 48px;
+			line-height: 48px;
+		 	padding: 0 32px;
+			width: 224px;
+			border-top-right-radius: 50px;
+			border-bottom-right-radius: 50px;
+			&:hover {
+  				background-color: rgba(0, 0, 0, 0.05);
+			}
+			i.material-icons {
+			 	float: left;
+			  	height: 48px;
+			 	line-height: 48px;
+			 	margin: 0 32px 0 0;
+			  	width: 24px;
+			  	color: rgba(0, 0, 0, 0.70);
+			}
+			&.active {
+				background: fade(@primaryColor, 10%);
+				&:hover {
+					background: fade(@primaryColor, 16%);
+				}
+				color: @primaryColor;
+				.material-icons {
+					color: inherit
+				}
+				.waves-ripple {
+					background: fade(@primaryColor, 20%);
+				}
+			}
+		}
+		.btn,
+		.btn-large,
+		.btn-flat,
+		.btn-floating {
+  			margin: 10px 15px;
+			color:#fff;
+		}
+	}
+	.divider {
+		border-bottom:1px solid #ececec;
+		margin: 12px 0;
+	}
+	.subheader {
+	  	cursor: initial;
+	  	pointer-events: none;
+	  	color: rgba(0, 0, 0, 0.54)!important;
+	  	font-size: 14px;
+	  	font-weight: 500;
+	  	line-height: 48px;
+		opacity: .87;
+		&:hover {
+			background:transparent;
+		}
+	}
+	.user-view {
+  		position: relative;
+  		padding: 32px 32px 16px;
+  		margin-bottom: 8px;
+		a {
+  			height: auto;
+  			padding: 0;
+			&:hover {
+  				background-color: transparent;
+			}
+		}
+		.background {
+		  	overflow: hidden;
+		  	position: absolute;
+		  	top: 0;
+		  	right: 0;
+		  	bottom: 0;
+		  	left: 0;
+		  	z-index: -1;
+		}
+		.circle,
+		.name,
+		.email {
+  			display: block;
+			&.circle {
+			  	height: 64px;
+			  	width: 64px;
+				border-radius:50%;
+				margin-bottom:8px;
+			}
+			&.name,
+			&.email {
+  				font-size: 14px;
+  				line-height: 24px;
+				&.name {
+					margin-top: 16px;
+				}
+				&.email {
+					font-weight:400;
+				}
+			}
+		}
+	}
+}
+
+.sidenav--draghandle {
+	position:fixed;
+	width:10px;
+	left:0px;
+	top:0px;
+	height:100%;
+	z-index:9999;
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.sidenav {
+		background: #242424;
+		color: #fafafa;
+		.divider {
+			border-bottom: 1px solid #323232!important;
+		}
+		li a:not(.active) {
+			color: rgba(255,255,255,.70);
+			i {
+				color: inherit;
+			}
+			&.subheader {
+				color: rgba(255,255,255,.54)!important;
+			}
+			&:not(.divider):hover {
+				background: rgba(255,255,255,.04);
+			}
+		}
+		li a.active {
+			background: fade(lighten(@primaryColor, @darkmodeColorDiff), 10%);
+			color: lighten(@primaryColor, @darkmodeColorDiff);
+			.waves-ripple {
+				background: fade(lighten(@primaryColor, @darkmodeColorDiff), 20%)!important;
+			}
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.sidenav {
+			background: #242424;
+			color: #fafafa;
+			.divider {
+				border-bottom: 1px solid #323232!important;
+			}
+			li a:not(.active) {
+				color: rgba(255,255,255,.70);
+				i {
+					color: inherit;
+				}
+				&.subheader {
+					color: rgba(255,255,255,.54)!important;
+				}
+				&:not(.divider):hover {
+					background: rgba(255,255,255,.04);
+				}
+			}
+			li a.active {
+				background: fade(lighten(@primaryColor, @darkmodeColorDiff), 10%);
+				color: lighten(@primaryColor, @darkmodeColorDiff);
+				.waves-ripple {
+					background: fade(lighten(@primaryColor, @darkmodeColorDiff), 20%)!important;
+				}
+			}
+		}
+	}
+}

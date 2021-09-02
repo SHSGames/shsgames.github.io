@@ -1,0 +1,32 @@
+.gamecard {
+	.card-content {
+		.card-title {
+			margin: -8px 0;
+    		font-size: 22px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+		.thumbnail-wrapper {
+			margin: -24px;
+			margin-top: 24px;
+			padding-top: 56.25%;
+			position: relative;
+			.thumbnail {
+				pointer-events: none;
+				position: absolute;
+				width: 100%;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				&.pixelated {
+					image-rendering: pixelated;
+				}
+			}
+		}
+	}
+	.card-action:not(.offline) {
+		border: none;
+	}
+}

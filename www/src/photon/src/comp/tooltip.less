@@ -1,0 +1,41 @@
+.material-tooltip {
+
+	background-color: #676767;
+	color: #fff;
+
+	z-index: 20000;
+	position: absolute;
+	overflow: hidden;
+	pointer-events: none;
+	white-space: nowrap;
+
+	padding: 4px 8px;
+	font-size: 12px;
+	border-radius:4px;
+	max-width: 300px;
+
+	transform:scale(0);
+	opacity:0;
+	.transition();
+
+	&.active {
+		transform:scale(1);
+		opacity:1;
+	}
+
+	&.tt-bottom {
+		transform-origin:top center;
+	}
+
+	&.tt-top {
+		transform-origin:bottom center;
+	}
+
+	&.tt-right {
+		transform-origin:center left;
+	}
+
+	&.tt-left {
+		transform-origin:center right;
+	}
+}

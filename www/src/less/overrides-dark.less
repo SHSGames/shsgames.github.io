@@ -1,0 +1,193 @@
+body.theme-dark {
+	background: #212121;
+	color: #f0f0f0;
+	.toolbar {
+		background: #242424;
+		color: #f0f0f0!important;
+		i {
+			&:hover {
+				background: #f0f0f008!important;
+			}
+			.waves-ripple {
+				background: rgba(255,255,255,.2)!important;
+			}
+		}
+	}
+	.card,
+	.autolink {
+		background: #303030;
+		.card-title,
+		.title {
+			color: #f0f0f0;
+		}
+		p,
+		.ref {
+			color: #d1d1d1;
+		}
+		.external-img.invert {
+			filter: invert(1);
+		}
+	}
+	.btn.primary {
+		&.flat {
+			color: lighten(@primaryColor, 20%)!important;
+			&:hover {
+				background: fade(lighten(@primaryColor, 20%), 12%)!important;
+			}
+			.waves-ripple {
+				background: fade(lighten(@primaryColor, 20%), 20%)!important;
+			}
+		}
+	}
+	.scrollnav {
+		h1 {
+			color: #d1d1d1;
+		}
+		li a {
+			color: #bdbdbd;
+		}
+	}
+	a.primary-text {
+		color: lighten(@primaryColor, 20%)!important;
+	}
+	.title h2,
+	footer div div div h3 {
+		color: #f0f0f0;
+		border-color: lighten(@primaryColor, 20%)!important;
+	}
+	.sidenav {
+		background: #242424!important;
+		.divider {
+			border-color: #3a3a3abd!important;
+		}
+		li {
+			.subheader {
+				color: #ffffff8a!important;
+			}
+			a:not(.subheader) {
+				color: #ffffffde!important;
+				&:hover {
+					background: #ffffff08!important;
+				}
+				i {
+					color: inherit!important;
+					opacity: .67;
+				}
+			}
+		}
+	}
+	.settings-view {
+		background: #303030;
+		.toolbar {
+			background: #303030!important;
+		}
+		.content .settings-section {
+			border-color: #3a3a3abd!important;
+			.settings-option {
+				&:hover {
+					background: #ffffff08!important;
+				}
+				.settings-icon {
+					color: lighten(@primaryColor, 20%)!important;
+				}
+				.settings-checkbox .checkbox input {
+					&::after {
+						color: #303030;
+					}
+					&:checked {
+						border-color: lighten(@primaryColor, 20%)!important;
+					}
+				}
+			}
+		}
+	}
+	.game-controls {
+		background: #303030!important;
+	}
+	.dialog {
+		background: #424242!important;
+		.title {
+			color: #f0f0f0f0!important;
+		}
+		.body {
+			color: #ffffff8a!important;
+		}
+		.actions .btn {
+			&.flat {
+				color: lighten(@primaryColor, 20%)!important;
+				&:hover {
+					background: fade(lighten(@primaryColor, 20%), 12%)!important;
+				}
+				.waves-ripple {
+					background: fade(lighten(@primaryColor, 20%), 20%)!important;
+				}
+			}
+		}
+	}
+	.spinner circle {
+		stroke: lighten(@accentColor, 20%)!important;
+	}
+	.accent {
+		background-color: lighten(@accentColor, 20%)!important;
+		color: #212121;
+	}
+	.ui-mprogress {
+		.deter-bar {
+			background-color: lighten(@accentColor, 20%)!important;
+		}
+		.bar-bg {
+			background-color: fade(lighten(@accentColor, 20%), 20%)!important;
+		}
+	}
+	.search-wrapper {
+		background: #303030;
+		input {
+			color: #fafafa;
+		}
+		::placeholder {
+			color: #f0f0f0bd;
+		}
+		i.material-icons {
+			background: #353535;
+			color: #f0f0f0bd;
+			border-color: #424242;
+		}
+	}
+	.note {
+		background: #303030!important;
+	}
+
+	.note.partners {
+		.photon-note(lighten(@primaryColor, 20%),"announcement","Partners");
+	}
+
+	.note.important {
+		.photon-note(lighten(@deep-orange, 20%),"warning","Important");
+	}
+
+
+	.theme-text {
+		color: #fafafa!important;
+	}
+
+	&::-webkit-scrollbar-track,
+	::-webkit-scrollbar-track,
+	&::-webkit-scrollbar-corner,
+	::-webkit-scrollbar-corner {
+		background: #262626;
+	}
+
+	&::-webkit-scrollbar-thumb,
+	::-webkit-scrollbar-thumb {
+		background: #545454;
+	}
+
+	&::-webkit-scrollbar-thumb:hover,
+	::-webkit-scrollbar-thumb:hover {
+		background: #767676;
+	}
+
+	.scrollnav {
+		border-color: lighten(@primaryColor, 20%)!important;
+	}
+}

@@ -1,0 +1,104 @@
+.input-field.select {
+	&.inline {
+		display: inline-block;
+	}
+	overflow-y:visible!important;
+	&::after {
+		position: absolute;
+		top: 24px;
+		right:0;
+		content: "arrow_drop_down";
+		font-family: "Material Icons";
+		font-size: 24px;
+		color: #696969;
+		pointer-events: none;
+	}
+	input {
+		cursor:pointer!important;
+	}
+	.options {
+		.transition();
+		background:#fff;
+		margin-top: -68px;
+		overflow:hidden;
+		overflow-y:auto;
+		position:absolute;
+		width:100%;
+		padding:4px 0;
+		z-index:2;
+		.raised-3();
+
+		transform:scale(0);
+		max-height:240px;
+		transform-origin: top left;
+		opacity:0;
+		pointer-events:none;
+		&.active {
+			opacity:1;
+			transform:scale(1);
+			pointer-events:all;
+		}
+		&::-webkit-scrollbar {
+			width:4px;
+		}
+		.option {
+			padding: 12px 24px;
+			&.active {
+				background:rgba(127,127,127,.2);
+			}
+		}
+	}
+	&.box {
+		&::after {
+			right:1rem;
+			top:20px;
+		}
+	}
+	&.outlined.dense {
+		&::after {
+			top: 14px;
+	    	right: 6px;
+		}
+		.options {
+			margin-top: -50px;
+		}
+	}
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.select {
+		.options {
+			background:#414141!important;
+			.option {
+				color:#fafafa;
+			}
+		}
+		&:not(.no-contrast) {
+			.photon-input(lighten(@primaryColor, @darkmodeColorDiff));
+			input {
+				border-color: #525252;
+			}
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.select {
+			.options {
+				background:#414141!important;
+				.option {
+					color:#fafafa;
+				}
+			}
+			&:not(.no-contrast) {
+				.photon-input(lighten(@primaryColor, @darkmodeColorDiff));
+				input {
+					border-color: #525252;
+				}
+			}
+		}
+	}
+}

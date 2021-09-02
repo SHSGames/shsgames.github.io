@@ -1,0 +1,28 @@
+.badge {
+	background: @accentColor;
+	color: @accentTextColor;
+	padding: 2px 6px;
+	font-size: 12px;
+	border-radius: 24px;
+	font-family: @secondaryFont;
+	display: inline-block;
+	line-height: 14px;
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.badge:not(.no-contrast) {
+		color: negation(@primaryTextColor, #ffffff);
+		background: lighten(@accentColor, @darkmodeColorDiff);
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.badge:not(.no-contrast) {
+			color: negation(@primaryTextColor, #ffffff);
+			background: lighten(@accentColor, @darkmodeColorDiff);
+		}
+	}
+}

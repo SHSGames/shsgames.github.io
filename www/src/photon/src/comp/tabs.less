@@ -1,0 +1,187 @@
+.tabs {
+  	position: relative;
+  	overflow-x: auto;
+  	overflow-y: hidden;
+  	height: 48px;
+  	width: 100%;
+  	margin: 0 auto;
+  	white-space: nowrap;
+	padding:0;
+	user-select: none;
+	@media only screen and (max-width: 992px) {
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+		a {
+	      	padding: 0 12px;
+	    }
+	}
+
+	&.tabs-top .indicator {
+		top:0;
+		margin-top:-3px;
+	}
+
+	&.tabs-white {
+		.tab a {
+		  	color: #fff;
+		}
+		.tab.disabled a {
+			color: rgba(255, 255, 255, 0.7)!important;
+		}
+		.indicator {
+  			background-color: #fff;
+		}
+	}
+	&.tabs-black {
+		.tab a {
+		  	color: #000;
+		}
+		.tab.disabled a {
+			color: rgba(0, 0, 0, 0.7)!important;
+		}
+		.indicator {
+  			background-color: #000;
+		}
+	}
+	&.tabs-accent {
+  		background-color: transparent;
+		.tab a {
+		  	color: @accentColor;
+		}
+		.tab.disabled a {
+			color: fade(@accentColor,70%)!important;
+		}
+		.indicator {
+  			background-color: @accentColor;
+		}
+	}
+	&.tabs-fixed-width {
+  		display: -webkit-box;
+  		display: -webkit-flex;
+  		display: -ms-flexbox;
+  		display: flex;
+		.tab {
+  			-webkit-box-flex: 1;
+  			-webkit-flex-grow: 1;
+      		-ms-flex-positive: 1;
+          	flex-grow: 1;
+		}
+	}
+	.tab {
+  		display: inline-block;
+  		line-height: 48px;
+  		height: 48px;
+  		padding: 0;
+  		margin: 0;
+ 		text-transform: capitalize;
+		user-select:none;
+		cursor:pointer;
+		@media only screen and (max-width: 992px) {
+		    -webkit-box-flex: 1;
+		    -webkit-flex-grow: 1;
+			-ms-flex-positive: 1;
+		    flex-grow: 1;
+		}
+		a {
+		  	display: block;
+		 	height: 100%;
+		  	padding: 0 24px;
+		  	font-size: 14px;
+		  	text-overflow: ellipsis;
+		  	overflow: hidden;
+		  	transition: color .28s ease;
+			text-align:center;
+			font-family: Google Sans;
+			font-weight: 500;
+		   	color:@primaryColor;
+		   	&.disabled {
+			   color:fade(@primaryColor,70%)
+		   	}
+		}
+		&.disabled a,
+		&.disabled a:hover {
+  			color: fade(@primaryColor,50%);
+  			cursor: default;
+		}
+	}
+	.indicator {
+  		position: absolute;
+  		bottom: 0;
+		left:0px;
+  		background-color:@primaryColor;
+  		will-change: left, right;
+		overflow:hidden;
+		height:6px;
+		border-radius:3px;
+		margin-bottom:-3px;
+		.transition();
+	}
+}
+
+.tab-content {
+	display:none;
+}
+
+.tabs-swipeable {
+	display:none;
+}
+
+.photon--darktheme,
+&.photon--darktheme {
+	.tabs-primary,
+	&.tabs-primary {
+		.tab a {
+		  	color: lighten(@primaryColor, @darkmodeColorDiff);
+		}
+		.tab.disabled a {
+			color: fade(lighten(@primaryColor, @darkmodeColorDiff),70%)!important;
+		}
+		.indicator {
+  			background-color: lighten(@primaryColor, @darkmodeColorDiff);
+		}
+	}
+	.tabs-accent,
+	&.tabs-accent {
+		.tab a {
+		  	color: lighten(@accentColor, @darkmodeColorDiff);
+		}
+		.tab.disabled a {
+			color: fade(lighten(@accentColor, @darkmodeColorDiff),70%)!important;
+		}
+		.indicator {
+  			background-color: lighten(@accentColor, @darkmodeColorDiff);
+		}
+	}
+}
+
+.photon--systemtheme,
+&.photon--systemtheme {
+	@media(prefers-color-scheme: dark) {
+		.tabs-primary,
+		&.tabs-primary {
+			.tab a {
+			  	color: lighten(@primaryColor, @darkmodeColorDiff);
+			}
+			.tab.disabled a {
+				color: fade(lighten(@primaryColor, @darkmodeColorDiff),70%)!important;
+			}
+			.indicator {
+	  			background-color: lighten(@primaryColor, @darkmodeColorDiff);
+			}
+		}
+		.tabs-accent,
+		&.tabs-accent {
+			.tab a {
+			  	color: lighten(@accentColor, @darkmodeColorDiff);
+			}
+			.tab.disabled a {
+				color: fade(lighten(@accentColor, @darkmodeColorDiff),70%)!important;
+			}
+			.indicator {
+	  			background-color: lighten(@accentColor, @darkmodeColorDiff);
+			}
+		}
+	}
+}

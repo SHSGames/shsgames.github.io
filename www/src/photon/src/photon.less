@@ -1,0 +1,254 @@
+@import "../../src/photon/fonts/Google_Sans/css.css";
+@import "../../src/photon/fonts/Icon_Font/material-icons.css";
+@import "../../src/photon/fonts/Roboto/css.css";
+@import "../../src/photon/fonts/Roboto_Condensed/css.css";
+@import "../../src/photon/fonts/Roboto_Mono/css.css";
+@import "../../src/photon/fonts/Roboto_Slab/css.css";
+
+@mobile: ~"only screen and (max-width: 511px)";
+@tablet: ~"only screen and (min-width: 512px) and (max-width: 1279px)";
+@tablet--and-up: ~"only screen and (min-width: 512px)";
+@desktop: ~"only screen and (min-width: 1280px)";
+@desktop-xl: ~"only screen and (min-width: 1537px)";
+
+::selection {
+	background: #bbd3fd;
+	color: #000;
+}
+
+::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+	background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+* {
+	-webkit-tap-highlight-color: transparent;
+}
+
+body {
+	color: #212121;
+	background: #fafafa;
+	font-family: @fontFamily;
+	padding: 1rem;
+	outline: 0;
+	font-weight: 400;
+}
+
+code {
+	font-family: "Roboto Mono";
+	background: #f0f0f0;
+	padding: 2px 8px;
+	border-radius: 3px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 400;
+	color:rgba(0,0,0,.78);
+	font-family:@fontFamily;
+	display:block;
+	overflow-x: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+body.photon--darktheme {
+	background: #212121;
+	color: #fafafa;
+
+	hr + .subheader {
+		color: #aaa!important;
+	}
+
+	hr {
+		border-color: fade(#545454,50%);
+	}
+
+	&::-webkit-scrollbar-track,
+	::-webkit-scrollbar-track,
+	&::-webkit-scrollbar-corner,
+	::-webkit-scrollbar-corner {
+		background: #262626;
+	}
+
+	&::-webkit-scrollbar-thumb,
+	::-webkit-scrollbar-thumb {
+		background: #545454;
+	}
+
+	&::-webkit-scrollbar-thumb:hover,
+	::-webkit-scrollbar-thumb:hover {
+		background: #767676;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		color:rgba(245,245,245,.78);
+	}
+	hr {
+		border-top: 1px solid #414141;
+	}
+	code {
+		background: #262626;
+	}
+}
+
+body.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		background: #212121;
+		color: #fafafa;
+
+		hr + .subheader {
+			color: #aaa!important;
+		}
+
+		hr {
+			border-color: fade(#545454,50%);
+		}
+
+		&::-webkit-scrollbar-track,
+		::-webkit-scrollbar-track,
+		&::-webkit-scrollbar-corner,
+		::-webkit-scrollbar-corner {
+			background: #262626;
+		}
+
+		&::-webkit-scrollbar-thumb,
+		::-webkit-scrollbar-thumb {
+			background: #545454;
+		}
+
+		&::-webkit-scrollbar-thumb:hover,
+		::-webkit-scrollbar-thumb:hover {
+			background: #767676;
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			color:rgba(245,245,245,.78);
+		}
+		hr {
+			border-top: 1px solid #414141;
+		}
+		code {
+			background: #262626;
+		}
+	}
+}
+
+br {
+	user-select: none;
+	pointer-events: none;
+}
+
+* {
+	outline: 0;
+}
+
+img {
+	user-select: none;
+	display: block;
+	max-width: 100%;
+}
+
+.center {
+	text-align: center;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid #e5e5e5;
+	margin: 2rem 0;
+}
+
+.right {
+	float: right;
+}
+
+.vh-center-wrapper {
+	position:fixed;
+	display: grid;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	.vh-center {
+		margin:auto;
+	}
+}
+
+label {
+	position: relative;
+
+	input[type="checkbox"] ~ &,
+	input[type="radio"] ~ & {
+		margin-left: 24px;
+		top: -6px;
+	}
+}
+
+a[href] {
+	color: @darkPrimaryColor;
+	text-decoration: none;
+	&.ex-link:hover {
+		color: @primaryColor;
+		text-decoration: underline;
+	}
+}
+
+ul li {
+	list-style: none;
+}
+
+ol li {
+	line-height:1.5;
+	vertical-align:middle;
+}
+
+iframe,
+video {
+	display: block;
+	width: 100%;
+	border: none;
+}
+
+@import "mixins";;
+
+@import "comp/badge";
+@import "comp/button";
+@import "comp/card";
+@import "comp/checkbox";
+@import "comp/collection";
+@import "comp/color";
+@import "comp/dialog";
+@import "comp/expansion-panel";
+@import "comp/footer";
+@import "comp/grid";
+@import "comp/icon";
+@import "comp/lighting";
+@import "comp/note";
+@import "comp/progress";
+@import "comp/radio";
+@import "comp/reference";
+@import "comp/scrollnav";
+@import "comp/select";
+@import "comp/sidenav";
+@import "comp/slider";
+@import "comp/switch";
+@import "comp/table";
+@import "comp/tabs";
+@import "comp/textfield";
+@import "comp/toast";
+@import "comp/toolbar";
+@import "comp/tooltip";
+@import "comp/waves";
