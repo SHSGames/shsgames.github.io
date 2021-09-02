@@ -36,6 +36,7 @@ jobs:
       - name: Push
         run: |
           cd dist
+          cp index.html 404.html
           hub init -b public_html
           hub add .
           hub commit -m "Build public_html [Github actions]"
