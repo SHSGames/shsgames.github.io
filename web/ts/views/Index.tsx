@@ -9,6 +9,7 @@ export default function View(): JSX.Element {
 	return (
 		<Container>
 
+			<br/>
 			<div className="title">
 				<h3>Games</h3>
 			</div>
