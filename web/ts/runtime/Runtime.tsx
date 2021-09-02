@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import Router from "./Router";
 import Footer from "components/Footer";
 import Toolbar from "components/Toolbar";
+import Drawer from "components/Drawer";
 
 type Props = { views: View[] };
 export default function Runtime({ views }: Props): JSX.Element {
@@ -48,6 +49,7 @@ export default function Runtime({ views }: Props): JSX.Element {
 			<Router>
 				<main>
 					<Toolbar/>
+					<Drawer/>
 					{ views.map(({ route, default: view }, key) =>
 						<Route
 							key={key}
