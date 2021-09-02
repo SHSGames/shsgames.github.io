@@ -13,8 +13,10 @@ export default function View(): JSX.Element {
 				<h3>Games</h3>
 			</div>
 
-			<Row className="game-wrapper">
-				{ games.map((game: Game, key) => <GameCard game={game} key={key}/>)}
+			<Row>
+				{ games
+					.sort((a: Game, b: Game) => a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1)
+					.map((game: Game, key) => <GameCard game={game} key={key}/>)}
 			</Row>
 
 		</Container>
