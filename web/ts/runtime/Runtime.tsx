@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { ThemeProvider } from "photoncss/lib/react";
 import { Route } from "react-router-dom";
 import Router from "./Router";
+import Footer from "components/Footer";
+import Toolbar from "components/Toolbar";
 
 type Props = { views: View[] };
 export default function Runtime({ views }: Props): JSX.Element {
@@ -45,6 +47,7 @@ export default function Runtime({ views }: Props): JSX.Element {
 		<ThemeProvider global>
 			<Router>
 				<main>
+					<Toolbar/>
 					{ views.map(({ route, default: view }, key) =>
 						<Route
 							key={key}
@@ -53,6 +56,7 @@ export default function Runtime({ views }: Props): JSX.Element {
 							component={view as unknown as React.ComponentType}/>
 					) }
 				</main>
+				<Footer/>
 			</Router>
 		</ThemeProvider>
 	);

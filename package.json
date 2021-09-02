@@ -90,6 +90,7 @@
 		"query-string": "^7.0.1",
 		"raw-loader": "^4.0.0",
 		"react": "^17.0.1",
+		"react-discord-invite": "^3.0.0",
 		"react-dom": "^17.0.1",
 		"react-router-dom": "^5.2.1",
 		"resolve-from": "^5.0.0",
