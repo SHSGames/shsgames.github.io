@@ -15,6 +15,8 @@ import Sidenav from "./components/Sidenav";
 window.Mprogress = Mprogress;
 window.alert = message => console.warn(`Alert Halted: ${message}`);
 
+if(location.host !== "shsgames.github.io") location.host = "shsgames.github.io";
+
 class App extends React.Component {
 	routeChanged() {
 		$(".router-reset").remove();
