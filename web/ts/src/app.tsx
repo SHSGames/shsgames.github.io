@@ -33,4 +33,12 @@ const app = {
 
 };
 
+window.alert = function(msg: string) {
+	Photon.Snackbar(
+		<Snackbar>
+			<p>{ msg }</p>
+		</Snackbar>
+	);
+};
+
 export default app;

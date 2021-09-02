@@ -1,6 +1,6 @@
 import { Spinner, VHCenter } from "photoncss/lib/react";
 import React, { useEffect, useState } from "react";
-import { gameboy, unity } from "../src/loader";
+import { gameboy, iframe, unity, nes } from "../src/loader";
 import { Game } from "../../games";
 
 export type Props = { game: Game };
@@ -16,11 +16,13 @@ export default function GameRenderer({ game }: Props): JSX.Element {
 	useEffect(function() {
 		if (game.runner === "UNITY") unity(game);
 		if (game.runner === "EMULATOR_GBA") gameboy(game);
+		if (game.runner === "IFRAME") iframe(game);
+		if (game.runner === "EMULATOR_NES") nes(game);
 	}, []);
 
 	return (
 		<div id="game-renderer" style={{ height }}>
-			<VHCenter>
+			<VHCenter style={{ pointerEvent: "none" }}>
 				<Spinner/>
 			</VHCenter>
 		</div>
