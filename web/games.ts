@@ -16,5 +16,11 @@ export default <Game[]>[
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/slope_v7.json",
 		aspectRatio: 16 / 9,
 		width: 1200
+	}, {
+		name: "Advance Wars",
+		runner: "EMULATOR_GBA",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/advance-wars.jpg",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/advance-wars.gba",
+		aspectRatio: 5 / 4
 	}
 ];

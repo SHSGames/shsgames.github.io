@@ -94,9 +94,10 @@ export = <Configuration>{
 			...manifest
 		}),
 		new CopyWebpackPlugin({
-			patterns: [ {
-				from: "web/robots.txt", to: "."
-			} ]
+			patterns: [
+				{ from: "web/robots.txt", to: "." },
+				{ from: "web/IodineGBA.html", to: "." }
+			]
 		}),
 		new DefinePlugin({
 			APP_MANIFEST: JSON.stringify(manifest)

@@ -12,5 +12,5 @@ declare interface Middleware {
 }
 
 declare interface Runtime {
-	default(app: Express): void | Promise<void>;
+	default(app: Express): unknown;
 }

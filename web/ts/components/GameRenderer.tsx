@@ -1,6 +1,6 @@
 import { Spinner, VHCenter } from "photoncss/lib/react";
 import React, { useEffect, useState } from "react";
-import { unity } from "../src/loader";
+import { gameboy, unity } from "../src/loader";
 import { Game } from "../../games";
 
 export type Props = { game: Game };
@@ -15,6 +15,7 @@ export default function GameRenderer({ game }: Props): JSX.Element {
 
 	useEffect(function() {
 		if (game.runner === "UNITY") unity(game);
+		if (game.runner === "EMULATOR_GBA") gameboy(game);
 	}, []);
 
 	return (
