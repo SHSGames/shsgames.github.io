@@ -30,7 +30,7 @@ export default function Component(): JSX.Element {
 			<Container>
 				<Row>
 					<Col xl={4}>
-						<Link to="/">
+						<Link to={`/${location.search}`}>
 							<div className="title">
 								<h3>{ APP_MANIFEST.name }</h3>
 							</div>

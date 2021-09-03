@@ -11,7 +11,7 @@ export default function Component(): JSX.Element {
 		<Toolbar>
 			<Icon onClick={ () => Photon.Drawer("#drawer").open() }>menu</Icon>
 			<ToolbarTitle>
-				<Link to="/">
+				<Link to={`/${location.search}`}>
 					{ APP_MANIFEST.name }
 				</Link>
 			</ToolbarTitle>
