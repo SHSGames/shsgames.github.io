@@ -16,7 +16,7 @@ export default function SearchResult({ term }: Props): JSX.Element {
 			<Card style={{ margin: 0, marginTop: -76 }} variant="outlined">
 				<div style={{ height: 48 }}></div>
 				<p style={{ textAlign: "right", paddingTop: 12 }}>
-					<span className="badge">{filtered.length} result{filtered.length !== 1 && "s"}</span>
+					<span className="badge">{filtered.length} Game{filtered.length !== 1 && "s"}</span>
 				</p>
 				<List className="search-results-list">
 					{ filtered.map((item, key) =>
