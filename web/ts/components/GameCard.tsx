@@ -12,7 +12,7 @@ export default function GameCard({ game }: Props): JSX.Element {
 		<Col md={6} lg={4} xl={3}>
 			<Card variant="outlined">
 				<CardTitle>
-					{ game.name.length > 20 ? <Marquee speed={96}>{ game.name }</Marquee> : <>{ game.name }</>}
+					{ game.name.replace(/\s/g, "").length > 16 ? <Marquee speed={96}>{ game.name }</Marquee> : <>{ game.name }</>}
 				</CardTitle>
 				<div
 				  	className="thumbnail"
