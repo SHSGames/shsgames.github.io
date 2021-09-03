@@ -1,5 +1,3 @@
-<img src="https://cdn.jsdelivr.net/gh/SHSGames/shsgames.github.io@master/www/img/dev/banner.png?raw=true"/>
-
 # SHSGames
 ### Checks
 * [![Build](https://github.com/SHSGames/shsgames.github.io/actions/workflows/build.yml/badge.svg)](https://github.com/SHSGames/shsgames.github.io/actions/workflows/build.yml)
