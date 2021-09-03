@@ -1,4 +1,5 @@
 import { Button, Card, CardActions, CardTitle, Col } from "photoncss/lib/react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import React from "react";
 import { Link } from "react-router-dom";
 import { getGameID, slug } from "../src/gameHash";
@@ -18,7 +19,7 @@ export default function GameCard({ game }: Props): JSX.Element {
 					  	position: "relative",
 						overflow: "hidden"
 					}}>
-					<img
+					<LazyLoadImage
 						src={ game.thumbnail }
 						alt=""
 						style={{
