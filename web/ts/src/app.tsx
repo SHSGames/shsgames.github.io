@@ -37,7 +37,7 @@ window.alert = function(msg: string) {
 	Photon.Snackbar(
 		<Snackbar>
 			<p>{ msg }</p>
-		</Snackbar>
+		</Snackbar>, { duration: 5000 }
 	);
 };
 
