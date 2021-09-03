@@ -339,6 +339,114 @@ export default <Game[]>[
 		width: 640,
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/yoshis-cookie.nes",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/yoshis-cookie.jpg"
+	},
+
+	// GBA GAMES
+	{
+		name: "Advance Wars",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/advance-wars.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/advance-wars.jpg"
+	}, {
+		name: "Advance Wars 2",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/advance-wars-2.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/advance-wars-2.jpg"
+	}, {
+		name: "Castlevania - Aria of Sorrow",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/castlevania---aria-of-sorrow.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/castlevania---aria-of-sorrow.jpg"
+	}, {
+		name: "Fire Emblem",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/fire-emblem.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/fire-emblem.jpg"
+	}, {
+		name: "Golden Sun",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/golden-sun.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/golden-sun.jpg"
+	}, {
+		name: "Mario Kart",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/mario-kart.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/mario-kart.jpg"
+	}, {
+		name: "Mario Party Advance",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/mario-party-advance.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/mario-party-advance.jpg"
+	}, {
+		name: "Pacman World",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pacman-world.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pacman-world.jpg"
+	}, {
+		name: "Pokemon Ash Gray",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-ash-gray.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-ash-gray.jpg"
+	}, {
+		name: "Pokemon Dark Violet",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-dark-violet.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-dark-violet.jpg"
+	}, {
+		name: "Pokemon Emerald",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-emerald.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-emerald.jpg"
+	}, {
+		name: "Pokemon Flora Sky",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-flora-sky.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-flora-sky.jpg"
+	}, {
+		name: "Pokemon Glazed",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-glazed.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-glazed.jpg"
+	}, {
+		name: "Pokemon Green",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-green.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-green.jpg"
+	}, {
+		name: "Pokemon Light Platinum",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-light-platinum.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-light-platinum.jpg"
+	}, {
+		name: "Pokemon Ruby",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-ruby.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-ruby.jpg"
+	}, {
+		name: "Pokemon Sapphire",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-sapphire.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-sapphire.jpg"
+	}, {
+		name: "Pokemon Red",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-red.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-red.jpg"
+	}, {
+		name: "Pokemon X & Y",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-x-and-y.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-x-&-y.jpg"
+	}, {
+		name: "Sonic Advance",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/sonic-advance.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/sonic-advance.jpg"
+	}, {
+		name: "Wario Ware",
+		runner: "EMULATOR_GBA",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/wario-ware.gba",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/wario-ware.jpg"
 	}
 
 ];
