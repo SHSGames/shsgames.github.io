@@ -12,6 +12,7 @@ export default function View(): JSX.Element {
 			<br/>
 			<div className="title">
 				<h3>Games</h3>
+				<span className="badge" style={{ marginLeft: 16 }}>{ games.length } Games</span>
 			</div>
 
 			<Row>
