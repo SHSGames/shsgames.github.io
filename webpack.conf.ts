@@ -95,7 +95,8 @@ export = <Configuration>{
 		}),
 		new CopyWebpackPlugin({
 			patterns: [
-				{ from: "web/*.txt", to: "." },
+				{ from: "web/ads.txt", to: "." },
+				{ from: "web/robots.txt", to: "." },
 				{ from: "web/IodineGBA.html", to: "." },
 				{ from: "web/built-games", to: "built-games" }
 			]
