@@ -6,6 +6,7 @@ import Router from "./Router";
 import Footer from "components/Footer";
 import Toolbar from "components/Toolbar";
 import Drawer from "components/Drawer";
+import Keybinds from "./Keybinds";
 
 type Props = { views: View[] };
 export default function Runtime({ views }: Props): JSX.Element {
@@ -59,6 +60,7 @@ export default function Runtime({ views }: Props): JSX.Element {
 					) }
 				</main>
 				<Footer/>
+				<Keybinds/>
 			</Router>
 		</ThemeProvider>
 	);

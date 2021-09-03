@@ -40,6 +40,21 @@ export default function SearchBar(): JSX.Element {
 			.trigger("click");
 	}, []);
 
+	useEffect(function() {
+		$(document).on("keypress", function (event) {
+			if (event.shiftKey) return;
+			const search = $(".search")
+				.children(".photon-input")
+				.children("input");
+			if (search.is(":focus")) return;
+			event.preventDefault();
+			if (event.key === "k") search
+				.trigger("focus")
+				.parent()
+				.trigger("click");
+		});
+	}, []);
+
 	return (
 		<div className="search">
 			<InputField prefix="search" type="text" variant="filled" placeholder="Search" value={term} onChange={ (event: InputEvent): void => {
