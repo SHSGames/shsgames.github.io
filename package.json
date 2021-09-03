@@ -32,7 +32,7 @@
 		"serve": "node ."
 	},
 	"devDependencies": {
-		"@babel/core": "^7.15.0",
+		"@babel/core": "^7.15.4",
 		"@babel/plugin-proposal-class-properties": "^7.8.3",
 		"@babel/plugin-transform-runtime": "^7.15.0",
 		"@babel/polyfill": "^7.12.1",
