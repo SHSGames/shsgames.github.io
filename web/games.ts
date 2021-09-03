@@ -383,57 +383,57 @@ export default <Game[]>[
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pacman-world.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pacman-world.jpg"
 	}, {
-		name: "Pokemon Ash Gray",
+		name: "Pokémon Ash Gray",
 		runner: "EMULATOR_GBA",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-ash-gray.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-ash-gray.jpg"
 	}, {
-		name: "Pokemon Dark Violet",
+		name: "Pokémon Dark Violet",
 		runner: "EMULATOR_GBA",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-dark-violet.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-dark-violet.jpg"
 	}, {
-		name: "Pokemon Emerald",
+		name: "Pokémon Emerald",
 		runner: "EMULATOR_GBA",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-emerald.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-emerald.jpg"
 	}, {
-		name: "Pokemon Flora Sky",
+		name: "Pokémon Flora Sky",
 		runner: "EMULATOR_GBA",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-flora-sky.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-flora-sky.jpg"
 	}, {
-		name: "Pokemon Glazed",
+		name: "Pokémon Glazed",
 		runner: "EMULATOR_GBA",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-glazed.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-glazed.jpg"
 	}, {
-		name: "Pokemon Green",
+		name: "Pokémon Green",
 		runner: "EMULATOR_GBA",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-green.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-green.jpg"
 	}, {
-		name: "Pokemon Light Platinum",
+		name: "Pokémon Light Platinum",
 		runner: "EMULATOR_GBA",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-light-platinum.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-light-platinum.jpg"
 	}, {
-		name: "Pokemon Ruby",
+		name: "Pokémon Ruby",
 		runner: "EMULATOR_GBA",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-ruby.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-ruby.jpg"
 	}, {
-		name: "Pokemon Sapphire",
+		name: "Pokémon Sapphire",
 		runner: "EMULATOR_GBA",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-sapphire.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-sapphire.jpg"
 	}, {
-		name: "Pokemon Red",
+		name: "Pokémon Red",
 		runner: "EMULATOR_GBA",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-red.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-red.jpg"
 	}, {
-		name: "Pokemon X & Y",
+		name: "Pokémon X & Y",
 		runner: "EMULATOR_GBA",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/pokemon-x-and-y.gba",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/pokemon-x-&-y.jpg"
