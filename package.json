@@ -120,7 +120,7 @@
 		"mkdirp": "^1.0.4",
 		"mysql-promise": "^5.0.0",
 		"mysql2": "^2.3.0",
-		"node-fetch": "^3.0.0",
+		"node-fetch": "^2.6.1",
 		"promise-mysql": "^5.0.3",
 		"uuid": "^8.3.2",
 		"yaml": "^1.10.2"
