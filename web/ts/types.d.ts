@@ -27,3 +27,5 @@ declare interface AppManifest {
 }
 
 declare const APP_MANIFEST: AppManifest;
+
+declare let adsbygoogle: any;

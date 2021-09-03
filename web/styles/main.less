@@ -86,3 +86,43 @@
 		text-decoration: none;
 	}
 }
+
+.only-large {
+	display: none;
+	@media (min-width: 1280px) {
+		display: block;
+	}
+}
+
+.only-small {
+	@media (min-width: 1280px) {
+		visibility: hidden;
+	}
+}
+
+.flex-adaptive {
+	padding: 12px!important;
+	flex-direction: column;
+	&.horizontal {
+		flex-direction: row;
+		img {
+			margin: 0!important;
+			margin-left: auto!important;
+		}
+		div {
+			margin-left: 0!important;
+		}
+	}
+	div {
+		margin: 0 auto!important;
+	}
+	img {
+		margin: 0 auto!important;
+	}
+}
+
+.only-on-med-and-up {
+	@media (max-width: 716px) {
+		visibility: hidden;
+	}
+}
