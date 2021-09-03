@@ -1,4 +1,5 @@
 import GameManager from "components/GameManager";
+import GameNotFound from "components/GameNotFound";
 import GameRenderer from "components/GameRenderer";
 import { Container } from "photoncss/lib/react";
 import React, { useEffect } from "react";
@@ -11,6 +12,8 @@ export default function View(): JSX.Element {
 
 	const { gameid } = useParams<Record<string, string>>();
 	const game = getGameFromID(gameid);
+
+	if (game === undefined) return <GameNotFound/>;
 
 	useEffect(function() {
 		setTimeout(function() {

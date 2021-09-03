@@ -1,12 +1,13 @@
 import app from "../src/app";
 import React, { useEffect } from "react";
 import { ThemeProvider } from "photoncss/lib/react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Router from "./Router";
 import Footer from "components/Footer";
 import Toolbar from "components/Toolbar";
 import Drawer from "components/Drawer";
 import Keybinds from "./Keybinds";
+import GameNotFound from "components/GameNotFound";
 
 type Props = { views: View[] };
 export default function Runtime({ views }: Props): JSX.Element {
@@ -51,13 +52,16 @@ export default function Runtime({ views }: Props): JSX.Element {
 				<main>
 					<Toolbar/>
 					<Drawer/>
-					{ views.map(({ route, default: view }, key) =>
-						<Route
-							key={key}
-							path={route}
-							exact={true}
-							component={view as unknown as React.ComponentType}/>
-					) }
+					<Switch>
+						{ views.map(({ route, default: view }, key) =>
+							<Route
+								key={key}
+								path={route}
+								exact={true}
+								component={view as unknown as React.ComponentType}/>
+						) }
+						<Route component={GameNotFound} />
+					</Switch>
 				</main>
 				<Footer/>
 				<Keybinds/>
