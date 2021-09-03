@@ -29,7 +29,7 @@ export default function Component(): JSX.Element {
 		<Footer>
 			<Container>
 				<Row>
-					<Col lg={8}>
+					<Col lg={4}>
 						<Link to="/">
 							<div className="title">
 								<h3>{ APP_MANIFEST.name }</h3>
@@ -38,7 +38,12 @@ export default function Component(): JSX.Element {
 						<MoTD/>
 					</Col>
 					<Col lg={4}>
-						<div className="raised-3" style={{ display: "inline-block", float: "right", margin: "16px 0" }}>
+						<a href="//github.com/SHSGames/shsgames.github.io" style={{ marginTop: 16, display: "inline-block", maxWidth: "calc(100vw - 32px)", overflow: "hidden" }}>
+							<img src={"https://github-readme-stats.vercel.app/api/pin/?username=SHSGames&repo=shsgames.github.io&theme=radical&bg_color=0d1117&border_color=30363d&title_color=58a6ff&icon_color=8b949e&text_color=8b949e"} alt="" className="raised-3"/>
+						</a>
+					</Col>
+					<Col lg={4}>
+						<div className="raised-3" style={{ display: "inline-block", margin: "16px 0", maxWidth: "calc(100vw - 32px)", overflow: "hidden" }}>
 							<DiscordInvite guild="584437072618717209"/>
 						</div>
 					</Col>
