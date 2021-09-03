@@ -38,7 +38,7 @@ export default function GameCard({ game }: Props): JSX.Element {
 						}}/>
 				</div>
 				<CardActions seperated={true} direction="right">
-					<Link to={`/g/${getGameID(game)}/${slug(game.name)}`}>
+					<Link to={`/g/${getGameID(game)}/${slug(game.name)}${location.search}`}>
 						<Button
 							color="primary"
 							variant="outlined">Play</Button>

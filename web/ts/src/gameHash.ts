@@ -2,7 +2,7 @@ import games, { Game } from "../../games";
 
 export function slug(name: string): string {
 	name = name.replace(/\s|_/g, "-");
-	name = name.replace(/'|"/g, "");
+	name = name.replace(/'|"|\./g, "");
 	return name.toLowerCase();
 }
 

@@ -26,7 +26,7 @@ export function MoTD(): JSX.Element | null {
 
 export default function Component(): JSX.Element {
 	return (
-		<Footer>
+		<Footer className="theme--dark">
 			<Container>
 				<Row>
 					<Col lg={4}>
@@ -39,7 +39,7 @@ export default function Component(): JSX.Element {
 					</Col>
 					<Col lg={4}>
 						<a href="//github.com/SHSGames/shsgames.github.io" style={{ marginTop: 16, display: "inline-block", maxWidth: "calc(100vw - 32px)", overflow: "hidden" }}>
-							<img src={"https://github-readme-stats.vercel.app/api/pin/?username=SHSGames&repo=shsgames.github.io&theme=radical&bg_color=0d1117&border_color=30363d&title_color=58a6ff&icon_color=8b949e&text_color=8b949e"} alt="" className="raised-3"/>
+							<img src={"https://github-readme-stats.vercel.app/api/pin/?username=SHSGames&repo=shsgames.github.io&theme=radical&bg_color=22272e&border_color=373e47&title_color=58a6ff&icon_color=adbac7&text_color=adbac7"} alt="" className="raised-3"/>
 						</a>
 					</Col>
 					<Col lg={4}>

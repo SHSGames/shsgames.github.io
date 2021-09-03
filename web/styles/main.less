@@ -1,4 +1,20 @@
 @import "./theme.less";
+@import "./search.less";
+
+::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+	background: var(--palette_body_background);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--palette_body_subtitle);
+}
+
 
 .title h3 {
     display: inline-block;
@@ -42,5 +58,26 @@
 	}
 	.marquee {
 		padding-right: 2rem;
+	}
+}
+
+.badge {
+	background: var(--cyan);
+	color: var(--palette_body_background);
+	padding: 6px 12px;
+	border-radius: 50px;
+	font-weight: 500;
+	font-size: 13.5px;
+}
+
+.photon-toolbar {
+	&:not(.variant-raised) {
+		border-bottom: 1px solid var(--palette_divider)!important;
+	}
+	.photon-toolbaractions {
+		pointer-events: none;
+		i {
+			pointer-events: all;
+		}
 	}
 }
