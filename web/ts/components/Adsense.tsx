@@ -8,6 +8,12 @@ export type Props = {
 	fullWidthResponsive: "true" | "false";
 }
 export default function Adsense({ adLayout = "in-article", style, adFormat = "fluid", fullWidthResponsive = "true" }: Props): JSX.Element {
+
+	useEffect(function() {
+		/* eslint no-eval: off */
+		eval("(adsbygoogle = window.adsbygoogle || []).push({});");
+	}, []);
+
 	return (
 		<Card variant="outlined" style={{ overflow: "hidden" }}>
 			<ins className="adsbygoogle"
@@ -17,7 +23,6 @@ export default function Adsense({ adLayout = "in-article", style, adFormat = "fl
 				data-ad-layout={adLayout}
 				data-ad-format={adFormat}
 				data-full-width-responsive={fullWidthResponsive}></ins>
-			<script>{"(adsbygoogle = window.adsbygoogle || []).push({});"}</script>
 		</Card>
 	);
 }
