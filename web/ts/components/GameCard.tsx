@@ -10,7 +10,7 @@ export type Props = { game: Game };
 export default function GameCard({ game }: Props): JSX.Element {
 	return (
 		<Col md={6} lg={4} xl={3}>
-			<Card>
+			<Card variant="outlined">
 				<CardTitle>
 					{ game.name.length > 20 ? <Marquee speed={96}>{ game.name }</Marquee> : <>{ game.name }</>}
 				</CardTitle>
