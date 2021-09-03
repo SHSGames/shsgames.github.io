@@ -1,4 +1,5 @@
 import { Button, Card, CardActions, CardTitle, Col } from "photoncss/lib/react";
+import Marquee from "react-fast-marquee";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -10,7 +11,9 @@ export default function GameCard({ game }: Props): JSX.Element {
 	return (
 		<Col md={6} lg={4} xl={3}>
 			<Card>
-				<CardTitle>{ game.name }</CardTitle>
+				<CardTitle>
+					{ game.name.length > 20 ? <Marquee speed={96}>{ game.name }</Marquee> : <>{ game.name }</>}
+				</CardTitle>
 				<div
 				  	className="thumbnail"
 				  	style={{
