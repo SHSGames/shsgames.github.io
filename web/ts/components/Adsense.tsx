@@ -24,8 +24,8 @@ export default function Adsense({ adLayout = "in-article", style, adFormat = "fl
 
 	}, []);
 
-	if (state === false) {
-
+	useEffect(function() {
+		if (state !== false) return;
 		setImmediate(function() {
 			function resize() {
 				console.log(id, $("#" + id)[0].clientWidth);
@@ -37,7 +37,9 @@ export default function Adsense({ adLayout = "in-article", style, adFormat = "fl
 				.on("resize", resize)
 				.trigger("resize");
 		});
+	});
 
+	if (state === false) {
 		return (
 			<Card variant="outlined" className="flex-adaptive" style={{ ...style, overflow: "hidden", padding: 24, display: "flex" }} id={id}>
 				<img src={ app.static("adblocker.svg") } alt="" style={{ maxWidth: 200, display: "inline-flex" }}/>
