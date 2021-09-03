@@ -10,7 +10,6 @@ export type Props = { term: string };
 export default function SearchResult({ term }: Props): JSX.Element {
 
 	const filtered = games.filter(game => game.name.toLowerCase().includes(term.toLowerCase()));
-	console.log({ term, filtered });
 
 	return (
 		<div className="search-results" style={{ display: "none", borderRadius: 4 }}>
