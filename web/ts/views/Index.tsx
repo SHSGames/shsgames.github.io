@@ -1,5 +1,6 @@
+import Adsense from "components/Adsense";
 import GameCard from "components/GameCard";
-import { Container, Row } from "photoncss/lib/react";
+import { Col, Container, Row } from "photoncss/lib/react";
 import React from "react";
 import games, { Game } from "../../games";
 
@@ -16,9 +17,27 @@ export default function View(): JSX.Element {
 			</div>
 
 			<Row>
+
+				<Col>
+					<Adsense
+						style={{ display: "block", textAlign: "center" }}
+						adLayout="in-article"
+						adFormat="fluid"
+						fullWidthResponsive="true"/>
+				</Col>
+
 				{ games
 					.sort((a: Game, b: Game) => a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1)
 					.map((game: Game, key) => <GameCard game={game} key={key}/>)}
+
+				<Col>
+					<Adsense
+						style={{ display: "block", textAlign: "center" }}
+						adLayout="in-article"
+						adFormat="fluid"
+						fullWidthResponsive="true"/>
+				</Col>
+
 			</Row>
 
 		</Container>
