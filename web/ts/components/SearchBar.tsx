@@ -57,7 +57,7 @@ export default function SearchBar(): JSX.Element {
 
 	return (
 		<div className="search">
-			<InputField prefix="search" type="text" variant="filled" placeholder="Search" value={term} onChange={ (event: InputEvent): void => {
+			<InputField prefix="search" type="text" variant="filled" placeholder="Press 'K' to search" value={term} onChange={ (event: InputEvent): void => {
 				window.history.pushState(null, "", `${location.pathname}?search=${$(".search")
 					.children(".photon-input")
 					.children("input")
