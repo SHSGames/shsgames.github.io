@@ -1,0 +1,88 @@
+@import "./theme.less";
+@import "./search.less";
+
+::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+	background: var(--palette_body_background);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--palette_body_subtitle);
+}
+
+
+.title h3 {
+    display: inline-block;
+    padding: 12px 0;
+    margin: 0;
+    margin-bottom: 4px;
+    border-bottom: 2px solid var(--palette_primary_normal);
+    border-image-slice: 1;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    font-size: 20px;
+    font-weight: 500;
+	margin-left: 8px;
+}
+
+.game-manager {
+	height: 32px;
+	background: var(--palette_body_hover);
+}
+
+.game-renderer {
+	background: #00000030;
+	position: relative;
+}
+
+.mono {
+	font-family: Roboto Mono;
+	font-size: 12px;
+	display: inline-block;
+	margin: 8px 1rem;
+}
+
+#jsnes-game {
+	image-rendering: pixelated;
+}
+
+.marquee-container {
+	.overlay {
+		--gradient-color: var(--palette_sheet_background), transparent!important;
+	    --gradient-width: 36px!important;
+	}
+	.marquee {
+		padding-right: 2rem;
+	}
+}
+
+.badge {
+	background: var(--cyan);
+	color: var(--palette_body_background);
+	padding: 6px 12px;
+	border-radius: 50px;
+	font-weight: 500;
+	font-size: 13.5px;
+	font-family: var(--font_body);
+}
+
+.photon-toolbar {
+	&:not(.variant-raised) {
+		border-bottom: 1px solid var(--palette_divider)!important;
+	}
+	.photon-toolbaractions {
+		pointer-events: none;
+		i {
+			pointer-events: all;
+		}
+	}
+	.photon-toolbartitle a {
+		color: inherit;
+		text-decoration: none;
+	}
+}

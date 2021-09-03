@@ -1,0 +1,16 @@
+<html>
+<header>
+
+<link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+	<script src="tanuki_sunset.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "tanuki_sunset.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
+    </script>
+</header>
+<body style="margin: 0;">
+<div class="webgl-content">
+        <div id="gameContainer" style="width: 800px; height: 660px; margin: auto"></div>
+        </div>
+</body>
+</html>

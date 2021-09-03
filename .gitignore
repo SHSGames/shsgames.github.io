@@ -1,3 +1,5 @@
-/dist/
+lib/
 node_modules/
-cached_resources/
+hash
+public_html/
+web/__compile_cache/
