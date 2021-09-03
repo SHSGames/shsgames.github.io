@@ -20,7 +20,7 @@ export default function SearchResult({ term }: Props): JSX.Element {
 				</p>
 				<List className="search-results-list">
 					{ filtered.map((item, key) =>
-						<Link key={key} to={`/g/${getGameID(item)}/${slug(item.name)}${location.search}`}>
+						<Link key={key} to={`/g/${getGameID(item)}/${slug(item.name)}${location.search}`} onClick={ () => $(".search-results").hide() }>
 							<Result item={item}/>
 						</Link>
 					) }
