@@ -19,6 +19,10 @@ export default function ThemeSwitcher(): JSX.Element {
 		localStorage.setItem("theme", newTheme);
 		$("body").attr("class", `theme--${theme}`);
 		__setTheme(newTheme);
+		const color = getComputedStyle(document.body)
+			.getPropertyValue("--palette_header_background")
+			.trim();
+		$("meta[name=\"theme-color\"]").attr("content", color);
 	}
 
 	// On component render
