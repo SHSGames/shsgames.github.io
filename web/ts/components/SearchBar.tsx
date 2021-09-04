@@ -48,7 +48,13 @@ export default function SearchBar(): JSX.Element {
 				.children("input");
 			if (search.is(":focus")) return;
 			event.preventDefault();
-			if (event.key === "k") search
+
+			if (event.key !== "k") return;
+			const toggler = $(".photon-toolbaractions")
+				.children(".only-small")
+				.children(".material-icons");
+			if (toggler.text() === "search") toggler.trigger("click");
+			search
 				.trigger("focus")
 				.parent()
 				.trigger("click");
