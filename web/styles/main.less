@@ -126,3 +126,23 @@
 		visibility: hidden;
 	}
 }
+
+.pwa-installer {
+	background: var(--palette_notification_background);
+	z-index: 12;
+	h3, p {
+		color: var(--palette_notification_text);
+	}
+	.card-actions.seperated {
+		border-color: #ffffff10;
+		.photon-btn.variant-flat {
+			color: var(--palette_notification_text);
+			.waves-ripple {
+				background-color: #ffffff30;
+			}
+			&:hover {
+				background-color: #ffffff10;
+			}
+		}
+	}
+}

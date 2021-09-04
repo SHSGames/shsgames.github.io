@@ -8,6 +8,7 @@ import Toolbar from "components/Toolbar";
 import Drawer from "components/Drawer";
 import Keybinds from "./Keybinds";
 import GameNotFound from "components/GameNotFound";
+import PWAInstaller from "pwa-installer-react";
 
 type Props = { views: View[] };
 export default function Runtime({ views }: Props): JSX.Element {
@@ -64,6 +65,7 @@ export default function Runtime({ views }: Props): JSX.Element {
 					</Switch>
 				</main>
 				<Footer/>
+				<PWAInstaller/>
 				<Keybinds/>
 			</Router>
 		</ThemeProvider>
