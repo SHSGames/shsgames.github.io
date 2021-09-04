@@ -28,7 +28,6 @@ export default function Adsense({ adLayout = "in-article", style, adFormat = "fl
 		if (state !== false) return;
 		setImmediate(function() {
 			function resize() {
-				console.log(id, $("#" + id)[0].clientWidth);
 				if ($("#" + id)[0].clientWidth > 600) return $("#" + id).addClass("horizontal");
 				$("#" + id).removeClass("horizontal");
 			}
