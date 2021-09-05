@@ -56,7 +56,8 @@ export default class ErrorBoundary extends Component<Props, State> {
 						body: JSON.stringify({
 							error,
 							errorInfo,
-							buildId
+							buildId,
+							app: APP_MANIFEST
 						})
 					});
 
