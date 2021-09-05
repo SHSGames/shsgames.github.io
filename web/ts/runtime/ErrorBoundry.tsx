@@ -1,8 +1,7 @@
 /* eslint @typescript-eslint/no-var-requires: off */
-import React, { ErrorInfo } from "react";
-import { Component } from "react";
 import Photon from "photoncss";
-import { Button, Snackbar } from "photoncss/lib/react";
+import { Snackbar } from "photoncss/lib/react";
+import React, { Component, ErrorInfo } from "react";
 
 export type Props = any;
 export type State = { hasError: boolean, error?: Error };
@@ -17,55 +16,29 @@ export default class ErrorBoundary extends Component<Props, State> {
 		return { hasError: true, error };
 	}
 
-	componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+	async componentDidCatch(error: Error, errorInfo: ErrorInfo): Promise<void> {
 		Photon.Snackbar(
 			<Snackbar>
-				<p>A critical error has occured and { APP_MANIFEST.name } has crashed.</p>
+				<p>A critical error has occured and { APP_MANIFEST.name } has crashed. This page will reload as soon as the error report is sent.</p>
 			</Snackbar>
 		);
 
-		const toast = Photon.Snackbar(
-			<Snackbar>
-				<p>Error information for developers:</p>
-				<br/>
-				<pre style={{
-					margin: 0
-				}}>
-					<code style={{
-						margin: -1,
-						borderRadius: 0,
-						padding: "16px 24px",
-						whiteSpace: "break-spaces"
-					}}>{ error.toString() }</code>
-				</pre>
-				<Button color="primary" variant="outlined" style={{ float: "right" }} onClick={ async(event: MouseEvent) => {
-					if (event.target) {
-						$(event.target)
-							.attr("disabled", "true")
-							.removeClass("color-primary")
-							.css({ opacity: .54 })
-							.text("Error report submitted");
-						toast.hide();
-					}
+		const buildId: string = require("raw-loader!../../../../hash").default;
 
-					const buildId: string = require("raw-loader!../../../../hash").default;
+		await fetch("//joshm.us.to/api/v1/report", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				error: error.toString(),
+				errorInfo,
+				buildId,
+				location,
+				app: APP_MANIFEST
+			})
+		});
 
-					await fetch("//joshm.us.to/api/v1/report", {
-						method: "POST",
-						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify({
-							error,
-							errorInfo,
-							buildId,
-							app: APP_MANIFEST
-						})
-					});
+		location.reload();
 
-					location.reload();
-
-				} }>Submit error report</Button>
-			</Snackbar>
-		);
 	}
 
 	render(): React.ReactNode {
