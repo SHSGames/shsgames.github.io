@@ -52,7 +52,7 @@
 		"@types/node": "^16.7.10",
 		"@types/node-fetch": "^2.5.12",
 		"@types/optimize-css-assets-webpack-plugin": "^5.0.4",
-		"@types/react": "^17.0.19",
+		"@types/react": "^17.0.20",
 		"@types/react-dom": "^17.0.9",
 		"@types/react-lazy-load-image-component": "^1.5.2",
 		"@types/react-router-dom": "^5.1.8",
