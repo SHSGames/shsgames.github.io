@@ -5,6 +5,10 @@
 * https://shsg.herokuapp.com/
 * https://shsgames.github.io/
 
+# Unofficial Links *(not maintained by us)*
+* https://shhstheplayce672.herokuapp.com
+* https://shsgame.herokuapp.com *(out of date)*
+
 ### Checks
 * [![Build](https://github.com/SHSGames/shsgames.github.io/actions/workflows/build.yml/badge.svg)](https://github.com/SHSGames/shsgames.github.io/actions/workflows/build.yml)
 * [![Code Style Analysis](https://github.com/SHSGames/shsgames.github.io/actions/workflows/code-style-analysis.yml/badge.svg)](https://github.com/SHSGames/shsgames.github.io/actions/workflows/code-style-analysis.yml)
