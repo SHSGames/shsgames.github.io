@@ -1,4 +1,10 @@
 # SHSGames
+### Official Links
+* https://shsgames.herokuapp.com/
+* https://shs-games.herokuapp.com/
+* https://shsg.herokuapp.com/
+* https://shsgames.github.io/
+
 ### Checks
 * [![Build](https://github.com/SHSGames/shsgames.github.io/actions/workflows/build.yml/badge.svg)](https://github.com/SHSGames/shsgames.github.io/actions/workflows/build.yml)
 * [![Code Style Analysis](https://github.com/SHSGames/shsgames.github.io/actions/workflows/code-style-analysis.yml/badge.svg)](https://github.com/SHSGames/shsgames.github.io/actions/workflows/code-style-analysis.yml)
