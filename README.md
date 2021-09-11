@@ -6,6 +6,8 @@
 * https://shsgames.github.io/
 
 # Unofficial Links *(not maintained by us)*
+[![Add your own](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 * https://shhstheplayce672.herokuapp.com
 * https://shsgame.herokuapp.com *(out of date)*
 
