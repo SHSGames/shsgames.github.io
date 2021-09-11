@@ -30,4 +30,4 @@ With the integrated server:
 
 With your own server:
 * Copy the contents of the `public_html` folder to your web root.
-* Ensure all 404 errors are automaticly rerouted to `404.html`. Example: [src/runtime/static.ts:9](https://github.com/SHSGames/shsgames.github.io/blob/master/src/runtime/static.ts#L9)
+* Ensure all 404 errors are automaticly rerouted to `index.html` or `404.html`. Example: [src/runtime/static.ts:9](https://github.com/SHSGames/shsgames.github.io/blob/master/src/runtime/static.ts#L9)
