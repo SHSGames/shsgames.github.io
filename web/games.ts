@@ -42,7 +42,7 @@ export default <Game[]>[
 	}, {
 		name: "Tanuki Sunset",
 		runner: "IFRAME",
-		game: "/buil-games/takumiraccoon/index.html",
+		game: "/built-games/takumiraccoon/index.html",
 		thumbnail: "https://cdn.jsdelivr.net/gh/joshmerlino/shsg-pfile/thumbs/tanuki-sunset.jpg",
 		width: 800,
 		aspectRatio: 800 / 660
