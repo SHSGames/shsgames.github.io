@@ -2,6 +2,6 @@
     "name": "SHS Games",
     "description": "Unblocked Games",
     "repository": "https://github.com/SHSGames/shsgames.github.io",
-    "logo": "hhttps://raw.githubusercontent.com/SHSGames/shsgames.github.io/master/web/static/icon.png",
+    "logo": "https://cdn.jsdelivr.net/gh/SHSGames/shsgames.github.io@master/web/static/icon.png",
     "keywords": ["node", "express", "static"]
 }
