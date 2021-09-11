@@ -1,4 +1,6 @@
 # SHSGames
+Collectively building an online game hub for the brave!
+
 ## Links
 * https://shsgames.herokuapp.com/
 * https://shs-games.herokuapp.com/
