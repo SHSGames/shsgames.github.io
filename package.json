@@ -29,7 +29,7 @@
 		"watch-webpack": "tsc && uuid > hash && webpack serve --config lib/webpack.dev.js --progress --stats errors-warnings",
 		"dev": "concurrently \"npm:watch-*\"",
 		"dev-api": "concurrently \"npm:watch-js\" \"npm:watch-ts\"",
-		"serve": "node ."
+		"start": "node ."
 	},
 	"devDependencies": {
 		"@babel/core": "^7.15.5",
