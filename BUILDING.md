@@ -15,10 +15,7 @@ git remote add upstream https://github.com/JoshMerlino/tsx-app.git
 
 ### Install build tools and node modules
 ```bash
-# Install node build tools
 sudo apt-get install build-essential -y
-
-# Install node modules
 npm install
 ```
 
