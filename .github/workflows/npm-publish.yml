@@ -29,6 +29,6 @@ jobs:
         id: wait-for-tests
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: test-ci
+          checkName: Test CI
           
       
