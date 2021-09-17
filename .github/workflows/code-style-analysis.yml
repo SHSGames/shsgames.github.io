@@ -6,9 +6,9 @@ name: Code Style Analysis
 # Run on basicly every change to the tree
 on:
   push:
-    branches: '**'
+    branches: [master]
   pull_request:
-    branches: '**'
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
