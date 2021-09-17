@@ -14,6 +14,9 @@ name: "Code Quality Analysis"
 on:
   push:
     branches: '**'
+  pull_request:
+    branches:
+      - master
 
 jobs:
   analyze:
