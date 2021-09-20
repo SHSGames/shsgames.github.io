@@ -26,7 +26,6 @@ export = merge(config, <Configuration>{
 			}
 		},
 		hot: true,
-		open: true,
 		host: "localhost"
 	}
 });
