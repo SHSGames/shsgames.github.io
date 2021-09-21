@@ -42,7 +42,7 @@ export default function Runtime({ views }: Props): JSX.Element {
 
 	// Render router
 	return (
-		<ThemeProvider global theme="default.dark">
+		<ThemeProvider global>
 			<Router>
 				<main>
 					{ views.map(({ route, default: view }, key) =>
