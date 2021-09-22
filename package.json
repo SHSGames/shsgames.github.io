@@ -55,7 +55,7 @@
 		"@types/react": "^17.0.22",
 		"@types/react-dom": "^17.0.9",
 		"@types/react-lazy-load-image-component": "^1.5.2",
-		"@types/react-router-dom": "^5.1.9",
+		"@types/react-router-dom": "^5.3.0",
 		"@types/terser-webpack-plugin": "^5.0.4",
 		"@types/uuid": "^8.3.1",
 		"@types/webpack": "^5.28.0",
