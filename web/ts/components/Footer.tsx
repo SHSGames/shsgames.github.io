@@ -2,6 +2,7 @@ import { Col, Container, Footer, FooterCopyright, Row } from "photoncss/lib/reac
 import React, { useEffect, useState } from "react";
 import DiscordInvite from "react-discord-invite";
 import { Link } from "react-router-dom";
+import { client } from "../runtime/util/offlineInstaller";
 
 export function MoTD(): JSX.Element | null {
 
@@ -51,9 +52,8 @@ export default function Component(): JSX.Element {
 			</Container>
 			<FooterCopyright>
 				<div style={{ paddingLeft: 8 }}>
-					Copyright © 2019 - { (new Date).getFullYear() } <a href="//joshmerlino.github.io" className="link"> Josh Merlino</a> & <a href="https://th3skeleton.github.io/pshel/" className="link">Parker Sheldon</a> & George Lock
-					<br/>
-					All Rights Reserved
+					Copyright © 2019-{(new Date).getFullYear()} <a href="//joshmerlino.github.io" className="link"> Josh Merlino</a> • All Rights Reserved
+					<span style={{ float: "right" }}>Build ID: v{APP_MANIFEST.version} • <code>{client.substr(0, 8)}</code></span>
 				</div>
 			</FooterCopyright>
 		</Footer>
