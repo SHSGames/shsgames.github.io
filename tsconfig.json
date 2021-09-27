@@ -14,8 +14,7 @@
 		"noUnusedParameters": true,
 		"allowUnreachableCode": false,
 		"preserveConstEnums": false,
-		"resolveJsonModule": false,
-        "declaration": true
+		"resolveJsonModule": false
 	},
 	"exclude": [
 		"node_modules",

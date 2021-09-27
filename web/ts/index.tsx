@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
+import PWAInstaller from "pwa-installer-react";
 import Runtime from "./runtime/Runtime";
 
 // Import scripts
@@ -24,10 +25,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	root.id = "root";
 	document.body.append(root);
 
+	console.log("lol");
+
 	// Render root component into react-root container
 	render(
 		<ErrorBoundry>
 			<Runtime views={views}/>
+			<PWAInstaller/>
 		</ErrorBoundry>,
 		document.getElementById("root"));
 

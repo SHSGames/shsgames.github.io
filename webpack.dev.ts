@@ -1,5 +1,4 @@
-import path from "path";
-import { HotModuleReplacementPlugin, DefinePlugin, Configuration } from "webpack";
+import { Configuration, DefinePlugin, HotModuleReplacementPlugin } from "webpack";
 import merge from "webpack-merge";
 import config from "./webpack.conf";
 
@@ -12,9 +11,10 @@ export = merge(config, <Configuration>{
 		new HotModuleReplacementPlugin,
 		new DefinePlugin({ PRODUCTION: JSON.stringify(false) })
 	],
-	devtool: "eval-source-map",
+	devtool: "cheap-module-source-map",
 	devServer: {
 		port: 8080,
+		liveReload: false,
 		historyApiFallback: {
 			index: "/index.html",
 			disableDotRule: true
