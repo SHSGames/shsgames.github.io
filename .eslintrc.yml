@@ -94,7 +94,6 @@ rules:
   strict: error
   array-bracket-spacing: [warn, always]
   brace-style: warn
-  camelcase: warn
   capitalized-comments: warn
   comma-dangle: warn
   comma-spacing: warn

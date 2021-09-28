@@ -15,10 +15,10 @@ export default async function runtime(app: Express): Promise<void> {
 
 	// Get insomnia-viewer path
 	const binary = resolve("lib/insomnia-viewer.zip");
-	const insomniaViewer = resolve("lib/insomnia-viewer-site");
+	const insomniaViewer = resolve("lib/__insomnia-viewer");
 
 	// Download latest insomnia-viewer version
-	await fetch("https://github.com/JoshMerlino/insomnia-viewer/archive/refs/heads/site.zip")
+	await fetch("https://github.com/JoshMerlino/insomnia-viewer/archive/refs/heads/public_html.zip")
 		.then(resp => resp.arrayBuffer())
 		.then(resp => writeFile(binary, Buffer.from(resp), "binary"));
 
