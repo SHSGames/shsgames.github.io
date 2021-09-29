@@ -1,4 +1,4 @@
-# SHSGames
+# SHS Games
 Collectively building an online game hub for the brave!
 
 ## Links
