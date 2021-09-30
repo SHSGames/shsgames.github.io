@@ -56,7 +56,7 @@ export default function Component(): JSX.Element {
 						<span>Copyright © 2019-{(new Date).getFullYear()} • All Rights Reserved</span>
 						<a href="//joshmerlino.github.io" className="link">Josh Merlino</a>
 					</div>
-					<div style={{ display: "inline-flex", alignItems: "start", flexDirection: "column" }}>
+					<div style={{ alignItems: "start", flexDirection: "column", marginLeft: "auto", display: "table", marginTop: "-26px", transform: "translateY(-4px)" }}>
 						<code>v{APP_MANIFEST.version}-{client.substr(0, 8)}</code>
 					</div>
 				</div>
