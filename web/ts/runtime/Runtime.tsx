@@ -65,7 +65,6 @@ export default function Runtime({ views }: Props): JSX.Element {
 					</Switch>
 				</main>
 				<Footer/>
-				<PWAInstaller/>
 				<Keybinds/>
 			</Router>
 		</ThemeProvider>
