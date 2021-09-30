@@ -35,25 +35,7 @@ module.exports = merge(config, <Configuration>{
 		minimizer: <unknown[]>[
 			new TerserJSPlugin({
 				extractComments: false,
-				terserOptions: {
-					compress: {
-						arguments: true,
-						booleans_as_integers: true,
-						collapse_vars: true,
-						comparisons: true,
-						keep_fargs: false,
-						keep_fnames: false
-					},
-					ecma: 5,
-					ie8: false,
-					mangle: true,
-					keep_classnames: false,
-					keep_fnames: false,
-					output: {
-						comments: false,
-						quote_keys: false
-					}
-				}
+				terserOptions: {}
 			}),
 			new OptimizeCSSAssetsPlugin({})
 		],
