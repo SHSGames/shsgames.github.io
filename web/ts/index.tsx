@@ -1,6 +1,5 @@
 import React from "react";
 import { render } from "react-dom";
-import PWAInstaller from "pwa-installer-react";
 import Runtime from "./runtime/Runtime";
 
 // Import scripts
@@ -25,13 +24,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	root.id = "root";
 	document.body.append(root);
 
-	console.log("lol");
+	// Log SHS GAMES!!
+	console.log(" _______           _______    _______  _______  _______  _______  _______ \n(  ____ \\|\\     /|(  ____ \\  (  ____ \\(  ___  )(       )(  ____ \\(  ____ \\\n| (    \\/| )   ( || (    \\/  | (    \\/| (   ) || () () || (    \\/| (    \\/\n| (_____ | (___) || (_____   | |      | (___) || || || || (__    | (_____ \n(_____  )|  ___  |(_____  )  | | ____ |  ___  || |(_)| ||  __)   (_____  )\n      ) || (   ) |      ) |  | | \\_  )| (   ) || |   | || (            ) |\n/\\____) || )   ( |/\\____) |  | (___) || )   ( || )   ( || (____/\\/\\____) |\n\\_______)|/     \\|\\_______)  (_______)|/     \\||/     \\|(_______/\\_______)");
+	console.log("%cJoin our cult at http://github.com/SHSGames/shsgames.github.io", "color: #1976d4");
+	console.log("%cHi, Evan!", "font-style: italic");
 
 	// Render root component into react-root container
 	render(
 		<ErrorBoundry>
 			<Runtime views={views}/>
-			<PWAInstaller/>
 		</ErrorBoundry>,
 		document.getElementById("root"));
 
