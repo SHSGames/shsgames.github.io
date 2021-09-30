@@ -54,7 +54,9 @@ export default function Component(): JSX.Element {
 				<div style={{ paddingLeft: 8 }}>
 					<div style={{ display: "inline-flex", alignItems: "start", flexDirection: "column" }}>
 						<span>Copyright © 2019-{(new Date).getFullYear()} • All Rights Reserved</span>
-						<a href="//joshmerlino.github.io" className="link">Josh Merlino</a>
+						<div>
+							<a href="//joshmerlino.github.io" className="link">Josh Merlino</a> • <a href="//th3skeleton.github.io/pshel/" className="link">Parker Sheldon</a>
+						</div>
 					</div>
 					<div style={{ alignItems: "start", flexDirection: "column", marginLeft: "auto", display: "table", marginTop: "-26px", transform: "translateY(-4px)" }}>
 						<code>v{APP_MANIFEST.version}-{client.substr(0, 8)}</code>
