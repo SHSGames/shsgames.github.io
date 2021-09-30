@@ -52,8 +52,13 @@ export default function Component(): JSX.Element {
 			</Container>
 			<FooterCopyright>
 				<div style={{ paddingLeft: 8 }}>
-					Copyright © 2019-{(new Date).getFullYear()} <a href="//joshmerlino.github.io" className="link"> Josh Merlino</a> • All Rights Reserved
-					<span style={{ float: "right" }}>Build ID: v{APP_MANIFEST.version} • <code>{client.substr(0, 8)}</code></span>
+					<div style={{ display: "inline-flex", alignItems: "start", flexDirection: "column" }}>
+						<span>Copyright © 2019-{(new Date).getFullYear()} • All Rights Reserved</span>
+						<a href="//joshmerlino.github.io" className="link">Josh Merlino</a>
+					</div>
+					<div style={{ display: "inline-flex", alignItems: "start", flexDirection: "column" }}>
+						<code>v{APP_MANIFEST.version}-{client.substr(0, 8)}</code>
+					</div>
 				</div>
 			</FooterCopyright>
 		</Footer>
