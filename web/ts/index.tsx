@@ -25,8 +25,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	root.id = "root";
 	document.body.append(root);
 
-	console.log("lol");
-
 	// Render root component into react-root container
 	render(
 		<ErrorBoundry>
