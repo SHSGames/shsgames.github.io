@@ -105,7 +105,7 @@ export = <Configuration>{
 		}),
 		new DefinePlugin({
 			APP_MANIFEST: JSON.stringify(manifest),
-			APP_CONFIG: JSON.stringify(YAML.parse(fs.readFileSync(path.resolve("config.yml"), "utf8") || ""))
+			APP_CONFIG: JSON.stringify(YAML.parse(fs.existsSync(path.resolve("config.yml")) ? fs.readFileSync(path.resolve("config.yml"), "utf8") : ""))
 		}),
 		new OfflinePlugin
 	],
