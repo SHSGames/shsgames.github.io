@@ -59,7 +59,7 @@
 		"@types/webpack": "^5.28.0",
 		"@types/webpack-env": "^1.16.2",
 		"@typescript-eslint/eslint-plugin": "^4.32.0",
-		"@typescript-eslint/parser": "^4.32.0",
+		"@typescript-eslint/parser": "^4.33.0",
 		"app-manifest-webpack-plugin": "^1.2.0",
 		"babel-loader": "^8.1.0",
 		"classnames": "^2.2.6",
