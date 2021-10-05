@@ -15,4 +15,3 @@ EXPOSE 80
 RUN npm run build
 
 CMD [ "node", "." ]
-`
