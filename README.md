@@ -11,6 +11,7 @@ Collectively building an online game hub for the brave!
 * https://shhstheplayce672.herokuapp.com
 * https://shsgame.herokuapp.com *(out of date)*
 
+## Run it yourself
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/SHSGames/shsgames.github.io)
 
