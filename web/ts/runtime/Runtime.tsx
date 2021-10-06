@@ -1,4 +1,4 @@
-import app from "../src/app";
+import app from "src/app";
 import React, { useEffect } from "react";
 import { ThemeProvider } from "photoncss/lib/react";
 import { Route } from "react-router-dom";

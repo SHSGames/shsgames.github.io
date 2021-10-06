@@ -1,5 +1,5 @@
 /* eslint @typescript-eslint/no-var-requires: 0 */
-import app from "../../src/app";
+import app from "src/app";
 import * as OfflinePluginRuntime from "offline-plugin/runtime";
 
 // Ensure app is in production mode
