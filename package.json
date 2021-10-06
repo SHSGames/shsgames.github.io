@@ -83,7 +83,7 @@
 		"nodemon": "^2.0.13",
 		"offline-plugin": "^5.0.7",
 		"optimize-css-assets-webpack-plugin": "^6.0.1",
-		"photoncss": "^12.20.19",
+		"photoncss": "^12.20.22",
 		"preload-webpack-plugin": "^3.0.0-beta.3",
 		"purgecss-webpack-plugin": "^4.0.2",
 		"pwa-installer-react": "^1.0.1",
