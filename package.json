@@ -58,8 +58,8 @@
 		"@types/uuid": "^8.3.1",
 		"@types/webpack": "^5.28.0",
 		"@types/webpack-env": "^1.16.2",
+		"@typescript-eslint/parser": "^4.33.0",
 		"@typescript-eslint/eslint-plugin": "^4.33.0",
-		"@typescript-eslint/parser": "^4.32.0",
 		"app-manifest-webpack-plugin": "^1.2.0",
 		"babel-loader": "^8.1.0",
 		"classnames": "^2.2.6",
@@ -100,7 +100,7 @@
 		"uuid": "^8.3.2",
 		"webpack": "^4.43.0",
 		"webpack-cli": "^4.8.0",
-		"webpack-dev-server": "^4.3.0",
+		"webpack-dev-server": "^4.3.1",
 		"webpack-merge": "^5.8.0",
 		"webpack-pwa-manifest": "^4.3.0",
 		"workbox-webpack-plugin": "^6.3.0"
