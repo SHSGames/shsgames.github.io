@@ -74,7 +74,7 @@
 		"file-loader": "^6.2.0",
 		"html-webpack-partials-plugin": "^0.8.0",
 		"html-webpack-plugin": "^4.5.2",
-		"import-local": "^3.0.2",
+		"import-local": "^3.0.3",
 		"jquery": "^3.5.0",
 		"less": "^4.1.1",
 		"less-loader": "^7.0.2",
