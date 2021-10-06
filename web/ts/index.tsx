@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
-import Runtime from "./runtime/Runtime";
+import PWAInstaller from "pwa-installer-react";
+import Runtime from "runtime/Runtime";
 
 // Import scripts
 import "script-loader!jquery";
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	render(
 		<ErrorBoundry>
 			<Runtime views={views}/>
+            <PWAInstaller/>
 		</ErrorBoundry>,
 		document.getElementById("root"));
 

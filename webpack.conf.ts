@@ -8,6 +8,8 @@ import CopyWebpackPlugin from "copy-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import manifest from "./web/manifest";
+import fs from "fs";
+import YAML from "yaml";
 
 export = <Configuration>{
 	entry: [ "./web/__compile_cache/ts/index.js" ],
@@ -105,7 +107,8 @@ export = <Configuration>{
 			]
 		}),
 		new DefinePlugin({
-			APP_MANIFEST: JSON.stringify(manifest)
+			APP_MANIFEST: JSON.stringify(manifest),
+			APP_CONFIG: JSON.stringify(YAML.parse(fs.existsSync(path.resolve("config.yml")) ? fs.readFileSync(path.resolve("config.yml"), "utf8") : ""))
 		}),
 		new OfflinePlugin
 	],
@@ -120,6 +123,8 @@ export = <Configuration>{
 		alias: {
 			"static": path.resolve("./web/static"),
 			"views": path.resolve("./web/__compile_cache/ts/views"),
+			"runtime": path.resolve("./web/__compile_cache/ts/runtime"),
+			"src": path.resolve("./web/__compile_cache/ts/src"),
 			"components": path.resolve("./web/__compile_cache/ts/components")
 		}
 	}
