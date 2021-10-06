@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import PWAInstaller from "pwa-installer-react";
-import Runtime from "./runtime/Runtime";
+import Runtime from "runtime/Runtime";
 
 // Import scripts
 import "script-loader!jquery";
