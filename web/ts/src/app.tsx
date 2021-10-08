@@ -22,7 +22,7 @@ const app = {
 
 		Photon.Snackbar(
 			<Snackbar>
-				<p>An update is available. Build ID: <code>{hash}</code></p>
+				<p>An update is available. Build ID: <code>v{APP_MANIFEST.version}-{hash}</code></p>
 				<Button
 					variant="flat"
 					color="primary"
