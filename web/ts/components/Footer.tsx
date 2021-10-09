@@ -59,7 +59,7 @@ export default function Component(): JSX.Element {
 						</div>
 					</div>
 					<div style={{ alignItems: "start", flexDirection: "column", marginLeft: "auto", display: "table", marginTop: "-26px", transform: "translateY(-4px)" }}>
-						<code>v{APP_MANIFEST.version}-{client.substr(0, 8)}</code>
+						<code>v{APP_MANIFEST.version}-{parseInt(client.substr(0, 8), 16) % 255}</code>
 					</div>
 				</div>
 			</FooterCopyright>
