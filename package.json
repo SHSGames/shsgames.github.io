@@ -17,6 +17,10 @@
 			"certs": "./ssl"
 		}
 	},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JoshMerlino/ts-server.git"
+    },
 	"scripts": {
 		"build": "npm run build-ts && npm run build-tsx && npm run build-webpack",
 		"build-ts": "tsc",
