@@ -1,11 +1,15 @@
 {
     "name": "ts-package",
-	"version": "1.0.0",
-	"description": "Easily create Typescript node.js packages from this boilerplate",
+    "version": "1.0.0",
+    "description": "Easily create Typescript node.js packages from this boilerplate",
     "main": "lib/",
     "types": "lib/",
     "author": "Josh Merlino",
     "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JoshMerlino/ts-package.git"
+    },
     "scripts": {
         "watch-ts": "tsc -w",
         "watch-js": "nodemon .",
