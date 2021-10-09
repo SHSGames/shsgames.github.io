@@ -122,6 +122,7 @@ export = <Configuration>{
 			"views": path.resolve("./web/__compile_cache/ts/views"),
 			"runtime": path.resolve("./web/__compile_cache/ts/runtime"),
 			"src": path.resolve("./web/__compile_cache/ts/src"),
+			"styles": path.resolve("./web/styles"),
 			"components": path.resolve("./web/__compile_cache/ts/components")
 		}
 	}
