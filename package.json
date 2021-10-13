@@ -37,7 +37,7 @@
         "@types/node": "^16.10.6",
         "@types/node-fetch": "^2.5.12",
         "@types/uuid": "^8.3.1",
-        "@types/webpack-env": "^1.16.2",
+        "@types/webpack-env": "^1.16.3",
         "@typescript-eslint/eslint-plugin": "^4.33.0",
         "@typescript-eslint/parser": "^4.33.0",
         "concurrently": "^6.3.0",
