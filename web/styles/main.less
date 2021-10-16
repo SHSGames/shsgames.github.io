@@ -15,18 +15,22 @@
 	background: var(--palette_body_subtitle);
 }
 
+.no-cursor,
+.no-cursor * {
+	cursor: none !important;
+}
 
 .title h3 {
-    display: inline-block;
-    padding: 12px 0;
-    margin: 0;
-    margin-bottom: 4px;
-    border-bottom: 2px solid var(--palette_primary_normal);
-    border-image-slice: 1;
-    text-transform: uppercase;
-    letter-spacing: 8px;
-    font-size: 20px;
-    font-weight: 500;
+	display: inline-block;
+	padding: 12px 0;
+	margin: 0;
+	margin-bottom: 4px;
+	border-bottom: 2px solid var(--palette_primary_normal);
+	border-image-slice: 1;
+	text-transform: uppercase;
+	letter-spacing: 8px;
+	font-size: 20px;
+	font-weight: 500;
 	margin-left: 8px;
 }
 
@@ -53,8 +57,8 @@
 
 .marquee-container {
 	.overlay {
-		--gradient-color: var(--palette_sheet_background), transparent!important;
-	    --gradient-width: 36px!important;
+		--gradient-color: var(--palette_sheet_background), transparent !important;
+		--gradient-width: 36px !important;
 	}
 	.marquee {
 		padding-right: 2rem;
@@ -73,7 +77,7 @@
 
 .photon-toolbar {
 	&:not(.variant-raised) {
-		border-bottom: 1px solid var(--palette_divider)!important;
+		border-bottom: 1px solid var(--palette_divider) !important;
 	}
 	.photon-toolbaractions {
 		pointer-events: none;
@@ -101,23 +105,23 @@
 }
 
 .flex-adaptive {
-	padding: 12px!important;
+	padding: 12px !important;
 	flex-direction: column;
 	&.horizontal {
 		flex-direction: row;
 		img {
-			margin: 0!important;
-			margin-left: auto!important;
+			margin: 0 !important;
+			margin-left: auto !important;
 		}
 		div {
-			margin-left: 0!important;
+			margin-left: 0 !important;
 		}
 	}
 	div {
-		margin: 0 auto!important;
+		margin: 0 auto !important;
 	}
 	img {
-		margin: 0 auto!important;
+		margin: 0 auto !important;
 	}
 }
 
@@ -130,7 +134,8 @@
 .pwa-installer {
 	background: var(--palette_notification_background);
 	z-index: 12;
-	h3, p {
+	h3,
+	p {
 		color: var(--palette_notification_text);
 	}
 	.card-actions.seperated {

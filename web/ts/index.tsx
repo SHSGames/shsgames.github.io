@@ -20,6 +20,12 @@ importAll(require.context("./views", true, /\.js$/));
 // Wait for the DOM to load before rendering
 document.addEventListener("DOMContentLoaded", function() {
 
+	// When a key is pressed, hide the cursor
+	$(document).on("keydown", () => $("body").addClass("no-cursor"));
+
+	// When the mouse is moved, showo cursor
+	$(document).on("mousemove", () => $("body").removeClass("no-cursor"));
+
 	// Append a container to the DOM to render content into
 	const root = document.createElement("DIV");
 	root.id = "root";
@@ -34,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	render(
 		<ErrorBoundry>
 			<Runtime views={views}/>
-            <PWAInstaller/>
+			<PWAInstaller/>
 		</ErrorBoundry>,
 		document.getElementById("root"));
 
