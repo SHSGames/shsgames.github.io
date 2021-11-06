@@ -1,4 +1,5 @@
 node_modules/
 lib/
 web/js
+web/ruffle
 web/built-games
