@@ -37,6 +37,10 @@ export default function Component(): JSX.Element {
 							</div>
 						</Link>
 						<MoTD/>
+						<br />
+						<p>
+							<a href="//github.com/SHSGames/shsgames.github.io/issues" target="_blank">Issue Tracker</a>
+						</p>
 					</Col>
 					<Col xl={4}>
 						<a href="//github.com/SHSGames/shsgames.github.io" style={{ marginTop: 16, display: "inline-block", maxWidth: "calc(100vw - 32px)", overflow: "hidden" }}>

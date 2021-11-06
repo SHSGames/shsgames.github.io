@@ -59,9 +59,14 @@
 	.overlay {
 		--gradient-color: var(--palette_sheet_background), transparent !important;
 		--gradient-width: 36px !important;
+		&::before,
+		&::after {
+			display: none;
+		}
 	}
 	.marquee {
 		padding-right: 2rem;
+		z-index: 0;
 	}
 }
 

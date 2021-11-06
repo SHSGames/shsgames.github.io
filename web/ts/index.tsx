@@ -10,7 +10,9 @@ import "./runtime/util/offlineInstaller";
 // Import stylesheets
 import "photoncss/dist/photon.css";
 import "../../styles/main.less";
+import Photon from "photoncss";
 import ErrorBoundry from "./runtime/ErrorBoundry";
+import { Button, Dialog, DialogActions, DialogBody, DialogTitle } from "photoncss/lib/react";
 
 // Import all views
 const views: View[] = [];
@@ -43,5 +45,22 @@ document.addEventListener("DOMContentLoaded", function() {
 			<PWAInstaller/>
 		</ErrorBoundry>,
 		document.getElementById("root"));
+
+	if (localStorage.getItem("update_v3.15") !== "true") {
+		setTimeout(() => {
+			const dialog = Photon.Dialog(<Dialog>
+				<DialogTitle seperated={true}>Whats new in v3.15 (11/05)</DialogTitle>
+				<DialogBody>
+					<b>Flash is back!</b>
+					<br /><br />
+					<p>We implemented a flash emulator to run your favorite flash games. The games take a lot of effort to recompile but we're about 40% done so far. That being said, be sure to report any issues you encounter on our <a style={{ color: "var(--palette_primary_normal)" }} href="//github.com/SHSGames/shsgames.github.io/issues">issue tracker</a>.</p>
+				</DialogBody>
+				<DialogActions seperated={true}>
+					<Button color="primary" variant="flat" onClick={ () => dialog.close() }>OK</Button>
+				</DialogActions>
+			</Dialog>).open();
+			localStorage.setItem("update_v3.15", "true");
+		}, 2000);
+	}
 
 });
