@@ -103,7 +103,8 @@ export = <Configuration>{
 				{ from: "web/ads.txt", to: "." },
 				{ from: "web/robots.txt", to: "." },
 				{ from: "web/IodineGBA.html", to: "." },
-				{ from: "web/built-games", to: "built-games" }
+				{ from: "web/built-games", to: "built-games" },
+				{ from: "web/ruffle", to: "ruffle" }
 			]
 		}),
 		new DefinePlugin({

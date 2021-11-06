@@ -1,7 +1,7 @@
 /* eslint camelcase: off */
 import { Spinner, VHCenter } from "photoncss/lib/react";
 import React, { useEffect, useState } from "react";
-import { gameboy, iframe, unity, nes } from "../src/loader";
+import { gameboy, iframe, unity, nes, ruffle } from "../src/loader";
 declare const audio_ctx: AudioContext;
 import { Game } from "../../games";
 
@@ -17,6 +17,7 @@ export default function GameRenderer({ game }: Props): JSX.Element {
 
 	useEffect(function() {
 		if (game.runner === "UNITY") unity(game);
+		if (game.runner === "RUFFLE") ruffle(game);
 		if (game.runner === "EMULATOR_GBA") gameboy(game);
 		if (game.runner === "IFRAME") iframe(game);
 		if (game.runner === "EMULATOR_NES") nes(game);

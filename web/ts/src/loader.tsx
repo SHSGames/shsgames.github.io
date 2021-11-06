@@ -69,3 +69,7 @@ export function nes(game: Game): void {
 
 	$("#game-renderer").html(renderToString(<canvas id="jsnes-game" width="256" height="240" style={{ width: "100%", height: "100%" }}></canvas>));
 }
+
+export function ruffle(game: Game): void {
+	$("#game-renderer").html(renderToString(<object id="flash-player" data={game.game} width="100%" height="100%" data-reactroot=""></object>));
+}
