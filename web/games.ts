@@ -57,13 +57,6 @@ export default <Game[]>[
 		aspectRatio: 16 / 9,
 		width: 1200
 	}, {
-		name: "Duck Life 4",
-		runner: "UNITY",
-		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/dl4.json",
-		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/duck-life-4.jpg",
-		aspectRatio: 16 / 9,
-		width: 1200
-	}, {
 		name: "Falling Ball",
 		runner: "UNITY",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/slope-ball.json",
@@ -527,6 +520,13 @@ export default <Game[]>[
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/dragon-ball-z-devolution.jpg",
 		width: 800,
 		aspectRatio: 80/47
+	}, {
+		name: "Duck Life 4",
+		runner: "RUFFLE",
+		game: "https://raw.githubusercontent.com/ellieeet123/swf/main/swf/duck-life-4.swf",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/duck-life-4.jpg",
+		aspectRatio: 75 / 48,
+		width: 750
 	}, {
 		name: "Duck Life 3",
 		runner: "RUFFLE",
