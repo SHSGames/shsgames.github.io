@@ -9,24 +9,29 @@ import { resolve } from "path";
 
 const { webserver } = JSON.parse(readFileSync(resolve("./package.json"), "utf8"));
 
+function e(err: any) {
+	console.error(err);
+	return [];
+}
+
 export default async function server(app: Express): Promise<void> {
 
 	// Apply all middlewares
-	const middlewares = await asyncRequireContext<Middleware>("./lib/src/middleware").catch(() => []);
+	const middlewares = await asyncRequireContext<Middleware>("./lib/src/middleware").catch(e);
 	middlewares.map(middleware => {
 		app.use(<() => Application>middleware.module.default);
 		console.info(chalk.magenta("MDW"), "Added middleware from", chalk.cyan(middleware.path));
 	});
 
 	// Apply all runtimes
-	const runtimes = await asyncRequireContext<Runtime>("./lib/src/runtime").catch(() => []);
+	const runtimes = await asyncRequireContext<Runtime>("./lib/src/runtime").catch(e);
 	runtimes.map(runtime => {
 		runtime.module.default(app);
 		console.info(chalk.yellow("RNT"), "Added runtime from", chalk.cyan(runtime.path));
 	});
 
 	// Get all API endpoints and add them to the app context.
-	const endpoints = await asyncRequireContext<Endpoint>("./lib/api").catch(() => []);
+	const endpoints = await asyncRequireContext<Endpoint>("./lib/api").catch(e);
 	endpoints.map(function(endpoint) {
 		const routes = typeof endpoint.module.route === "string" ? [ endpoint.module.route ] : endpoint.module.route;
 		routes.map(route => app.all(`/api/${route}`, <() => Application>endpoint.module.default));
