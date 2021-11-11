@@ -523,7 +523,7 @@ export default <Game[]>[
 	}, {
 		name: "Duck Life 4",
 		runner: "RUFFLE",
-		game: "https://raw.githubusercontent.com/ellieeet123/swf/main/swf/duck-life-4.swf",
+		game: "https://cdn.jsdelivr.net/gh/ellieeet123/swf/swf/duck-life-4.swf",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/duck-life-4.jpg",
 		aspectRatio: 75 / 48,
 		width: 750
