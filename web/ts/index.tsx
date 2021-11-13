@@ -23,10 +23,10 @@ importAll(require.context("./views", true, /\.js$/));
 document.addEventListener("DOMContentLoaded", function() {
 
 	// When a key is pressed, hide the cursor
-	$(document).on("keydown", () => $("body").addClass("no-cursor"));
+	$(document).on("keydown", () => $("#game-renderer").addClass("no-cursor"));
 
 	// When the mouse is moved, showo cursor
-	$(document).on("mousemove", () => $("body").removeClass("no-cursor"));
+	$(document).on("mousemove", () => $("#game-renderer").removeClass("no-cursor"));
 
 	// Append a container to the DOM to render content into
 	const root = document.createElement("DIV");
