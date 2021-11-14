@@ -38,7 +38,7 @@ export default function Adsense({ adLayout = "in-article", style, adFormat = "fl
 		});
 	});
 
-	if (state === false) {
+	if (state === false || !PRODUCTION) {
 		return (
 			<Card variant="outlined" className="flex-adaptive" style={{ ...style, overflow: "hidden", padding: 24, display: "flex" }} id={id}>
 				<img src={ app.static("adblocker.svg") } alt="" style={{ maxWidth: 200, display: "inline-flex" }}/>
