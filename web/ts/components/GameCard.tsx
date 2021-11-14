@@ -1,13 +1,15 @@
 import { Button, Card, CardActions, CardTitle, Col } from "photoncss/lib/react";
+import React from "react";
 import Marquee from "react-fast-marquee";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import React from "react";
 import { Link } from "react-router-dom";
-import { getGameID, slug } from "../src/gameHash";
 import { Game } from "../../games";
+import { getGameID, slug } from "../src/gameHash";
+import Star from "./Star";
 
 export type Props = { game: Game };
 export default function GameCard({ game }: Props): JSX.Element {
+
 	return (
 		<Col md={6} lg={4} xl={3}>
 			<Card variant="outlined">
@@ -43,6 +45,7 @@ export default function GameCard({ game }: Props): JSX.Element {
 							color="primary"
 							variant="outlined">Play</Button>
 					</Link>
+					<Star game={game}/>
 				</CardActions>
 			</Card>
 		</Col>

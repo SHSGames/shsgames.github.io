@@ -2,6 +2,7 @@ import Adsense from "components/Adsense";
 import GameManager from "components/GameManager";
 import GameNotFound from "components/GameNotFound";
 import GameRenderer from "components/GameRenderer";
+import Star from "components/Star";
 import { Col, Container, Row } from "photoncss/lib/react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -31,8 +32,13 @@ export default function View(): JSX.Element {
 
 				<Col xl={10}>
 
-					<div className="title" style={{ width, float: "right", maxWidth: "100%" }}>
-						<h3>{ game.name }</h3>
+					<div className="title" style={{ width, float: "right", maxWidth: "100%", position: "relative" }}>
+						<h3>
+							{ game.name }
+						</h3>
+						<div style={{ position: "absolute", right: 24, top: 0 }}>
+							<Star game={game}/>
+						</div>
 					</div>
 				</Col>
 				<Col xl={2}></Col>
