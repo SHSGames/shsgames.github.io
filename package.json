@@ -130,7 +130,7 @@
 		"https": "^1.0.0",
 		"mkdirp": "^1.0.4",
 		"mysql-promise": "^5.0.0",
-		"mysql2": "^2.3.2",
+		"mysql2": "^2.3.3",
 		"node-fetch": "^2.6.6",
 		"promise-mysql": "^5.0.4",
 		"uuid": "^8.3.2",
