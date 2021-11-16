@@ -598,13 +598,13 @@ export default <Game[]>[
 		width: 800,
 		aspectRatio: 800/462
 	}, {
-		name: "Gun Mayhem 2",
+		name: "Gun Mayhem",
 		runner: "RUFFLE",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/gun-mayhem.swf",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/gun-mayhem.jpg",
 		width: 800,
 		aspectRatio: 80/52
-	}, { name: "Gun Mayhem",
+	}, { name: "Gun Mayhem 2",
 		runner: "RUFFLE",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/gun-mayhem-2.swf",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/gun-mayhem-2.jpg",
