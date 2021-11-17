@@ -4,9 +4,9 @@
 var itemCounter = 0;
 var fps = 15;
 
-var money = 7.50;
+var money = 0.00;
 var currentCase = "case2";
-var acceptMoneyPerClick = 0.1;
+var acceptMoneyPerClick = 666.00;
 
 
 
@@ -22,16 +22,16 @@ var popup = true;
 var inventory = {};
 var jackpotInventory = {};
 
-var inventoryMax = 50;
+var inventoryMax = 1000;
 var inventoryCurrent = 0;
 
-var keyPrice = 2.50;
+var keyPrice = 666.00;
 
 var caseDiscount = 0;
 var keyDiscount = 0;
 
 var operationCases = {
-  case1: {name: "Weapon Case 1", price: 5.00, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsRVx4MwFo5_T3eAQ3i6DMIW0X7ojiwoHax6egMOKGxj4G68Nz3-jCp4itjFWx-ktqfSmtcwqVx6sT"},
+  case1: {name: "Weapon Case 1", price: 666.00, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsRVx4MwFo5_T3eAQ3i6DMIW0X7ojiwoHax6egMOKGxj4G68Nz3-jCp4itjFWx-ktqfSmtcwqVx6sT"},
   case2: {name: "Operation Phoenix Case", price: 0.06, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFUuh6qZJmlD7tiyl4OIlaGhYuLTzjhVupJ12urH89ii3lHlqEdoMDr2I5jVLFFSv_J2Rg"},
   case3: {name: "Winter Offensive Case", price: 1.32, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFYu0aKfJz8a793gxNLfzvOkMunUwWgH7JIjj-qW8d7x2VXt_UBuMT3zIpjVLFEGDSGUSQ"},
   case4: {name: "Operation Vanguard Case", price: 0.16, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFIuh6rJImVGvtjllYaNka6la7rUxWkE65BzibvD9N7z0Q22-0Fka2GlJ5jVLFHqavWW2g"},
@@ -164,7 +164,7 @@ var cases = {
     milspec: {
       weap1: {
         name: "MP7 | Skulls",
-        price: 0.78,
+        price: 1e+167,
         img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou6ryFA957ODDZDFO_-O6nYeDg8j4MqnWkyUC7ZYp07iT94j3jVXsqkE-Y2qhJYKcJwA_aA7ZrFC6wLvqgcDt78ud1zI97Xw9NqWl"
       },
       weap2: {
@@ -176,6 +176,11 @@ var cases = {
         name: "SG 553 | Ultraviolet",
         price: 0.78,
         img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopb3wflFfwPz3YShQ_NCzq4yCkP_gDLfQhGxUppEl3rGSptmjigfn_0dqZTigdoDAdQ4_YV3XrlnoyOi-gpXv7p7OzyR9-n51Wu8Hu6Y"
+},
+      weap4: {
+        name: "JOEMAMA",
+        price: 1e+308,
+        img: "https://www.google.com/search?q=JOEMAMA+image&rlz=1C1CHBF_enUS961US961&sxsrf=AOaemvI9FTJtSmBzwMI31mZ-BQ-NX0VgPQ:1637120980868&tbm=isch&source=iu&ictx=1&fir=wQTpDRNSvQeHXM%252CBeYNiReZf09huM%252C_%253B4wHOiSmXL_Aq7M%252CnLir62w6vBbmfM%252C_%253BVPEHie5wmY4lhM%252CDqf5WZUNJVJGoM%252C_%253B5hiu4_10ynl-9M%252CAIRh8gCskJfwTM%252C_%253BxR0ixRZWd5WHGM%252CvJ5ExVnbpRAFkM%252C_%253BNqS6W__Se_EJ3M%252CxU2zSKn2zNUSJM%252C_%253B20uLmKSeAW30IM%252COya4YlvpcsKrbM%252C_%253BRSeW1rK0DJRs0M%252CCxhGIs5bXFneOM%252C_%253B86FBw6GzIykx-M%252CNMghvVXzcSswrM%252C_%253BDeaIjq8YolmJKM%252CjVHxNaHsF3nL8M%252C_&vet=1&usg=AI4_-kTKWjt_qJL01ARzAroT_O9dXNig9A&sa=X&sqi=2&ved=2ahUKEwjd_ZL0vp70AhUKkRQKHft6BDAQ9QF6BAgIEAE#imgrc=4wHOiSmXL_Aq7M"
       }
     },
     restricted: {
