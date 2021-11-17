@@ -173,15 +173,10 @@ var cases = {
         img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot6-iFA957PXNcClK6c6lq4GekMj4OrzZglRd6dd2j6fEpNik0Vbh-RJvNz2nINTAJgM9Y1CG_lK2lL_q0cPtvJqbySAyuCQq-z-DyC4dac1H"
       },
       weap3: {
-        name: "SG 553 | Ultraviolet",
-        price: 0.78,
-        img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopb3wflFfwPz3YShQ_NCzq4yCkP_gDLfQhGxUppEl3rGSptmjigfn_0dqZTigdoDAdQ4_YV3XrlnoyOi-gpXv7p7OzyR9-n51Wu8Hu6Y"
-},
-      weap4: {
         name: "JOEMAMA",
         price: 1e+308,
-        img: "https://www.google.com/search?q=JOEMAMA+image&rlz=1C1CHBF_enUS961US961&sxsrf=AOaemvI9FTJtSmBzwMI31mZ-BQ-NX0VgPQ:1637120980868&tbm=isch&source=iu&ictx=1&fir=wQTpDRNSvQeHXM%252CBeYNiReZf09huM%252C_%253B4wHOiSmXL_Aq7M%252CnLir62w6vBbmfM%252C_%253BVPEHie5wmY4lhM%252CDqf5WZUNJVJGoM%252C_%253B5hiu4_10ynl-9M%252CAIRh8gCskJfwTM%252C_%253BxR0ixRZWd5WHGM%252CvJ5ExVnbpRAFkM%252C_%253BNqS6W__Se_EJ3M%252CxU2zSKn2zNUSJM%252C_%253B20uLmKSeAW30IM%252COya4YlvpcsKrbM%252C_%253BRSeW1rK0DJRs0M%252CCxhGIs5bXFneOM%252C_%253B86FBw6GzIykx-M%252CNMghvVXzcSswrM%252C_%253BDeaIjq8YolmJKM%252CjVHxNaHsF3nL8M%252C_&vet=1&usg=AI4_-kTKWjt_qJL01ARzAroT_O9dXNig9A&sa=X&sqi=2&ved=2ahUKEwjd_ZL0vp70AhUKkRQKHft6BDAQ9QF6BAgIEAE#imgrc=4wHOiSmXL_Aq7M"
-      }
+        "https://www.google.com/search?q=JOEMAMA+image&rlz=1C1CHBF_enUS961US961&sxsrf=AOaemvI9FTJtSmBzwMI31mZ-BQ-NX0VgPQ:1637120980868&tbm=isch&source=iu&ictx=1&fir=wQTpDRNSvQeHXM%252CBeYNiReZf09huM%252C_%253B4wHOiSmXL_Aq7M%252CnLir62w6vBbmfM%252C_%253BVPEHie5wmY4lhM%252CDqf5WZUNJVJGoM%252C_%253B5hiu4_10ynl-9M%252CAIRh8gCskJfwTM%252C_%253BxR0ixRZWd5WHGM%252CvJ5ExVnbpRAFkM%252C_%253BNqS6W__Se_EJ3M%252CxU2zSKn2zNUSJM%252C_%253B20uLmKSeAW30IM%252COya4YlvpcsKrbM%252C_%253BRSeW1rK0DJRs0M%252CCxhGIs5bXFneOM%252C_%253B86FBw6GzIykx-M%252CNMghvVXzcSswrM%252C_%253BDeaIjq8YolmJKM%252CjVHxNaHsF3nL8M%252C_&vet=1&usg=AI4_-kTKWjt_qJL01ARzAroT_O9dXNig9A&sa=X&sqi=2&ved=2ahUKEwjd_ZL0vp70AhUKkRQKHft6BDAQ9QF6BAgIEAE#imgrc=4wHOiSmXL_Aq7M"
+    }
     },
     restricted: {
       weap1: {
