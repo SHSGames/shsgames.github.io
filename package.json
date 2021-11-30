@@ -91,7 +91,7 @@
 		"optimize-css-assets-webpack-plugin": "^6.0.1",
 		"photoncss": "^12.30.1",
 		"preload-webpack-plugin": "^3.0.0-beta.3",
-		"purgecss-webpack-plugin": "^4.0.2",
+		"purgecss-webpack-plugin": "^4.1.3",
 		"pwa-installer-react": "^1.0.2",
 		"qs": "^6.10.1",
 		"query-string": "^7.0.1",
