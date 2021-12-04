@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Game Bug Report
+    url: https://github.com/SHSGames/shsgames.github.io/issues/new?assignees=&labels=Game&template=game-bug-report.md&title=%5BGAME+NAME%5D+-+%5BBUG%5D
+    about: Report problems that arise within games here.
