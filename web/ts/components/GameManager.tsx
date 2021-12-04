@@ -7,7 +7,7 @@ type GameManagerProps = { game: Game };
 export default function GameManager({ game }: GameManagerProps): JSX.Element {
 
 	let [ issues ] = useAPI<GitHub.Issue[]>("https://api.github.com/repos/SHSGames/shsgames.github.io/issues");
-	if (issues) issues = issues.filter(issue => issue.title.toLowerCase().includes(game.name.toLowerCase()));
+	if (issues) issues = issues.filter(issue => issue.title.toLowerCase().includes(game.name.toLowerCase()) && issue.state === "open");
 
 	useEffect(function() {
 		$(document).on("keypress", function (event) {
