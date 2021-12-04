@@ -47,7 +47,7 @@ export default function View(): JSX.Element {
 					<div style={{ maxWidth: width, marginLeft: "auto" }} id="game-player">
 						<div style={{ margin: 8 }}>
 							<GameRenderer game={game}/>
-							<GameManager/>
+							<GameManager game={game}/>
 						</div>
 					</div>
 				</Col>

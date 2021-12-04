@@ -1,7 +1,14 @@
 import React, { useEffect } from "react";
+import useAPI from "runtime/util/hooks/useAPI";
+import { Game } from "../../games";
 import FrameStats from "./FrameStats";
 
-export default function GameManager(): JSX.Element {
+type GameManagerProps = { game: Game };
+export default function GameManager({ game }: GameManagerProps): JSX.Element {
+
+	let [ issues ] = useAPI<GitHub.Issue[]>("https://api.github.com/repos/SHSGames/shsgames.github.io/issues");
+	if (issues) issues = issues.filter(issue => issue.title.toLowerCase().includes(game.name.toLowerCase()));
+
 	useEffect(function() {
 		$(document).on("keypress", function (event) {
 			if (event.shiftKey) return;
@@ -25,6 +32,22 @@ export default function GameManager(): JSX.Element {
 				userSelect: "none"
 			}}
 			onClick={ () => $("#game-renderer")[0].requestFullscreen() }>Fullscreen</p>
+
+			<p className="link mono" style={{
+				float: "right",
+				color: "var(--palette_error)",
+				fontWeight: 500,
+				cursor: "pointer",
+				userSelect: "none"
+			}}
+			onClick={ () => window.open(`https://github.com/SHSGames/shsgames.github.io/issues?q=is%3Aissue+is%3Aopen+%22${encodeURIComponent(game.name.toLowerCase())}%22+in%3Atitle`) }>Report a bug{ issues && issues.length > 0 && <span className="badge" style={{
+					background: "var(--palette_error)",
+					padding: "2px 6px",
+					marginLeft: "8px",
+					fontSize: "inherit"
+				}}> +{issues.length}</span>}
+			</p>
+
 		</div>
 	);
 }
