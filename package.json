@@ -33,6 +33,7 @@
 		"watch-webpack": "tsc && uuid > hash && webpack serve --config lib/webpack.dev.js --progress --stats errors-warnings",
 		"dev": "concurrently \"npm:watch-*\"",
 		"dev-api": "concurrently \"npm:watch-js\" \"npm:watch-ts\"",
+		"postbuild": "cd lib/build; for i in *.js;do node \"$i\";done",
 		"start": "node ."
 	},
 	"devDependencies": {
