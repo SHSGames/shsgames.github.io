@@ -9,7 +9,10 @@ Collectively building an online game hub for the brave!
 
 ### Unofficial Links *(not maintained by us)*
 * https://shhstheplayce672.herokuapp.com
+* https://breezegames.herokuapp.com
 * https://bogpog.herokuapp.com
+* https://coolschoolg.herokuapp.com
+* https://cpsgames.herokuapp.com
 * https://shsgame.herokuapp.com *(out of date)*
 
 ## Run it yourself
