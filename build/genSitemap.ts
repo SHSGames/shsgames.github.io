@@ -9,10 +9,10 @@ const template = path.resolve("../../web/sitemap.txt");
 
 	let sitemap = await readFile(template, "utf8");
 	await Promise.all(games
-		.sort((a, b) => (a.name > b.name) ? 1 : -1)
+		.sort((a, b) => a.name > b.name ? 1 : -1)
 		.map(async game => {
 			sitemap += `\n/g/${getGameID(game)}/${slug(game.name)}`;
-			const out = path.resolve(`../../public_html/g/${getGameID(game)}/${slug(game.name)}.html`)
+			const out = path.resolve(`../../public_html/g/${getGameID(game)}/${slug(game.name)}.html`);
 			await mkdirp(path.resolve(out, ".."));
 			await copyFile(path.resolve("../../public_html/index.html"), out);
 		})
