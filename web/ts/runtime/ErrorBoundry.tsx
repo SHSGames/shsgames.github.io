@@ -8,10 +8,11 @@ export type Props = { children?: ReactNode };
 export type State = { hasError: boolean, error?: Error };
 export default class ErrorBoundary extends Component<Props, State> {
 
+	state: State = { hasError: false };
+
 	// Create component superclass
 	constructor(props: Props) {
 		super(props);
-		this.state = { hasError: false };
 	}
 
 	// Static method to get the error
