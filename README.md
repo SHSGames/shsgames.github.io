@@ -17,11 +17,11 @@ SHS Games is a free and open source hub for games. Designed to be unblocked and 
 * https://coolschoolg.herokuapp.com
 * https://cpsgames.herokuapp.com
 * https://shhstheplayce672.herokuapp.com
-* https://shs-games.herokuapp.com *(offical)*
-* https://shsg.herokuapp.com *(offical)*
+* https://shs-games.herokuapp.com *(official)*
+* https://shsg.herokuapp.com *(official)*
 * https://shsgame.herokuapp.com
-* https://shsgames.github.io *(offical)*
-* https://shsgames.herokuapp.com *(offical)*
+* https://shsgames.github.io *(official)*
+* https://shsgames.herokuapp.com *(official)*
 * https://virabot-aotic.herokuapp.com
 
 ---
