@@ -38,9 +38,12 @@ export default function Component(): JSX.Element {
 						</Link>
 						<MoTD/>
 						<br />
-						<p>
-							<a href="//github.com/SHSGames/shsgames.github.io/issues" target="_blank">Issue Tracker</a>
-						</p>
+						<ul style={{ padding: "0 2rem", marginTop: 0, lineHeight: 1.5 }}>
+							<li><a href="//github.com/SHSGames/shsgames.github.io/issues" target="_blank">Issue Tracker</a></li>
+							<li><a href="//github.com/SHSGames/shsgames.github.io/blob/master/README.md" target="_blank">About</a></li>
+							<li><a href="//github.com/SHSGames/shsgames.github.io/blob/master/LICENSE.md" target="_blank">License</a></li>
+							<li><a href="//github.com/SHSGames/shsgames.github.io/blob/master/PRIVACY.md" target="_blank">Privacy Statement</a></li>
+						</ul>
 					</Col>
 					<Col xl={4}>
 						<a href="//github.com/SHSGames/shsgames.github.io" style={{ marginTop: 16, display: "inline-block", maxWidth: "calc(100vw - 32px)", overflow: "hidden" }}>
@@ -59,7 +62,7 @@ export default function Component(): JSX.Element {
 					<div style={{ display: "inline-flex", alignItems: "start", flexDirection: "column" }}>
 						<span>Copyright © 2019-{(new Date).getFullYear()} • All Rights Reserved</span>
 						<div>
-							<a href="//joshmerlino.github.io" className="link">Josh Merlino</a> • <a href="//th3skeleton.github.io/pshel/" className="link">Parker Sheldon</a>
+							<a href="//joshmerlino.github.io" className="link">Josh Merlino</a> • <a href="//th3skeleton.github.io/pshel/" className="link">Parker Sheldon</a>  • And our amazing <a href="//github.com/SHSGames/shsgames.github.io/graphs/contributors" target="_blank">Contributors</a>
 						</div>
 					</div>
 					<div style={{ alignItems: "start", flexDirection: "column", marginLeft: "auto", display: "table", marginTop: "-26px", transform: "translateY(-4px)" }}>
