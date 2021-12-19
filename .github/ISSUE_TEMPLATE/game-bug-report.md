@@ -1,7 +1,7 @@
 ---
 name: Game Bug Report
 about: Report issues that arise within a game
-title: "[GAME NAME] - [BUG]"
+title: ''
 labels: Game
 assignees: ''
 
