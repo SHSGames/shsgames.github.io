@@ -43,8 +43,8 @@ export default function Adsense({ adLayout = "in-article", style, adFormat = "fl
 			<Card variant="outlined" className="flex-adaptive" style={{ ...style, overflow: "hidden", padding: 24, display: "flex" }} id={id}>
 				<img src={ app.static("adblocker.svg") } alt="" style={{ maxWidth: 200, display: "inline-flex" }}/>
 				<div style={{ width: "-webkit-fill-available", maxWidth: 390 }}>
-					<h1 style={{ display: "block", textAlign: "center" }}>Hey!</h1>
-					<p>We see your using an ad-blocker... { APP_MANIFEST.name } isn't free on our end and certianly isn't cheap to run and maintain. We use those ads to support future development and keep { APP_MANIFEST.name } free for everyone. It would mean a lot to us if we got added to your ad-blocker whitelist. 💕</p>
+					<h1 style={{ display: "block", textAlign: "center" }}>Hey There!</h1>
+					<p>We see your using an ad-blocker... { APP_MANIFEST.name } isn't free on our end and certainly isn't cheap to run and maintain. We use those ads to support future development and keep { APP_MANIFEST.name } free for everyone. It would mean a lot to us if we got added to your ad-blocker whitelist. 💕</p>
 				</div>
 			</Card>
 		);
