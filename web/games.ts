@@ -686,10 +686,25 @@ export default <Game[]>[
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/madness-project-nexus.jpg",
 		width: 800,
 		aspectRatio: 4/3
-	}, { name: "Minesweeper",
+	}, {
+		name: "Minesweeper",
 		runner: "RUFFLE",
 		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/minesweeper.swf",
 		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/minesweeper.jpg",
+		width: 800,
+		aspectRatio: 4/3
+	}, {
+		name: "Run 2",
+		runner: "RUFFLE",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/run-2.swf",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/run-2.jpg",
+		width: 800,
+		aspectRatio: 4/3
+	}, {
+		name: "Run 3",
+		runner: "RUFFLE",
+		game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/run-3.swf",
+		thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/run-3.jpg",
 		width: 800,
 		aspectRatio: 4/3
 	}
@@ -817,18 +832,6 @@ export default <Game[]>[
 	// 	Runner: "RUFFLE",
 	// 	Game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/return-man-2.swf",
 	// 	Thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/return-man-2.jpg",
-	// 	Width: 800,
-	// 	AspectRatio: 4/3 },
-	// { name: "Run 2",
-	// 	Runner: "RUFFLE",
-	// 	Game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/run-2.swf",
-	// 	Thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/run-2.jpg",
-	// 	Width: 800,
-	// 	AspectRatio: 4/3 },
-	// { name: "Run 3",
-	// 	Runner: "RUFFLE",
-	// 	Game: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/run-3.swf",
-	// 	Thumbnail: "https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/run-3.jpg",
 	// 	Width: 800,
 	// 	AspectRatio: 4/3 },
 	// { name: "Run n Gun",
