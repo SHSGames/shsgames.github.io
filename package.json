@@ -122,7 +122,7 @@
 		"compression": "^1.7.4",
 		"cookie-parser": "^1.4.6",
 		"cors": "^2.8.5",
-		"dotenv": "^11.0.0",
+		"dotenv": "^14.1.0",
 		"express": "^4.17.2",
 		"express-rate-limit": "^6.0.5",
 		"extract-zip": "^2.0.1",
