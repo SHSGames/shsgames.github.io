@@ -31,3 +31,4 @@ SHS Games can be easily spun up in many different environments. Clicking the but
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/SHSGames/shsgames.github.io)
+[Deploy instance on Replit](https://replit.com/github/SHSGames/shsgames.github.io)
