@@ -24,6 +24,7 @@ SHS Games is a free and open source hub for games. Designed to be unblocked and 
 * https://shsgames.github.io *(official)*
 * https://shsgames.herokuapp.com *(official)*
 * https://virabot-aotic.herokuapp.com
+* https://sh.9pfs.repl.co/ (Chrome OS only, using server-side checking)
 
 ---
 ## Join the rebellion
