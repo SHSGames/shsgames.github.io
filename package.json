@@ -18,6 +18,9 @@
 			"certs": "./ssl"
 		}
 	},
+	"engines": {
+		"node": "14.x"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/JoshMerlino/ts-server.git"
