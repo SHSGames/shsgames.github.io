@@ -27,5 +27,8 @@ export = merge(config, <Configuration>{
 		},
 		hot: true,
 		host: "localhost"
+	},
+	watchOptions: {
+		poll: true
 	}
 });

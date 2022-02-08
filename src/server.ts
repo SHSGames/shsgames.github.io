@@ -16,22 +16,28 @@ function e(err: any) {
 
 export default async function server(app: Express): Promise<void> {
 
+	// Function to log errors on start
+	function catchARC(e: any) {
+		console.error(e);
+		return [];
+	}
+
 	// Apply all middlewares
-	const middlewares = await asyncRequireContext<Middleware>("./lib/src/middleware").catch(e);
+	const middlewares = await asyncRequireContext<Middleware>("./lib/src/middleware").catch(catchARC);
 	middlewares.map(middleware => {
 		app.use(<() => Application>middleware.module.default);
 		console.info(chalk.magenta("MDW"), "Added middleware from", chalk.cyan(middleware.path));
 	});
 
 	// Apply all runtimes
-	const runtimes = await asyncRequireContext<Runtime>("./lib/src/runtime").catch(e);
+	const runtimes = await asyncRequireContext<Runtime>("./lib/src/runtime").catch(catchARC);
 	runtimes.map(runtime => {
 		runtime.module.default(app);
 		console.info(chalk.yellow("RNT"), "Added runtime from", chalk.cyan(runtime.path));
 	});
 
 	// Get all API endpoints and add them to the app context.
-	const endpoints = await asyncRequireContext<Endpoint>("./lib/api").catch(e);
+	const endpoints = await asyncRequireContext<Endpoint>("./lib/api").catch(catchARC);
 	endpoints.map(function(endpoint) {
 		const routes = typeof endpoint.module.route === "string" ? [ endpoint.module.route ] : endpoint.module.route;
 		routes.map(route => app.all(`/api/${route}`, <() => Application>endpoint.module.default));
