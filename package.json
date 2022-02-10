@@ -34,7 +34,7 @@
         "@types/cors": "^2.8.12",
         "@types/express": "^4.17.13",
         "@types/mkdirp": "^1.0.2",
-        "@types/node": "^17.0.16",
+        "@types/node": "^17.0.17",
         "@types/node-fetch": "^2.5.12",
         "@types/uuid": "^8.3.4",
         "@types/webpack-env": "^1.16.3",
