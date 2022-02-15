@@ -1,7 +1,7 @@
 {
 	"name": "shsgames",
 	"display-name": "SHS Games",
-	"version": "14.0.1",
+	"version": "14.0.2",
 	"description": "Unblocked games • part of an inside job.",
 	"main": "lib/src",
 	"types": "lib/src",
