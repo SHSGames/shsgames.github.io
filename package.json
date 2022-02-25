@@ -54,7 +54,7 @@
 		"@types/cors": "^2.8.12",
 		"@types/express": "^4.17.13",
 		"@types/express-rate-limit": "^6.0.0",
-		"@types/jquery": "^3.5.13",
+		"@types/jquery": "^3.5.14",
 		"@types/mini-css-extract-plugin": "1.x.x",
 		"@types/mkdirp": "^1.0.2",
 		"@types/node": "^17.0.21",
