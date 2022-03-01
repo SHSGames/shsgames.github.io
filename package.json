@@ -120,7 +120,7 @@
 		"workbox-webpack-plugin": "^6.5.0"
 	},
 	"dependencies": {
-		"async-require-context": "^1.8.12",
+		"async-require-context": "^1.8.13",
 		"chalk": "4.x.x",
 		"compression": "^1.7.4",
 		"cookie-parser": "^1.4.6",
