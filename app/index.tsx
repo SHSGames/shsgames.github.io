@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/index.css";
+import "photoncss/dist/photon.css";
+import "setimmediate";
+
 import App from "./src/App";
 
 ReactDOM.render(

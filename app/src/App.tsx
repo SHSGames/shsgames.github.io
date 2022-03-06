@@ -1,6 +1,7 @@
 import { useState } from "react";
 import logo from "../static/favicon.svg";
 import "../styles/App.less";
+import { Button } from "photoncss/lib/react";
 
 export default function App() {
 	const [ count, setCount ] = useState(0);
@@ -11,9 +12,9 @@ export default function App() {
 				<img src={ logo } className="App-logo" alt="logo" />
 				<p>Hello Vite + React!</p>
 				<p>
-					<button type="button" onClick={ () => setCount((count) => count + 1) }>
+					<Button onClick={ () => setCount((count) => count + 1) }>
 						count is: { count }
-					</button>
+					</Button>
 				</p>
 				<p>
 					Edit <code>App.tsx</code> and save to test HMR updates.
