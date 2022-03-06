@@ -11,6 +11,10 @@ export default defineConfig({
 	root: "app",
 	server: {
 		port: 8080,
+		hmr: {
+			protocol: "ws",
+			host: "localhost"
+		},
 		proxy: {
 			"/api": {
 				target: `http://localhost:${process.env.PORT || pjson.webserver.http.port}`,
