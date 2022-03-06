@@ -13,7 +13,11 @@
 ## Getting Started
 ```bash
 # Clone the repo
+<<<<<<< HEAD
 git clone https://github.com/JoshMerlino/tsx-app -b (master | tailwind | photon) --single-branch -o upstream (my-app)
+=======
+git clone https://github.com/JoshMerlino/ts-server -b master --single-branch -o upstream my-server
+>>>>>>> b80c3a9bb6a2ee86497c3a89e3076e11494dfc27
 ```
 
 Move into your new working directory.
