@@ -5,6 +5,6 @@ export const route = [
 	"v1/test/**"
 ];
 
-export default function api(req: Request, res: Response): void {
+export default function api(_req: Request, res: Response): void {
 	res.json({});
 }
