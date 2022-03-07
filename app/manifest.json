@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "name": "My App",
+    "short_name": "My App",
+    "description": "My App description",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "id": "0x16a190429da311ec8cf000155d1b1170",
+    "icons": [
+        {
+            "src": "/static/favicon.svg",
+            "sizes": "512x512",
+            "type": "image/svg"
+        }
+    ]
+}
