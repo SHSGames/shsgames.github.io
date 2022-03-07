@@ -16,6 +16,6 @@
 		"noEmit": true,
 		"jsx": "react-jsx"
 	},
-	"include": ["app", "node_modules/photoncss"],
+	"include": ["app", "node_modules/photoncss", "node_modules/vite-plugin-pwa/client.d.ts"],
 	"references": [{ "path": "./tsconfig.vite.json" }]
 }

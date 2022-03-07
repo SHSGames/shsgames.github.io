@@ -6,5 +6,5 @@
 		"allowSyntheticDefaultImports": true,
 		"moduleResolution": "node"
 	},
-	"include": ["vite.config.ts", "package.json"]
+	"include": ["vite.config.ts", "package.json", "app/manifest.json"]
 }

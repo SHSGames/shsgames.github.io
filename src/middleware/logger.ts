@@ -8,7 +8,7 @@ export default function middleware(req: Request, res: Response, next: NextFuncti
 	const route = req.originalUrl.split("?")[0].split("#")[0];
 
 	// Get current timestamp
-	const timestamp = Date.now();
+	const timestamp = process.hrtime.bigint();
 
 	// Log request on hit
 	console.info(
@@ -26,7 +26,7 @@ export default function middleware(req: Request, res: Response, next: NextFuncti
 		if (!res.headersSent) return;
 
 		// Calculate the total time the endpoint took to respond
-		const duration = Date.now() - timestamp;
+		const duration = Math.floor(Number(process.hrtime.bigint() - timestamp) / 1000) / 1000;
 
 		// Log response to console
 		console.info(

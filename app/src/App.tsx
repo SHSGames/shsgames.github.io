@@ -1,6 +1,6 @@
 import { Button } from "photoncss/lib/react";
 import { useState } from "react";
-import logo from "../static/favicon.svg";
+import logo from "../public/favicon.svg";
 import "../styles/App.less";
 
 export default function App() {
