@@ -16,6 +16,6 @@
 		"noEmit": true,
 		"jsx": "react-jsx"
 	},
-	"include": ["app"],
+	"include": ["app", "node_modules/vite-plugin-pwa/client.d.ts"],
 	"references": [{ "path": "./tsconfig.vite.json" }]
 }

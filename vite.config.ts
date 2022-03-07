@@ -1,9 +1,9 @@
-import { defineConfig } from "vite";
+import { defineConfig, normalizePath } from "vite";
 import react from "@vitejs/plugin-react";
 import { config } from "dotenv";
 import pjson from "./package.json";
 import manifest from "./app/manifest.json";
-import { VitePWA as vitePWA } from "vite-plugin-pwa";
+import { VitePWA } from "vite-plugin-pwa";
 import htmlPlugin from "vite-plugin-html-config";
 
 config();
@@ -12,17 +12,24 @@ config();
 export default defineConfig({
 	plugins: [
 		react(),
-		vitePWA({
-			includeAssets: [ "/app/static/favicon.svg" ],
+		VitePWA({
 			srcDir: "app",
-			manifest,
-			scope: "script"
+			registerType: "autoUpdate",
+			scope: "/",
+			manifest: <unknown>manifest
 		}),
 		htmlPlugin({
 			metas: [ {
 				name: "description",
 				content: manifest.description
-    		} ]
+    		}, {
+				name: "theme-color",
+				content: manifest.theme_color
+			} ],
+			links: [ {
+				rel: "apple-touch-icon",
+				href: "/apple_touch_icon.png"
+			} ]
 		})
 	],
 	root: "app",
