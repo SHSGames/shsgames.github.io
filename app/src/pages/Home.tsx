@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "styles/App.less";
 
+export const path = "/";
+
 export default function App() {
 	const [ count, setCount ] = useState(0);
 
