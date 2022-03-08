@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "photoncss/lib/react";
 import "styles/App.less";
 
 export const path = "/";
@@ -7,12 +8,12 @@ export default function App() {
 	const [ count, setCount ] = useState(0);
 
 	return (
-		<div className="App">
+		<div className="App theme--dark">
 			<header className="App-header">
 				<img src="/favicon.svg" className="App-logo" alt="logo" />
 				<p>Hello Vite + React!</p>
 				<p>
-					<button type="button" onClick={ () => setCount((count) => count + 1) }>count is: { count }</button>
+					<Button variant="raised" onClick={ () => setCount((count) => count + 1) }>count is: { count }</Button>
 				</p>
 				<p>Edit <code>App.tsx</code> and save to test HMR updates.</p>
 				<p>
