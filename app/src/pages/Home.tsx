@@ -1,19 +1,18 @@
-import { Button } from "photoncss/lib/react";
 import { useState } from "react";
-import logo from "../public/favicon.svg";
-import "../styles/App.less";
+import "styles/App.less";
+
+export const path = "/";
 
 export default function App() {
 	const [ count, setCount ] = useState(0);
 
 	return (
-		<div className="App theme--dark">
+		<div className="App">
 			<header className="App-header">
-				<img src={ logo } className="App-logo" alt="logo" />
-				<br /><b></b>
+				<img src="/favicon.svg" className="App-logo" alt="logo" />
 				<p>Hello Vite + React!</p>
 				<p>
-					<Button variant="raised" onClick={ () => setCount((count) => count + 1) }>count is: { count }</Button>
+					<button type="button" onClick={ () => setCount((count) => count + 1) }>count is: { count }</button>
 				</p>
 				<p>Edit <code>App.tsx</code> and save to test HMR updates.</p>
 				<p>

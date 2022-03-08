@@ -1,21 +1,32 @@
-import React from "react";
+import { ElementType, StrictMode } from "react";
 import ReactDOM from "react-dom";
-import "./styles/index.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { registerSW } from "virtual:pwa-register";
+import ErrorBoundary from "./src/runtime/ErrorBoundry";
+import "styles/index.css";
 import "setimmediate";
 
-import App from "./src/App";
-
-import { registerSW } from "virtual:pwa-register";
-if ("serviceWorker" in navigator/* && !/localhost/.test(window.location.toString()) */) registerSW({
-	immediate: true,
-	onRegistered(registration) {
-		console.log("SW registered: ", registration);
-	}
+if ("serviceWorker" in navigator && !/localhost/.test(window.location.toString())) registerSW({
+	immediate: true
 });
 
+export type Page = { default: ElementType, path: string, caseSensitive?: boolean };
+const pages = import.meta.globEager<Page>("./src/pages/*.tsx");
+
 ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
+	<StrictMode>
+		<ErrorBoundary>
+			<BrowserRouter>
+				<Routes>
+					{ Object.values(pages).map((page, key) => <Route
+						key={ key }
+						path={ page.path }
+						caseSensitive={ page.caseSensitive || false }
+						element={ <page.default/> }/>
+					) }
+				</Routes>
+			</BrowserRouter>
+		</ErrorBoundary>
+	</StrictMode>,
 	document.getElementById("root")
 );

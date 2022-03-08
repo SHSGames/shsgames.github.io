@@ -5,6 +5,7 @@ import pjson from "./package.json";
 import manifest from "./app/manifest.json";
 import { VitePWA } from "vite-plugin-pwa";
 import htmlPlugin from "vite-plugin-html-config";
+import path from "path";
 
 config();
 
@@ -32,6 +33,9 @@ export default defineConfig({
 			} ]
 		})
 	],
+	define: {
+		"PRODUCTION": process.env.NODE_ENV?.toLowerCase() === "production"
+	},
 	root: "app",
 	server: {
 		port: 8080,
@@ -48,5 +52,11 @@ export default defineConfig({
 	},
 	build: {
 		outDir: "../public_html"
+	},
+	resolve: {
+		alias: {
+			"styles": path.resolve(__dirname, "./app/styles"),
+			"pages": path.resolve(__dirname, "./app/pages")
+		}
 	}
 });
