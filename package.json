@@ -17,6 +17,7 @@
     "scripts": {
         "watch-ts": "tsc -w -p tsconfig.node.json",
         "watch-js": "nodemon .",
+        "preview": "vite preview",
         "dev": "concurrently \"npm:watch-*\" \"vite\"",
         "start": "node .",
         "build": "tsc -p tsconfig.node.json && tsc && vite build"
@@ -58,6 +59,7 @@
         "typescript": "^4.5.4",
         "vite": "^2.8.0",
         "vite-plugin-html-config": "^1.0.8",
-        "vite-plugin-pwa": "^0.11.13"
+        "vite-plugin-pwa": "^0.11.13",
+        "web-manifest-reader": "^1.2.3"
     }
 }

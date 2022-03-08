@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./styles/index.css";
 import App from "./src/App";
+import ErrorBoundary from "./src/runtime/ErrorBoundry";
+import "./styles/index.css";
 
 import { registerSW } from "virtual:pwa-register";
 if ("serviceWorker" in navigator && !/localhost/.test(window.location.toString())) registerSW({
@@ -10,7 +11,9 @@ if ("serviceWorker" in navigator && !/localhost/.test(window.location.toString()
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<ErrorBoundary>
+			<App />
+		</ErrorBoundary>
 	</React.StrictMode>,
 	document.getElementById("root")
 );

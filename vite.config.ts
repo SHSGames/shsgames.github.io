@@ -32,6 +32,9 @@ export default defineConfig({
 			} ]
 		})
 	],
+	define: {
+		"PRODUCTION": process.env.NODE_ENV?.toLowerCase() === "production"
+	},
 	root: "app",
 	server: {
 		port: 8080,
