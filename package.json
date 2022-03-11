@@ -60,7 +60,7 @@
 		"@types/node": "^17.0.21",
 		"@types/node-fetch": "2.x.x",
 		"@types/optimize-css-assets-webpack-plugin": "^5.0.5",
-		"@types/react": "^17.0.39",
+		"@types/react": "^17.0.40",
 		"@types/react-dom": "^17.0.13",
 		"@types/react-lazy-load-image-component": "^1.5.2",
 		"@types/react-router-dom": "^5.3.3",
