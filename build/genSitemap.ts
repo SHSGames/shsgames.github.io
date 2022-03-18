@@ -18,6 +18,9 @@ const template = path.resolve("../../web/sitemap.txt");
 		})
 	);
 
+	// Show ads on the most common 404 page.
+	await copyFile(path.resolve("../../public_html/index.html"), "../../public_html/1.html");
+
 	await writeFile(path.resolve("../../public_html/sitemap.txt"), sitemap + "\n", "utf8");
 
 }());
