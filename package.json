@@ -16,6 +16,9 @@
             "enabled": false
         }
     },
+    "engines": {
+        "node": "16.x"
+    },
     "scripts": {
         "watch-ts": "tsc -w -p tsconfig.node.json",
         "watch-js": "nodemon .",
