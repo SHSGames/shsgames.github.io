@@ -34,7 +34,13 @@ export default defineConfig({
 		})
 	],
 	define: {
-		"PRODUCTION": process.env.NODE_ENV?.toLowerCase() === "production"
+		"PRODUCTION": process.env.NODE_ENV?.toLowerCase() === "production",
+		"APP_MANIFEST": {
+			name: manifest.name,
+			version: pjson.version,
+			description: manifest.description,
+			author: pjson.author
+		}
 	},
 	root: "app",
 	server: {
