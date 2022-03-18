@@ -34,7 +34,8 @@ export default defineConfig({
 		})
 	],
 	define: {
-		"PRODUCTION": process.env.NODE_ENV?.toLowerCase() === "production"
+		"PRODUCTION": process.env.NODE_ENV?.toLowerCase() === "production",
+		"APP_MANIFEST": { ...manifest, version: pjson.version }
 	},
 	root: "app",
 	server: {
