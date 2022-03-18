@@ -6,9 +6,9 @@ name: Test CI
 # Run on basicly every change to the tree
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -16,6 +16,12 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # List of Node.js versions to run on
+    strategy:
+      matrix:
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [ 14.x, 15.x, 16.x ]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

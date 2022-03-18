@@ -7,3 +7,5 @@ console.warn = (...args): unknown => console.log(chalk.yellow("[ WARN ]"), ...ar
 
 // Log errors to console instead of killing the application.
 process.on("uncaughtException", err => console.error(err));
+
+export default console;
