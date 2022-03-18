@@ -3,6 +3,8 @@
 /* eslint @typescript-eslint/no-this-alias: off */
 import React, { Component } from "react";
 import { Button, Card, CardActions } from "photoncss/lib/react";
+import "photoncss/dist/photon.css";
+import "./style.less";
 import { guid } from "photoncss/lib";
 
 interface BeforeInstallPromptEvent extends Event {

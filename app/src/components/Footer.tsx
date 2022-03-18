@@ -1,7 +1,7 @@
 import { Col, Container, Footer, FooterCopyright, Row } from "photoncss/lib/react";
 import React, { useEffect, useState } from "react";
-import DiscordInvite from "react-discord-invite";
 import { Link } from "react-router-dom";
+import DiscordInvite from "./DiscordInvite";
 
 export function MoTD(): JSX.Element | null {
 
