@@ -1,8 +1,12 @@
 {
     "name": "vite-project",
-    "private": true,
     "version": "1.0.0",
+    "description": "Create fast single-page progressive-web-apps using PhotonCSS 12, React and TypeScript.",
     "main": "lib/src",
+    "types": "lib/src",
+    "author": "Josh Merlino",
+    "license": "ISC",
+    "private": true,
     "webserver": {
         "http": {
             "port": 80,
