@@ -46,7 +46,7 @@
         "@types/express": "^4.17.13",
         "@types/jquery": "^3.5.14",
         "@types/mkdirp": "^1.0.2",
-        "@types/node": "^17.0.21",
+        "@types/node": "^17.0.23",
         "@types/node-fetch": "^2.6.1",
         "@types/react": "^17.0.41",
         "@types/react-dom": "^17.0.10",
