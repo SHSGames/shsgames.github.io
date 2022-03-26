@@ -2,3 +2,4 @@ node_modules/
 lib/
 public_html/
 app/public/
+app/vite-env.d.ts
