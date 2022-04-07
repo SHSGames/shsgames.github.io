@@ -1,6 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { readFileSync } from "fs";
-import { resolve } from "path";
 
 export default function middleware(req: Request, res: Response, next: NextFunction): void {
 
