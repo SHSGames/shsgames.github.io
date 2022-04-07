@@ -12,6 +12,13 @@ export default <Game[]>[
 
 	// IFRAME GAMES
 	{
+		name: "1v1.lol",
+		runner: "IFRAME",
+		game: "https://ejvd3326248pklq0mtj313irgbc2vsrb-a-sites-opensocial.googleusercontent.com/gadgets/ifr?url=https://sites.google.com/site/s035r8h4/1v1.xml&amp;container=enterprise&amp;view=default&amp;lang=en&amp;country=ALL&amp;sanitize=0&amp;v=8d01559d545a3200&amp;libs=core&amp;mid=172&amp;parent=https://sites.google.com/site/unblockedgameswtf/1v1-lol#USX6PB",
+		thumbnail: "https://cdn.jsdelivr.net/gh/joshmerlino/shsg-pfile/thumbs/1v1lol.png",
+		width: 1200,
+		aspectRatio: 16 / 9
+	}, {
 		name: "Baldi's Basic",
 		runner: "IFRAME",
 		game: "/built-games/baldis-basics/index.html",
