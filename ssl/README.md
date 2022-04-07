@@ -1,1 +1,1 @@
-Certificates generated at https://www.selfsignedcertificate.com/. They are not real certificates!
+Certificates generated via the OpenSSL library. In production you should apply your own certificate.
