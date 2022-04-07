@@ -1,16 +1,14 @@
-declare module "offline-plugin";
-
-declare type APIResponse = Record<string, unknown>;
+import { RequestHandler, NextFunction } from "express";
 
 declare interface Endpoint {
 	route: string | string[];
-	default(req: Request, res: Response): unknown;
+	default(req: Express.Request, res: Express.Response): RequestHandler;
 }
 
 declare interface Middleware {
-	default(req: Request, res: Response, next: NextFunction): unknown;
+	default(req: Express.Request, res: Express.Response, next: NextFunction): RequestHandler;
 }
 
 declare interface Runtime {
-	default(app: Express): unknown;
+	default(app: Express.Application): RequestHandler;
 }

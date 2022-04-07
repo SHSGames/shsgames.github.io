@@ -10,7 +10,7 @@
         "sourceMap": true,
         "strict": true,
         "esModuleInterop": true,
-        "skipLibCheck": true,
+        "skipLibCheck": false,
         "noUnusedParameters": true,
         "allowUnreachableCode": false,
         "preserveConstEnums": false,

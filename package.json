@@ -13,7 +13,9 @@
             "timeout": 10
         },
         "https": {
-            "enabled": false
+            "enabled": true,
+            "certs": "./ssl",
+            "port": 443
         }
     },
     "engines": {
@@ -75,8 +77,8 @@
         "react-lazy-load-image-component": "^1.5.3",
         "react-query": "^3.34.19",
         "react-router-dom": "^6.3.0",
-        "typescript": "^4.6.3",
         "setimmediate": "^1.0.5",
+        "typescript": "^4.6.3",
         "uuid": "^8.3.2",
         "vite": "^2.9.1",
         "vite-plugin-html-config": "^1.0.8",

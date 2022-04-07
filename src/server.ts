@@ -1,18 +1,14 @@
 import asyncRequireContext from "async-require-context";
 import chalk from "chalk";
-import { Application, Express } from "express";
+import { Express } from "express";
 import { readFileSync } from "fs";
-import { readFile, readdir } from "fs/promises";
+import { readdir, readFile } from "fs/promises";
 import http from "http";
 import https from "https";
 import { resolve } from "path";
+import { Endpoint, Middleware, Runtime } from "./types";
 
 const { webserver } = JSON.parse(readFileSync(resolve("./package.json"), "utf8"));
-
-function e(err: any) {
-	console.error(err);
-	return [];
-}
 
 export default async function server(app: Express): Promise<void> {
 
@@ -25,7 +21,7 @@ export default async function server(app: Express): Promise<void> {
 	// Apply all middlewares
 	const middlewares = await asyncRequireContext<Middleware>("./lib/src/middleware").catch(importAll);
 	middlewares.map(middleware => {
-		app.use(<() => Application>middleware.module.default);
+		app.use(middleware.module.default);
 		console.info(chalk.magenta("MDW"), "Added middleware from", chalk.cyan(middleware.path));
 	});
 
@@ -40,7 +36,7 @@ export default async function server(app: Express): Promise<void> {
 	const endpoints = await asyncRequireContext<Endpoint>("./lib/api").catch(importAll);
 	endpoints.map(function(endpoint) {
 		const routes = typeof endpoint.module.route === "string" ? [ endpoint.module.route ] : endpoint.module.route;
-		routes.map(route => app.all(`/api/${route}`, <() => Application>endpoint.module.default));
+		routes.map(route => app.all(`/api/${route}`, endpoint.module.default));
 		console.info(chalk.greenBright("EDP"), "Added API endpoints from", chalk.cyan(endpoint.path));
 	});
 
