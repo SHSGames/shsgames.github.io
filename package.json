@@ -56,7 +56,7 @@
         "eslint-plugin-import": "^2.25.4",
         "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-react": "^7.29.4",
-        "eslint-plugin-react-hooks": "^4.3.0",
+        "eslint-plugin-react-hooks": "^4.4.0",
         "lessc": "^1.0.2",
         "nodemon": "^2.0.15",
         "react": "^18.0.0",
