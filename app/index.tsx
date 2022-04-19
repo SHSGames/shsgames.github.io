@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { registerSW } from "virtual:pwa-register";
+import { base } from "./manifest.json";
 import ErrorBoundary from "./src/runtime/ErrorBoundry";
 import "styles/index.css";
 import "setimmediate";
@@ -25,7 +26,7 @@ ReactDOM.render(
 					<Routes>
 						{ Object.values(pages).map((page, key) => <Route
 							key={ key }
-							path={ page.path }
+							path={ base + page.path.substring(1) }
 							caseSensitive={ page.caseSensitive || false }
 							element={ <page.default/> }/>
 						) }

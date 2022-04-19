@@ -6,6 +6,7 @@
     "background_color": "#ffffff",
     "theme_color": "#ffffff",
     "orientation": "portrait",
+    "base": "/",
     "id": "0x16a190429da311ec8cf000155d1b1170",
     "icons": [
         {
