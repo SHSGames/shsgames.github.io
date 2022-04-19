@@ -6,9 +6,9 @@ name: Code Style Analysis
 # Run on basicly every change to the tree
 on:
   push:
-    branches: ["**"]
+    branches: [ master ]
   pull_request:
-    branches: ["**"]
+    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,10 +25,10 @@ jobs:
         uses: actions/checkout@v2
 
       # Sets up node environment
-      - name: Use Node.js 14
+      - name: Use Node.js 17
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '17'
 
       # Install node modules
       - name: Install node modules
