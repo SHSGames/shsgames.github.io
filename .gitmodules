@@ -10,3 +10,6 @@
 [submodule "app/public/built-games/baldis-basics"]
 	path = app/public/built-games/baldis-basics
 	url = git@github.com:SHSGames/baldis-basics.git
+[submodule "app/public/built-games/takumiraccoon"]
+	path = app/public/built-games/takumiraccoon
+	url = git@github.com:SHSGames/takumiraccoon.git
