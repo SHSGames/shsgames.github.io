@@ -1,11 +1,12 @@
 /* eslint-disable max-classes-per-file */
 /* eslint consistent-this: off */
 /* eslint @typescript-eslint/no-this-alias: off */
-import React, { Component } from "react";
-import { Button, Card, CardActions } from "photoncss/lib/react";
 import "photoncss/dist/photon.css";
-import "./style.less";
 import { guid } from "photoncss/lib";
+import { Button, Card, CardActions } from "photoncss/lib/react";
+import React, { Component } from "react";
+import { base } from "../../../manifest.json";
+import "./style.less";
 
 interface BeforeInstallPromptEvent extends Event {
   	readonly platforms: Array<string>;
@@ -55,7 +56,7 @@ class Installer extends Component<InstallerProps, any> {
 		return (
 			<Card className="pwa-installer hidden" id={this.id}>
 				<div className="pwa-installer-body">
-					<img src="/icon.png" alt=""/>
+					<img src={ base + "icon.png" } alt=""/>
 					<div>
 						<h3>{ this.props.title || "Install app?" }</h3>
 						<p>

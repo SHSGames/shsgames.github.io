@@ -2,6 +2,7 @@
 import { guid } from "photoncss/lib";
 import { Card } from "photoncss/lib/react";
 import React, { CSSProperties, useEffect, useState } from "react";
+import { base } from "../../manifest.json";
 
 export type Props = {
 	adLayout: "in-article";
@@ -40,7 +41,7 @@ export default function Adsense({ adLayout = "in-article", style, adFormat = "fl
 	if (state === false || !PRODUCTION) {
 		return (
 			<Card variant="outlined" className="flex-adaptive" style={ { ...style, overflow: "hidden", padding: 24, display: "flex" } } id={ id }>
-				<img src="/adblocker.svg" alt="" style={ { maxWidth: 200, display: "inline-flex" } }/>
+				<img src={base + "adblocker.svg"} alt="" style={ { maxWidth: 200, display: "inline-flex" } }/>
 				<div style={ { width: "-webkit-fill-available", maxWidth: 390 } }>
 					<h1 style={ { display: "block", textAlign: "center" } }>Hey There!</h1>
 					<p>We see your using an ad-blocker... {APP_MANIFEST.name} isn't free on our end and certainly isn't cheap to run and maintain. We use those ads to support future development and keep {APP_MANIFEST.name} free for everyone. It would mean a lot to us if we got added to your ad-blocker whitelist. 💕</p>
