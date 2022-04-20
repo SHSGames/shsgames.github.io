@@ -1,0 +1,3 @@
+[submodule "app/public/built-games/cookieclicker"]
+	path = app/public/built-games/cookieclicker
+	url = git@github.com:SHSGames/cookieclicker.git
