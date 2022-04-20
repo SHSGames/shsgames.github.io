@@ -42,7 +42,7 @@ export default <Game[]>[
 	}, {
 		name: "CSGOClicker",
 		runner: "IFRAME",
-		game: "/built-games/csgoclicker/index.html",
+		game: "/built-games/CSGOClicker/index.html",
 		thumbnail: "https://cdn.jsdelivr.net/gh/joshmerlino/shsg-pfile/thumbs/csgoclicker.jpg",
 		width: 1080,
 		aspectRatio: 5 / 3
