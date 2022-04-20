@@ -3,4 +3,4 @@
 	url = git@github.com:SHSGames/cookieclicker.git
 [submodule "app/public/built-games/CSGOClicker"]
 	path = app/public/built-games/CSGOClicker
-	url = https://github.com/bnned/CSGOClicker.git
+	url = git@github.com:bnned/CSGOClicker.git
