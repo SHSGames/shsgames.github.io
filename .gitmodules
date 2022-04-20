@@ -4,3 +4,6 @@
 [submodule "app/public/built-games/CSGOClicker"]
 	path = app/public/built-games/CSGOClicker
 	url = git@github.com:bnned/CSGOClicker.git
+[submodule "app/public/built-games/chromedino"]
+	path = app/public/built-games/chromedino
+	url = git@github.com:wayou/t-rex-runner.git
