@@ -7,3 +7,6 @@
 [submodule "app/public/built-games/chromedino"]
 	path = app/public/built-games/chromedino
 	url = git@github.com:wayou/t-rex-runner.git
+[submodule "app/public/built-games/baldis-basics"]
+	path = app/public/built-games/baldis-basics
+	url = git@github.com:SHSGames/baldis-basics.git
