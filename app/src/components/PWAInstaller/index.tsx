@@ -28,6 +28,8 @@ window.addEventListener("beforeinstallprompt", event => {
 
 interface InstallerProps extends Props { installer: () => void }
 
+let didShow = false;
+
 class Installer extends Component<InstallerProps, any> {
 
 	id = guid();
@@ -40,9 +42,11 @@ class Installer extends Component<InstallerProps, any> {
 	}
 
 	show(): void {
+		if (didShow) return;
 		document.getElementById(this.id)
 			?.classList
 			.remove("hidden");
+		didShow = true;
 	}
 
 	hide(rejected = false): void {
