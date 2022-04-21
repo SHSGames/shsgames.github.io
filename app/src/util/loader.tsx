@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-parens */
 /* eslint camelcase: off */
 import React from "react";
 import { renderToString } from "react-dom/server";
@@ -42,6 +43,7 @@ export function iframe(game: Game): void {
 
 export function nes(game: Game): void {
 
+	(window as any).jsnes = null;
 	$("head")
 		.children("[data-reactroot]")
 		.remove();
@@ -56,7 +58,7 @@ export function nes(game: Game): void {
 	}
 
 	(function test(){
-		if (window.hasOwnProperty("jsnes")) {
+		if (window.hasOwnProperty("jsnes") && (window as any).jsnes !== null) {
 			$("head").append(renderToString(<script src="https://cdn.jsdelivr.net/gh/SHSGames/shsgames.github.io@10ce8f7b6a4ad83aa35a9448b51d6116f2d0de9d/www/src/js/jsnesplayer.min.js" defer></script>));
 			(function test(){
 				if (window.hasOwnProperty("nes_load_url")) return load();
