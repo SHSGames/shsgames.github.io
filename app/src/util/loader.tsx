@@ -25,7 +25,7 @@ export function unity(game: Game): void {
 
 export function gameboy(game: Game): void {
 	$("#game-renderer").html(renderToString(<iframe
-		src={`/IodineGBA.html?${game.game}`}
+		src={`/IodineGBA/index.html?${game.game}`}
 		frameBorder="0"
 		width="100%"
 		height="100%"

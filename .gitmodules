@@ -13,3 +13,6 @@
 [submodule "app/public/built-games/takumiraccoon"]
 	path = app/public/built-games/takumiraccoon
 	url = git@github.com:SHSGames/takumiraccoon.git
+[submodule "app/public/IodineGBA"]
+	path = app/public/IodineGBA
+	url = git@github.com:SHSGames/IodineGBA.git
