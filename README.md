@@ -12,12 +12,10 @@ SHS Games is a free and open source hub for games. Designed to be unblocked and 
 
 ----
 ## Official Links
-| URL | Status |
-| - | - |
-| **https://shsg.herokuapp.com** | Official |
-| **https://shsgames.github.io** | Official |
-| **https://shsgames.herokuapp.com** | Official |
-| **https://shs-games.herokuapp.com** | Official |
+* https://shsg.herokuapp.com
+* https://shsgames.github.io
+* https://shsgames.herokuapp.com
+* https://shs-games.herokuapp.com
 
 Don't worry if they get blocked. There are tons of [community maintained mirrors](./MIRRORS.md).
 
