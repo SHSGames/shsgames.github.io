@@ -18,6 +18,7 @@ SHS Games is a free and open source hub for games. Designed to be unblocked and 
 | **https://shsgames.github.io** | Official |
 | **https://shsgames.herokuapp.com** | Official |
 | **https://shs-games.herokuapp.com** | Official |
+
 Don't worry if they get blocked. There are tons of [community maintained mirrors](./MIRRORS.md).
 
 ---
