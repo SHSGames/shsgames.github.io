@@ -11,7 +11,6 @@ SHS Games is a free and open source hub for games. Designed to be unblocked and 
 [License](./LICENSE.md) • [Privacy Statement](./PRIVACY.md)
 
 ----
-
 ## Official Links
 | URL | Status |
 | - | - |
@@ -19,34 +18,14 @@ SHS Games is a free and open source hub for games. Designed to be unblocked and 
 | **https://shsgames.github.io** | Official |
 | **https://shsgames.herokuapp.com** | Official |
 | **https://shs-games.herokuapp.com** | Official |
-
-## Mirrors
-| URL | Status |
-| - | - |
-| https://artix-hangout.netlify.app | Broken |
-| https://bogpog.herokuapp.com | Broken |
-| https://breezegames.herokuapp.com | Broken |
-| https://cpsgames.herokuapp.com | Outdated |
-| http://joe-biden.herokuapp.com | Not Secured |
-| https://magixxzshsgames.herokuapp.com | Outdated |
-| https://physics-central.com | Outdated |
-| https://sh--9pfs.repl.co | ChromeOS Only |
-| https://shhstheplayce672.herokuapp.com | Legacy |
-| https://shs.barnacled.repl.co | Outdated |
-| https://shs.klj2.repl.co | Outdated |
-| https://shsgame.herokuapp.com | Broken |
-| https://shs-game.herokuapp.com | Outdated |
-| http://spotsymath.herokuapp.com | Not Secured |
-| https://unbzoked-yay.herokuapp.com | Outdated |
-| https://unkxn.netlify.app | Outdated |
-| https://virabot-aotic.herokuapp.com | Outdated |
+Don't worry if they get blocked. There are tons of [community maintained mirrors](./MIRRORS.md).
 
 ---
 ## Join the rebellion
 SHS Games can be easily spun up in many different environments. Clicking the buttons below will spin up a new site running SHS Games. And if you know what your doing, here are some detailed [Build instructions](https://github.com/SHSGames/shsgames.github.io/blob/master/BUILDING.md) you can also [download the HTML](https://github.com/SHSGames/shsgames.github.io/archive/refs/heads/public_html.zip) for your own web server, or even just a [Docker container](https://hub.docker.com/r/shsgames/shsgames). When you create a mirror, I'll add it to the list above for everyones benifit.
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
 [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/SHSGames/shsgames.github.io)
-
 [<img src="https://camo.githubusercontent.com/aaa5efab04d69a070ff9ee9f75506b38932a7300359318135f4790c31b7dace4/68747470733a2f2f7265706c2e69742f62616467652f6769746875622f756e6b6e6f776e626c7565677579362f4d696e6553776565706572" alt="Deploy instance on Replit" height="33px">](https://replit.com/github/SHSGames/shsgames.github.io)
+
+Or you can fork and host with GitHub Pages. Reference #341 for help setting this up.
