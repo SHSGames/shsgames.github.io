@@ -11,22 +11,35 @@ SHS Games is a free and open source hub for games. Designed to be unblocked and 
 [License](./LICENSE.md) • [Privacy Statement](./PRIVACY.md)
 
 ----
-## Links
-* https://bogpog.herokuapp.com
-* https://breezegames.herokuapp.com
-* https://coolschoolg.herokuapp.com
-* https://cpsgames.herokuapp.com
-* https://shhstheplayce672.herokuapp.com
-* https://shs-games.herokuapp.com *(official)*
-* https://shsg.herokuapp.com *(official)*
-* https://shsgame.herokuapp.com
-* https://shs-game.herokuapp.com
-* https://shsgames.github.io *(official)*
-* https://shsgames.herokuapp.com *(official)*
-* https://shs.barnacled.repl.co
-* https://shs.klj2.repl.co
-* https://virabot-aotic.herokuapp.com
-* https://sh.9pfs.repl.co/ (Chrome OS only, using server-side checking)
+
+## Official Links
+| URL | Status |
+| - | - |
+| **https://shsg.herokuapp.com** | Official |
+| **https://shsgames.github.io** | Official |
+| **https://shsgames.herokuapp.com** | Official |
+| **https://shs-games.herokuapp.com** | Official |
+
+## Mirrors
+| URL | Status |
+| - | - |
+| https://artix-hangout.netlify.app | Broken |
+| https://bogpog.herokuapp.com | Broken |
+| https://breezegames.herokuapp.com | Broken |
+| https://cpsgames.herokuapp.com | Outdated |
+| http://joe-biden.herokuapp.com | Not Secured |
+| https://magixxzshsgames.herokuapp.com | Outdated |
+| https://physics-central.com | Outdated |
+| https://sh--9pfs.repl.co | ChromeOS Only |
+| https://shhstheplayce672.herokuapp.com | Legacy |
+| https://shs.barnacled.repl.co | Outdated |
+| https://shs.klj2.repl.co | Outdated |
+| https://shsgame.herokuapp.com | Broken |
+| https://shs-game.herokuapp.com | Outdated |
+| http://spotsymath.herokuapp.com | Not Secured |
+| https://unbzoked-yay.herokuapp.com | Outdated |
+| https://unkxn.netlify.app | Outdated |
+| https://virabot-aotic.herokuapp.com | Outdated |
 
 ---
 ## Join the rebellion
