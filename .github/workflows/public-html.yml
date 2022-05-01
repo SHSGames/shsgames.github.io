@@ -27,6 +27,7 @@ jobs:
 
       - name: Build
         run: |
+          git submodule update --init --recursive
           npm ci
           npm run build
 
