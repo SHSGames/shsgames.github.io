@@ -10,6 +10,16 @@ export interface Game {
 
 export default <Game[]>[
 
+	// PARKER GAMES
+	{
+		name: "prkr's Agario",
+		runner: "IFRAME",
+		game: "https://jptragar.glitch.me/",
+		thumbnail: "https://cdn.jsdelivr.net/gh/joshmerlino/shsg-pfile/thumbs/prkrs-agario.jpg",
+		width: 1200,
+		aspectRatio: 16 / 9
+	},
+
 	// IFRAME GAMES
 	{
 		name: "1v1.lol",
