@@ -2,7 +2,7 @@ name: Bump
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "next" ]
 
 jobs:
   bump-version:
@@ -19,7 +19,7 @@ jobs:
       - name: "Setup Node.js"
         uses: "actions/setup-node@v1"
         with:
-          node-version: 14
+          node-version: 17
       - name: "Automated Version Bump"
         id: version-bump
         uses: "phips28/gh-action-bump-version@master"
