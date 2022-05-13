@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { SearchToggleButton } from "./SearchToggleButton";
 import ThemeSwitcher from "./ThemeSwitcher";
-import { base } from "../../manifest.json"
+import { base } from "../../manifest.json";
 
 export default function Component(): JSX.Element {
 	return (
