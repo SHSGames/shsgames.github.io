@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Game } from "../../games";
 import { getGameID, slug } from "../util/gameHash";
 import Star from "./Star";
+import { base } from "../../manifest.json";
 
 export type Props = { game: Game };
 export default function GameCard({ game }: Props): JSX.Element {
@@ -40,7 +41,7 @@ export default function GameCard({ game }: Props): JSX.Element {
 						}}/>
 				</div>
 				<CardActions seperated={true} direction="right">
-					<Link to={`/g/${getGameID(game)}/${slug(game.name)}${location.search}`}>
+					<Link to={`${base}g/${getGameID(game)}/${slug(game.name)}${location.search}`}>
 						<Button
 							color="primary"
 							variant="outlined">Play</Button>
