@@ -7,7 +7,7 @@ name: Publish to Docker Hub
 
 on:
   push:
-    branches: [ master ]
+    branches: [ next ]
 
 jobs:
   push_to_registry:
@@ -25,8 +25,8 @@ jobs:
 
       - name: Build
         run: |
-          docker build -t shsgames/shsgames .
+          docker build -t shsgames/shsgames-next .
 
       - name: Push
         run: |
-          docker push shsgames/shsgames
+          docker push shsgames/shsgames-next

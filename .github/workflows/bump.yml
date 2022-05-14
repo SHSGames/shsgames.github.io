@@ -2,11 +2,11 @@ name: Bump
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "next" ]
 
 jobs:
   bump-version:
-    name: "Bump Version on master"
+    name: "Bump Version on next"
     runs-on: ubuntu-latest
 
     steps:
