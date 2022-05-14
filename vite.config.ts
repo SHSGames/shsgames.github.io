@@ -1,11 +1,11 @@
-import { defineConfig, normalizePath } from "vite";
 import react from "@vitejs/plugin-react";
 import { config } from "dotenv";
-import pjson from "./package.json";
-import manifest, { base } from "./app/manifest.json";
-import { VitePWA } from "vite-plugin-pwa";
-import htmlPlugin from "vite-plugin-html-config";
 import path from "path";
+import { defineConfig } from "vite";
+import htmlPlugin from "vite-plugin-html-config";
+import { VitePWA } from "vite-plugin-pwa";
+import manifest, { base } from "./app/manifest.json";
+import pjson from "./package.json";
 
 config();
 
@@ -29,7 +29,7 @@ export default defineConfig({
 			} ],
 			links: [ {
 				rel: "apple-touch-icon",
-				href: "/apple_touch_icon.png"
+				href: base + "/apple_touch_icon.png"
 			} ]
 		})
 	],
