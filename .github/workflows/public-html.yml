@@ -42,7 +42,7 @@ jobs:
           hub init -b public_html
           hub add .
           hub commit -m "Build public_html [Github actions]"
-          echo hub remote add output https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/next.git
-          hub remote add output https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/next.git
+          echo hub remote add output https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/SHSGames/next.git
+          hub remote add output https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/SHSGames/next.git
           hub push -fu output public_html
 
