@@ -16,3 +16,6 @@
 [submodule "app/public/IodineGBA"]
 	path = app/public/IodineGBA
 	url = https://github.com/SHSGames/IodineGBA.git
+[submodule "photoncss"]
+	path = photoncss
+	url = https://github.com/JoshMerlino/photoncss
