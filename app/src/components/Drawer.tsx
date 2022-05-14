@@ -40,7 +40,7 @@ export default function Drawer(): JSX.Element {
 		<>
 			<div className={ classnames("w-full fixed top-0 h-full left-0 bg-black/20 transition-opacity xl:hidden z-[9]", open ? "" : "opacity-0 pointer-events-none") } onClick={ () => setOpen(false) }></div>
 			<aside className={ classnames("bg-white dark:bg-zinc-700 ease-in-out w-[300px] fixed top-0 h-full z-[10] shadow-md transition-[opacity,left] xl:left-0", open ? "left-0" : "left-[-300px]") }>
-				<img src={ base + "maskable_icon.svg" } alt="" className="backdrop-blur-lg bg-neutral/60 select-none rounded-full bg-black/10 max-h-[192px] mx-auto my-4" />
+				<img src={ base + "icon.png" } alt="" className="select-none rounded-full max-h-[192px] mx-auto my-4" />
 				<hr className="dark:border-zinc-600 mb-2" />
 				<DrawerItem to="/">
 					<AiOutlineHome className="text-2xl mr-3"/>
