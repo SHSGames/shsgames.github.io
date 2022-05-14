@@ -1,11 +1,6 @@
 import classnames from "classnames";
 import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
-import { BsStackOverflow } from "react-icons/bs";
-import { CgPerformance } from "react-icons/cg";
-import { FiGithub, FiTwitter } from "react-icons/fi";
-import { IoLogoNpm } from "react-icons/io";
-import { MdOutlineRequestQuote } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import { base } from "../../manifest.json";
 
