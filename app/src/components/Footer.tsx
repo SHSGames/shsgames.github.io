@@ -17,7 +17,7 @@ export default function Footer(): JSX.Element {
 						</div>
 					</div>
 				</div>
-				<div className="w-full text-gray-300 font-medium bg-black/10 h-12 flex justify-center items-center font-manrope">
+				<div className="w-full text-gray-300 font-medium bg-black/10 min-h-[48px] flex justify-center items-center font-manrope">
 					<div className="mx-auto flex max-w-full md:max-w-[80%] w-[1280px] px-12 z-[4] flex-row text-sm relative leading-4">
 						<div className="flex flex-col">
 							<span>Copyright © 2019 - 2022 • All Rights Reserved</span>
