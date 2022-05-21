@@ -27,3 +27,4 @@ declare type ApplicationInfo = {
 }
 
 declare const APP_MANIFEST: ApplicationInfo;
+declare const Games: Games.MANIFEST;

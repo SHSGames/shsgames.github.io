@@ -1,9 +1,11 @@
 import react from "@vitejs/plugin-react";
 import { config } from "dotenv";
+import { readFileSync } from "fs";
 import path from "path";
 import { defineConfig } from "vite";
 import htmlPlugin from "vite-plugin-html-config";
 import { VitePWA } from "vite-plugin-pwa";
+import YAML from "yaml";
 import manifest, { base } from "./app/manifest.json";
 import pjson from "./package.json";
 
@@ -41,7 +43,8 @@ export default defineConfig({
 			version: pjson.version,
 			description: manifest.description,
 			author: pjson.author
-		}
+		},
+		"Games": YAML.parse(readFileSync(path.resolve("./game-manifest.yml"), "utf-8"))
 	},
 	root: "app",
 	server: {
