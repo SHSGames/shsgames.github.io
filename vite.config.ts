@@ -44,7 +44,7 @@ export default defineConfig({
 			description: manifest.description,
 			author: pjson.author
 		},
-		"Games": YAML.parse(readFileSync(path.resolve("./game-manifest.yml"), "utf-8"))
+		"LastGames": YAML.parse(readFileSync(path.resolve("./game-manifest.yml"), "utf-8"))
 	},
 	root: "app",
 	server: {

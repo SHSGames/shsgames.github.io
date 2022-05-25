@@ -16,6 +16,7 @@
   executable: https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/run-3.swf
   tags:
     - name: Run Series
+      backgroundColor: "#f00a"
   type: FLASH
   width: 800
   height: 600
