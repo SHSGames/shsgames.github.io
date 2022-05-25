@@ -34,9 +34,13 @@ export default function GameCard({ name, thumbnail, renderCard = true, tags = []
 			if (!mounted) return;
 			requestAnimationFrame(animation);
 			window.addEventListener("resize", resize);
+			if (!renderCard) {
+				setTruncated(false);
+				return;
+			}
 			if (titleRef.current) {
 				const isOverflowing = titleRef.current!.scrollWidth > titleRef.current!.clientWidth;
-				if (isTruncated !== isOverflowing) setTruncated(isOverflowing);
+				if (isTruncated !== isOverflowing) setTruncated(!renderCard || isOverflowing);
 			}
 
 		}());
@@ -50,7 +54,7 @@ export default function GameCard({ name, thumbnail, renderCard = true, tags = []
 		<Link to={`${base}g/${hash(name)}/${slug(name)}`}>
 			<div className={
 				classnames("bg-white dark:bg-zinc-700 overflow-hidden rounded-2xl shadow-md flex p-2",
-					renderCard && "cursor-pointer flex-col transition-[transform,box-shadow] z-[1] hover:z-[2] xl:hover:scale-125 hover:shadow-2xl hover:shadow-black/50")
+					renderCard && "cursor-pointer flex-col transition-[transform,box-shadow] z-[1] hover:z-[2] xl:hover:scale-110 hover:shadow-2xl hover:shadow-black/50")
 			}>
 				<img src={thumbnail || "/gamecard.svg"} alt="" className={
 					classnames("rounded-xl select-none aspect-video",
@@ -58,14 +62,14 @@ export default function GameCard({ name, thumbnail, renderCard = true, tags = []
 				/>
 				<div className={classnames("flex flex-col grow", renderCard ? "flex-col-reverse" : "pl-3")}>
 					<div className="self-baseline flex flex-col py-4 grow w-full overflow-hidden">
-						{ !isTruncated ? <h1 className={classnames("text-4xl font-unisans whitespace-nowrap", renderCard ? "text-center text-ellipsis overflow-hidden" : "")} ref={titleRef}>{name}</h1>:<Marquee gradientWidth={8} style={{ overflow: "hidden" }}>
+						{ !isTruncated ? <h1 className={classnames("text-4xl font-unisans whitespace-nowrap", renderCard ? "text-center text-ellipsis overflow-hidden" : "")} ref={titleRef}>{name}</h1> : <Marquee gradient={false} style={{ overflow: "hidden" }}>
 							<h1 className="text-4xl font-unisans whitespace-nowrap mx-8">{name}</h1>
 						</Marquee>
 						}
 					</div>
 					<div className={classnames("flex flex-row relative", renderCard ? "flex flex-row relative" : "-mx-3")}>
 						<span className={classnames("grow p-2 flex flex-wrap", renderCard ? "absolute bottom-0" : "")} >
-							{tags.map((tag, key) => <p className="font-mono m-1 font-bold px-2 rounded-md shadow-md text-white backdrop-blur-2xl" style={{ backgroundColor: "#aaa5", ...tag}} key={key}>{tag.name}</p>)}
+							{tags.map((tag, key) => <p className="font-mono m-1 font-bold px-2 rounded-md shadow-md text-white backdrop-blur-2xl" style={{ backgroundColor: "#aaa5", ...tag }} key={key}>{tag.name}</p>)}
 						</span>
 					</div>
 				</div>

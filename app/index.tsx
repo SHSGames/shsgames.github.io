@@ -1,16 +1,16 @@
 import { ElementType, StrictMode } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { registerSW } from "virtual:pwa-register";
-import { base } from "./manifest.json";
-import ErrorBoundary from "./src/runtime/ErrorBoundry";
 import "styles/index.less";
+import { registerSW } from "virtual:pwa-register";
+import Waves from "../photoncss/src/ts/util/Waves";
+import { base } from "./manifest.json";
+import Container from "./src/components/Container";
 import Drawer from "./src/components/Drawer";
 import Footer from "./src/components/Footer";
-import Container from "./src/components/Container";
-import Waves from "../photoncss/src/ts/util/Waves";
+import ErrorBoundary from "./src/runtime/ErrorBoundry";
 
 if ("serviceWorker" in navigator && !/localhost/.test(window.location.toString())) registerSW({
 	immediate: true
@@ -21,7 +21,7 @@ export const queryClient = new QueryClient;
 export type Page = { default: ElementType, path: string, caseSensitive?: boolean };
 const pages = import.meta.globEager<Page>("./src/pages/*.tsx");
 
-ReactDOM.render(
+createRoot(document.getElementById("root")!).render(
 	<StrictMode>
 		<ErrorBoundary>
 			<QueryClientProvider client={ queryClient }>
@@ -46,8 +46,7 @@ ReactDOM.render(
 				{ !PRODUCTION && <ReactQueryDevtools/> }
 			</QueryClientProvider>
 		</ErrorBoundary>
-	</StrictMode>,
-	document.getElementById("root")
+	</StrictMode>
 );
 
 Waves.init();

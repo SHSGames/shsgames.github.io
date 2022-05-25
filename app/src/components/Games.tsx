@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import GameCard from "./GameCard";
-import { BsFillGridFill, BsListUl } from "react-icons/all";
+import { BsFillGridFill, BsListUl } from "react-icons/bs";
 import classnames from "classnames";
 
 export default function AllGames({ filter = () => true, games = LastGames }): JSX.Element {

@@ -15,8 +15,8 @@
   thumbnail: https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/run-3.jpg
   executable: https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/run-3.swf
   tags:
-    - name: Run Series
-      backgroundColor: "#f00a"
+    - name: Flash Game
+      backgroundColor: "#16a34a"
   type: FLASH
   width: 800
   height: 600
@@ -25,17 +25,9 @@
 - name: Bubble Bobble
   thumbnail: https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/bubble-bobble.jpg
   executable: https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/bubble-bobble.nes
-  tags: []
+  tags:
+    - name: NES Game
+      backgroundColor: "#0ea5e9"
   type: NES 
   width: 640
   height: 600
-
-
-- name: Run 3
-  # thumbnail: https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/thumbs/run-3.jpg
-  # executable: https://cdn.jsdelivr.net/gh/JoshMerlino/shsg-pfile/games/run-3.swf
-  # tags:
-  #   - name: Run Series
-  # type: FLASH
-  # width: 800
-  # height: 600
