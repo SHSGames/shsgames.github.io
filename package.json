@@ -27,7 +27,6 @@
         "preview": "vite preview",
         "dev": "concurrently \"npm:watch-*\" \"vite\"",
         "start": "node .",
-        "postbuild": "cd lib/src/buildtime; for i in *.js;do node \"$i\";done",
         "build": "tsc -p tsconfig.node.json && tsc && vite build && cp public_html/index.html public_html/404.html"
     },
     "dependencies": {
