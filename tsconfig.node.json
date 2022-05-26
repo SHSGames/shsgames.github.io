@@ -4,7 +4,7 @@
         "module": "commonjs",
         "target": "es2020",
         "types": ["node"],
-        "outDir": "lib",
+        "outDir": "lib/src",
         "jsx": "react",
         "removeComments": true,
         "sourceMap": true,
