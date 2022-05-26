@@ -1,12 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Public HTML
+name: Public HTML (next)
 
 # Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [master]
+    branches: [next]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,6 +24,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '17'
+
+      - name: Clone public_html
+        run: git clone https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git public_html
 
       - name: Build
         run: |

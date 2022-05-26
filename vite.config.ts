@@ -31,7 +31,7 @@ export default defineConfig({
 			} ],
 			links: [ {
 				rel: "apple-touch-icon",
-				href: base + "/apple_touch_icon.png"
+				href: base + "apple_touch_icon.png"
 			} ]
 		})
 	],
@@ -61,7 +61,7 @@ export default defineConfig({
 		}
 	},
 	build: {
-		outDir: "../public_html"
+		outDir: "../public_html/next"
 	},
 	resolve: {
 		alias: {
