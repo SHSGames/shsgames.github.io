@@ -1,8 +1,11 @@
 import classnames from "classnames";
 import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
+import { IoGameControllerOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
 import { base } from "../../manifest.json";
+import hash from "../util/hash";
+import slug from "../util/slug";
 
 export let setState: Dispatch<SetStateAction<boolean>>;
 
@@ -41,6 +44,10 @@ export default function Drawer(): JSX.Element {
 					<AiOutlineHome className="text-2xl mr-3"/>
 					Home
 				</DrawerItem>
+				<hr className="dark:border-zinc-600 my-2" />
+				{ LastGames.sort((a, b) => a.name > b.name ? 1:-1).map(({ name }, key) => <DrawerItem key={key} to={`/g/${hash(name)}/${slug(name)}`}>
+					<IoGameControllerOutline className="text-2xl mr-3"/>{name}
+				</DrawerItem>)}
 			</aside>
 		</>
 	);

@@ -9,6 +9,7 @@ import Waves from "../photoncss/src/ts/util/Waves";
 import { base } from "./manifest.json";
 import Container from "./src/components/Container";
 import Drawer from "./src/components/Drawer";
+import Error404 from "./src/components/Error404";
 import Footer from "./src/components/Footer";
 import ErrorBoundary from "./src/runtime/ErrorBoundry";
 
@@ -37,6 +38,7 @@ createRoot(document.getElementById("root")!).render(
 										caseSensitive={ page.caseSensitive || false }
 										element={ <page.default/> }/>
 									) }
+									<Route path="*" element={<Error404/>}/>
 								</Routes>
 							</Container>
 							<Footer/>

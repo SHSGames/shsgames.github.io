@@ -1,11 +1,10 @@
-import ThemeToggle from "./ThemeToggle";
+import Toolbar from "./Toolbar";
 
 export default function Error404(): JSX.Element {
 	return (
 		<>
-			<div className="p-2 ml-auto">
-				<ThemeToggle/>
-			</div>
+			<Toolbar/>
+			<div className="grid justify-center grow">lol</div>
 		</>
 	);
 }

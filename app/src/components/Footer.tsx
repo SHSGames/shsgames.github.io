@@ -9,11 +9,22 @@ export default function Footer(): JSX.Element {
 					<div className="flex flex-col">
 						<h1 className="text-3xl font-title pb-2 font-medium text-white border-b-[2px] border-b-primary mr-auto tracking-[10px] shrink-0">{ APP_MANIFEST.name }</h1>
 						<p className="text-white pt-2">{ APP_MANIFEST.description }</p>
+						<ul className="list-disc px-5 py-2">
+							<li><a className="text-primary underline" href="//github.com/SHSGames/shsgames.github.io/issues" target="_blank">Issue Tracker</a></li>
+							<li><a className="text-primary underline" href="//github.com/SHSGames/shsgames.github.io/blob/master/README.md" target="_blank">About</a></li>
+							<li><a className="text-primary underline" href="//github.com/SHSGames/shsgames.github.io/blob/master/LICENSE.md" target="_blank">License</a></li>
+							<li><a className="text-primary underline" href="//github.com/SHSGames/shsgames.github.io/blob/master/PRIVACY.md" target="_blank">Privacy Statement</a></li>
+						</ul>
 					</div>
 
 					<div className="ml-auto">
 						<div className="-mx-4">
 							<DiscordInvite guild="584437072618717209"/>
+							<div className="p-2">
+								<a href="//github.com/SHSGames/shsgames.github.io" target="_blank">
+									<img src={"https://github-readme-stats.vercel.app/api/pin/?username=SHSGames&repo=shsgames.github.io&theme=radical&bg_color=22272e&border_color=373e47&title_color=58a6ff&icon_color=adbac7&text_color=adbac7"} alt="" className="raised-3"/>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
