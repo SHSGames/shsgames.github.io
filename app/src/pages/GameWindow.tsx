@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import Adsense from "../components/Adsense";
 import Error404 from "../components/Error404";
 import Toolbar from "../components/Toolbar";
+import useGames from "../hooks/useGames";
 import hash from "../util/hash";
 import slug from "../util/slug";
 
@@ -9,8 +10,9 @@ export const path = "/g/:gameid/:gameslug";
 
 export default function GameWindow(): JSX.Element {
 
+	const [ games ] = useGames();
 	const { gameid, gameslug } = useParams();
-	const game = LastGames.filter(g => gameid === hash(g.name) || gameslug === slug(g.name))[0] || null;
+	const game = games.filter(g => gameid === hash(g.name) || gameslug === slug(g.name))[0] || null;
 	if (game === null) return <Error404/>;
 
 	return (

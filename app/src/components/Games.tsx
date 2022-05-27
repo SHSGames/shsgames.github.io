@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import GameCard from "./GameCard";
 import { BsFillGridFill, BsListUl } from "react-icons/bs";
 import classnames from "classnames";
+import useGames from "../hooks/useGames";
 
 export default function AllGames({ filter = () => true }): JSX.Element {
 
+	const [ games ] = useGames();
 	const [ isGridView, __setGridView ] = useState(localStorage.getItem("shellstate-gridview") !== "false");
 	const [ smallScreen, setSmallScreen ] = useState(window.innerWidth < 640);
 	useEffect(function() {
@@ -25,7 +27,7 @@ export default function AllGames({ filter = () => true }): JSX.Element {
 				<BsListUl onClick={ () => setGridView(false) } className={classnames("w-8 h-8 p-1 cursor-pointer rounded-md", !isGridView ? "bg-white dark:bg-zinc-700" : "hover:bg-white/50 dark:hover:bg-zinc-700/50")}/>
 			</div>
 			<div className={classnames("gap-2", smallScreen && "pt-2", isGridView || smallScreen ? "grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1" : "flex flex-col")}>
-				{LastGames
+				{games
 					.filter(filter)
 					.sort((a, b) => a.name > b.name ? 1:-1)
 					.map((game, key) =>

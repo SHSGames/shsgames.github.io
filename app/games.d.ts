@@ -6,7 +6,7 @@ declare namespace Games {
             tag: React.CSSProperties
         }
     }
-    interface GameManifest {
+    interface Game {
         name: string;
         type: string;
         thumbnail: string;
@@ -15,7 +15,7 @@ declare namespace Games {
         height: number;
         executable: string;
     }
-    type MANIFEST = GameManifest[];
+    type MANIFEST = Game[];
     export const MANIFEST: MANIFEST;
     interface Tag {
         name: string;

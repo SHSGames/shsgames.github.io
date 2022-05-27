@@ -57,6 +57,10 @@ export default defineConfig({
 			"/api": {
 				target: `http://localhost:${process.env.PORT || pjson.webserver.http.port}`,
 				changeOrigin: true
+			},
+			"/gun": {
+				target: `http://localhost:${process.env.PORT || pjson.webserver.http.port}`,
+				changeOrigin: true
 			}
 		}
 	},

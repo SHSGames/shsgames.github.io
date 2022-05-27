@@ -8,4 +8,9 @@ dotenv.config();
 // Start server
 import express from "express";
 import server from "./server";
-server(express());
+import GUN from "gun";
+
+(async function() {
+	const web = await server(express());
+	const gun = GUN({ web });
+}());
