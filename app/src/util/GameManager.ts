@@ -24,5 +24,7 @@ export default class GameManager {
 
 }
 
-// eslint-disable-next-line no-extra-parens
-(window as any).GameManager = GameManager;
+if (!PRODUCTION) {
+	// eslint-disable-next-line no-extra-parens
+	(window as any).GameManager = GameManager;
+}
