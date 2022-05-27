@@ -9,7 +9,7 @@ export default function Footer(): JSX.Element {
 					<div className="flex flex-col">
 						<h1 className="text-3xl font-title pb-2 font-medium text-white border-b-[2px] border-b-primary mr-auto tracking-[10px] shrink-0">{ APP_MANIFEST.name }</h1>
 						<p className="text-white pt-2">{ APP_MANIFEST.description }</p>
-						<ul className="list-disc px-5 py-2">
+						<ul className="list-disc px-5 py-2 text-white">
 							<li><a className="text-primary underline" href="//github.com/SHSGames/shsgames.github.io/issues" target="_blank">Issue Tracker</a></li>
 							<li><a className="text-primary underline" href="//github.com/SHSGames/shsgames.github.io/blob/master/README.md" target="_blank">About</a></li>
 							<li><a className="text-primary underline" href="//github.com/SHSGames/shsgames.github.io/blob/master/LICENSE.md" target="_blank">License</a></li>
