@@ -65,7 +65,13 @@ export default defineConfig({
 		}
 	},
 	build: {
-		outDir: "../public_html/next"
+		outDir: "../public_html/next",
+		rollupOptions: {
+			input: {
+				main: new URL("./app/index.html", import.meta.url).pathname,
+				player: new URL("./app/player.html", import.meta.url).pathname
+			}
+		}
 	},
 	resolve: {
 		alias: {
