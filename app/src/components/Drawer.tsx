@@ -7,6 +7,7 @@ import { base } from "../../manifest.json";
 import useGames from "../hooks/useGames";
 import hash from "../util/hash";
 import slug from "../util/slug";
+import GamesBadge from "./GamesBadge";
 
 export let setState: Dispatch<SetStateAction<boolean>>;
 
@@ -47,7 +48,7 @@ export default function Drawer(): JSX.Element {
 					Home
 				</DrawerItem>
 				<hr className="dark:border-zinc-600 my-2" />
-				<h1 className="mr-4 text-sm font-medium font-manrope flex items-center px-4 text-zinc-800 dark:text-gray-300 h-12">Games</h1>
+				<h1 className="mr-4 text-sm font-medium font-manrope flex items-center px-4 text-zinc-800 dark:text-gray-300 h-12">Games <GamesBadge/></h1>
 				{ games.sort((a, b) => a.name > b.name ? 1:-1).map(({ name }, key) => <DrawerItem key={key} to={`/g/${hash(name)}/${slug(name)}`}>
 					<IoGameControllerOutline className="text-2xl mr-3"/>{name}
 				</DrawerItem>)}
