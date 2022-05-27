@@ -1,6 +1,5 @@
 import { IGunInstance } from "gun";
 import hash from "./hash";
-import slug from "./slug";
 
 export default class GameManager {
 
@@ -14,7 +13,7 @@ export default class GameManager {
 		const data = JSON.stringify(game);
 		const id = hash(game.name);
 
-		GameManager.gun.get("games")
+		GameManager.gun.get("shsgames")
 			.get(id)
 			.put({
 				id,

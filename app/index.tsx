@@ -1,7 +1,5 @@
 import { ElementType, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "styles/index.less";
 import { registerSW } from "virtual:pwa-register";
@@ -17,36 +15,31 @@ if ("serviceWorker" in navigator && !/localhost/.test(window.location.toString()
 	immediate: true
 });
 
-export const queryClient = new QueryClient;
-
 export type Page = { default: ElementType, path: string, caseSensitive?: boolean };
 const pages = import.meta.globEager<Page>("./src/pages/*.tsx");
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
 		<ErrorBoundary>
-			<QueryClientProvider client={ queryClient }>
-				<div className="bg-gray-200 dark:bg-zinc-800 w-full dark:text-white">
-					<BrowserRouter>
-						<Drawer/>
-						<div className="xl:ml-[300px]">
-							<Container>
-								<Routes>
-									{ Object.values(pages).map((page, key) => <Route
-										key={ key }
-										path={ base + page.path.substring(1) }
-										caseSensitive={ page.caseSensitive || false }
-										element={ <page.default/> }/>
-									) }
-									<Route path="*" element={<Error404/>}/>
-								</Routes>
-							</Container>
-							<Footer/>
-						</div>
-					</BrowserRouter>
-				</div>
-				{ !PRODUCTION && <ReactQueryDevtools/> }
-			</QueryClientProvider>
+			<div className="bg-gray-200 dark:bg-zinc-800 w-full dark:text-white">
+				<BrowserRouter>
+					<Drawer/>
+					<div className="xl:ml-[300px]">
+						<Container>
+							<Routes>
+								{ Object.values(pages).map((page, key) => <Route
+									key={ key }
+									path={ base + page.path.substring(1) }
+									caseSensitive={ page.caseSensitive || false }
+									element={ <page.default/> }/>
+								) }
+								<Route path="*" element={<Error404/>}/>
+							</Routes>
+						</Container>
+						<Footer/>
+					</div>
+				</BrowserRouter>
+			</div>
 		</ErrorBoundary>
 	</StrictMode>
 );
