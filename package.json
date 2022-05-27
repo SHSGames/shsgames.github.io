@@ -27,7 +27,7 @@
         "preview": "vite preview",
         "dev": "concurrently \"npm:watch-*\" \"vite\"",
         "start": "node .",
-        "build": "tsc -p tsconfig.node.json && tsc && vite build && cp public_html/next/index.html public_html/next/404.html"
+        "build": "tsc -p tsconfig.node.json && vite build && cp public_html/next/index.html public_html/next/404.html"
     },
     "dependencies": {
         "async-require-context": "^1.8.13",
