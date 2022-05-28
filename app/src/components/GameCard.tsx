@@ -62,7 +62,8 @@ export default function GameCard({ name, thumbnail, renderCard = true, tags = []
 				/>
 				<div className={classnames("flex flex-col grow", renderCard ? "flex-col-reverse" : "pl-3")}>
 					<div className="self-baseline flex flex-col py-4 grow w-full overflow-hidden">
-						{ !isTruncated ? <h1 className={classnames("text-4xl font-unisans whitespace-nowrap", renderCard ? "text-center text-ellipsis overflow-hidden" : "")} ref={titleRef}>{name}</h1> : <Marquee gradient={false} style={{ overflow: "hidden" }}>
+						{ !isTruncated ? <h1 className={classnames("text-4xl font-unisans whitespace-nowrap", renderCard ? "text-center text-ellipsis overflow-hidden" : "")} ref={titleRef}>{name}</h1> : <Marquee gradient={false} style={{ overflow: "hidden" }}
+							speed={40}>
 							<h1 className="text-4xl font-unisans whitespace-nowrap mx-8">{name}</h1>
 						</Marquee>
 						}
