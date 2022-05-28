@@ -47,7 +47,9 @@ export default function GameWindow(): JSX.Element {
 		}, [ game ]);
 		*/
 	function resize() {
-
+		const red = iframe.current!.parentElement!.parentElement!;
+		const frame = iframe.current!;
+		setScale(red.clientWidth / frame.clientWidth);
 	}
 
 	useEffect(function() {
@@ -65,13 +67,14 @@ export default function GameWindow(): JSX.Element {
 			<div className="mx-auto max-w-full xl:max-w-[90%] w-full xl:px-12 lg:px-6 px-2 pb-2">
 				<div className="mx-auto w-max max-w-full">
 
-					<div className="flex py-4 lg:pt-8">
-						<h1 className="text-3xl font-title pb-2 font-medium dark:text-white border-b-[2px] border-b-primary mr-auto tracking-[10px] shrink-0">{ game.name }</h1>
+					<div className="flex py-2 pt-4 lg:pt-8 bg-green-500 mb-2">
+						<h1 className="max-w-full text-3xl font-title pb-2 font-medium truncate dark:text-white border-b-[2px] border-b-primary tracking-widest md:tracking-[6px] lg:tracking-[10px] shrink-0">{ game.name }</h1>
 					</div>
 					<div className="flex flex-wrap gap-2">
 						<div className="grow">
-							<div className="bg-red-500 origin-top-left overflow-hidden" ref={iframe} style={{ height: game.height * scale }}>
+							<div className="bg-red-500 origin-top-left overflow-hidden lg:max-w-[100%] max-w-[calc(100vw_-_32px)]" style={{ height: game.height * scale }}>
 								<iframe
+									ref={iframe}
 									className="bg-gray-300 dark:bg-zinc-700/20 h-full origin-top-left"
 									src={`${base}player.html?game=${encodeURIComponent(btoa(JSON.stringify(game)))}&hash=${hash(JSON.stringify(game), 36)}`}
 									frameBorder="0"
