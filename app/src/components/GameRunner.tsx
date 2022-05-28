@@ -6,10 +6,14 @@ export default function GameRunner(): JSX.Element {
 	const matches = ghash(atob(game!.toString()), 36) === hash;
 	const parsed: Games.Game = JSON.parse(atob(game!.toString()));
 
+	const ext = parsed.executable.split(".").pop();
+	console.log(ext);
+
 	const details = {
 		id: ghash(parsed.name).toString(),
 		hash: hash?.toString(),
-		signed: matches.toString()
+		signed: matches.toString(),
+		ext
 	};
 
 	return (
