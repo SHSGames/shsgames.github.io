@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { CSSProperties, useEffect } from "react";
 
-export default function Adsense(): JSX.Element {
+export default function Adsense({ style }: { style?: CSSProperties }): JSX.Element {
 
 	useEffect(function() {
 		try {
@@ -13,7 +13,7 @@ export default function Adsense(): JSX.Element {
 	}, []);
 
 	return (
-		<div className="flex bg-yellow-500 min-w-[360px] min-h-[360px] grow">
+		<div className="flex bg-yellow-500 min-w-[360px] min-h-[360px] grow" style={style}>
 			<ins className="adsbygoogle"
 				style={{ display: "block" }}
 				data-ad-format="autorelaxed"

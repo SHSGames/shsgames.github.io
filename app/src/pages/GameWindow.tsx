@@ -12,11 +12,50 @@ export const path = "/g/:gameid/:gameslug";
 
 export default function GameWindow(): JSX.Element {
 
-	const frame = useRef<HTMLIFrameElement>(null);
+	const iframe = useRef<HTMLIFrameElement>(null);
 	const [ games ] = useGames();
 	const { gameid, gameslug } = useParams();
 	const [ scale, setScale ] = useState(1);
 	const game = games.filter(g => gameid === hash(g.name) || gameslug === slug(g.name))[0] || null;
+
+	/**
+	 UseEffect(function() {
+		 if (!game) return;
+		 let lastWidth = -1;
+		 let isMounted = true;
+		 (function frame(){
+			 if (isMounted) requestAnimationFrame(frame);
+			 if (lastWidth !== window.innerWidth) {
+				 lastWidth = window.innerWidth;
+				 const isWrapping = iframe.current!.clientHeight < iframe.current!.parentElement!.parentElement!.parentElement!.clientHeight && window.innerWidth ;
+				 const shouldScaleUp = iframe.current!.clientWidth < iframe.current!.parentElement!.parentElement!.parentElement!.clientWidth;
+				 const shouldScaleDown = iframe.current!.clientWidth + 32 >= iframe.current!.parentElement!.parentElement!.parentElement!.parentElement!.parentElement!.parentElement!.clientWidth || iframe.current!.parentElement!.parentElement!.parentElement!.clientWidth < iframe.current!.clientWidth;
+				 console.log({ isWrapping, shouldScaleDown, shouldScaleUp });
+				 if (isWrapping) {
+					 if (shouldScaleDown) {
+						 const newScale = (window.innerWidth - 32) / game.width;
+						 console.log(newScale);
+						 setScale(newScale);
+						}
+
+					}
+				}
+			}());
+			return function() {
+				isMounted = false;
+			};
+		}, [ game ]);
+		*/
+	function resize() {
+
+	}
+
+	useEffect(function() {
+		if (!iframe.current) return;
+		resize();
+		window.addEventListener("resize", resize);
+		return () => window.removeEventListener("resize", resize);
+	}, [ game ]);
 
 	if (game === null) return <Error404/>;
 
@@ -24,22 +63,21 @@ export default function GameWindow(): JSX.Element {
 		<>
 			<Toolbar>{game.name}</Toolbar>
 			<div className="mx-auto max-w-full xl:max-w-[90%] w-full xl:px-12 lg:px-6 px-2 pb-2">
-				<div className="mx-auto w-max xl:!max-w-full" style={{ maxWidth: game.width }}>
+				<div className="mx-auto w-max max-w-full">
 
 					<div className="flex py-4 lg:pt-8">
 						<h1 className="text-3xl font-title pb-2 font-medium dark:text-white border-b-[2px] border-b-primary mr-auto tracking-[10px] shrink-0">{ game.name }</h1>
 					</div>
 					<div className="flex flex-wrap gap-2">
 						<div className="grow">
-							<div className="mx-auto bg-red-500 origin-top-left" style={{ width: game.width, height: game.height, transform: `scale(${scale})` }}>
+							<div className="bg-red-500 origin-top-left overflow-hidden" ref={iframe} style={{ height: game.height * scale }}>
 								<iframe
-									ref={frame}
-									className="bg-gray-300 dark:bg-zinc-700/20 h-full"
+									className="bg-gray-300 dark:bg-zinc-700/20 h-full origin-top-left"
 									src={`${base}player.html?game=${encodeURIComponent(btoa(JSON.stringify(game)))}&hash=${hash(JSON.stringify(game), 36)}`}
 									frameBorder="0"
 									allow="accelerometer; autoplay; encrypted-media; gyroscope"
 									scrolling="no"
-									style={{ width: game.width, height: game.height }}></iframe>
+									style={{ width: game.width, height: game.height, transform: `scale(${scale})` }}></iframe>
 							</div>
 						</div>
 						<Adsense/>
