@@ -13,7 +13,7 @@ export default function Adsense({ style }: { style?: CSSProperties }): JSX.Eleme
 	}, []);
 
 	return (
-		<div className="flex bg-yellow-500 md:min-w-[360px] max-w-[calc(100vw_-_32px)] min-h-[360px] grow" style={style}>
+		<div className="flex md:min-w-[360px] max-w-[calc(100vw_-_32px)] min-h-[360px] grow" style={style}>
 			<ins className="adsbygoogle"
 				style={{ display: "block" }}
 				data-ad-format="autorelaxed"
