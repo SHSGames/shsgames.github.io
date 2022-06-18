@@ -17,7 +17,13 @@ export default defineConfig({
 			srcDir: "app",
 			registerType: "autoUpdate",
 			scope: base,
-			manifest: <unknown>manifest
+			manifest: <unknown>manifest,
+			workbox: {
+				globIgnores: [
+					"**\/IodineGBA\/**\/*",
+					"**\/node_modules\/**\/*"
+				]
+			}
 		}),
 		htmlPlugin({
 			metas: [ {
