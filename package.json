@@ -66,6 +66,7 @@
         "eslint-plugin-react-hooks": "^4.4.0",
         "gun": "^0.2020.1237",
         "jquery": "^3.6.0",
+        "jsnes": "^1.2.1",
         "lessc": "^1.0.2",
         "nodemon": "^2.0.15",
         "react": "^18.0.0",

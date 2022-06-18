@@ -1,7 +1,9 @@
 import qs from "qs";
 import ghash from "../util/hash";
+import jsnes from "jsnes";
 
 export default function GameRunner(): JSX.Element {
+
 	const { game, hash } = qs.parse(location.search.substring(1));
 	const matches = ghash(atob(game!.toString()), 36) === hash;
 	const parsed: Games.Game = JSON.parse(atob(game!.toString()));
@@ -18,9 +20,8 @@ export default function GameRunner(): JSX.Element {
 
 	return (
 		<pre>
-			<code>{JSON.stringify(parsed, null, 4)}</code>
-			<br />
-			<code>{JSON.stringify(details, null, 4)}</code>
+			<code>{JSON.stringify({ ...parsed, ...details }, null, 4)}</code>
 		</pre>
 	);
+
 }
