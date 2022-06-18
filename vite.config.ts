@@ -20,7 +20,7 @@ export default defineConfig({
 			manifest: <unknown>manifest,
 			workbox: {
 				globIgnores: [
-					"**\/IodineGBA\/**\/*",
+					"**\/IodineGBA\/index.html",
 					"**\/node_modules\/**\/*"
 				]
 			}
