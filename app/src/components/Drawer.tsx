@@ -28,7 +28,6 @@ export default function Drawer(): JSX.Element {
 	useEffect(function() {
 		function keydown(event: KeyboardEvent) {
 			if (event.key === "\\") {
-				console.log({ open });
 				setOpen(!open);
 				event.preventDefault();
 			}
