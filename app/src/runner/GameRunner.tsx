@@ -7,17 +7,13 @@ export default function GameRunner(): JSX.Element {
 	const { game, hash } = qs.parse(location.search.substring(1));
 	const matches = ghash(atob(game!.toString()), 36) === hash;
 	const parsed: Games.Game = JSON.parse(atob(game!.toString()));
-
 	const ext = parsed.executable.split(".").pop();
-
-	const details = {
+	const fullgame = { ...parsed,
 		id: ghash(parsed.name).toString(),
 		hash: hash?.toString(),
 		signed: matches.toString(),
 		ext
 	};
-
-	const fullgame = { ...parsed, ...details };
 
 	useEffect(function() {
 
