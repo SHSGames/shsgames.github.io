@@ -1,6 +1,6 @@
 import qs from "qs";
+import { useEffect } from "react";
 import ghash from "../util/hash";
-import jsnes from "jsnes";
 
 export default function GameRunner(): JSX.Element {
 
@@ -9,7 +9,6 @@ export default function GameRunner(): JSX.Element {
 	const parsed: Games.Game = JSON.parse(atob(game!.toString()));
 
 	const ext = parsed.executable.split(".").pop();
-	console.log(ext);
 
 	const details = {
 		id: ghash(parsed.name).toString(),
@@ -18,9 +17,17 @@ export default function GameRunner(): JSX.Element {
 		ext
 	};
 
+	const fullgame = { ...parsed, ...details };
+
+	useEffect(function() {
+
+		// Lol
+
+	}, [ ghash(JSON.stringify(fullgame)) ]);
+
 	return (
 		<pre>
-			<code>{JSON.stringify({ ...parsed, ...details }, null, 4)}</code>
+			<code>{JSON.stringify(fullgame, null, 4)}</code>
 		</pre>
 	);
 
