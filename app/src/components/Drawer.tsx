@@ -2,12 +2,14 @@ import classnames from "classnames";
 import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
 import { IoGameControllerOutline } from "react-icons/io5";
+import { AiOutlineCloudUpload } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 import { base } from "../../manifest.json";
 import useGames from "../hooks/useGames";
 import hash from "../util/hash";
 import slug from "../util/slug";
 import GamesBadge from "./GamesBadge";
+import { setShown } from "./UploadGame";
 
 export let setState: Dispatch<SetStateAction<boolean>>;
 
@@ -17,11 +19,14 @@ export default function Drawer(): JSX.Element {
 	const [ open, setOpen ] = useState(false);
 	setState = setOpen;
 
-	type Props = { children?: ReactNode, to: string }
-	function DrawerItem({ children, to }: Props) {
+	type Props = { children?: ReactNode, to?: string, onClick?: () => any };
+	function DrawerItem({ children, to, onClick = () => undefined }: Props) {
 		const route = useLocation();
 		const classes = classnames("h-12 waves-effect rounded-r-full mr-4 text-sm font-bold font-manrope flex items-center px-4 text-zinc-800 dark:text-gray-300", route.pathname === to ? "bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20" : "hover:bg-black/10 dark:hover:bg-white/20");
-		const LinkItem = ({ children }: { children?: ReactNode }) => to.toString().includes("://") ? <a href={ to } className={ classes } onClick={ () => setOpen(false) }>{ children }</a> : <Link to={ to } className={ classes } onClick={ () => setOpen(false) }>{ children }</Link>;
+		const LinkItem = ({ children }: { children?: ReactNode }) => to === undefined || to.toString().includes("://") ? <a href={ to } className={ classes } onClick={ () => {
+			setOpen(false);
+			onClick();
+		} }>{ children }</a> : <Link to={ to } className={ classes } onClick={ () => setOpen(false) }>{ children }</Link>;
 		return <LinkItem>{ children }</LinkItem>;
 	}
 
@@ -45,6 +50,11 @@ export default function Drawer(): JSX.Element {
 				<DrawerItem to={base}>
 					<AiOutlineHome className="text-2xl mr-3"/>
 					Home
+				</DrawerItem>
+				<hr className="dark:border-zinc-600 my-2" />
+				<DrawerItem onClick={ () => setShown(true) }>
+					<AiOutlineCloudUpload className="text-2xl mr-3"/>
+					Upload Game
 				</DrawerItem>
 				<hr className="dark:border-zinc-600 my-2" />
 				<h1 className="mr-4 text-sm font-medium font-manrope flex items-center px-4 text-zinc-800 dark:text-gray-300 h-12">Games <GamesBadge/></h1>

@@ -9,6 +9,7 @@ import Container from "./src/components/Container";
 import Drawer from "./src/components/Drawer";
 import Error404 from "./src/components/Error404";
 import Footer from "./src/components/Footer";
+import UploadGame from "./src/components/UploadGame";
 import ErrorBoundary from "./src/runtime/ErrorBoundry";
 
 if ("serviceWorker" in navigator && !/localhost/.test(window.location.toString())) registerSW({
@@ -26,6 +27,7 @@ createRoot(document.getElementById("root")!).render(
 					<Drawer/>
 					<div className="xl:ml-[300px]">
 						<Container>
+							<UploadGame/>
 							<Routes>
 								{ Object.values(pages).map((page, key) => <Route
 									key={ key }
