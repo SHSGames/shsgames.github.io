@@ -1,4 +1,5 @@
 declare namespace Games {
+    export type SupportedRunner = "GAMEBOY";
     export namespace GameType {
         interface FLASH {
             name: "Flash Emulator",
@@ -27,7 +28,7 @@ declare namespace Games {
         signed: string;
         ext: string | undefined;
         name: string;
-        type: string;
+        type: SupportedRunner;
         thumbnail: string;
         tags: Tag[];
         width: number;

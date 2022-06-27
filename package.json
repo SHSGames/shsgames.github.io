@@ -31,7 +31,7 @@
     },
     "dependencies": {
         "async-require-context": "^1.8.13",
-        "chalk": "5.x.x",
+        "chalk": "^4.1.2",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
@@ -64,6 +64,7 @@
         "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-react": "^7.30.1",
         "eslint-plugin-react-hooks": "^4.4.0",
+        "gameboy-emulator": "^1.1.2",
         "gun": "^0.2020.1237",
         "jquery": "^3.6.0",
         "jsnes": "^1.2.1",
