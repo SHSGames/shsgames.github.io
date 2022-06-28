@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { setState } from "./Drawer";
 import { base } from "../../manifest.json";
 import ThemeToggle from "./ThemeToggle";
+import User from "./auth/User";
 
 export type ToolbarProps = { children?: ReactNode | string, fragment?: boolean };
 
@@ -26,6 +27,7 @@ export default function Toolbar({ children, fragment = false }: ToolbarProps): J
 				</h1>
 				<div className="p-2 ml-auto flex">
 					<ThemeToggle/>
+					<User/>
 				</div>
 			</div>
 		</Wrapper>

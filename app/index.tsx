@@ -5,6 +5,7 @@ import "styles/index.less";
 import { registerSW } from "virtual:pwa-register";
 import Waves from "../photoncss/src/ts/util/Waves";
 import { base } from "./manifest.json";
+import AuthProvider from "./src/components/auth/AuthProvider";
 import Container from "./src/components/Container";
 import Drawer from "./src/components/Drawer";
 import Error404 from "./src/components/Error404";
@@ -24,6 +25,7 @@ createRoot(document.getElementById("root")!).render(
 	<StrictMode>
 		<ErrorBoundary>
 			<GunProvider>
+				<AuthProvider/>
 				<div className="bg-gray-200 dark:bg-zinc-800 w-full dark:text-white">
 					<BrowserRouter>
 						<Drawer/>
