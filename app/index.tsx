@@ -11,6 +11,7 @@ import Error404 from "./src/components/Error404";
 import Footer from "./src/components/Footer";
 import UploadGame from "./src/components/UploadGame";
 import ErrorBoundary from "./src/runtime/ErrorBoundry";
+import GunProvider from "./src/runtime/GunContext";
 
 if ("serviceWorker" in navigator && !/localhost/.test(window.location.toString())) registerSW({
 	immediate: true
@@ -22,26 +23,28 @@ const pages = import.meta.globEager<Page>("./src/pages/*.tsx");
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
 		<ErrorBoundary>
-			<div className="bg-gray-200 dark:bg-zinc-800 w-full dark:text-white">
-				<BrowserRouter>
-					<Drawer/>
-					<div className="xl:ml-[300px]">
-						<Container>
-							<UploadGame/>
-							<Routes>
-								{ Object.values(pages).map((page, key) => <Route
-									key={ key }
-									path={ base + page.path.substring(1) }
-									caseSensitive={ page.caseSensitive || false }
-									element={ <page.default/> }/>
-								) }
-								<Route path="*" element={<Error404/>}/>
-							</Routes>
-						</Container>
-						<Footer/>
-					</div>
-				</BrowserRouter>
-			</div>
+			<GunProvider>
+				<div className="bg-gray-200 dark:bg-zinc-800 w-full dark:text-white">
+					<BrowserRouter>
+						<Drawer/>
+						<div className="xl:ml-[300px]">
+							<Container>
+								<UploadGame/>
+								<Routes>
+									{ Object.values(pages).map((page, key) => <Route
+										key={ key }
+										path={ base + page.path.substring(1) }
+										caseSensitive={ page.caseSensitive || false }
+										element={ <page.default/> }/>
+									) }
+									<Route path="*" element={<Error404/>}/>
+								</Routes>
+							</Container>
+							<Footer/>
+						</div>
+					</BrowserRouter>
+				</div>
+			</GunProvider>
 		</ErrorBoundary>
 	</StrictMode>
 );

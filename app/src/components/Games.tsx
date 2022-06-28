@@ -6,7 +6,7 @@ import useGames from "../hooks/useGames";
 
 export default function AllGames({ filter = () => true }): JSX.Element {
 
-	const [ games ] = useGames();
+	const games = useGames();
 	const [ isGridView, __setGridView ] = useState(localStorage.getItem("shellstate-gridview") !== "false");
 	const [ smallScreen, setSmallScreen ] = useState(window.innerWidth < 640);
 	useEffect(function() {

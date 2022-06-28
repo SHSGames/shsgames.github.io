@@ -27,3 +27,5 @@ declare type ApplicationInfo = {
 }
 
 declare const APP_MANIFEST: ApplicationInfo;
+
+declare const ENV: Record<string, string>;

@@ -15,7 +15,7 @@ export let setState: Dispatch<SetStateAction<boolean>>;
 
 export default function Drawer(): JSX.Element {
 
-	const [ games ] = useGames();
+	const games = useGames();
 	const [ open, setOpen ] = useState(false);
 	setState = setOpen;
 

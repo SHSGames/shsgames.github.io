@@ -13,7 +13,7 @@ export const path = "/g/:gameid/:gameslug";
 export default function GameWindow(): JSX.Element {
 
 	const iframe = useRef<HTMLIFrameElement>(null);
-	const [ games ] = useGames();
+	const games = useGames();
 	const { gameid, gameslug } = useParams();
 	const [ scale, setScale ] = useState(1);
 	const game = games.filter(g => gameid === hash(g.name) || gameslug === slug(g.name))[0] || null;

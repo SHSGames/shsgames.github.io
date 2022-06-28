@@ -22,17 +22,17 @@ export default defineConfig({
 			manifest: <unknown>manifest
 		}),
 		htmlPlugin({
-			metas: [{
+			metas: [ {
 				name: "description",
 				content: manifest.description
 			}, {
 				name: "theme-color",
 				content: manifest.theme_color
-			}],
-			links: [{
+			} ],
+			links: [ {
 				rel: "apple-touch-icon",
 				href: base + "apple_touch_icon.png"
-			}]
+			} ]
 		})
 	],
 	base,
@@ -43,7 +43,8 @@ export default defineConfig({
 			version: pjson.version,
 			description: manifest.description,
 			author: pjson.author
-		}
+		},
+		"ENV": process.env
 	},
 	root: "app",
 	server: {
