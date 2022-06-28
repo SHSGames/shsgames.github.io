@@ -43,11 +43,11 @@ export default function ThemeToggle(): JSX.Element {
 	}
 
 	return (
-		<div onClick={ nextState } className="relative m-2 rounded-full h-8 py-1 px-4 text-2xl inline-flex items-center font-semibold cursor-pointer bg-zinc-800/60 hover:bg-zinc-700/60 text-white ml-auto z-[3] border-[1px] border-neutral-700/60 backdrop-blur-lg">
+		<div onClick={ nextState } className="relative md:w-auto w-12 h-12 my-0 m-2 md:my-2 rounded-full md:h-8 py-1 px-4 text-2xl inline-flex items-center font-semibold cursor-pointer bg-zinc-800/60 hover:bg-zinc-700/60 text-white ml-auto z-[3] border-[1px] border-neutral-700/60 backdrop-blur-lg">
 			{ state === "AUTO" && <MdOutlineBrightnessAuto className="-mx-3 md:ml-0 md:mr-2"/> }
 			{ state === "DARK" && <MdOutlineDarkMode className="-mx-3 md:ml-0 md:mr-2"/> }
 			{ state === "LIGHT" && <BsBrightnessHigh className="-mx-3 md:ml-0 md:mr-2"/> }
-			<p className="text-lg select-none hidden md:block">Change Theme</p>
+			<p className="text-lg select-none hidden md:block sm:mx-auto">Change Theme</p>
 		</div>
 	);
 }
