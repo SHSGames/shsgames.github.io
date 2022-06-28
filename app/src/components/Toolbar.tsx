@@ -24,7 +24,7 @@ export default function Toolbar({ children, fragment = false }: ToolbarProps): J
 					<Link to={base}>{ APP_MANIFEST.name }</Link>
 					{ children && <><span className="opacity-50"> / </span> { children }</> }
 				</h1>
-				<div className="p-2 ml-auto">
+				<div className="p-2 ml-auto flex">
 					<ThemeToggle/>
 				</div>
 			</div>

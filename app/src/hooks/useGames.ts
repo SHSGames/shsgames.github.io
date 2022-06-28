@@ -1,12 +1,9 @@
-import Gun from "gun";
 import { useEffect, useState } from "react";
 import GameManager from "../util/GameManager";
 import hash from "../util/hash";
 
-const gun = Gun([
-	"https://gun.joshmerlino.me/gun",
-	"https://gun-manhattan.herokuapp.com/gun"
-]);
+const gun = Gun([ "https://gun.joshmerlino.me/gun" ]);
+
 export const gamemanager = new GameManager(gun);
 
 export default function useGames(): [ Games.MANIFEST, GameManager ]{
