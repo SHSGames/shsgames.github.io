@@ -24,7 +24,7 @@ export default function AllGames({ filter = () => true }): JSX.Element {
 	return (
 		<div className="flex flex-col">
 			<div className="flex flex-row">
-				<div className="my-2.5">
+				<div className="my-2.5 -ml-4">
 					<GamesBadge/>
 				</div>
 				<div className={classnames("ml-auto flex bg-white/50 dark:bg-zinc-700/50 my-2 rounded-md", smallScreen && "hidden")}>
