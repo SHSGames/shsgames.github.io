@@ -31,17 +31,15 @@ export default function Footer(): JSX.Element {
 				<div className="w-full text-gray-300 font-medium bg-black/10 min-h-[48px] flex justify-center items-center font-manrope">
 					<div className="mx-auto flex max-w-full md:max-w-[80%] w-[1280px] px-12 z-[4] flex-row text-sm relative leading-4">
 						<div className="flex flex-col">
-							<span>Copyright © 2019<span className="opacity-20"> - </span>2022
-								<span className="opacity-20"> • </span>
-								All Rights Reserved</span>
-							<span className="text-gray-300">
+							<div>Copyright © 2019-2022<span className="opacity-20"> • </span>All Rights Reserved</div>
+							<div className="text-gray-300">
 								<a className="text-primary underline" href="//joshmerlino.github.io">Josh Merlino <span className="text-xs font-condensed">LLC</span></a>
 								<span className="opacity-20"> • </span>
 								<a className="text-primary underline" href="//th3skeleton.github.io/pshel/">Prkr</a>
 								<span className="opacity-20"> • </span>
 								<span>And our amazing </span>
 								<a className="text-primary underline" href="//github.com/SHSGames/shsgames.github.io/graphs/contributors">Contributors</a>
-							</span>
+							</div>
 						</div>
 						<div className="ml-auto py-2">
 							Version: <code className="border-[1px] border-neutral-500/20 rounded-md px-1 ml-2">v{APP_MANIFEST.version}</code>
