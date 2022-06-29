@@ -58,19 +58,19 @@ export default function GameCard({ name, thumbnail, renderCard = true, tags = []
 			}>
 				<img src={thumbnail || "/gamecard.svg"} alt="" className={
 					classnames("rounded-xl select-none aspect-video",
-						renderCard ? "w-full" : "h-[120px]")}
+						renderCard ? "w-full" : "h-[80px]")}
 				/>
 				<div className={classnames("flex flex-col grow", renderCard ? "flex-col-reverse" : "pl-3")}>
-					<div className="self-baseline flex flex-col py-4 grow w-full overflow-hidden">
+					<div className={classnames("self-baseline flex flex-col grow w-full overflow-hidden", renderCard && "py-4")}>
 						{ !isTruncated ? <h1 className={classnames("text-4xl font-unisans whitespace-nowrap", renderCard ? "text-center text-ellipsis overflow-hidden" : "")} ref={titleRef}>{name}</h1> : <Marquee gradient={false} style={{ overflow: "hidden" }}
 							speed={40}>
 							<h1 className="text-4xl font-unisans whitespace-nowrap mx-8">{name}</h1>
 						</Marquee>
 						}
 					</div>
-					<div className={classnames("flex flex-row relative", renderCard ? "flex flex-row relative" : "-mx-3")}>
-						<span className={classnames("grow p-2 flex flex-wrap", renderCard ? "absolute bottom-0" : "")} >
-							{tags.map((tag, key) => <p className="font-mono m-1 font-bold px-2 rounded-md shadow-md text-white backdrop-blur-2xl" style={{ backgroundColor: "#aaa5", ...tag }} key={key}>{tag.name}</p>)}
+					<div className={classnames("flex flex-row relative", renderCard ? "flex flex-row relative" : "-mx-3 pt-1")}>
+						<span className={classnames("grow p-2 flex flex-wrap", renderCard ? "absolute bottom-0" : "pb-0")} >
+							{tags.map((tag, key) => <p className={classnames("font-mono m-1 font-bold px-2 rounded-md shadow-md text-white backdrop-blur-2xl", renderCard ? "" : "mb-0")} style={{ backgroundColor: "#aaa5", ...tag }} key={key}>{tag.name}</p>)}
 						</span>
 					</div>
 				</div>
