@@ -58,7 +58,7 @@ export default function GameCard({ name, thumbnail, renderCard = true, tags = []
 			}>
 				<img src={thumbnail || "/gamecard.svg"} alt="" className={
 					classnames("rounded-xl select-none aspect-video",
-						renderCard ? "w-full" : "h-32")}
+						renderCard ? "w-full" : "h-[120px]")}
 				/>
 				<div className={classnames("flex flex-col grow", renderCard ? "flex-col-reverse" : "pl-3")}>
 					<div className="self-baseline flex flex-col py-4 grow w-full overflow-hidden">
