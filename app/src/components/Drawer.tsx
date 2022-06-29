@@ -9,7 +9,7 @@ import useGames from "../hooks/useGames";
 import hash from "../util/hash";
 import slug from "../util/slug";
 import GamesBadge from "./GamesBadge";
-import { setShown } from "./UploadGame";
+import { setShown } from "./AddGame";
 
 export let setState: Dispatch<SetStateAction<boolean>>;
 
@@ -54,7 +54,7 @@ export default function Drawer(): JSX.Element {
 				<hr className="dark:border-zinc-600 my-2" />
 				<DrawerItem onClick={ () => setShown(true) }>
 					<AiOutlineCloudUpload className="text-2xl mr-3"/>
-					Upload Game
+					Add Game
 				</DrawerItem>
 				<hr className="dark:border-zinc-600 my-2" />
 				<h1 className="mr-4 text-sm font-medium font-manrope flex items-center px-4 text-zinc-800 dark:text-gray-300 h-12">Games <GamesBadge/></h1>

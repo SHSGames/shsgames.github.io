@@ -15,7 +15,6 @@ export default function LoginConsent(): JSX.Element {
 				<h1 className="text-4xl font-unisans whitespace-nowrap text-center flex flex-col relative">Log In
 					<IoCloseCircleOutline className="bg-black dark:bg-white !bg-opacity-5 hover:!bg-opacity-10 active:!bg-opacity-20 rounded-full p-1 text-black dark:text-white text-opacity-50 self-end absolute top-0 right-0 m-[2px]" onClick={ () => setOpen(false) }/>
 				</h1>
-
 			</div>
 		</div>
 	);
