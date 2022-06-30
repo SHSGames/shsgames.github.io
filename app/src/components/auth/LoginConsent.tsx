@@ -57,6 +57,7 @@ export default function LoginConsent(): JSX.Element {
 				<h1 className="text-4xl font-unisans whitespace-nowrap text-center flex flex-col relative mb-1">{mode ? "Sign up" : "Sign in"}
 					<IoCloseCircleOutline className="bg-black dark:bg-white !bg-opacity-5 hover:!bg-opacity-10 active:!bg-opacity-20 rounded-full p-1 text-black dark:text-white text-opacity-50 self-end absolute top-0 right-0 m-[2px]" onClick={ () => setOpen(false) }/>
 				</h1>
+				<hr className="dark:border-zinc-600 -mx-4 my-3"/>
 				{ mode === true && <input className="bg-transparent autofill:!bg-amber-500/10 my-2 ring-1 ring-zinc-500/50 outline-none focus:ring-2 focus:ring-primary py-1.5 px-3 rounded-xl" placeholder="Username" type="text" id="username" ref={userRef}/> }
 				<input className="bg-transparent autofill:!bg-amber-500/10 my-2 ring-1 ring-zinc-500/50 outline-none focus:ring-2 focus:ring-primary py-1.5 px-3 rounded-xl" placeholder="Email address" type="email" id="email_address" ref={emailRef}/>
 				<input className="bg-transparent autofill:!bg-amber-500/10 my-2 ring-1 ring-zinc-500/50 outline-none focus:ring-2 focus:ring-primary py-1.5 px-3 rounded-xl" placeholder="Password" type="password" id="password" ref={passwRef}/>

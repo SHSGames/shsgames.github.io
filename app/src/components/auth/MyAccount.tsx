@@ -17,6 +17,7 @@ export default function MyAccount({ user }: Props): JSX.Element {
 				<h1 className="text-4xl font-unisans whitespace-nowrap text-center flex flex-col relative">My Account
 					<IoCloseCircleOutline className="bg-black dark:bg-white !bg-opacity-5 hover:!bg-opacity-10 active:!bg-opacity-20 rounded-full p-1 text-black dark:text-white text-opacity-50 self-end absolute top-0 right-0 m-[2px]" onClick={ () => setShown(false) }/>
 				</h1>
+				<hr className="dark:border-zinc-600 -mx-4 my-4"/>
 				<pre className="overflow-hidden">
 					<code>
 						{JSON.stringify(user, null, 2)}
