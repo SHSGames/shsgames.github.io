@@ -21,6 +21,7 @@ export default function User(): JSX.Element | null {
 			}}>
 				<div className="bg-cyan-500 flex w-8 h-8 rounded-full m-2 items-center justify-center">
 					<div className="text-white text-xl select-none truncate">{user.username
+						.toUpperCase()
 						.split(" ")
 						.map(a => a[0])
 						.join("")
