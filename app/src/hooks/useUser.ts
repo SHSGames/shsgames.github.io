@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import { GunContext } from "../runtime/GunContext";
 
 export type User = {
@@ -8,9 +8,12 @@ export type User = {
 	created_at: number;
 }
 
+export let forceSet: Dispatch<SetStateAction<false | User | null>>;
+
 export default function useUser(): User | null | false {
 
 	const [ state, setState ] = useState<User | null | false>(null);
+	forceSet = setState;
 
 	const db = useContext(GunContext);
 	const user = db.user();
@@ -28,6 +31,7 @@ export default function useUser(): User | null | false {
 			db.user().get("user")
 				.on((a: User) => setState(a));
 		});
+
 	}, [ ]);
 
 	return state;
