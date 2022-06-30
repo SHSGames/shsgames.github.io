@@ -9,7 +9,7 @@ export default function User(): JSX.Element | null {
 
 	if (user === false) return (
 		<div className="flex">
-	 		<div className="btn bg-primary hover:bg-primarymid active:bg-primarydark" onClick={() => setOpenLoginConsent(true)}>login</div>
+	 		<div className="btn bg-primary hover:bg-primarymid active:bg-primarydark" onClick={() => setOpenLoginConsent(true)}>sign in</div>
 	 	</div>
 	);
 
@@ -20,10 +20,11 @@ export default function User(): JSX.Element | null {
 				e.stopPropagation();
 			}}>
 				<div className="bg-cyan-500 flex w-8 h-8 rounded-full m-2 items-center justify-center">
-					<div className="text-white text-xl select-none overflow-hidden">{user.username
+					<div className="text-white text-xl select-none truncate">{user.username
 						.split(" ")
 						.map(a => a[0])
-						.join("")}</div>
+						.join("")
+						.substring(0, 2)}</div>
 				</div>
 			</div>
 			<UserMenu user={user}/>

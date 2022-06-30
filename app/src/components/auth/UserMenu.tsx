@@ -28,7 +28,11 @@ export default function UserMenu({ user }: Props): JSX.Element | null {
 	return (
 		<div className={classNames("bg-white dark:bg-zinc-700 rounded-2xl shadow-md flex flex-col absolute overflow-hidden top-0 right-0 z-[15] m-3 origin-top-right max-w-[320px] w-full transition-[opacity,transform]", !open && "opacity-0 scale-90 pointer-events-none")} ref={wrapperRef}>
 			<div className="h-24 flex">
-				<img src="/icon.png" alt="" className="w-16 h-16 m-4" />
+				<div className="w-16 h-16 bg-cyan-500 rounded-full shrink-0 m-4 text-4xl items-center justify-center flex truncate">{user.username
+					.split(" ")
+					.map(a => a[0])
+					.join("")
+					.substring(0, 2)}</div>
 				<ul className="flex flex-col list-none justify-center text-sm mr-4 truncate text-gray-800 dark:text-gray-300">
 					<li className="text-base">{ user.username }</li>
 					<li>{ user.email }</li>

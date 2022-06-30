@@ -54,7 +54,7 @@ export default function LoginConsent(): JSX.Element {
 	return (
 		<div className={classnames("fixed top-0 left-0 right-0 bottom-0 bg-black/20 z-[11] grid justify-center items-center transition", isOpen ? "opacity-100" : "opacity-0 pointer-events-none")}>
 			<div className={classnames("bg-white dark:bg-zinc-700 dark:text-white overflow-hidden rounded-2xl shadow-xl flex p-4 flex-col transition-transform", isOpen ? "scale-100" : "scale-90", "max-w-[calc(100vw_-_2rem)] sm:max-w-[80vw] md:max-w-[60vw] lg:max-w-[40vw] xl:max-w-[30vw] w-screen")}>
-				<h1 className="text-4xl font-unisans whitespace-nowrap text-center flex flex-col relative mb-1">{mode ? "Sign up" : "Log in"}
+				<h1 className="text-4xl font-unisans whitespace-nowrap text-center flex flex-col relative mb-1">{mode ? "Sign up" : "Sign in"}
 					<IoCloseCircleOutline className="bg-black dark:bg-white !bg-opacity-5 hover:!bg-opacity-10 active:!bg-opacity-20 rounded-full p-1 text-black dark:text-white text-opacity-50 self-end absolute top-0 right-0 m-[2px]" onClick={ () => setOpen(false) }/>
 				</h1>
 				{ mode === true && <input className="bg-transparent autofill:!bg-amber-500/10 my-2 ring-1 ring-zinc-500/50 outline-none focus:ring-2 focus:ring-primary py-1.5 px-3 rounded-xl" placeholder="Username" type="text" id="username" ref={userRef}/> }
@@ -64,7 +64,7 @@ export default function LoginConsent(): JSX.Element {
 				<div className="flex -m-1 pt-2">
 					{ mode ? <p className="text-primary cursor-pointer underline select-none ml-1 mt-5" onClick={() => setMode(false)}>Sign in instead</p> : <p className="text-primary cursor-pointer underline select-none ml-1 mt-5" onClick={() => setMode(true)}>Create account</p> }
 					<div className="grow"></div>
-					{ mode ? <div className="btn ml-auto bg-primary hover:bg-primarymid active:bg-primarydark" onClick={signup}>create account</div> : <div className="btn ml-auto bg-primary hover:bg-primarymid active:bg-primarydark" onClick={login}>login</div> }
+					{ mode ? <div className="btn ml-auto bg-primary hover:bg-primarymid active:bg-primarydark" onClick={signup}>create account</div> : <div className="btn ml-auto bg-primary hover:bg-primarymid active:bg-primarydark" onClick={login}>Sign in</div> }
 				</div>
 			</div>
 		</div>
