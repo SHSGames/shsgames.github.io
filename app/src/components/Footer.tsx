@@ -22,7 +22,7 @@ export default function Footer(): JSX.Element {
 							<DiscordInvite guild="584437072618717209"/>
 							<div className="p-2">
 								<a href="//github.com/SHSGames/shsgames.github.io" target="_blank">
-									<img src={"https://github-readme-stats.vercel.app/api/pin/?username=SHSGames&repo=shsgames.github.io&theme=radical&bg_color=22272e&border_color=373e47&title_color=58a6ff&icon_color=adbac7&text_color=adbac7"} alt="" className="raised-3"/>
+									<img src={"https://github-readme-stats.vercel.app/api/pin/?username=SHSGames&repo=shsgames.github.io&theme=radical&bg_color=2f3136&border_color=3f3f46&title_color=58a6ff&icon_color=adbac7&text_color=adbac7"} alt="" className="raised-3"/>
 								</a>
 							</div>
 						</div>
