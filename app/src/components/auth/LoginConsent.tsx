@@ -1,4 +1,5 @@
 import classnames from "classnames";
+import { toast } from "material-react-toastify";
 import { nanoid } from "nanoid";
 import { Dispatch, SetStateAction, useContext, useRef, useState } from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
@@ -23,9 +24,8 @@ export default function LoginConsent(): JSX.Element {
 		const email = emailRef.current!.value;
 		const passwd = passwRef.current!.value;
 		db.user().auth(email, passwd, resp => {
-			if (!resp.hasOwnProperty("err")) {
-				setOpen(false);
-			}
+			if ("err" in resp) return error(resp.err);
+			setOpen(false);
 		});
 	}
 
@@ -35,10 +35,10 @@ export default function LoginConsent(): JSX.Element {
 		const passwd = passwRef.current!.value;
 		const passwdc = passwcRef.current!.value;
 
-		if (passwd !== passwdc) throw new Error("Passwords dont match");
+		if (passwd !== passwdc) return error("Passwords dont match");
 
 		db.user().create(email, passwd, resp => {
-			if ("err" in resp) throw new Error(resp.err);
+			if ("err" in resp) return error(resp.err);
 			db.user(resp.pub)
 				.get("user")
 				.put<User>({
@@ -49,6 +49,10 @@ export default function LoginConsent(): JSX.Element {
 				});
 			login();
 		});
+	}
+
+	function error(error: string) {
+		toast.error(error);
 	}
 
 	return (

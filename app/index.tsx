@@ -1,3 +1,4 @@
+import { ToastContainer } from "material-react-toastify";
 import { ElementType, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -5,12 +6,12 @@ import "styles/index.less";
 import { registerSW } from "virtual:pwa-register";
 import Waves from "../photoncss/src/ts/util/Waves";
 import { base } from "./manifest.json";
+import AddGame from "./src/components/AddGame";
 import AuthProvider from "./src/components/auth/AuthProvider";
 import Container from "./src/components/Container";
 import Drawer from "./src/components/Drawer";
 import Error404 from "./src/components/Error404";
 import Footer from "./src/components/Footer";
-import AddGame from "./src/components/AddGame";
 import ErrorBoundary from "./src/runtime/ErrorBoundry";
 import GunProvider from "./src/runtime/GunContext";
 
@@ -30,6 +31,7 @@ createRoot(document.getElementById("root")!).render(
 					<BrowserRouter>
 						<Drawer/>
 						<div className="xl:ml-[300px]">
+							<ToastContainer pauseOnFocusLoss draggable position="top-right" hideProgressBar={false}/>
 							<Container>
 								<AddGame/>
 								<Routes>
