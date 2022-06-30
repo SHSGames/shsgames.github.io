@@ -4,6 +4,8 @@ import { IoMdExit } from "react-icons/io";
 import { forceSet, User } from "../../hooks/useUser";
 import { GunContext } from "../../runtime/GunContext";
 import Waves from "../../../../photoncss/src/ts/util/Waves";
+import { MdOutlineManageAccounts } from "react-icons/md";
+import { setShown } from "../auth/MyAccount";
 export let setOpen: Dispatch<SetStateAction<boolean>>;
 
 export type Props = { user: false | User | null}
@@ -41,6 +43,14 @@ export default function UserMenu({ user }: Props): JSX.Element | null {
 					<li>{ user.email }</li>
 					<li><a className="text-gray-600 dark:text-gray-400 underline" href="//github.com/SHSGames/shsgames.github.io/blob/master/PRIVACY.md" target="_blank">Privacy Statement</a></li>
 				</ul>
+			</div>
+			<hr className="dark:border-zinc-600"/>
+			<div className="waves-effect h-14 flex items-center flex-row transition-colors hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10" onClick={ () => {
+				setOpen(false);
+				setShown(true);
+			} }>
+				<MdOutlineManageAccounts className="text-2xl ml-9 mr-6 opacity-70"/>
+				<p className="mr-5 select-none text-xm opacity-80">My account</p>
 			</div>
 			<hr className="dark:border-zinc-600"/>
 			<div className="waves-effect h-14 flex items-center flex-row transition-colors hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10" onClick={ () => {

@@ -1,5 +1,6 @@
 import useUser from "../../hooks/useUser";
 import { setOpen as setOpenLoginConsent } from "./LoginConsent";
+import MyAccount from "./MyAccount";
 import UserMenu, { setOpen as setOpenUserMenu } from "./UserMenu";
 
 export default function User(): JSX.Element | null {
@@ -29,6 +30,7 @@ export default function User(): JSX.Element | null {
 				</div>
 			</div>
 			<UserMenu user={user}/>
+			<MyAccount user={user}/>
 		</>
 	);
 }
