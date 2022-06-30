@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } fro
 import { IoMdExit } from "react-icons/io";
 import { forceSet, User } from "../../hooks/useUser";
 import { GunContext } from "../../runtime/GunContext";
-
+import Waves from "../../../../photoncss/src/ts/util/Waves";
 export let setOpen: Dispatch<SetStateAction<boolean>>;
 
 export type Props = { user: false | User | null}
@@ -19,16 +19,18 @@ export default function UserMenu({ user }: Props): JSX.Element | null {
 			if (!wrapperRef.current!.contains(e.target as Node)) setOpen(false);
 		}
 		document.addEventListener("click", click);
+		requestAnimationFrame(() => Waves.init());
 		return function() {
 			document.removeEventListener("click", click);
 		};
 	}, []);
 
 	if (user === null || user === false) return null;
+
 	return (
 		<div className={classNames("bg-white dark:bg-zinc-700 rounded-2xl shadow-md flex flex-col absolute overflow-hidden top-0 right-0 z-[15] m-3 origin-top-right max-w-[320px] w-full transition-[opacity,transform]", !open && "opacity-0 scale-90 pointer-events-none")} ref={wrapperRef}>
 			<div className="h-24 flex">
-				<div className="w-16 h-16 bg-cyan-500 rounded-full shrink-0 m-4 text-4xl items-center justify-center flex truncate">{user.username
+				<div className="w-16 h-16 bg-cyan-500 rounded-full shrink-0 m-4 text-4xl items-center justify-center flex truncate text-white">{user.username
 					.toUpperCase()
 					.split(" ")
 					.map(a => a[0])
@@ -41,7 +43,7 @@ export default function UserMenu({ user }: Props): JSX.Element | null {
 				</ul>
 			</div>
 			<hr className="dark:border-zinc-600"/>
-			<div className="h-14 flex items-center flex-row transition-colors hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10" onClick={ () => {
+			<div className="waves-effect h-14 flex items-center flex-row transition-colors hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10" onClick={ () => {
 				db.user().leave();
 				forceSet(false);
 			} }>

@@ -10,6 +10,7 @@ import hash from "../util/hash";
 import slug from "../util/slug";
 import GamesBadge from "./GamesBadge";
 import { setShown } from "./AddGame";
+import Waves from "../../../photoncss/src/ts/util/Waves";
 
 export let setState: Dispatch<SetStateAction<boolean>>;
 
@@ -23,6 +24,7 @@ export default function Drawer(): JSX.Element {
 	function DrawerItem({ children, to, onClick = () => undefined }: Props) {
 		const route = useLocation();
 		const classes = classnames("h-12 waves-effect rounded-r-full mr-4 text-sm font-bold font-manrope flex items-center px-4 text-zinc-800 dark:text-gray-300", route.pathname === to ? "bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20" : "hover:bg-black/10 dark:hover:bg-white/20");
+		requestAnimationFrame(() => Waves.init());
 		const LinkItem = ({ children }: { children?: ReactNode }) => to === undefined || to.toString().includes("://") ? <a href={ to } className={ classes } onClick={ () => {
 			setOpen(false);
 			onClick();
