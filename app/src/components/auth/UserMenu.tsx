@@ -32,7 +32,7 @@ export default function UserMenu({ user }: Props): JSX.Element | null {
 	return (
 		<div className={classNames("bg-white dark:bg-zinc-700 rounded-2xl shadow-md flex flex-col absolute overflow-hidden top-0 right-0 z-[15] m-3 origin-top-right max-w-[320px] w-full transition-[opacity,transform]", !open && "opacity-0 scale-90 pointer-events-none")} ref={wrapperRef}>
 			<div className="h-24 flex">
-				<div className="w-16 h-16 bg-cyan-500 rounded-full shrink-0 m-4 text-4xl items-center justify-center flex truncate text-white">{user.username
+				<div className="w-16 h-16 bg-cyan-500 rounded-full shrink-0 m-4 text-4xl items-center justify-center flex truncate select-none text-white">{user.username
 					.toUpperCase()
 					.split(" ")
 					.map(a => a[0])
