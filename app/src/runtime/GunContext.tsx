@@ -1,7 +1,8 @@
-import { IGunInstance } from "gun";
+import GUN, { IGunInstance } from "gun";
+import "gun/sea";
 import { createContext } from "react";
 
-export const gun = new Gun([
+export const gun = new GUN([
 	"https://gun.joshmerlino.me/gun"
 ]);
 
