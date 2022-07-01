@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction, useContext, useRef, useState } from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { User } from "../../hooks/useUser";
 import { GunContext } from "../../runtime/GunContext";
+import { setShown } from "./MyAccount";
 
 export let setOpen: Dispatch<SetStateAction<boolean>>;
 
@@ -48,6 +49,7 @@ export default function LoginConsent(): JSX.Element {
 					created_at: Date.now()
 				});
 			login();
+			setShown(true);
 		});
 	}
 
