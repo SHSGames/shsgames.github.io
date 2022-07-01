@@ -71,7 +71,7 @@ export default function LoginConsent(): JSX.Element {
 				<div className="flex -m-1 pt-2">
 					{ mode ? <p className="text-primary cursor-pointer underline select-none ml-1 mt-5" onClick={() => setMode(false)}>Sign in instead</p> : <p className="text-primary cursor-pointer underline select-none ml-1 mt-5" onClick={() => setMode(true)}>Create account</p> }
 					<div className="grow"></div>
-					{ mode ? <div className="btn ml-auto bg-primary hover:bg-primarymid active:bg-primarydark" onClick={signup}>create account</div> : <div className="btn ml-auto bg-primary hover:bg-primarymid active:bg-primarydark" onClick={login}>Sign in</div> }
+					{ mode ? <div className="btn waves-effect ml-auto bg-primary hover:bg-primarymid active:bg-primarydark" onClick={signup}>create account</div> : <div className="btn waves-effect ml-auto bg-primary hover:bg-primarymid active:bg-primarydark" onClick={login}>Sign in</div> }
 				</div>
 			</div>
 		</div>

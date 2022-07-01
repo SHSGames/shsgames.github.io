@@ -10,7 +10,7 @@ export default function User(): JSX.Element | null {
 
 	if (user === false) return (
 		<div className="flex">
-	 		<div className="btn bg-primary hover:bg-primarymid active:bg-primarydark" onClick={() => setOpenLoginConsent(true)}>sign in</div>
+	 		<div className="btn waves-effect bg-primary hover:bg-primarymid active:bg-primarydark" onClick={() => setOpenLoginConsent(true)}>sign in</div>
 	 	</div>
 	);
 
