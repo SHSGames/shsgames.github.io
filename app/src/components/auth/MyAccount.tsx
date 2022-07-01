@@ -1,15 +1,13 @@
 import classnames from "classnames";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { User } from "../../hooks/useUser";
-import { GunContext } from "../../runtime/GunContext";
 
 export let setShown: React.Dispatch<React.SetStateAction<boolean>>;
 
 export type Props = { user: User }
 export default function MyAccount({ user }: Props): JSX.Element | null {
 
-	const db = useContext(GunContext);
 	const [ isShown, __setShown ] = useState(false);
 	setShown = __setShown;
 
