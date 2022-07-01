@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Gameboy as Emulator } from "gameboy-emulator";
 
-export default function Gameboy({ game }: { game: Games.FullGame }): JSX.Element {
+export default function Gameboy({ game }: { game: SHSGames.Game }): JSX.Element {
 
 	const gameboy = new Emulator;
 	const ref = useRef<HTMLCanvasElement>(null);

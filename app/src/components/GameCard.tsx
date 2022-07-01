@@ -6,7 +6,7 @@ import { base } from "../../manifest.json";
 import hash from "../util/hash";
 import slug from "../util/slug";
 
-export interface GameProps extends Games.Game {
+export interface GameProps extends SHSGames.Game {
 	renderCard?: boolean
 }
 
