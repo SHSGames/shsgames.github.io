@@ -28,8 +28,9 @@ export default function useUser(): User | null | false {
 		});
 		if (user.is === undefined) setState(false);
 		db.on("auth", function() {
-			db.user().get("user")
-				.on((a: User) => setState(a));
+			db.user()
+				.get("user")
+				.on(setState);
 		});
 
 	}, [ ]);
