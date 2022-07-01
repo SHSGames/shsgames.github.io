@@ -4,20 +4,18 @@ import hash from "../util/hash";
 
 export default function useGames(): Games.MANIFEST {
 
-	return [];
+	const [ state, setState ] = useState<Record<string, Games.Game>>({});
+	const gun = useContext(GunContext);
 
-	// Const [ state, setState ] = useState<Record<string, Games.Game>>({});
-	// Const gun = useContext(GunContext);
+	useEffect(function() {
+		gun.get("shsgames")
+			.map()
+			.on((game: { data: string, hash: string, id: string }) => {
+				if (hash(game.data, 36) !== game.hash) return;
+				setState(state => ({ ...state, [game.id]: JSON.parse(game.data) }));
+			});
+	}, [ ]);
 
-	// UseEffect(function() {
-	// 	Gun.get("shsgames")
-	// 		.map()
-	// 		.on((game: { data: string, hash: string, id: string }) => {
-	// 			If (hash(game.data, 36) !== game.hash) return;
-	// 			SetState(state => ({ ...state, [game.id]: JSON.parse(game.data) }));
-	// 		});
-	// }, [ ]);
-
-	// Return Object.values(state);
+	return Object.values(state);
 
 }
