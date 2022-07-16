@@ -30,7 +30,7 @@
         "build": "tsc -p tsconfig.node.json && vite build && cp public_html/next/index.html public_html/next/404.html"
     },
     "dependencies": {
-        "async-require-context": "^1.8.13",
+        "async-require-context": "^1.8.15",
         "chalk": "^4.1.2",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.6",
