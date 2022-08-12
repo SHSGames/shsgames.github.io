@@ -32,7 +32,7 @@
     },
     "dependencies": {
         "async-require-context": "^1.8.15",
-        "chalk": "4.x.x",
+        "chalk": "5.x.x",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
@@ -48,7 +48,7 @@
         "@types/express": "^4.17.13",
         "@types/jquery": "^3.5.14",
         "@types/mkdirp": "^1.0.2",
-        "@types/node": "^18.7.1",
+        "@types/node": "^18.7.2",
         "@types/node-fetch": "^2.6.2",
         "@types/react": "^18.0.17",
         "@types/react-dom": "^18.0.6",
@@ -80,7 +80,7 @@
         "setimmediate": "^1.0.5",
         "typescript": "^4.7.4",
         "uuid": "^8.3.2",
-        "vite": "^3.0.5",
+        "vite": "^3.0.6",
         "vite-plugin-html-config": "^1.0.9",
         "vite-plugin-pwa": "^0.12.3",
         "web-manifest-reader": "^1.2.3"
