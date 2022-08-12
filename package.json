@@ -19,7 +19,7 @@
         }
     },
     "engines": {
-        "node": "17.x"
+        "node": "18.x"
     },
     "scripts": {
         "watch-ts": "tsc -w -p tsconfig.node.json",
@@ -32,14 +32,14 @@
     },
     "dependencies": {
         "async-require-context": "^1.8.15",
-        "chalk": "^5.0.1",
+        "chalk": "4.x.x",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
         "dotenv": "^16.0.1",
         "express": "^4.18.1",
         "extract-zip": "^2.0.1",
-        "node-fetch": "^3.2.8"
+        "node-fetch": "2.x.x"
     },
     "devDependencies": {
         "@types/compression": "^1.7.2",
