@@ -21,6 +21,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       # Sets up node environment
       - name: Use Node.js 17
