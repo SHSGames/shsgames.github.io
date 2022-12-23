@@ -65,7 +65,7 @@
         "eslint-plugin-react": "^7.31.11",
         "eslint-plugin-react-hooks": "^4.6.0",
         "gameboy-emulator": "^1.1.2",
-        "gun": "^0.2020.1238",
+        "gun": "^0.2020.1239",
         "jquery": "^3.6.3",
         "jsnes": "^1.2.1",
         "lessc": "^1.0.2",
