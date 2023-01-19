@@ -50,7 +50,7 @@
         "@types/mkdirp": "^1.0.2",
         "@types/node": "^18.11.18",
         "@types/node-fetch": "^2.6.2",
-        "@types/react": "^18.0.26",
+        "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",
         "@types/react-lazy-load-image-component": "^1.5.2",
         "@types/setimmediate": "^1.0.2",
