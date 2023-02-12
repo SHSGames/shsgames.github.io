@@ -1,0 +1,13 @@
+{
+"companyName": "Squid Squad Games",
+"productName": "Tanuki Sunset",
+"dataUrl": "https://cdn.glitch.com/022179ac-678c-40ab-ab02-33b34ed23a18%2Ftanuki_sunset.data.unityweb",
+"wasmCodeUrl": "tanuki_sunset.wasm.code.unityweb",
+"wasmFrameworkUrl": "tanuki_sunset.wasm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"}
+}
