@@ -1,0 +1,31 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "name": "SHS Games",
+    "short_name": "SHS Games",
+    "description": "Unblocked games • part of an inside job.",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "orientation": "portrait",
+    "base": "/",
+    "id": "0x79511424a65911ec8b8600155d636c08",
+    "icons": [
+        {
+            "src": "/icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

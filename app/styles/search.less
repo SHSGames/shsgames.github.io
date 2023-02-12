@@ -1,0 +1,69 @@
+.search {
+	position: absolute;
+    height: 48px;
+    top: 0;
+    margin: 8px 0;
+    border-radius: 4px;
+    right: 64px;
+	background: var(--palette_header_background);
+	width: 500px;
+	@media (max-width: 1280px) {
+		left: 6px;
+		right: 6px;
+		width: auto;
+		display: none;
+		z-index: 4
+	}
+	@media (min-width: 1280px) {
+		display: block!important;
+	}
+	.photon-input {
+		margin: 0;
+		margin-top: -2px;
+		overflow: hidden;
+		width: calc(100% - 2px);
+		input {
+			margin-top: 0;
+			padding-top: 16px!important;
+			padding-bottom: 16px!important;
+			border-bottom: none;
+			border-radius: 4px;
+			width: calc(100% - 67px);
+		    padding-left: 52px!important;
+		}
+		.prefix {
+			font-family: Material Icons;
+			font-size: 24px;
+			transform: translate(2px, -2px);
+		}
+	}
+}
+
+.search-results-list {
+	border: 0!important;
+    margin: 0!important;
+    padding: 0!important;
+    margin-bottom: -9px!important;
+    margin-top: 16px!important;
+	overflow-x: hidden;
+	overflow-y: auto;
+	max-height: 80vh;
+	border-top: 1px solid var(--palette_divider)!important;
+}
+
+.search-results-list {
+	::-webkit-scrollbar-track,
+	::-webkit-scrollbar-corner {
+		background: var(--palette_sheet_background);
+	}
+	.search-result {
+		height: 56px!important;
+		.waves-ripple {
+			background: var(--palette_body_waves)!important;
+		}
+	}
+}
+
+.search-results {
+    box-shadow: 0px 7px 8px -4px rgb(0 0 0 / 20%), 0px 12px 17px 2px rgb(0 0 0 / 14%), 0px 5px 22px 4px rgb(0 0 0 / 12%), 0 0 0 9999px rgb(0 0 0 / 36%);
+}

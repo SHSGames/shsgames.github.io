@@ -1,0 +1,18 @@
+[submodule "app/public/built-games/cookieclicker"]
+	path = app/public/built-games/cookieclicker
+	url = https://github.com/SHSGames/cookieclicker.git
+[submodule "app/public/built-games/CSGOClicker"]
+	path = app/public/built-games/CSGOClicker
+	url = https://github.com/SHSGames/CSGOClicker.git
+[submodule "app/public/built-games/chromedino"]
+	path = app/public/built-games/chromedino
+	url = https://github.com/SHSGames/chromedino.git
+[submodule "app/public/built-games/baldis-basics"]
+	path = app/public/built-games/baldis-basics
+	url = https://github.com/SHSGames/baldis-basics.git
+[submodule "app/public/built-games/takumiraccoon"]
+	path = app/public/built-games/takumiraccoon
+	url = https://github.com/SHSGames/takumiraccoon.git
+[submodule "app/public/IodineGBA"]
+	path = app/public/IodineGBA
+	url = https://github.com/SHSGames/IodineGBA.git

@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "lib": ["es2020"],
+        "module": "commonjs",
+        "target": "es2020",
+        "types": ["node"],
+        "outDir": "lib",
+        "jsx": "react",
+        "removeComments": true,
+        "sourceMap": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": false,
+        "noUnusedParameters": true,
+        "allowUnreachableCode": false,
+        "preserveConstEnums": false,
+        "resolveJsonModule": false,
+        "declaration": true
+    },
+    "exclude": [
+        "node_modules",
+        "lib"
+    ],
+	"include": ["src", "api"]
+}

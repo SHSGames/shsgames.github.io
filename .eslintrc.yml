@@ -1,0 +1,135 @@
+env:
+  browser: true
+  node: true
+  es2020: true
+  commonjs: true
+  shared-node-browser: true
+
+plugins:
+- "@typescript-eslint"
+
+parser: "@typescript-eslint/parser"
+
+parserOptions:
+  ecmaVersion: 12
+  sourceType: module
+
+
+extends:
+  - plugin:@typescript-eslint/recommended
+
+rules:
+  for-direction: error
+  getter-return: error
+  no-compare-neg-zero: error
+  no-cond-assign: error
+  no-constant-condition: warn
+  no-control-regex: error
+  no-debugger: warn
+  no-dupe-args: error
+  no-dupe-else-if: error
+  no-dupe-keys: error
+  no-duplicate-case: error
+  no-empty: warn
+  no-extra-boolean-cast: error
+  no-extra-parens: warn
+  no-extra-semi: warn
+  no-func-assign: error
+  no-import-assign: error
+  no-invalid-regexp: error
+  no-irregular-whitespace: warn
+  no-regex-spaces: warn
+  no-setter-return: error
+  no-unexpected-multiline: error
+  no-unreachable: warn
+  no-unsafe-finally: warn
+  no-unsafe-negation: error
+  use-isnan: error
+  valid-typeof: error
+  block-scoped-var: warn
+  default-case: warn
+  default-param-last: error
+  dot-location: [warn, property]
+  dot-notation: warn
+  eqeqeq: error
+  max-classes-per-file: error
+  no-alert: warn
+  no-constructor-return: error
+  no-else-return: warn
+  no-empty-function: warn
+  no-empty-pattern: warn
+  no-eq-null: error
+  no-eval: warn
+  no-extra-bind: error
+  no-extra-label: warn
+  no-implied-eval: warn
+  no-invalid-this: error
+  no-iterator: error
+  no-lone-blocks: warn
+  no-loop-func: error
+  no-multi-spaces: warn
+  no-multi-str: warn
+  no-new: error
+  no-new-func: error
+  no-new-wrappers: error
+  no-proto: error
+  no-redeclare: error
+  no-restricted-properties: error
+  no-script-url: error
+  no-self-assign: warn
+  no-self-compare: warn
+  no-sequences: error
+  no-throw-literal: error
+  no-unmodified-loop-condition: error
+  no-unused-expressions: warn
+  no-useless-call: warn
+  no-useless-catch: warn
+  no-useless-concat: warn
+  no-useless-escape: warn
+  no-warning-comments: warn
+  no-with: warn
+  require-await: warn
+  wrap-iife: error
+  yoda: warn
+  strict: error
+  array-bracket-spacing: [warn, always]
+  brace-style: warn
+  capitalized-comments: warn
+  comma-dangle: warn
+  comma-spacing: warn
+  comma-style: warn
+  computed-property-spacing: warn
+  consistent-this: warn
+  eol-last: warn
+  func-call-spacing: warn
+  indent: [warn, tab]
+  jsx-quotes: [warn, prefer-double]
+  key-spacing: warn
+  keyword-spacing: warn
+  line-comment-position: [warn, { position: above }]
+  linebreak-style: [warn, unix]
+  lines-around-comment: warn
+  lines-between-class-members: warn
+  max-statements-per-line: warn
+  multiline-ternary: [warn, never]
+  new-parens: [warn, never]
+  newline-per-chained-call: warn
+  no-array-constructor: warn
+  no-inline-comments: warn
+  no-lonely-if: warn
+  no-multi-assign: warn
+  no-multiple-empty-lines: [warn, { max: 1, maxEOF: 0 }]
+  no-new-object: warn
+  no-trailing-spaces: warn
+  no-unneeded-ternary: warn
+  no-whitespace-before-property: warn
+  one-var-declaration-per-line: warn
+  operator-assignment: warn
+  prefer-object-spread: warn
+  quotes: [warn, double]
+  semi: [warn, always]
+  space-unary-ops: warn
+  spaced-comment: warn
+  "@typescript-eslint/no-unused-vars": off
+  "@typescript-eslint/no-non-null-assertion": off
+  "@typescript-eslint/no-explicit-any": off
