@@ -69,7 +69,7 @@
         "jquery": "^3.6.3",
         "lessc": "^1.0.2",
         "mkdirp": "^2.1.4",
-        "nodemon": "^2.0.20",
+        "nodemon": "^2.0.21",
         "photoncss": "^13.5.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
