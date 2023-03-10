@@ -54,7 +54,7 @@
         "@typescript-eslint/eslint-plugin": "^5.54.1",
         "@typescript-eslint/parser": "^5.54.1",
         "@vitejs/plugin-react": "^3.1.0",
-        "autoprefixer": "^10.4.13",
+        "autoprefixer": "^10.4.14",
         "chokidar": "^3.5.3",
         "classnames": "^2.3.2",
         "concurrently": "^7.6.0",
