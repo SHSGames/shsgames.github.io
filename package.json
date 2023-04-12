@@ -39,7 +39,7 @@
         "dotenv": "^16.0.3",
         "express": "^4.18.2",
         "extract-zip": "^2.0.1",
-        "node-fetch": "2.x.x"
+        "node-fetch": "3.x.x"
     },
     "devDependencies": {
         "@types/compression": "^1.7.2",
