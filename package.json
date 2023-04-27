@@ -68,7 +68,7 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "jquery": "^3.6.4",
         "lessc": "^1.0.2",
-        "mkdirp": "^3.0.0",
+        "mkdirp": "^3.0.1",
         "nodemon": "^2.0.22",
         "photoncss": "^13.5.1",
         "react": "^18.2.0",
