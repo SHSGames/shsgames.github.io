@@ -80,7 +80,7 @@
         "setimmediate": "^1.0.5",
         "typescript": "^5.0.4",
         "uuid": "^9.0.0",
-        "vite": "^4.3.4",
+        "vite": "^4.3.5",
         "vite-plugin-html-config": "^1.0.11",
         "vite-plugin-pwa": "^0.14.7",
         "web-manifest-reader": "^1.2.3"
