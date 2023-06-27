@@ -56,7 +56,7 @@
         "@types/setimmediate": "^1.0.2",
         "@types/uuid": "^9.0.2",
         "@typescript-eslint/eslint-plugin": "^5.60.0",
-        "@typescript-eslint/parser": "^5.60.0",
+        "@typescript-eslint/parser": "^5.60.1",
         "@vitejs/plugin-react": "^4.0.1",
         "chokidar": "^3.5.3",
         "concurrently": "^8.2.0",
