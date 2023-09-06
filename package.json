@@ -52,7 +52,7 @@
         "@types/react-dom": "^18.2.7",
         "@types/uuid": "^9.0.3",
         "@typescript-eslint/eslint-plugin": "^6.6.0",
-        "@typescript-eslint/parser": "^6.5.0",
+        "@typescript-eslint/parser": "^6.6.0",
         "@vitejs/plugin-react": "^4.0.4",
         "autoprefixer": "^10.4.15",
         "chokidar": "^3.5.3",
