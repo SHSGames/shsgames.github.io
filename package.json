@@ -76,7 +76,7 @@
         "react-fast-marquee": "^1.6.2",
         "react-lazy-load-image-component": "^1.6.0",
         "react-query": "^3.39.3",
-        "react-router-dom": "^6.16.0",
+        "react-router-dom": "^6.17.0",
         "setimmediate": "^1.0.5",
         "typescript": "^5.2.2",
         "uuid": "^9.0.1",
