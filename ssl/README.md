@@ -1,1 +1,0 @@
-Certificates generated via the OpenSSL library. In production you should apply your own certificate.

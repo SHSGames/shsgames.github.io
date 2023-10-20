@@ -1,11 +1,11 @@
-import { defineConfig, normalizePath } from "vite";
 import react from "@vitejs/plugin-react";
 import { config } from "dotenv";
-import pjson from "./package.json";
-import manifest, { base } from "./app/manifest.json";
-import { VitePWA } from "vite-plugin-pwa";
-import htmlPlugin from "vite-plugin-html-config";
 import path from "path";
+import { defineConfig } from "vite";
+import htmlPlugin from "vite-plugin-html-config";
+import { VitePWA } from "vite-plugin-pwa";
+import manifest, { base } from "./app/manifest.json";
+import pjson from "./package.json";
 
 config();
 
@@ -20,8 +20,8 @@ export default defineConfig({
 			manifest: <unknown>manifest,
 			workbox: {
 				globIgnores: [
-					"**\/IodineGBA\/index.html",
-					"**\/node_modules\/**\/*"
+					"**/IodineGBA/index.html",
+					"**/node_modules/**/*"
 				]
 			}
 		}),
@@ -32,6 +32,9 @@ export default defineConfig({
     		}, {
 				name: "theme-color",
 				content: manifest.theme_color
+			}, {
+				name: "og:image",
+				content: "/banner.png"
 			} ],
 			links: [ {
 				rel: "apple-touch-icon",
