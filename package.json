@@ -15,7 +15,7 @@
 		"build": "tsc && vite build && cp public_html/index.html public_html/404.html"
 	},
 	"devDependencies": {
-		"@types/jquery": "^3.5.22",
+		"@types/jquery": "^3.5.25",
 		"@types/node": "^20.8.7",
 		"@types/qs": "^6.9.9",
 		"@types/react": "^18.2.31",
