@@ -48,7 +48,7 @@
         "@types/jquery": "^3.5.27",
         "@types/node": "^20.9.0",
         "@types/node-fetch": "^2.6.2",
-        "@types/react": "^18.2.35",
+        "@types/react": "^18.2.37",
         "@types/react-dom": "^18.2.15",
         "@types/uuid": "^9.0.7",
         "@typescript-eslint/eslint-plugin": "^6.10.0",
