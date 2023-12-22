@@ -1,7 +1,7 @@
 {
 	"name": "shsgames",
 	"display-name": "SHS Games",
-	"version": "39.0.38",
+	"version": "39.0.39",
 	"description": "Unblocked games • part of an inside job.",
 	"author": "Josh Merlino",
 	"license": "ISC",
@@ -42,7 +42,7 @@
 		"react-fast-marquee": "^1.6.2",
 		"react-lazy-load-image-component": "^1.6.0",
 		"react-query": "^3.39.3",
-		"react-router-dom": "^6.21.0",
+		"react-router-dom": "^6.21.1",
 		"setimmediate": "^1.0.5",
 		"typescript": "^5.3.3",
 		"uuid": "^9.0.1",
