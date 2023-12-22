@@ -17,7 +17,7 @@
 	"devDependencies": {
 		"@types/jquery": "^3.5.29",
 		"@types/node": "^20.8.7",
-		"@types/qs": "^6.9.10",
+		"@types/qs": "^6.9.11",
 		"@types/react": "^18.2.45",
 		"@types/react-dom": "^18.2.18",
 		"@types/react-lazy-load-image-component": "^1.6.3",
