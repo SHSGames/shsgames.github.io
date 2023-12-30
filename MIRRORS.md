@@ -11,6 +11,7 @@ Mirrors are community maintained sites incase all the official sites are blocked
 | https://magixxzshsgames.herokuapp.com | Outdated |
 | https://physics-central.com | Outdated |
 | https://sh--9pfs.repl.co | ChromeOS Only |
+| https://sh.9pfs.repl.co | ChromeOS Only |
 | https://shhstheplayce672.herokuapp.com | Legacy |
 | https://shs.barnacled.repl.co | Outdated |
 | https://shs.klj2.repl.co | Outdated |
