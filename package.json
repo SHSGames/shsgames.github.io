@@ -1,7 +1,7 @@
 {
 	"name": "shsgames",
 	"display-name": "SHS Games",
-	"version": "39.0.50",
+	"version": "39.0.51",
 	"description": "Unblocked games • part of an inside job.",
 	"author": "Josh Merlino",
 	"license": "ISC",
@@ -26,7 +26,7 @@
 		"@typescript-eslint/eslint-plugin": "^6.19.0",
 		"@typescript-eslint/parser": "^6.8.0",
 		"@vitejs/plugin-react": "^4.2.1",
-		"dotenv": "^16.3.1",
+		"dotenv": "^16.3.2",
 		"eslint": "^8.56.0",
 		"eslint-config-airbnb": "^19.0.4",
 		"eslint-plugin-import": "^2.29.1",
