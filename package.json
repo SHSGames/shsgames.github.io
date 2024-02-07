@@ -55,7 +55,7 @@
         "@typescript-eslint/parser": "^6.21.0",
         "@vitejs/plugin-react": "^4.2.1",
         "autoprefixer": "^10.4.17",
-        "chokidar": "^3.5.3",
+        "chokidar": "^3.6.0",
         "classnames": "^2.5.1",
         "concurrently": "^8.2.2",
         "eslint": "^8.56.0",
