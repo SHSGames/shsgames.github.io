@@ -44,7 +44,7 @@
 		"react-query": "^3.39.3",
 		"react-router-dom": "^6.22.3",
 		"setimmediate": "^1.0.5",
-		"typescript": "^5.4.2",
+		"typescript": "^5.4.3",
 		"uuid": "^9.0.1",
 		"vite": "^5.2.2",
 		"vite-plugin-html-config": "^1.0.11",
