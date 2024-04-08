@@ -48,7 +48,7 @@
 		"uuid": "^9.0.1",
 		"vite": "^5.2.8",
 		"vite-plugin-html-config": "^1.0.11",
-		"vite-plugin-pwa": "^0.19.7",
+		"vite-plugin-pwa": "^0.19.8",
 		"web-manifest-reader": "^1.2.3"
 	}
 }
