@@ -36,7 +36,7 @@
 		"jquery": "^3.7.1",
 		"lessc": "^1.0.2",
 		"photoncss": "^13.5.1",
-		"qs": "^6.12.0",
+		"qs": "^6.12.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-fast-marquee": "^1.6.4",
