@@ -1,7 +1,7 @@
 {
 	"name": "shsgames",
 	"display-name": "SHS Games",
-	"version": "39.0.101",
+	"version": "39.0.102",
 	"description": "Unblocked games • part of an inside job.",
 	"author": "Josh Merlino",
 	"license": "ISC",
@@ -20,7 +20,7 @@
 		"@types/qs": "^6.9.14",
 		"@types/react": "^18.2.66",
 		"@types/react-dom": "^18.2.25",
-		"@types/react-lazy-load-image-component": "^1.6.3",
+		"@types/react-lazy-load-image-component": "^1.6.4",
 		"@types/setimmediate": "^1.0.4",
 		"@types/uuid": "^9.0.6",
 		"@typescript-eslint/eslint-plugin": "^7.0.0",
