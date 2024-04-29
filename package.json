@@ -87,6 +87,6 @@
         "vite-plugin-html-config": "^1.0.11",
         "vite-plugin-pwa": "^0.19.8",
         "web-manifest-reader": "^1.2.3",
-        "yaml": "^2.4.1"
+        "yaml": "^2.4.2"
     }
 }
