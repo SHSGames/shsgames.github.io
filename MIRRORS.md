@@ -20,3 +20,4 @@ Mirrors are community maintained sites incase all the official sites are blocked
 | https://unbzoked-yay.herokuapp.com | Outdated |
 | https://unkxn.netlify.app | Outdated |
 | https://virabot-aotic.herokuapp.com | Outdated |
+| https://googlerev.netlify.app | New |
