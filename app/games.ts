@@ -19,6 +19,14 @@ export default <Game[]>[
 		width: 1200,
 		aspectRatio: 16 / 9
 	},
+	{
+		name: "Giant Agario",
+		runner: "IFRAME",
+		game: "https://agar.l5.ca/",
+		thumbnail: "https://cdn.jsdelivr.net/gh/joshmerlino/shsg-pfile/thumbs/prkrs-agario.jpg",
+		width: 1200,
+		aspectRatio: 16 / 9
+	},
 
 	// IFRAME GAMES
 	{
