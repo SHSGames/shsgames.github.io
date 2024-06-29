@@ -6,7 +6,7 @@ Mirrors are community maintained sites incase all the official sites are blocked
 | https://artix-hangout.netlify.app | Broken |
 | https://bogpog.herokuapp.com | Broken |
 | https://breezegames.herokuapp.com | Broken |
-| https://cpsgames.herokuapp.com | Outdated |
+| https://cpsgames.herokuapp.com | Broken |
 | http://joe-biden.herokuapp.com | Not Secured |
 | https://magixxzshsgames.herokuapp.com | Outdated |
 | https://physics-central.com | Outdated |
